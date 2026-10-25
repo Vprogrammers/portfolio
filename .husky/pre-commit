@@ -1,0 +1,3 @@
+# if husky config is not in git root
+# cd ./... || return
+npx lint-staged

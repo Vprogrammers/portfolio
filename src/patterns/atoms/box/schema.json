@@ -1,0 +1,16 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "/atom/box",
+	"title": "box",
+	"description": "A box atom",
+	"type": "object",
+	"properties": {
+		"modifier": {
+			"description": "A pattern modifier",
+			"enum": ["", "invert"]
+		},
+		"children": { "type": "string" },
+		"content": { "type": "string" }
+	},
+	"anyOf": [{ "required": ["children"] }, { "required": ["content"] }]
+}

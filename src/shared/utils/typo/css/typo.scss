@@ -1,0 +1,151 @@
+@use '../../breakpoints/css/breakpoints';
+
+$typography-family-sans: 'Arial', sans-serif;
+$typography-family-serif: 'Times New Roman', serif;
+
+$typography-weight-bold: 700;
+$typography-style-italic: italic;
+
+$typography-definitions: (
+	default: (
+		base: (
+			'font-size': 1.6rem,
+			'line-height': 1,
+			'font-family': $typography-family-sans,
+			'font-weight': 400,
+			'font-style': normal,
+		),
+	),
+	body: (
+		all: (
+			'font-family': $typography-family-sans,
+		),
+		mobile: (
+			'font-size': 16px,
+			'line-height': 24px,
+			'letter-spacing': 0.3px,
+		),
+		desktop: (
+			'font-size': 24px,
+			'line-height': 32px,
+			'letter-spacing': 0.75px,
+		),
+	),
+	body-small: (
+		all: (
+			'font-family': $typography-family-sans,
+		),
+		mobile: (
+			'font-size': 12px,
+			'line-height': 24px,
+			'letter-spacing': 0.3px,
+		),
+		desktop: (
+			'font-size': 18px,
+			'line-height': 32px,
+			'letter-spacing': 0.75px,
+		),
+	),
+	h1: (
+		all: (
+			'font-family': $typography-family-serif,
+			'font-font-weight': $typography-weight-bold,
+		),
+		mobile: (
+			'font-size': 32px,
+			'line-height': 44px,
+			'letter-spacing': 0.3px,
+		),
+		desktop: (
+			'font-size': 44px,
+			'line-height': 56px,
+			'letter-spacing': 0.3px,
+		),
+	),
+	h2: (
+		all: (
+			'font-family': $typography-family-serif,
+			'font-style': $typography-style-italic,
+		),
+		mobile: (
+			'font-size': 24px,
+			'line-height': 32px,
+			'letter-spacing': 0.3px,
+		),
+		desktop: (
+			'font-size': 32px,
+			'line-height': 44px,
+			'letter-spacing': 0.3px,
+		),
+	),
+	button: (
+		all: (
+			'font-family': $typography-family-serif,
+		),
+		mobile: (
+			'font-size': 18px,
+			'line-height': 18px,
+			'letter-spacing': 0.3px,
+		),
+		desktop: (
+			'font-size': 20px,
+			'line-height': 20px,
+			'letter-spacing': 0.3px,
+		),
+	),
+);
+
+// Output generation for font-size definition
+@mixin _generate-font-size($font-size-definition) {
+	font-size: map-get($font-size-definition, 'font-size');
+	line-height: map-get($font-size-definition, 'line-height');
+
+	@if (map-has-key($font-size-definition, 'font-family')) {
+		font-family: map-get($font-size-definition, 'font-family');
+	}
+	@if (map-has-key($font-size-definition, 'font-weight')) {
+		font-weight: map-get($font-size-definition, 'font-weight');
+	}
+	@if (map-has-key($font-size-definition, 'font-style')) {
+		font-style: map-get($font-size-definition, 'font-style');
+	}
+	@if (map-has-key($font-size-definition, 'letter-spacing')) {
+		letter-spacing: map-get($font-size-definition, 'letter-spacing');
+	}
+	@if (map-has-key($font-size-definition, 'text-transform')) {
+		text-transform: map-get($font-size-definition, 'text-transform');
+	}
+}
+
+// Return the font definition for the given viewport and font-name
+@function get-font-definition($font-bundle, $viewport) {
+	@if (not(map-has-key($typography-definitions, $font-bundle))) {
+		@error 'Typography font name `#{$font-bundle}` does not exist.';
+	} @else if (not(map-has-key(map-get($typography-definitions, $font-bundle), $viewport))) {
+		@error 'Typography viewport size `#{$viewport}` does not exist for font `#{$font-bundle}`.';
+	}
+
+	$all-font-definition: ();
+	@if (map-has-key(map-get($typography-definitions, $font-bundle), 'all')) {
+		$all-font-definition: map-get(map-get($typography-definitions, $font-bundle), 'all');
+	}
+	$font-definition: map-merge(
+		$all-font-definition,
+		map-get(map-get($typography-definitions, $font-bundle), $viewport)
+	);
+
+	@return $font-definition;
+}
+
+// Render a set of typography styles for one or all defined viewports
+@mixin typography($font-bundle, $viewport: 'all') {
+	@if ($viewport == 'all') {
+		@include _generate-font-size(get-font-definition($font-bundle: $font-bundle, $viewport: 'mobile'));
+		// stylelint-disable-next-line media-feature-name-no-unknown
+		@media (width >= breakpoints.$size-md) {
+			@include _generate-font-size(get-font-definition($font-bundle: $font-bundle, $viewport: 'desktop'));
+		}
+	} @else {
+		@include _generate-font-size(get-font-definition($font-bundle: $font-bundle, $viewport: $viewport));
+	}
+}

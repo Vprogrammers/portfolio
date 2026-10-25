@@ -1,0 +1,24 @@
+@use '../../../../shared/utils/token/css/component';
+@use '../../../../shared/utils/token/css/semantic-dimension';
+
+.m-example {
+	margin: semantic-dimension.$spacing-s2 0;
+	padding: component.$example-padding;
+	color: component.$example-color-foreground;
+	background-color: component.$example-color-background;
+	border-radius: component.$example-border-radius;
+}
+.m-example__headline {
+	font-size: 1.6rem;
+	margin-bottom: 0.6rem;
+}
+.m-example__link {
+	color: inherit;
+	display: inline-block;
+	padding: 0.2rem 0;
+}
+.m-example__button {
+	font-size: 1rem;
+	padding: 0.5rem 1rem;
+	margin: 1rem 0.5rem 0.5rem 0;
+}

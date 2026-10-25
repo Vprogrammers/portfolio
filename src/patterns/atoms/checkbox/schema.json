@@ -1,0 +1,32 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "/atom/checkbox",
+	"title": "checkbox",
+	"description": "A checkbox atom with optional label",
+	"type": "object",
+	"properties": {
+		"tag": {
+			"enum": ["div", "li", "span"]
+		},
+		"label": {
+			"type": "string"
+		},
+		"inputId": {
+			"type": "string"
+		},
+		"inputName": {
+			"type": "string"
+		},
+		"inputValue": {
+			"type": "string"
+		},
+		"checked": {
+			"type": "boolean"
+		},
+		"state": {
+			"enum": ["", "disabled"]
+		}
+	},
+	"required": ["tag", "inputId", "inputName", "inputValue"],
+	"dependencies": {}
+}

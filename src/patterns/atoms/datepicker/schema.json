@@ -1,0 +1,25 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "/atom/date",
+	"title": "date",
+	"description": "A date atom",
+	"type": "object",
+	"properties": {
+		"label": {
+			"type": "string"
+		},
+		"inputPlaceholder": {
+			"type": "string"
+		},
+		"dateFormat": {
+			"type": "string"
+		},
+		"altFormat": {
+			"type": "string"
+		},
+		"defaultDate": {
+			"type": "string"
+		}
+	},
+	"required": ["label"]
+}

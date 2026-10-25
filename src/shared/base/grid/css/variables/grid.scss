@@ -1,0 +1,20 @@
+@use '../../../../utils/breakpoints/css/breakpoints';
+
+$spacer: 2rem;
+$grid-columns: 12;
+$grid-gutter-width: 20px;
+$grid-breakpoints: (
+	xs: 0,
+	sm: breakpoints.$size-sm,
+	md: breakpoints.$size-md,
+	lg: breakpoints.$size-lg,
+	xl: breakpoints.$size-xl,
+	xxl: breakpoints.$size-xxl,
+);
+$container-max-widths: (
+	sm: breakpoints.$size-md - 1,
+	md: breakpoints.$size-lg - 1,
+	lg: breakpoints.$size-xl - 1,
+	xl: breakpoints.$size-xxl - 1,
+	xxl: breakpoints.$size-xxl,
+);

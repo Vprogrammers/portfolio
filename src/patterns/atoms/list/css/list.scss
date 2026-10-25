@@ -1,0 +1,20 @@
+$a-list-size: 2rem;
+
+.a-list {
+	font-size: $a-list-size;
+	margin: 5rem 0 5rem 3 * $a-list-size;
+}
+
+.a-list__item {
+	margin: 0.3 * $a-list-size 0;
+	&::before {
+		position: absolute;
+		content: '';
+		width: 1em;
+		height: 1em;
+		margin-top: 0.1 * $a-list-size;
+		margin-left: -1.6 * $a-list-size;
+		mask: center / contain no-repeat url('../img/check.svg');
+		background-color: currentColor;
+	}
+}

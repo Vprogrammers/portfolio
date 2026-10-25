@@ -1,0 +1,4 @@
+{
+	"$schema": "../schema.json"<% if (modifier.name) { %>,
+	"modifier": ""<% } %>
+}

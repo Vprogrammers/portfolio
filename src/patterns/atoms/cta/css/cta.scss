@@ -1,0 +1,92 @@
+@use '../../../../shared/utils/token/css/semantic-color';
+
+.a-cta {
+	display: block;
+	cursor: pointer;
+	margin: 0 auto;
+	padding: 0;
+	text-align: center;
+	position: relative;
+	width: 80px;
+	aspect-ratio: 1;
+	text-decoration: none;
+
+	color: semantic-color.$color-area-foreground;
+
+	&:hover,
+	&:focus-visible {
+		color: semantic-color.$color-interaction-default;
+		.a-cta__circle {
+			background-color: semantic-color.$color-interaction-default;
+		}
+	}
+	&:focus-visible {
+		outline: none;
+	}
+}
+
+.a-cta__box {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr;
+	place-content: center;
+}
+
+.a-cta__icon,
+.a-cta__circle {
+	grid-area: 1/1;
+	place-self: center;
+}
+
+.a-cta__icon {
+	position: relative;
+	font-size: 28px;
+	line-height: 1;
+	color: semantic-color.$color-solid-white;
+	transition: color 0.3s ease;
+}
+
+.a-cta__circle {
+	border-radius: 50%;
+	width: 60%;
+	aspect-ratio: 1;
+	background-color: semantic-color.$color-solid-grey-6;
+	transition: background-color 0.3s ease;
+}
+
+.a-cta__circle--size-m {
+	width: 80%;
+	opacity: 0.4;
+	animation: animation-a-cta--pulse 2.25s 0.25s linear infinite;
+}
+
+.a-cta__circle--size-l {
+	width: 100%;
+	opacity: 0.2;
+	animation: animation-a-cta--pulse 2.25s 0.25s linear infinite;
+}
+
+.a-cta__text {
+	display: inline-block;
+	color: inherit;
+	font-size: 1rem;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	padding: 0.5em;
+}
+
+@keyframes animation-a-cta--pulse {
+	0%,
+	100% {
+		opacity: 0;
+		scale: 0.8;
+	}
+	60% {
+		opacity: 0.6;
+		scale: 1;
+	}
+	90% {
+		opacity: 0;
+		scale: 1;
+	}
+}

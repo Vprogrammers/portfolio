@@ -1,0 +1,11 @@
+@use '../../../../shared/utils/token/css/component';
+
+html {
+	font-family: Arial, sans-serif;
+	line-height: 1.2;
+	color: component.$body-foreground;
+	background-color: component.$body-background;
+	@media print {
+		background-color: transparent;
+	}
+}

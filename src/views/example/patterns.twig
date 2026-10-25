@@ -1,0 +1,39 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 offset-md-2">
+			{% pattern name='gondel' %}
+			{% pattern name='heading' additionalData={ titleTag: 'h1' } %}
+			{% pattern name='example' %}
+			<div class="a-box">
+				<h3>{% pattern name='icon' additionalData={ icon: 'nitro' } %}&nbsp;Nitro example patterns</h3>
+				{% pattern name='button' %}
+				{% pattern name='checkbox' %}
+			</div>
+			{% pattern name='datepicker' %}
+			{% pattern name='box' additionalData={ modifier: 'invert' } %}
+			<div class="row align-items-center">
+				<div class="col-sm-4">
+					{% pattern name='cta' %}
+				</div>
+				<div class="col-sm-4">
+					{% pattern name='lottie' additionalData={ jsonPath: '/api/lottie/shipment.json' } %}
+				</div>
+				<div class="col-sm-4">
+					{% pattern name='lottie' additionalData={ jsonPath: '/api/lottie/bouncing.json' } %}
+				</div>
+			</div>
+			<div class="a-box">
+				{% pattern name='loader' %}
+			</div>
+			<div class="box" style="outline: 0.5vw solid #b2b2b2;">
+				{% pattern name='image' %}
+			</div>
+			{% pattern name='list' data='mix' %}
+		</div>
+	</div>
+</div>
+<div class="container-fluid">
+	<div class="row">
+		{% pattern name='stage' %}
+	</div>
+</div>

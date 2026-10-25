@@ -1,0 +1,18 @@
+{
+	"$schema": "../schema.json",
+	"modifier": "mix",
+	"listItems": [
+		{
+			"text": "Nicolai - the rock",
+			"icon": "check"
+		},
+		{
+			"text": "Nina - the rockstar",
+			"icon": "arrow"
+		},
+		{
+			"text": "Nitro - the rocket",
+			"icon": "nitro"
+		}
+	]
+}

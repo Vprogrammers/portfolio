@@ -1,0 +1,19 @@
+@use '../../../../shared/utils/webfonts/css/webfonts';
+
+.a-heading {
+	margin-bottom: 2em;
+	text-align: center;
+}
+
+.a-heading__title {
+	font-size: 2.4em;
+	font-family: webfonts.$font-family-playfair, sans-serif;
+	padding: 0.2em 0;
+}
+
+.a-heading__subline {
+	display: block;
+	margin-top: -0.3em;
+	font-size: 1.4em;
+	font-family: webfonts.$font-family-gaegu, sans-serif;
+}

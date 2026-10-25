@@ -1,0 +1,7 @@
+<ul class="a-list{% if modifier %} a-list--{{modifier}}{% endif %}">
+	{% for listItem in listItems %}
+		<li class="a-list__item">
+			{{ listItem.text }}
+		</li>
+	{% endfor %}
+</ul>

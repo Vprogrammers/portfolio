@@ -1,0 +1,20 @@
+{
+	"$schema": "../schema.json",
+	"modifier": "",
+	"title": "Example Module Template",
+	"links": [
+		{
+			"uri": "index",
+			"text": "Link One"
+		},
+		{
+			"uri": "index",
+			"text": "Link Two"
+		},
+		{
+			"uri": "index",
+			"text": "Link Three"
+		}
+	],
+	"buttons": true
+}

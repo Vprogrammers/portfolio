@@ -1,0 +1,31 @@
+@use '../../../../shared/utils/token/css/semantic-color';
+@use '../../../../shared/utils/hidden/css/hidden';
+
+.a-datepicker {
+	width: 100%;
+	position: relative;
+	line-height: 1;
+
+	&::after {
+		content: '📅';
+		position: absolute;
+		top: 50%;
+		margin-top: -0.5em;
+		right: 0.5em;
+		cursor: pointer;
+		pointer-events: none;
+	}
+}
+
+.a-datepicker__label {
+	@include hidden.visually-hidden();
+}
+
+.a-datepicker__input {
+	width: 100%;
+	padding: 0.5em 2em 0.3em 0.3em;
+	border: 2px solid semantic-color.$color-solid-grey-5;
+	border-radius: 4px;
+	color: semantic-color.$color-solid-black;
+	background-color: semantic-color.$color-solid-grey-2;
+}

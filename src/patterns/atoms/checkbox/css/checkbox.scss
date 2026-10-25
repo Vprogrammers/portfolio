@@ -1,0 +1,68 @@
+@use '../../../../shared/utils/token/css/semantic-color';
+@use '../../../../shared/utils/hidden/css/hidden';
+
+$checkbox-border: 2px;
+$checkbox-size: 1.3em;
+
+.a-checkbox {
+	color: inherit;
+	position: relative;
+}
+
+.a-checkbox__input {
+	// Checkbox Replacement: Hide default
+	@include hidden.visually-hidden();
+
+	// Checkbox Replacement: Box
+	+ .a-checkbox__label::before {
+		content: '';
+		position: absolute;
+		top: 14%;
+		left: 0;
+		display: block;
+		width: $checkbox-size;
+		height: $checkbox-size;
+
+		border: $checkbox-border solid semantic-color.$color-area-foreground;
+		border-radius: 4px;
+	}
+
+	// Checkbox Replacement - checked state: check char
+	&:checked + .a-checkbox__label::after {
+		content: '✔';
+		color: inherit;
+		position: absolute;
+		top: 20%;
+		left: 5px;
+	}
+
+	&:focus,
+	&:active {
+		+ .a-checkbox__label::before {
+			border-color: semantic-color.$color-accent-2;
+		}
+	}
+}
+
+.a-checkbox__label {
+	display: inline-block;
+	padding: 0.3em 1em 0.3em (1 + $checkbox-size);
+
+	cursor: pointer;
+	user-select: none;
+
+	color: inherit;
+	font-family: inherit;
+	font-weight: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	text-transform: none;
+}
+
+// states
+.state-a-checkbox--disabled {
+	opacity: 0.4;
+	.a-checkbox__label {
+		cursor: default;
+	}
+}

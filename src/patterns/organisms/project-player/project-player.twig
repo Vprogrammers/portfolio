@@ -2,7 +2,7 @@
 <section class="o-project-player js-project-player" aria-label="Featured projects" data-interval="7000">
   <div class="o-project-player__slides">
     {% for project in projects %}
-      <article class="o-project-player__slide" data-project-slide {% if not loop.first %}hidden{% endif %}>
+      <article class="o-project-player__slide" data-project-slide data-tone="{{ project.tone|default('teal') }}" {% if not loop.first %}hidden{% endif %}>
         <div class="o-project-player__content">
           <p class="o-project-player__eyebrow">{{ project.category }}</p>
           <h2 class="o-project-player__title">{{ project.title }}</h2>

@@ -4,26 +4,30 @@
       "category": "Mobile · Kotlin Multiplatform",
       "title": "Hansgrohe ProApp",
       "summary": "Enterprise product presentations and offline content for field teams.",
-      "tone": "teal"
+      "tone": "teal",
+      "image": "/assets/img/projects/hansgrohe/hero.webp"
     },
     {
       "category": "iOS · Swift",
       "title": "Migros iMpuls",
       "summary": "Maintaining and releasing a production iOS application.",
-      "tone": "violet"
+      "tone": "violet",
+      "image": "/assets/img/projects/migros/hero.webp"
     },
     {
       "category": "Frontend · Twig",
       "title": "CGIAR",
       "summary": "Responsive component-driven web development.",
-      "tone": "orange"
+      "tone": "orange",
+      "image": "/assets/img/projects/cgiar/hero.webp"
     },
     {
       "category": "Open source · Accessibility",
       "title": "a11yOtp",
       "summary": "Accessible native one-time-code input for Android and iOS.",
       "tone": "blue",
-      "url": "https://github.com/Vprogrammers/a11yOtp"
+      "url": "https://github.com/Vprogrammers/a11yOtp",
+      "image": "/assets/img/projects/a11yotp/hero.webp"
     }
   ]
 }

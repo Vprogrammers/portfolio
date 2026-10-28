@@ -1,0 +1,30 @@
+.o-project-player {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  background: #121820;
+  color: #fff;
+
+  &__slide {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: grid;
+    align-items: end;
+    padding: clamp(1.5rem, 6vw, 7rem);
+    padding-bottom: clamp(7rem, 12vh, 12rem);
+  }
+
+  &__slide[hidden] { display: none; }
+  &__content { max-width: 70rem; }
+  &__eyebrow { font-size: clamp(.8rem, 1vw, 1rem); letter-spacing: .14em; text-transform: uppercase; }
+  &__title { font-size: clamp(3rem, 9vw, 10rem); line-height: .95; overflow-wrap: anywhere; }
+  &__description { max-width: 45rem; font-size: clamp(1rem, 1.5vw, 1.4rem); line-height: 1.5; }
+  &__link { display: inline-block; margin-top: 1.5rem; color: inherit; text-underline-offset: .3em; }
+  &__controls { position: absolute; inset-inline: clamp(1.5rem, 6vw, 7rem); bottom: 2rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  &__controls button { border: 1px solid currentColor; border-radius: 100px; padding: .65rem 1rem; color: inherit; background: transparent; cursor: pointer; }
+  &__controls button:focus-visible, &__link:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+  &__progress { width: 2rem; height: 2rem; border-radius: 50%; background: conic-gradient(currentColor var(--project-progress, 0%), transparent 0); border: 1px solid currentColor; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .o-project-player { scroll-behavior: auto; }
+}

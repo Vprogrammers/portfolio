@@ -1,0 +1,29 @@
+{
+  "projects": [
+    {
+      "category": "Mobile · Kotlin Multiplatform",
+      "title": "Hansgrohe ProApp",
+      "summary": "Enterprise product presentations and offline content for field teams.",
+      "tone": "teal"
+    },
+    {
+      "category": "iOS · Swift",
+      "title": "Migros iMpuls",
+      "summary": "Maintaining and releasing a production iOS application.",
+      "tone": "violet"
+    },
+    {
+      "category": "Frontend · Twig",
+      "title": "CGIAR",
+      "summary": "Responsive component-driven web development.",
+      "tone": "orange"
+    },
+    {
+      "category": "Open source · Accessibility",
+      "title": "a11yOtp",
+      "summary": "Accessible native one-time-code input for Android and iOS.",
+      "tone": "blue",
+      "url": "https://github.com/Vprogrammers/a11yOtp"
+    }
+  ]
+}

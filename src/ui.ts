@@ -29,6 +29,7 @@ import './patterns/atoms/lottie';
 import './patterns/atoms/quote';
 import './patterns/atoms/stage';
 import './patterns/molecules/example';
+import './patterns/organisms/project-player';
 
 hot(module);
 

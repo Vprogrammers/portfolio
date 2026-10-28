@@ -4,13 +4,22 @@
       "category": "Mobile · Kotlin Multiplatform",
       "title": "Hansgrohe ProApp",
       "summary": "Enterprise product presentations and offline content for field teams.",
-      "tone": "teal"
+      "tone": "teal",
+      "image": "/assets/img/projects/Hansgrohe%20PROApp%20Concept%20Showcase.png"
     },
     {
       "category": "iOS · Swift",
       "title": "Migros iMpuls",
       "summary": "Maintaining and releasing a production iOS application.",
-      "tone": "violet"
+      "tone": "violet",
+      "image": "/assets/img/projects/Migros%20iMpuls%20Coach%20Mountain%20Wellness%20Showcase-1.png"
+    },
+    {
+      "category": "Demo · Temporary visual",
+      "title": "MuMe Live — Visual Test",
+      "summary": "Temporary image to evaluate fullscreen presentation. This is not a published case study.",
+      "tone": "teal",
+      "image": "/assets/img/projects/MuMe%20Live%20Chat%20App%20Showcase.png"
     },
     {
       "category": "Frontend · Twig",

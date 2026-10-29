@@ -3,16 +3,13 @@
   <div class="o-project-player__slides">
     {% for project in projects %}
       <article class="o-project-player__slide" data-project-slide data-tone="{{ project.tone|default('teal') }}" {% if project.variant %}data-scene="{{ project.variant }}"{% endif %} {% if project.duration %}data-duration="{{ project.duration }}"{% endif %} {% if project.staticBackground %}data-static-background="true"{% endif %} {% if not loop.first %}hidden{% endif %}>
-        {% if project.imageWide %}
-          <img class="o-project-player__background-wide" src="{{ project.imageWide }}" alt="" loading="eager" decoding="async">
-        {% endif %}
         {% if project.image %}
-          <img
-            class="o-project-player__background"
-            src="{{ project.image }}"
-            alt=""
-            {% if loop.first %}fetchpriority="high" loading="eager"{% else %}loading="eager"{% endif %}
-            decoding="async">
+          <picture class="o-project-player__picture">
+            {% if project.imageWide %}
+              <source media="(min-aspect-ratio: 2/1)" srcset="{{ project.imageWide }}">
+            {% endif %}
+            <img class="o-project-player__background" src="{{ project.image }}" alt="" {% if loop.first %}fetchpriority="high"{% endif %} loading="eager" decoding="async">
+          </picture>
         {% endif %}
         {% if project.frames %}
           <div class="o-project-player__frames" aria-hidden="true">

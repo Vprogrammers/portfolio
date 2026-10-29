@@ -19,8 +19,9 @@ players.forEach((player) => {
         // The perspective matrices use a fixed 2048 × 1152 scene coordinate space.
         // Scaling by the decoded asset dimensions would move the overlay whenever
         // the background is exported at a different resolution.
-        const sceneWidth = 2048;
-        const sceneHeight = 1152;
+        const centered = slide.dataset.scene === 'centered-ipad';
+        const sceneWidth = centered ? 1648 : 2048;
+        const sceneHeight = centered ? 928 : 1152;
         const scale = Math.max(bounds.width / sceneWidth, bounds.height / sceneHeight);
         const offsetX = (bounds.width - sceneWidth * scale) / 2;
         const offsetY = (bounds.height - sceneHeight * scale) / 2;

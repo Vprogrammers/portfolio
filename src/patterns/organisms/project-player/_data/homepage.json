@@ -5,7 +5,9 @@
       "title": "Hansgrohe ProApp",
       "summary": "Enterprise product presentations and offline content for field teams.",
       "tone": "teal",
-      "image": "/assets/img/projects/Hansgrohe%20PROApp%20Concept%20Showcase.png"
+      "image": "/assets/img/projects/Hansgrohe%20PROApp%20Concept%20Showcase.png",
+      "duration": 15000,
+      "staticBackground": true
     },
     {
       "category": "iOS · Swift",

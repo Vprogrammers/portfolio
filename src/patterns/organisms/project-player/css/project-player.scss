@@ -133,8 +133,8 @@
     }
   }
 
-  // Align the overlay with the original 16:9 scene under object-fit: cover.
-  // The four images are full-screen UI captures; only the tablet display is visible.
+  // Match the screenshot's tablet display. Keep the overlay in the same
+  // cover-sized coordinate system as the background to avoid viewport drift.
   &__frames {
     position: absolute;
     z-index: -1;
@@ -150,14 +150,14 @@
   &__frame {
     position: absolute;
     display: block;
-    left: 37.4%;
-    top: 24.1%;
-    width: 31.4%;
-    height: 40.1%;
+    left: 30.5%;
+    top: 7.4%;
+    width: 50.2%;
+    height: 69.5%;
     object-fit: fill;
     opacity: 0;
     // Four corners follow the photographed tablet screen.
-    clip-path: polygon(0 10%, 89% 0, 100% 80%, 14% 100%);
+    clip-path: polygon(0 9%, 89% 0, 100% 82%, 13% 100%);
     transform: translateZ(0);
   }
 

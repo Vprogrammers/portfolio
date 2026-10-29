@@ -1,0 +1,223 @@
+@use 'sass:list';
+@use 'sass:math';
+
+// Projective transform that maps a $w x $h box onto a screen quad given as
+// (top-left, top-right, bottom-right, bottom-left) points in artwork pixels.
+@function screen-matrix($w, $h, $quad) {
+	$x0: list.nth(list.nth($quad, 1), 1);
+	$y0: list.nth(list.nth($quad, 1), 2);
+	$x1: list.nth(list.nth($quad, 2), 1);
+	$y1: list.nth(list.nth($quad, 2), 2);
+	$x2: list.nth(list.nth($quad, 3), 1);
+	$y2: list.nth(list.nth($quad, 3), 2);
+	$x3: list.nth(list.nth($quad, 4), 1);
+	$y3: list.nth(list.nth($quad, 4), 2);
+	$dx1: $x1 - $x2;
+	$dx2: $x3 - $x2;
+	$dx3: $x0 - $x1 + $x2 - $x3;
+	$dy1: $y1 - $y2;
+	$dy2: $y3 - $y2;
+	$dy3: $y0 - $y1 + $y2 - $y3;
+	$den: $dx1 * $dy2 - $dx2 * $dy1;
+	$g: math.div($dx3 * $dy2 - $dx2 * $dy3, $den);
+	$k: math.div($dx1 * $dy3 - $dx3 * $dy1, $den);
+	$a: $x1 - $x0 + $g * $x1;
+	$b: $x3 - $x0 + $k * $x3;
+	$d: $y1 - $y0 + $g * $y1;
+	$e: $y3 - $y0 + $k * $y3;
+
+	@return matrix3d(
+		math.div($a, $w), math.div($d, $w), 0, math.div($g, $w),
+		math.div($b, $h), math.div($e, $h), 0, math.div($k, $h),
+		0, 0, 1, 0,
+		$x0, $y0, 0, 1
+	);
+}
+
+// Describes one device artwork: its pixel size, the screen quad inside it and
+// how much of its width the device occupies (used to keep it fully visible).
+@mixin device-scene($art-w, $art-h, $quad, $device, $radius) {
+	$tl: list.nth($quad, 1);
+	$tr: list.nth($quad, 2);
+	$br: list.nth($quad, 3);
+	$bl: list.nth($quad, 4);
+	$top: math.hypot(list.nth($tr, 1) - list.nth($tl, 1), list.nth($tr, 2) - list.nth($tl, 2));
+	$bottom: math.hypot(list.nth($br, 1) - list.nth($bl, 1), list.nth($br, 2) - list.nth($bl, 2));
+	$left: math.hypot(list.nth($bl, 1) - list.nth($tl, 1), list.nth($bl, 2) - list.nth($tl, 2));
+	$right: math.hypot(list.nth($br, 1) - list.nth($tr, 1), list.nth($br, 2) - list.nth($tr, 2));
+	// The screenshot box uses the quad's average edge lengths, so it is barely distorted.
+	$w: math.round(math.div($top + $bottom, 2));
+	$h: math.round(math.div($left + $right, 2));
+
+	--scene-ratio: #{math.div($art-w, $art-h)};
+	--scene-device: #{$device};
+
+	.m-device-scene__frames {
+		width: #{$art-w}px;
+		height: #{$art-h}px;
+		// 100cqw / artwork width as a unitless factor.
+		transform: scale(tan(atan2(100cqw, #{$art-w}px)));
+	}
+
+	.m-device-scene__frame {
+		width: #{$w}px;
+		height: #{$h}px;
+		border-radius: #{$radius}px;
+		clip-path: inset(0 round #{$radius}px);
+		transform: screen-matrix($w, $h, $quad);
+	}
+}
+
+@keyframes device-scene-cycle {
+	0%,
+	24.99% {
+		opacity: 1;
+	}
+
+	25%,
+	100% {
+		opacity: 0;
+	}
+}
+
+// The root fills its positioned parent and is the size container the box
+// is measured against, so the scene works in a fullscreen slide or a tile.
+.m-device-scene {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	container: device-scene / size;
+	pointer-events: none;
+}
+
+// The artwork, screenshots and foreground share one box with the artwork's
+// aspect ratio. It covers the parent like object-fit: cover, but never grows
+// so far that the device itself is cropped (portrait parents).
+.m-device-scene__box {
+	position: absolute;
+	left: 50%;
+	top: var(--scene-top, 50%);
+	width: min(max(100cqw, 100cqh * var(--scene-ratio)), var(--scene-fit, 92) * 1cqw / var(--scene-device));
+	aspect-ratio: var(--scene-ratio);
+	transform: translate(-50%, -50%);
+	container-type: inline-size;
+}
+
+.m-device-scene__picture {
+	position: absolute;
+	inset: 0;
+	display: block;
+}
+
+.m-device-scene__background {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: fill;
+}
+
+// The overlay lives in the artwork's own pixel coordinates and is scaled to
+// the box width, so each screen quad stays pinned at every size.
+.m-device-scene__frames {
+	position: absolute;
+	left: 0;
+	top: 0;
+	transform-origin: 0 0;
+}
+
+// The screenshot is projected onto the screen quad, not cropped to a polygon.
+.m-device-scene__frame {
+	position: absolute;
+	display: block;
+	left: 0;
+	top: 0;
+	background-size: cover;
+	background-position: center top;
+	background-repeat: no-repeat;
+	opacity: 0;
+	transform-origin: 0 0;
+	backface-visibility: hidden;
+	animation: device-scene-cycle 12s step-end infinite;
+
+	&:nth-child(2) {
+		animation-delay: -3s;
+	}
+
+	&:nth-child(3) {
+		animation-delay: -6s;
+	}
+
+	&:nth-child(4) {
+		animation-delay: -9s;
+	}
+}
+
+// Cut-out pixels from the artwork that sit in front of the screen.
+.m-device-scene__foreground {
+	position: absolute;
+	display: block;
+	height: auto;
+}
+
+.m-device-scene[data-ready='false'] {
+	.m-device-scene__frames,
+	.m-device-scene__foreground {
+		display: none;
+	}
+}
+
+// Screen quads are measured on the inner display of each source image.
+.m-device-scene[data-scene='centered-ipad'] .m-device-scene__box {
+	@include device-scene(1672, 941, ((413 193), (1261 193), (1261 801), (413 801)), 0.548, 8);
+}
+
+// Matches the <source> that swaps in the ultrawide artwork.
+@media (aspect-ratio >= 2 / 1) and (width >= 1024px) {
+	.m-device-scene[data-scene='centered-ipad'] .m-device-scene__box {
+		@include device-scene(2048, 768, ((669 206), (1373 206), (1373 650), (669 650)), 0.37, 9);
+	}
+}
+
+.m-device-scene[data-scene='concept'] .m-device-scene__box {
+	@include device-scene(1672, 941, ((489 298), (1154 344), (1235 802), (533 790)), 0.52, 10);
+
+	// The concept artwork is a full composition with labels, so show all of it
+	// (object-fit: contain) and fade its edges into the background.
+	width: min(100cqw, 100cqh * var(--scene-ratio));
+	mask-image:
+		linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent),
+		linear-gradient(transparent, #000 6%, #000 94%, transparent);
+	mask-composite: intersect;
+}
+
+// The device is off-centre and held in hands. The fingers on the screen come
+// from a 555 x 410 cut-out taken at (622, 255) of the artwork.
+.m-device-scene[data-scene='handheld'] .m-device-scene__box {
+	@include device-scene(1672, 941, ((625 302), (1094 258), (1173 599), (687 661)), 0.4, 9);
+
+	.m-device-scene__foreground {
+		left: math.percentage(math.div(622, 1672));
+		top: math.percentage(math.div(255, 941));
+		width: math.percentage(math.div(555, 1672));
+	}
+}
+
+// Portrait parents: the box is narrower than the parent is tall, so let the
+// parent choose its vertical position and fade its top and bottom edges.
+@container device-scene (aspect-ratio <= 1 / 1) {
+	.m-device-scene__box {
+		--scene-top: var(--scene-portrait-top, 50%);
+
+		mask-image: linear-gradient(transparent, #000 10%, #000 90%, transparent);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.m-device-scene__frame {
+		animation: none;
+
+		&:first-child {
+			opacity: 1;
+		}
+	}
+}

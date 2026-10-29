@@ -1,0 +1,477 @@
+@keyframes project-content-enter {
+	from {
+		opacity: 0;
+		transform: translateY(22px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes project-ambient-drift {
+	from {
+		transform: translate3d(-5%, 1%, 0);
+		opacity: 0.35;
+	}
+
+	to {
+		transform: translate3d(5%, -2%, 0);
+		opacity: 0.85;
+	}
+}
+
+.o-project-player {
+	--player-gutter: clamp(1.5rem, 6vw, 7rem);
+
+	position: relative;
+	min-height: 100vh;
+	min-height: 100svh;
+	color: #fff;
+	background: #111822;
+}
+
+.o-project-player__slides {
+	position: relative;
+	min-height: 100vh;
+	min-height: 100svh;
+}
+
+// Persistent identity block; the slides rotate behind it.
+.o-project-player__intro {
+	position: absolute;
+	z-index: 3;
+	left: var(--player-gutter);
+	top: clamp(7rem, 17vh, 12rem);
+	max-width: min(44rem, calc(100% - 2 * var(--player-gutter)));
+	text-shadow: 0 1px 24px rgb(7 13 23 / 0.45);
+	pointer-events: none;
+}
+
+.o-project-player__name {
+	margin: 0;
+	font-family: var(--font-display);
+	font-size: clamp(1.75rem, 4.6vw, 4.75rem);
+	font-weight: 600;
+	line-height: 1.02;
+	letter-spacing: 0.01em;
+	text-transform: uppercase;
+}
+
+.o-project-player__role {
+	margin: 1rem 0 0;
+	font-size: clamp(0.7rem, 0.95vw, 0.95rem);
+	font-weight: 500;
+	letter-spacing: 0.42em;
+	text-transform: uppercase;
+}
+
+.o-project-player__slide {
+	--scene-portrait-top: 50%;
+
+	position: relative;
+	isolation: isolate;
+	display: grid;
+	align-items: end;
+	min-height: 100vh;
+	min-height: 100svh;
+	overflow: hidden;
+	padding: var(--player-gutter);
+	padding-bottom: clamp(8rem, 15vh, 13rem);
+	background: radial-gradient(circle at 75% 30%, #286778, #111822 70%);
+
+	// Shade only the corners behind the intro, caption and controls, so the
+	// artwork and the device screen keep their full brightness.
+	&::after {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		inset: 0;
+		pointer-events: none;
+		background:
+			radial-gradient(ellipse 62% 78% at 0% 100%, rgb(7 13 23 / 0.82) 0%, rgb(7 13 23 / 0.5) 45%, transparent 100%),
+			radial-gradient(ellipse 50% 45% at 0% 0%, rgb(7 13 23 / 0.6) 0%, transparent 100%),
+			linear-gradient(0deg, rgb(7 13 23 / 0.55) 0%, transparent 28%);
+	}
+
+	&[hidden] {
+		display: none;
+	}
+
+	&[data-tone='violet'] {
+		background: radial-gradient(circle at 75% 30%, #584e89, #111822 70%);
+	}
+
+	&[data-tone='orange'] {
+		background: radial-gradient(circle at 75% 30%, #8a5038, #111822 70%);
+	}
+
+	&[data-tone='blue'] {
+		background: radial-gradient(circle at 75% 30%, #29578d, #111822 70%);
+	}
+
+	&[data-tone='cyan'] {
+		background: radial-gradient(circle at 68% 40%, #149fae, #0b2a33 72%);
+	}
+
+	&[data-tone='green'] {
+		background: radial-gradient(circle at 68% 40%, #1f6b52, #0a1f19 72%);
+	}
+}
+
+// Slides without a device scene still use artwork with baked-in text, so they
+// keep the stronger full-width shade until they get clean imagery.
+.o-project-player__slide:not([data-scene])::after {
+	background:
+		linear-gradient(90deg, rgb(7 13 23 / 0.88) 0%, rgb(7 13 23 / 0.66) 43%, rgb(7 13 23 / 0.24) 100%),
+		linear-gradient(0deg, rgb(7 13 23 / 0.82) 0%, transparent 65%);
+}
+
+// The centered iPad sits behind the text, so shade its left side for contrast.
+.o-project-player__slide[data-scene='centered-ipad']::after {
+	background:
+		linear-gradient(90deg, rgb(7 13 23 / 0.85) 0%, rgb(7 13 23 / 0.6) 30%, transparent 52%),
+		linear-gradient(0deg, rgb(7 13 23 / 0.55) 0%, transparent 28%);
+}
+
+// Slide transitions once JS has taken over.
+.o-project-player[data-enhanced='true'] .o-project-player__slide {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 1050ms ease, visibility 0s linear 1050ms;
+}
+
+.o-project-player[data-enhanced='true'] .state-o-project-player__slide--active,
+.o-project-player[data-enhanced='true'] .state-o-project-player__slide--leaving {
+	visibility: visible;
+	transition: opacity 1050ms ease, visibility 0s;
+}
+
+.o-project-player[data-enhanced='true'] .state-o-project-player__slide--active {
+	z-index: 2;
+	opacity: 1;
+}
+
+.o-project-player[data-enhanced='true'] .state-o-project-player__slide--leaving {
+	z-index: 1;
+	opacity: 0;
+}
+
+.o-project-player[data-enhanced='true'] .state-o-project-player__slide--entering {
+	opacity: 0;
+}
+
+.o-project-player[data-enhanced='true'] .state-o-project-player__slide--active .o-project-player__content {
+	animation: project-content-enter 900ms both;
+}
+
+.o-project-player[data-enhanced='true'] .state-o-project-player__slide--leaving .o-project-player__content {
+	animation: none;
+}
+
+// Continuous ambient movement while a project is visible, without zooming its image.
+.o-project-player[data-enhanced='true'] .state-o-project-player__slide--active::before {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	inset: -12%;
+	pointer-events: none;
+	background: radial-gradient(ellipse at 65% 45%, rgb(122 182 207 / 0.16), transparent 58%);
+	animation: project-ambient-drift 9s ease-in-out infinite alternate;
+}
+
+.o-project-player[data-enhanced='true'] .o-project-player__slide[data-static-background='true']::before {
+	animation: none;
+}
+
+.o-project-player[data-paused='true'] .state-o-project-player__slide--active::before {
+	animation-play-state: paused;
+}
+
+// Device scenes sit behind the slide content.
+.o-project-player__slide .m-device-scene {
+	z-index: -2;
+}
+
+// Phone scenes: the device stands to the right of the caption.
+.o-project-player__slide .m-phone-scroll {
+	--phone-h: 76cqh;
+	--phone-x: 66%;
+
+	z-index: -2;
+}
+
+// Laptop scenes: narrower than the phone's slot would allow, so the intro
+// above and the caption to the left stay clear.
+.o-project-player__slide .m-laptop-scroll {
+	--laptop-w: 46cqw;
+	--laptop-max-h: 66cqh;
+	--laptop-x: 67%;
+	--laptop-y: 52%;
+
+	z-index: -2;
+}
+
+// Feeds restart from the top each time their slide comes in, and pausing freezes them.
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) {
+	.m-phone-scroll__feed,
+	.m-laptop-scroll__feed {
+		animation: none;
+	}
+}
+
+.o-project-player[data-paused='true'] {
+	.m-phone-scroll__feed,
+	.m-phone-scroll__backdrop,
+	.m-laptop-scroll__feed,
+	.m-laptop-scroll__backdrop {
+		animation-play-state: paused;
+	}
+}
+
+// Only the visible slide cycles its screenshots, and pausing freezes them.
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-device-scene__frame {
+	animation-play-state: paused;
+}
+
+.o-project-player[data-paused='true'] .m-device-scene__frame {
+	animation-play-state: paused;
+}
+
+.o-project-player__picture {
+	position: absolute;
+	z-index: -2;
+	inset: 0;
+	display: block;
+	overflow: hidden;
+}
+
+.o-project-player__background {
+	position: absolute;
+	inset: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	background: #111822;
+}
+
+// Project caption: smaller than the intro, which carries the page title.
+.o-project-player__content {
+	position: relative;
+	z-index: 1;
+	max-width: 40rem;
+	text-shadow: 0 1px 24px rgb(7 13 23 / 0.45);
+}
+
+.o-project-player__eyebrow {
+	margin: 0;
+	font-size: clamp(0.65rem, 0.8vw, 0.8rem);
+	font-weight: 500;
+	letter-spacing: 0.35em;
+	text-transform: uppercase;
+}
+
+.o-project-player__title {
+	margin: 0.75rem 0 1rem;
+	font-family: var(--font-display);
+	font-size: clamp(1.35rem, 2.4vw, 2.6rem);
+	font-weight: 500;
+	line-height: 1.1;
+	text-transform: uppercase;
+}
+
+.o-project-player__description {
+	max-width: 32rem;
+	margin: 0;
+	font-size: clamp(0.95rem, 1.1vw, 1.15rem);
+	line-height: 1.55;
+}
+
+// Keep the caption on the left without obscuring the iPad screen.
+.o-project-player__slide[data-scene] .o-project-player__content {
+	max-width: min(36vw, 32rem);
+}
+
+.o-project-player__link {
+	display: inline-block;
+	margin-top: 1rem;
+	color: inherit;
+	text-underline-offset: 0.3em;
+
+	&:focus-visible {
+		outline: 3px solid #fff;
+		outline-offset: 4px;
+	}
+}
+
+.o-project-player__controls {
+	position: absolute;
+	z-index: 3; // Above the active slide (z-index: 2).
+	left: var(--player-gutter);
+	bottom: clamp(1.5rem, 4vh, 3rem);
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 0.6rem;
+
+	button {
+		padding: 0.55rem 1rem;
+		border: 1px solid rgb(255 255 255 / 0.6);
+		border-radius: 99px;
+		background: transparent;
+		color: inherit;
+		font: inherit;
+		font-size: 0.7rem;
+		font-weight: 600;
+		letter-spacing: 0.2em;
+		text-transform: uppercase;
+		cursor: pointer;
+		transition: background-color 200ms ease, color 200ms ease;
+
+		&:hover {
+			color: #111822;
+			background: #fff;
+		}
+
+		&:focus-visible {
+			outline: 3px solid #fff;
+			outline-offset: 4px;
+		}
+	}
+}
+
+.o-project-player__progress {
+	display: block;
+	width: 1.75rem;
+	height: 1.75rem;
+	border: 1px solid rgb(255 255 255 / 0.6);
+	border-radius: 50%;
+	background: conic-gradient(currentColor var(--project-progress, 0%), transparent 0);
+}
+
+// Thin chevron down to the works grid.
+.o-project-player__scroll {
+	position: absolute;
+	z-index: 3;
+	left: 50%;
+	bottom: clamp(1.5rem, 4vh, 3rem);
+	display: block;
+	width: 2.75rem;
+	padding: 0.5rem 0;
+	color: inherit;
+	transform: translateX(-50%);
+	transition: transform 300ms ease;
+
+	svg {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	&:hover {
+		transform: translate(-50%, 0.3rem);
+	}
+
+	&:focus-visible {
+		outline: 3px solid #fff;
+		outline-offset: 4px;
+	}
+}
+
+.o-project-player__scroll-label {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+/* Portrait viewports: intro sits under the header, the device in the middle
+   and the caption at the bottom. */
+@media (aspect-ratio <= 1 / 1) {
+	.o-project-player__intro {
+		top: clamp(5.5rem, 11vh, 8rem);
+	}
+
+	.o-project-player__name {
+		font-size: clamp(1.6rem, 7.6vw, 3.5rem);
+	}
+
+	.o-project-player__slide {
+		--scene-portrait-top: 47%;
+
+		&::after {
+			background:
+				linear-gradient(180deg, rgb(7 13 23 / 0.75) 0%, transparent 26%),
+				linear-gradient(0deg, rgb(7 13 23 / 0.96) 0%, rgb(7 13 23 / 0.8) 24%, transparent 46%);
+		}
+	}
+
+	.o-project-player__slide:not([data-scene])::after {
+		background:
+			linear-gradient(180deg, rgb(7 13 23 / 0.8) 0%, transparent 30%),
+			linear-gradient(0deg, rgb(7 13 23 / 0.94) 0%, rgb(7 13 23 / 0.72) 54%, rgb(7 13 23 / 0.3) 100%);
+	}
+
+	.o-project-player__slide[data-scene] .o-project-player__content {
+		max-width: 34rem;
+	}
+
+	.o-project-player__slide .m-phone-scroll {
+		--phone-h: 46cqh;
+		--phone-x: 50%;
+		--phone-y: 47%;
+	}
+
+	.o-project-player__slide .m-laptop-scroll {
+		--laptop-w: 92cqw;
+		--laptop-max-h: 44cqh;
+		--laptop-x: 50%;
+		--laptop-y: 47%;
+	}
+}
+
+@media (width <= 767px) {
+	.o-project-player {
+		--player-gutter: 1.25rem;
+	}
+
+	.o-project-player__slide {
+		padding-bottom: 7rem;
+	}
+
+	.o-project-player__title {
+		font-size: clamp(1.2rem, 5.6vw, 1.75rem);
+	}
+
+	.o-project-player__description {
+		font-size: 0.95rem;
+	}
+}
+
+// Below this width the controls reach the centre, where the arrow sits.
+@media (width <= 1023px) {
+	.o-project-player__scroll {
+		display: none;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.o-project-player[data-enhanced='true'] .o-project-player__slide {
+		transition: none;
+	}
+
+	.o-project-player[data-enhanced='true'] .state-o-project-player__slide--active {
+		&::before,
+		.o-project-player__content {
+			animation: none;
+		}
+	}
+}

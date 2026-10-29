@@ -1,0 +1,196 @@
+@use 'sass:list';
+@use 'sass:math';
+
+// Page capture sizes, in pixels of the 1440 px wide desktop capture.
+$page-w: 1440;
+$header-h: 96;
+$feed-h: 6707;
+// Browser bar drawn in CSS above the site header.
+$browser-h: 36;
+// 16:10 screen, so the page viewport is 900 px tall.
+$screen-h: 900;
+
+$viewport-h: $screen-h - $browser-h - $header-h;
+$max-scroll: $feed-h - $viewport-h;
+// Feed offsets where the scroll rests: hero, latest news, our work,
+// global presence, impact in numbers, partners, footer.
+$stops: (0, 640, 1538, 3223, 4035, 5029, $max-scroll);
+
+@function cqw($px) {
+	@return math.div($px, $page-w) * 100cqw;
+}
+
+@function scroll-to($px) {
+	@return translateY(calc((-100% + #{cqw($viewport-h)}) * #{math.div($px, $max-scroll)}));
+}
+
+// Rest on each section, glide to the next, then flick back to the top.
+@keyframes laptop-scroll-feed {
+	$count: list.length($stops);
+	$step: math.div(92%, $count - 1);
+
+	@for $i from 1 through $count {
+		$at: $step * ($i - 1);
+
+		/* stylelint-disable-next-line plugin/stylelint-bem-namics -- generated keyframe offsets */
+		#{$at},
+		#{$at + $step * 0.55} {
+			transform: scroll-to(list.nth($stops, $i));
+			animation-timing-function: cubic-bezier(0.45, 0, 0.2, 1);
+		}
+	}
+
+	100% {
+		transform: scroll-to(0);
+	}
+}
+
+@keyframes laptop-scroll-backdrop {
+	from {
+		transform: scale(1.08) translate3d(-1.5%, 0, 0);
+	}
+
+	to {
+		transform: scale(1.18) translate3d(1.5%, -1.5%, 0);
+	}
+}
+
+// The root fills its positioned parent; the parent sets --laptop-w/-x/-y.
+.m-laptop-scroll {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	container-type: size;
+	pointer-events: none;
+}
+
+// The backdrop is small and soft, so a light blur hides its resolution.
+.m-laptop-scroll__backdrop {
+	position: absolute;
+	inset: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	filter: blur(4px) saturate(1.05) brightness(0.8);
+	animation: laptop-scroll-backdrop 24s ease-in-out infinite alternate;
+}
+
+// Width is capped by the parent height: lid (16:10 screen + bezel) plus base.
+.m-laptop-scroll__device {
+	--w: min(var(--laptop-w, 64cqw), var(--laptop-max-h, 70cqh) / 0.7);
+
+	position: absolute;
+	left: var(--laptop-x, 50%);
+	top: var(--laptop-y, 50%);
+	width: var(--w);
+	transform: translate(-50%, -50%);
+	filter: drop-shadow(0 calc(var(--w) * 0.03) calc(var(--w) * 0.05) rgb(0 0 0 / 0.45));
+}
+
+.m-laptop-scroll__lid {
+	padding: calc(var(--w) * 0.028) calc(var(--w) * 0.022) calc(var(--w) * 0.024);
+	border-radius: calc(var(--w) * 0.03) calc(var(--w) * 0.03) calc(var(--w) * 0.006) calc(var(--w) * 0.006);
+	background: #0d0f12;
+	box-shadow: inset 0 0 0 calc(var(--w) * 0.0025) #50565f;
+}
+
+.m-laptop-scroll__screen {
+	position: relative;
+	aspect-ratio: 16 / 10;
+	overflow: hidden;
+	background: #fff;
+	container-type: inline-size;
+}
+
+.m-laptop-scroll__browser {
+	position: relative;
+	display: flex;
+	align-items: center;
+	height: cqw($browser-h);
+	padding: 0 cqw(14);
+	background: #e9eaed;
+	border-bottom: 1px solid #d3d5d9;
+}
+
+.m-laptop-scroll__dots {
+	display: flex;
+	gap: cqw(8);
+
+	span {
+		width: cqw(12);
+		height: cqw(12);
+		border-radius: 50%;
+		background: #ff5f57;
+
+		&:nth-child(2) {
+			background: #febc2e;
+		}
+
+		&:nth-child(3) {
+			background: #28c840;
+		}
+	}
+}
+
+.m-laptop-scroll__url {
+	position: absolute;
+	left: 50%;
+	width: 36%;
+	padding: cqw(4) 0;
+	border-radius: cqw(6);
+	color: #4a4f57;
+	font-size: cqw(13);
+	line-height: 1;
+	text-align: center;
+	background: #fff;
+	transform: translateX(-50%);
+}
+
+.m-laptop-scroll__header {
+	display: block;
+	width: 100%;
+	height: cqw($header-h);
+}
+
+.m-laptop-scroll__viewport {
+	height: cqw($viewport-h);
+	overflow: hidden;
+}
+
+.m-laptop-scroll__feed {
+	display: block;
+	width: 100%;
+	height: auto;
+	animation: laptop-scroll-feed 28s infinite;
+	will-change: transform;
+}
+
+// Aluminium base, slightly wider than the lid, with the opening notch.
+.m-laptop-scroll__base {
+	position: relative;
+	width: 116%;
+	height: calc(var(--w) * 0.034);
+	margin-left: -8%;
+	border-radius: 0 0 calc(var(--w) * 0.05) calc(var(--w) * 0.05) / 0 0 calc(var(--w) * 0.03) calc(var(--w) * 0.03);
+	background: linear-gradient(180deg, #e4e6ea 0%, #b9bdc4 55%, #8d9199 100%);
+
+	&::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 50%;
+		width: 14%;
+		height: 45%;
+		border-radius: 0 0 calc(var(--w) * 0.012) calc(var(--w) * 0.012);
+		background: linear-gradient(180deg, #a3a7ae, #c9ccd2);
+		transform: translateX(-50%);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.m-laptop-scroll__feed,
+	.m-laptop-scroll__backdrop {
+		animation: none;
+	}
+}

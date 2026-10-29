@@ -1,11 +1,5 @@
-<div class="container">
-	<div class="row">
-		<div class="col-md-8 offset-md-2">
-			<h1 style="font-size:2em;margin-top:1em;">{% pattern name='icon' additionalData={ icon: 'nitro' } %}&nbsp;Nitro example page</h1>
-			{% pattern name='example' data='example' %}
-			{% pattern name='example' data='example-highlight' %}
-			{% pattern name='example' data='example-template' %}
-			<div class="a-box"><a href="example-patterns">more examples</a></div>
-		</div>
-	</div>
-</div>
+{# The layout already wraps the page in <main>. Project data lives in _data/index.json. #}
+{% pattern name='site-header' data={ intro: intro, links: links } %}
+{% pattern name='project-player' data={ intro: intro, projects: projects, scrollTarget: '#works' } %}
+{% pattern name='project-grid' data={ projects: projects } %}
+{% pattern name='site-footer' data={ intro: intro, links: links } %}

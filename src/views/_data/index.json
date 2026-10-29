@@ -1,5 +1,95 @@
 {
 	"_nitro": {
-		"pageTitle": "The index page"
-	}
+		"pageTitle": "Viktor Nešić — Mobile & Frontend Developer"
+	},
+	"intro": {
+		"name": "Viktor Nešić",
+		"role": "Mobile & Frontend Developer"
+	},
+	"links": [
+		{
+			"label": "GitHub",
+			"icon": "github",
+			"url": "https://github.com/Vprogrammers"
+		}
+	],
+	"projects": [
+		{
+			"category": "Mobile · Kotlin Multiplatform",
+			"title": "Hansgrohe ProApp — In use",
+			"summary": "Enterprise product presentations and offline content for field teams.",
+			"tone": "teal",
+			"image": "/assets/img/projects/hansgrohe-background-04.png",
+			"foreground": "/assets/img/projects/hansgrohe-background-04-hands.png",
+			"duration": 12000,
+			"staticBackground": true,
+			"frames": [
+				"/assets/img/projects/hansgrohe-screen-01.png",
+				"/assets/img/projects/hansgrohe-screen-02.png",
+				"/assets/img/projects/hansgrohe-screen-03.png",
+				"/assets/img/projects/hansgrohe-screen-04.png"
+			],
+			"variant": "handheld",
+			"grid": false
+		},
+		{
+			"category": "Mobile · Kotlin Multiplatform",
+			"title": "Hansgrohe ProApp — Concept",
+			"gridTitle": "Hansgrohe ProApp",
+			"summary": "Enterprise product presentations and offline content for field teams.",
+			"tone": "teal",
+			"image": "/assets/img/projects/hansgrohe-background-02.png",
+			"duration": 20000,
+			"staticBackground": true,
+			"frames": [
+				"/assets/img/projects/hansgrohe-screen-01.png",
+				"/assets/img/projects/hansgrohe-screen-02.png",
+				"/assets/img/projects/hansgrohe-screen-03.png",
+				"/assets/img/projects/hansgrohe-screen-04.png"
+			],
+			"variant": "concept",
+			"hero": false
+		},
+		{
+			"category": "iOS · Swift",
+			"title": "Migros iMpuls",
+			"summary": "Maintaining and releasing a production iOS application.",
+			"tone": "cyan",
+			"variant": "phone",
+			"duration": 20000,
+			"phone": {
+				"header": "/assets/img/projects/migros-screen-header.jpg",
+				"feed": "/assets/img/projects/migros-screen-feed.jpg",
+				"backdrop": "/assets/img/projects/migros-backdrop.jpg"
+			}
+		},
+		{
+			"category": "Demo · Temporary visual",
+			"title": "MuMe Live — Visual Test",
+			"summary": "Temporary image to evaluate fullscreen presentation. This is not a published case study.",
+			"tone": "teal",
+			"image": "/assets/img/projects/MuMe%20Live%20Chat%20App%20Showcase.png"
+		},
+		{
+			"category": "Frontend · Twig",
+			"title": "CGIAR",
+			"summary": "Responsive component-driven web development.",
+			"tone": "green",
+			"variant": "laptop",
+			"duration": 28000,
+			"laptop": {
+				"url": "cgiar.org",
+				"header": "/assets/img/projects/cgiar-screen-header.jpg",
+				"feed": "/assets/img/projects/cgiar-screen-feed.jpg",
+				"backdrop": "/assets/img/projects/cgiar-backdrop.jpg"
+			}
+		},
+		{
+			"category": "Open source · Accessibility",
+			"title": "a11yOtp",
+			"summary": "Accessible native one-time-code input for Android and iOS.",
+			"tone": "blue",
+			"url": "https://github.com/Vprogrammers/a11yOtp"
+		}
+	]
 }

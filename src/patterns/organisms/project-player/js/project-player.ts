@@ -8,6 +8,22 @@ players.forEach((player) => {
   const progress = player.querySelector<HTMLElement>('[data-project-progress]');
   if (slides.length < 2 || !previous || !next || !toggle) return;
 
+  // Never display a floating screen overlay if its photographic scene fails to load.
+  slides.forEach((slide) => {
+    const background = slide.querySelector<HTMLImageElement>('.o-project-player__background');
+    if (!background || !slide.querySelector('.o-project-player__frames')) return;
+    const updateBackgroundState = () => {
+      const ready = background.complete && background.naturalWidth > 0;
+      slide.dataset.backgroundReady = String(ready);
+      if (background.complete && !ready) {
+        console.warn('Project background failed to load:', background.currentSrc || background.src);
+      }
+    };
+    background.addEventListener('load', updateBackgroundState);
+    background.addEventListener('error', updateBackgroundState);
+    updateBackgroundState();
+  });
+
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const defaultInterval = Math.max(3000, Number(player.dataset.interval) || 7000);
   const getInterval = () => Math.max(3000, Number(slides[active].dataset.duration) || defaultInterval);

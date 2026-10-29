@@ -162,6 +162,26 @@
     clip-path: polygon(0 11.3%, 86.0% 0, 100% 87.0%, 12.2% 100%);
   }
 
+  // New 1648 × 928 concept image: the white display corners are approximately
+  // (480,294), (1139,339), (1215,790), (525,779) in source pixels.
+  // Both the background and the overlay share the same cover-sized canvas.
+  &__slide[data-scene='concept'] &__frames {
+    width: max(100vw, 177.5862svh);
+    height: max(100svh, 56.3107vw);
+  }
+
+  &__slide[data-scene='concept'] &__frame {
+    left: 29.13%;
+    top: 31.68%;
+    width: 44.60%;
+    height: 53.45%;
+    clip-path: polygon(0 0, 89.6% 9.1%, 100% 100%, 6.1% 97.8%);
+  }
+
+  // A static fallback must show a screen even before JS starts.
+  &__slide &__frame:first-child { opacity: 1; }
+  &[data-enhanced='true'] &__slide:not(.is-active) &__frame { animation: none; }
+
   &[data-enhanced='true'] &__slide.is-active &__frame {
     animation: project-tablet-cycle 20s step-end infinite;
   }

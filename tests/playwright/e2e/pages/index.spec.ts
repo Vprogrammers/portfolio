@@ -28,8 +28,8 @@ test.describe('Index Page', () => {
 			expect(charset).toEqual('UTF-8');
 		});
 
-		test('Title includes index page', async ({ page }) => {
-			await expect(page).toHaveTitle(/index page/);
+		test('Title includes the owner name', async ({ page }) => {
+			await expect(page).toHaveTitle(/Viktor Nešić/);
 		});
 	});
 

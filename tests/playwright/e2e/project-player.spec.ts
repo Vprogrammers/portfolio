@@ -6,9 +6,9 @@ test('homepage displays uploaded project images and supports manual navigation',
   const slides = player.locator('[data-project-slide]');
   await expect(slides).toHaveCount(5);
   await expect(slides.nth(0)).toBeVisible();
-  await expect(slides.nth(0).locator('img.o-project-player__background')).toHaveAttribute('src', /Hansgrohe%20PROApp/);
+  const firstImage = slides.nth(0).locator('img.m-device-scene__background');
+  await expect(firstImage).toHaveAttribute('src', /hansgrohe-background-04/);
 
-  const firstImage = slides.nth(0).locator('img.o-project-player__background');
   await expect.poll(async () => firstImage.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
 
   await page.getByRole('button', { name: 'Next project' }).click();

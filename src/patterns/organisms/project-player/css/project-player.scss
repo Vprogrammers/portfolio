@@ -13,7 +13,7 @@
     width: 100%;
     opacity: 0;
     visibility: hidden;
-    transform: scale(1.025);
+    transform: none;
     transition: opacity 1050ms ease, transform 1600ms ease, visibility 0s linear 1050ms;
   }
 
@@ -23,9 +23,9 @@
     transition: opacity 1050ms ease, transform 1600ms ease, visibility 0s;
   }
 
-  &[data-enhanced='true'] &__slide.is-active { opacity: 1; transform: scale(1); z-index: 2; }
+  &[data-enhanced='true'] &__slide.is-active { opacity: 1; transform: none; z-index: 2; }
   &[data-enhanced='true'] &__slide.is-leaving { opacity: 0; z-index: 1; }
-  &[data-enhanced='true'] &__slide.is-entering { opacity: 0; transform: scale(1.035); }
+  &[data-enhanced='true'] &__slide.is-entering { opacity: 0; transform: none; }
   &[data-enhanced='true'] &__slide.is-active .o-project-player__content { animation: project-content-enter 900ms both; }
   &[data-enhanced='true'] &__slide.is-leaving .o-project-player__content { animation: none; }
 
@@ -80,7 +80,6 @@
     display: block;
     width: 100%;
     height: 100%;
-    // Fill every viewport, including ultrawide displays. Edge cropping is intentional.
     object-fit: cover;
     object-position: center;
     background: #111822;
@@ -96,16 +95,27 @@
     overflow: hidden;
   }
 
-  // Both sources use one image element. On ultrawide screens the dedicated
-  // asset fills the viewport; on other screens preserve the centered iPad.
-  &__slide[data-scene='centered-ipad'] &__background {
-    object-fit: contain;
-    background: transparent;
+  // The artwork and the screen overlay share one CSS-sized scene. No JS geometry.
+  &__slide[data-scene='centered-ipad'] &__picture {
+    left: 50%;
+    top: 50%;
+    right: auto;
+    bottom: auto;
+    width: min(100%, 177.586svh);
+    height: auto;
+    aspect-ratio: 1648 / 928;
+    transform: translate(-50%, -50%);
+    overflow: visible;
   }
 
-  @media (min-aspect-ratio: 2/1) {
-    &__slide[data-scene='centered-ipad'] &__background {
-      object-fit: cover;
+  &__slide[data-scene='centered-ipad'] &__background {
+    object-fit: fill;
+  }
+
+  // The dedicated ultrawide source has the same scene dimensions.
+  @media (min-aspect-ratio: 2/1) and (min-width: 1024px) {
+    &__slide[data-scene='centered-ipad'] &__picture {
+      width: 100%;
     }
   }
 
@@ -204,31 +214,30 @@
     );
   }
 
-  // Measured against the unscaled 1648 × 928 background image.
-  // The overlay and background share the same cover scaling and origin.
+  // Screen coordinates are percentages of the original 1648 x 928 artwork.
   &__slide[data-scene='centered-ipad'] &__frames {
-    width: 1648px;
-    height: 928px;
+    left: 50%;
+    top: 50%;
+    width: min(100%, 177.586svh);
+    height: auto;
+    aspect-ratio: 1648 / 928;
+    transform: translate(-50%, -50%);
   }
 
   &__slide[data-scene='centered-ipad'] &__frame {
     inset: auto;
-    left: 405px;
-    top: 190px;
-    width: 838px;
-    height: 602px;
+    left: 24.575%;
+    top: 20.474%;
+    width: 50.85%;
+    height: 64.87%;
     transform: none;
-    border-radius: 14px;
-    clip-path: inset(0 round 14px);
+    border-radius: 1.5%;
+    clip-path: inset(0 round 1.5%);
   }
 
-  // The ultrawide photograph places the tablet screen lower and slightly
-  // shorter than the original scene. Keep the original mapping unchanged.
-  @media (min-aspect-ratio: 2/1) {
-    &__slide[data-scene='centered-ipad'] &__frame {
-      top: 242px;
-      height: 548px;
-    }
+  @media (min-aspect-ratio: 2/1) and (min-width: 1024px) {
+    &__slide[data-scene='centered-ipad'] &__frames { width: 100%; }
+    &__slide[data-scene='centered-ipad'] &__frame { top: 26.08%; height: 59.05%; }
   }
 
   // Keep the heading on the left without obscuring the iPad screen.
@@ -344,8 +353,13 @@
     align-items: end;
     padding: 1.25rem 1.25rem 8rem;
   }
-  .o-project-player__slide[data-scene='centered-ipad'] .o-project-player__background {
-    object-fit: cover;
+  .o-project-player__slide[data-scene='centered-ipad'] .o-project-player__picture,
+  .o-project-player__slide[data-scene='centered-ipad'] .o-project-player__frames {
+    top: 38%;
+    width: 100%;
+  }
+  .o-project-player__slide[data-scene='centered-ipad'] .o-project-player__content {
+    margin-top: auto;
   }
   .o-project-player__slide[data-scene='centered-ipad'] .o-project-player__content {
     max-width: 100%;

@@ -13,7 +13,24 @@
         "/assets/img/projects/hansgrohe-screen-02.png",
         "/assets/img/projects/hansgrohe-screen-03.png",
         "/assets/img/projects/hansgrohe-screen-04.png"
-      ]
+      ],
+      "variant": "lifestyle"
+    },
+    {
+      "category": "Mobile · Kotlin Multiplatform",
+      "title": "Hansgrohe ProApp — Concept",
+      "summary": "Enterprise product presentations and offline content for field teams.",
+      "tone": "teal",
+      "image": "/assets/img/projects/hansgrohe-background-02.png",
+      "duration": 20000,
+      "staticBackground": true,
+      "frames": [
+        "/assets/img/projects/hansgrohe-screen-01.png",
+        "/assets/img/projects/hansgrohe-screen-02.png",
+        "/assets/img/projects/hansgrohe-screen-03.png",
+        "/assets/img/projects/hansgrohe-screen-04.png"
+      ],
+      "variant": "concept"
     },
     {
       "category": "iOS · Swift",

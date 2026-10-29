@@ -17,9 +17,10 @@ const config = {
 			},
 		],
 		minifyImages: [
-			// copies and minifies all source images to dest folder
+			// copies and minifies all source images to dest folder; project images are
+			// large and already copied by copyAssets, and optipng -o7 takes minutes on them
 			{
-				src: 'src/shared/assets/img/**/*',
+				src: ['src/shared/assets/img/**/*', '!src/shared/assets/img/projects/**'],
 				dest: 'public/assets/img',
 			},
 		],

@@ -1,0 +1,11 @@
+{# Phone with a fixed app header and a feed that scrolls underneath it. Fills its positioned parent. #}
+<div class="m-phone-scroll" aria-hidden="true">
+	<div class="m-phone-scroll__device">
+		<div class="m-phone-scroll__screen">
+			<div class="m-phone-scroll__viewport">
+				<img class="m-phone-scroll__feed" src="{{ feed }}" alt="" {% if priority %}loading="eager"{% else %}loading="lazy"{% endif %} decoding="async">
+			</div>
+			<img class="m-phone-scroll__header" src="{{ header }}" alt="" {% if priority %}loading="eager"{% else %}loading="lazy"{% endif %} decoding="async">
+		</div>
+	</div>
+</div>

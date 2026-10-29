@@ -1,0 +1,127 @@
+@use 'sass:list';
+@use 'sass:math';
+
+// Screen and feed sizes of the composed screenshots, in image pixels.
+$screen-w: 827;
+$screen-h: 1790;
+$header-h: 305;
+$feed-h: 4215;
+
+// Viewport height under the header, in % of the screen width (cqw).
+$viewport: math.div($screen-h - $header-h, $screen-w) * 100;
+// Scroll positions where the feed rests, as fractions of the full scroll:
+// the top of the recipe, tip and workout cards, then the end of the feed.
+$max-scroll: $feed-h - ($screen-h - $header-h);
+$stops: (0, math.div(1158, $max-scroll), math.div(2316, $max-scroll), 1);
+
+@function scroll-to($fraction) {
+	@return translateY(calc((-100% + #{$viewport}cqw) * #{$fraction}));
+}
+
+// Rest on each card, glide to the next, then flick back to the top.
+@keyframes phone-scroll-feed {
+	0%,
+	14% {
+		transform: scroll-to(list.nth($stops, 1));
+		animation-timing-function: cubic-bezier(0.45, 0, 0.2, 1);
+	}
+
+	24%,
+	38% {
+		transform: scroll-to(list.nth($stops, 2));
+		animation-timing-function: cubic-bezier(0.45, 0, 0.2, 1);
+	}
+
+	48%,
+	62% {
+		transform: scroll-to(list.nth($stops, 3));
+		animation-timing-function: cubic-bezier(0.45, 0, 0.2, 1);
+	}
+
+	74%,
+	90% {
+		transform: scroll-to(list.nth($stops, 4));
+		animation-timing-function: cubic-bezier(0.6, 0, 0.3, 1);
+	}
+
+	100% {
+		transform: scroll-to(list.nth($stops, 1));
+	}
+}
+
+// The root fills its positioned parent; the parent sets --phone-h/-x/-y.
+.m-phone-scroll {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	container-type: size;
+	pointer-events: none;
+
+	// Soft diagonal bands, echoing the shapes in the app's own artwork.
+	&::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background:
+			linear-gradient(162deg, transparent 52%, rgb(255 255 255 / 0.07) 52% 66%, transparent 66%),
+			linear-gradient(18deg, transparent 58%, rgb(255 255 255 / 0.05) 58% 74%, transparent 74%);
+	}
+}
+
+.m-phone-scroll__device {
+	--h: var(--phone-h, 80cqh);
+
+	position: absolute;
+	left: var(--phone-x, 50%);
+	top: var(--phone-y, 50%);
+	height: var(--h);
+	padding: calc(var(--h) * 0.02);
+	border-radius: calc(var(--h) * 0.072);
+	background: #0d0f12;
+	box-shadow:
+		0 0 0 calc(var(--h) * 0.004) #4a505a,
+		0 calc(var(--h) * 0.04) calc(var(--h) * 0.12) rgb(0 0 0 / 0.45);
+	transform: translate(-50%, -50%);
+}
+
+.m-phone-scroll__screen {
+	position: relative;
+	height: 100%;
+	aspect-ratio: #{$screen-w} / #{$screen-h};
+	overflow: hidden;
+	border-radius: calc(var(--h) * 0.052);
+	background: #fff;
+	container-type: inline-size;
+}
+
+.m-phone-scroll__header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.m-phone-scroll__viewport {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: #{$viewport}cqw;
+	overflow: hidden;
+}
+
+.m-phone-scroll__feed {
+	display: block;
+	width: 100%;
+	height: auto;
+	animation: phone-scroll-feed 20s infinite;
+	will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.m-phone-scroll__feed {
+		animation: none;
+	}
+}

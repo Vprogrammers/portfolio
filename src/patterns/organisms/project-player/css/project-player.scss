@@ -110,6 +110,10 @@
 	&[data-tone='blue'] {
 		background: radial-gradient(circle at 75% 30%, #29578d, #111822 70%);
 	}
+
+	&[data-tone='cyan'] {
+		background: radial-gradient(circle at 68% 40%, #149fae, #0b2a33 72%);
+	}
 }
 
 // Slides without a device scene still use artwork with baked-in text, so they
@@ -187,6 +191,23 @@
 // Device scenes sit behind the slide content.
 .o-project-player__slide .m-device-scene {
 	z-index: -2;
+}
+
+// Phone scenes: the device stands to the right of the caption.
+.o-project-player__slide .m-phone-scroll {
+	--phone-h: 76cqh;
+	--phone-x: 66%;
+
+	z-index: -2;
+}
+
+// The feed restarts from the top each time its slide comes in, and pausing freezes it.
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-phone-scroll__feed {
+	animation: none;
+}
+
+.o-project-player[data-paused='true'] .m-phone-scroll__feed {
+	animation-play-state: paused;
 }
 
 // Only the visible slide cycles its screenshots, and pausing freezes them.
@@ -378,6 +399,12 @@
 
 	.o-project-player__slide[data-scene] .o-project-player__content {
 		max-width: 34rem;
+	}
+
+	.o-project-player__slide .m-phone-scroll {
+		--phone-h: 46cqh;
+		--phone-x: 50%;
+		--phone-y: 47%;
 	}
 }
 

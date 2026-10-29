@@ -32,6 +32,7 @@ import './patterns/atoms/quote';
 import './patterns/atoms/stage';
 import './patterns/molecules/device-scene';
 import './patterns/molecules/example';
+import './patterns/molecules/phone-scroll';
 import './patterns/organisms/project-grid';
 import './patterns/organisms/project-player';
 import './patterns/organisms/site-footer';

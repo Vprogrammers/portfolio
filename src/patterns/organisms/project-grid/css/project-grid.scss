@@ -43,6 +43,14 @@
 	&[data-tone='blue'] {
 		background: radial-gradient(circle at 75% 30%, #29578d, #111822 70%);
 	}
+
+	&[data-tone='cyan'] {
+		background: radial-gradient(circle at 60% 40%, #149fae, #0b2a33 72%);
+	}
+
+	.m-phone-scroll {
+		--phone-h: 86cqh;
+	}
 }
 
 .o-project-grid__tile {

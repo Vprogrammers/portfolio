@@ -71,8 +71,13 @@
 			"category": "iOS · Swift",
 			"title": "Migros iMpuls",
 			"summary": "Maintaining and releasing a production iOS application.",
-			"tone": "violet",
-			"image": "/assets/img/projects/Migros%20iMpuls%20Coach%20Mountain%20Wellness%20Showcase-1.png"
+			"tone": "cyan",
+			"variant": "phone",
+			"duration": 20000,
+			"phone": {
+				"header": "/assets/img/projects/migros-screen-header.jpg",
+				"feed": "/assets/img/projects/migros-screen-feed.jpg"
+			}
 		},
 		{
 			"category": "Demo · Temporary visual",

@@ -9,7 +9,8 @@ players.forEach((player) => {
   if (slides.length < 2 || !previous || !next || !toggle) return;
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const interval = Math.max(3000, Number(player.dataset.interval) || 7000);
+  const defaultInterval = Math.max(3000, Number(player.dataset.interval) || 7000);
+  const getInterval = () => Math.max(3000, Number(slides[active].dataset.duration) || defaultInterval);
   const transitionDuration = 1050;
   let active = 0;
   let paused = reducedMotion.matches;
@@ -72,8 +73,8 @@ players.forEach((player) => {
   const tick = (now: number) => {
     if (!paused && !document.hidden) {
       const elapsed = now - started;
-      if (elapsed >= interval) show(active + 1);
-      else if (progress) progress.style.setProperty('--project-progress', `${Math.min(100, elapsed / interval * 100)}%`);
+      if (elapsed >= getInterval()) show(active + 1);
+      else if (progress) progress.style.setProperty('--project-progress', `${Math.min(100, elapsed / getInterval() * 100)}%`);
     } else started = now;
     frame = requestAnimationFrame(tick);
   };

@@ -2,6 +2,23 @@
   "projects": [
     {
       "category": "Mobile · Kotlin Multiplatform",
+      "title": "Hansgrohe ProApp — In use",
+      "summary": "Enterprise product presentations and offline content for field teams.",
+      "tone": "teal",
+      "image": "/assets/img/projects/hansgrohe-background-04.png",
+      "foreground": "/assets/img/projects/hansgrohe-background-04-hands.png",
+      "duration": 20000,
+      "staticBackground": true,
+      "frames": [
+        "/assets/img/projects/hansgrohe-screen-01.png",
+        "/assets/img/projects/hansgrohe-screen-02.png",
+        "/assets/img/projects/hansgrohe-screen-03.png",
+        "/assets/img/projects/hansgrohe-screen-04.png"
+      ],
+      "variant": "handheld"
+    },
+    {
+      "category": "Mobile · Kotlin Multiplatform",
       "title": "Hansgrohe ProApp",
       "summary": "Enterprise product presentations and offline content for field teams.",
       "tone": "teal",
@@ -32,23 +49,6 @@
         "/assets/img/projects/hansgrohe-screen-04.png"
       ],
       "variant": "concept"
-    },
-    {
-      "category": "Mobile · Kotlin Multiplatform",
-      "title": "Hansgrohe ProApp — In use",
-      "summary": "Enterprise product presentations and offline content for field teams.",
-      "tone": "teal",
-      "image": "/assets/img/projects/hansgrohe-background-04.png",
-      "foreground": "/assets/img/projects/hansgrohe-background-04-hands.png",
-      "duration": 20000,
-      "staticBackground": true,
-      "frames": [
-        "/assets/img/projects/hansgrohe-screen-01.png",
-        "/assets/img/projects/hansgrohe-screen-02.png",
-        "/assets/img/projects/hansgrohe-screen-03.png",
-        "/assets/img/projects/hansgrohe-screen-04.png"
-      ],
-      "variant": "handheld"
     },
     {
       "category": "iOS · Swift",

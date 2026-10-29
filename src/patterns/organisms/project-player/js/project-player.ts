@@ -16,9 +16,9 @@ players.forEach((player) => {
       const frames = slide.querySelector<HTMLElement>('.o-project-player__frames');
       if (frames && background.naturalWidth && background.naturalHeight) {
         const bounds = slide.getBoundingClientRect();
-        const scale = Math.max(bounds.width / background.naturalWidth, bounds.height / background.naturalHeight);
-        const offsetX = (bounds.width - background.naturalWidth * scale) / 2;
-        const offsetY = (bounds.height - background.naturalHeight * scale) / 2;
+        // The perspective matrices use a fixed 2048 × 1152 scene coordinate space.\n        // Scaling by the decoded asset dimensions would move the overlay whenever\n        // the background is exported at a different resolution.\n        const sceneWidth = 2048;\n        const sceneHeight = 1152;\n        const scale = Math.max(bounds.width / sceneWidth, bounds.height / sceneHeight);
+        const offsetX = (bounds.width - sceneWidth * scale) / 2;
+        const offsetY = (bounds.height - sceneHeight * scale) / 2;
         frames.style.setProperty('--scene-scale', String(scale));
         frames.style.setProperty('--scene-x', `${offsetX}px`);
         frames.style.setProperty('--scene-y', `${offsetY}px`);

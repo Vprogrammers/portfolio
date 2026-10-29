@@ -8,41 +8,14 @@ players.forEach((player) => {
   const progress = player.querySelector<HTMLElement>('[data-project-progress]');
   if (slides.length < 2 || !previous || !next || !toggle) return;
 
-  // Never display a floating screen overlay if its photographic scene fails to load.
+  // CSS handles responsive scene geometry; JS only controls playback.
   slides.forEach((slide) => {
     const background = slide.querySelector<HTMLImageElement>('.o-project-player__background');
     if (!background || !slide.querySelector('.o-project-player__frames')) return;
-    const updateBackgroundState = () => {
-      const frames = slide.querySelector<HTMLElement>('.o-project-player__frames');
-      if (frames && background.naturalWidth && background.naturalHeight) {
-        const bounds = slide.getBoundingClientRect();
-        // The perspective matrices use a fixed 2048 × 1152 scene coordinate space.
-        // Scaling by the decoded asset dimensions would move the overlay whenever
-        // the background is exported at a different resolution.
-        const centered = slide.dataset.scene === 'centered-ipad';
-        const sceneWidth = centered ? 1648 : 2048;
-        const sceneHeight = centered ? 928 : 1152;
-        const scale = centered
-          ? (window.matchMedia('(max-width: 767px)').matches || window.matchMedia('(min-aspect-ratio: 2/1)').matches ? Math.max(bounds.width / sceneWidth, bounds.height / sceneHeight) : Math.min(bounds.width / sceneWidth, bounds.height / sceneHeight))
-          : Math.max(bounds.width / sceneWidth, bounds.height / sceneHeight);
-        const offsetX = (bounds.width - sceneWidth * scale) / 2;
-        const offsetY = (bounds.height - sceneHeight * scale) / 2;
-        frames.style.setProperty('--scene-scale', String(scale));
-        frames.style.setProperty('--scene-x', `${offsetX}px`);
-        frames.style.setProperty('--scene-y', `${offsetY}px`);
-      }
-      const ready = background.complete && background.naturalWidth > 0;
-      slide.dataset.backgroundReady = String(ready);
-      if (background.complete && !ready) {
-        console.warn('Project background failed to load:', background.currentSrc || background.src);
-      }
-    };
-    background.addEventListener('load', updateBackgroundState);
-    const observer = new ResizeObserver(updateBackgroundState);
-    observer.observe(slide);
-    window.addEventListener('pagehide', () => observer.disconnect(), { once: true });
-    background.addEventListener('error', updateBackgroundState);
-    updateBackgroundState();
+    const update = () => { slide.dataset.backgroundReady = String(background.complete && background.naturalWidth > 0); };
+    background.addEventListener('load', update);
+    background.addEventListener('error', update);
+    update();
   });
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');

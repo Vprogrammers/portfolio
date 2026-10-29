@@ -25,7 +25,8 @@
       "category": "Frontend · Twig",
       "title": "CGIAR",
       "summary": "Responsive component-driven web development.",
-      "tone": "orange"
+      "tone": "orange",
+      "image": "/assets/img/projects/cgiar-editorial-background.svg"
     },
     {
       "category": "Open source · Accessibility",

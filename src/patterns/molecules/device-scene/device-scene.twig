@@ -1,15 +1,19 @@
-{# Device artwork with rotating screenshots pinned to its screen. Fills its positioned parent. #}
-<div class="m-device-scene js-device-scene" data-scene="{{ variant }}">
+{# Device artwork with rotating screenshots pinned to its screen. Fills its positioned parent.
+   frameSets holds alternative screenshot sets (the player shows the next one each time the slide returns); frames is a single set. #}
+{% set sets = frameSets|default([frames]) %}
+<div class="m-device-scene js-device-scene" data-scene="{{ variant }}" data-active-set="0">
 	<div class="m-device-scene__box">
 		<picture class="m-device-scene__picture">
 			{% if imageWide %}<source media="(min-aspect-ratio: 2/1) and (min-width: 1024px)" srcset="{{ imageWide }}">{% endif %}
 			<img class="m-device-scene__background" src="{{ image }}" alt="" {% if priority %}fetchpriority="high" loading="eager"{% else %}loading="lazy"{% endif %} decoding="async">
 		</picture>
-		<div class="m-device-scene__frames" aria-hidden="true">
-			{% for frame in frames %}
-				<span class="m-device-scene__frame" style="background-image: url('{{ frame }}')"></span>
-			{% endfor %}
-		</div>
+		{% for set in sets %}
+			<div class="m-device-scene__frames" data-set="{{ loop.index0 }}" data-count="{{ set|length }}" aria-hidden="true">
+				{% for frame in set %}
+					<span class="m-device-scene__frame" style="background-image: url('{{ frame }}')"></span>
+				{% endfor %}
+			</div>
+		{% endfor %}
 		{# Parts of the photo in front of the screen (e.g. fingers), layered above the screenshots. #}
 		{% if foreground %}<img class="m-device-scene__foreground" src="{{ foreground }}" alt="" {% if priority %}loading="eager"{% else %}loading="lazy"{% endif %} decoding="async">{% endif %}
 	</div>

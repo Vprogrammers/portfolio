@@ -13,7 +13,7 @@
   <div class="o-project-player__slides">
     {% for project in heroProjects %}
       <article class="o-project-player__slide" data-project-slide data-tone="{{ project.tone|default('teal') }}" {% if project.variant %}data-scene="{{ project.variant }}"{% endif %} {% if project.duration %}data-duration="{{ project.duration }}"{% endif %} {% if project.staticBackground %}data-static-background="true"{% endif %} {% if not loop.first %}hidden{% endif %}>
-        {% if project.frames %}
+        {% if project.frameSets or project.frames %}
           {% pattern name='device-scene' data=project|merge({ priority: loop.first }) %}
         {% elseif project.laptop %}
           {% pattern name='laptop-scroll' data=project.laptop|merge({ priority: loop.first }) %}

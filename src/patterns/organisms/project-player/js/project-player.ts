@@ -20,8 +20,22 @@ players.forEach((player) => {
   let frame = 0;
   let cleanupTimer: number | undefined;
 
+  // Device scenes with several screenshot sets show the next set each time
+  // their slide returns, and the slide lasts one full cycle of that set.
+  // Keep in sync with $frame-time in device-scene.scss.
+  const frameTime = 2000;
+  const prepareScene = (slide: HTMLElement) => {
+    const scene = slide.querySelector<HTMLElement>('.js-device-scene');
+    const sets = scene ? scene.querySelectorAll<HTMLElement>('.m-device-scene__frames[data-set]') : [];
+    if (!scene || !sets.length) return;
+    if (slide.dataset.sceneShown) scene.dataset.activeSet = String((Number(scene.dataset.activeSet) + 1) % sets.length);
+    slide.dataset.sceneShown = 'true';
+    slide.dataset.duration = String(sets[Number(scene.dataset.activeSet)].children.length * frameTime);
+  };
+
   // The static HTML displays the first slide even if JavaScript is unavailable.
   slides[0].classList.add('state-o-project-player__slide--active');
+  prepareScene(slides[0]);
   player.dataset.enhanced = 'true';
   player.dataset.paused = String(paused);
 
@@ -40,6 +54,7 @@ players.forEach((player) => {
     });
 
     incoming.hidden = false;
+    prepareScene(incoming);
     incoming.classList.add('state-o-project-player__slide--entering');
     // Wait for the initial style to render so Safari can animate the incoming slide.
     incoming.getBoundingClientRect();

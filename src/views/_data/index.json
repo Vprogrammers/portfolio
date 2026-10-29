@@ -21,13 +21,23 @@
 			"tone": "teal",
 			"image": "/assets/img/projects/hansgrohe-background-04.png",
 			"foreground": "/assets/img/projects/hansgrohe-background-04-hands.png",
-			"duration": 12000,
 			"staticBackground": true,
-			"frames": [
-				"/assets/img/projects/hansgrohe-screen-01.png",
-				"/assets/img/projects/hansgrohe-screen-02.png",
-				"/assets/img/projects/hansgrohe-screen-03.png",
-				"/assets/img/projects/hansgrohe-screen-04.png"
+			"frameSets": [
+				[
+					"/assets/img/projects/proapp-splash.jpg",
+					"/assets/img/projects/proapp-download.jpg",
+					"/assets/img/projects/proapp-discover-axor.jpg",
+					"/assets/img/projects/proapp-axor-finish.jpg",
+					"/assets/img/projects/proapp-discover-pro.jpg",
+					"/assets/img/projects/proapp-sustainability-people.jpg"
+				],
+				[
+					"/assets/img/projects/proapp-presentations.jpg",
+					"/assets/img/projects/proapp-ecostat.jpg",
+					"/assets/img/projects/proapp-vernis.jpg",
+					"/assets/img/projects/proapp-axor-citterio.jpg",
+					"/assets/img/projects/proapp-sustainability.jpg"
+				]
 			],
 			"variant": "handheld",
 			"grid": false
@@ -39,13 +49,23 @@
 			"summary": "Enterprise product presentations and offline content for field teams.",
 			"tone": "teal",
 			"image": "/assets/img/projects/hansgrohe-background-02.png",
-			"duration": 20000,
 			"staticBackground": true,
-			"frames": [
-				"/assets/img/projects/hansgrohe-screen-01.png",
-				"/assets/img/projects/hansgrohe-screen-02.png",
-				"/assets/img/projects/hansgrohe-screen-03.png",
-				"/assets/img/projects/hansgrohe-screen-04.png"
+			"frameSets": [
+				[
+					"/assets/img/projects/proapp-splash.jpg",
+					"/assets/img/projects/proapp-download.jpg",
+					"/assets/img/projects/proapp-discover-axor.jpg",
+					"/assets/img/projects/proapp-axor-finish.jpg",
+					"/assets/img/projects/proapp-discover-pro.jpg",
+					"/assets/img/projects/proapp-sustainability-people.jpg"
+				],
+				[
+					"/assets/img/projects/proapp-presentations.jpg",
+					"/assets/img/projects/proapp-ecostat.jpg",
+					"/assets/img/projects/proapp-vernis.jpg",
+					"/assets/img/projects/proapp-axor-citterio.jpg",
+					"/assets/img/projects/proapp-sustainability.jpg"
+				]
 			],
 			"variant": "concept",
 			"hero": false

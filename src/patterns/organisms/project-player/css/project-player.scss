@@ -103,6 +103,10 @@
 		background: radial-gradient(circle at 75% 30%, #584e89, #111822 70%);
 	}
 
+	&[data-tone='red'] {
+		background: radial-gradient(circle at 70% 40%, #5a1717, #0d0b0b 72%);
+	}
+
 	&[data-tone='orange'] {
 		background: radial-gradient(circle at 75% 30%, #8a5038, #111822 70%);
 	}
@@ -129,11 +133,13 @@
 }
 
 // The live room has its own ambient light.
+.o-project-player__slide[data-scene='radio']::before,
 .o-project-player__slide[data-scene='live']::before {
 	display: none;
 }
 
 // The MuMe phone stands in the lower half, so keep the shade in the caption corner.
+.o-project-player__slide[data-scene='radio']::after,
 .o-project-player__slide[data-scene='live']::after {
 	background:
 		radial-gradient(ellipse 48% 70% at 0% 100%, rgb(7 13 23 / 0.85) 0%, rgb(7 13 23 / 0.45) 50%, transparent 100%),
@@ -217,6 +223,15 @@
 	z-index: -2;
 }
 
+// Hanze3 on-air scene: phone right of the caption, with room for the ON AIR sign.
+.o-project-player__slide .m-on-air {
+	--phone-h: 74cqh;
+	--phone-x: 60%;
+	--phone-y: 54%;
+
+	z-index: -2;
+}
+
 // MuMe live room: phone to the right of the caption.
 .o-project-player__slide .m-live-room {
 	--phone-h: 80cqh;
@@ -226,10 +241,12 @@
 }
 
 // The live room restarts its story with the slide and freezes when paused.
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-on-air *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-live-room * {
 	animation-name: none;
 }
 
+.o-project-player[data-paused='true'] .m-on-air *,
 .o-project-player[data-paused='true'] .m-live-room * {
 	animation-play-state: paused;
 }
@@ -455,6 +472,12 @@
 
 	.o-project-player__slide .m-phone-scroll {
 		--phone-h: 46cqh;
+		--phone-x: 50%;
+		--phone-y: 47%;
+	}
+
+	.o-project-player__slide .m-on-air {
+		--phone-h: 48cqh;
 		--phone-x: 50%;
 		--phone-y: 47%;
 	}

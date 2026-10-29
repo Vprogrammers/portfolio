@@ -156,6 +156,64 @@
 			}
 		},
 		{
+			"category": "Android · Live radio",
+			"title": "Hanze3",
+			"summary": "Live radio for an Egyptian broadcaster: listeners tune in, chat live and book their own talk show once an admin approves it.",
+			"tone": "red",
+			"variant": "radio",
+			"duration": 16000,
+			"radio": {
+				"splash": "/assets/img/projects/hanze-splash.jpg",
+				"main": "/assets/img/projects/hanze-main.jpg",
+				"studio": "/assets/img/projects/hanze-studio.jpg",
+				"tagline": "Listen, Talk, ENJOY !",
+				"tabs": [
+					"Headlines",
+					"Sports",
+					"World",
+					"Business",
+					"Tech"
+				],
+				"news": [
+					{
+						"label": "عاجل",
+						"title": "نشرة أخبار الساعة العاشرة"
+					},
+					{
+						"label": "رياضة",
+						"title": "ملخص مباريات الدوري المصري"
+					},
+					{
+						"label": "العالم",
+						"title": "جولة في أهم أخبار العالم"
+					}
+				],
+				"messages": [
+					{
+						"name": "أحمد",
+						"hue": 210,
+						"text": "مساء الخير يا جماعة 🌙"
+					},
+					{
+						"name": "منى",
+						"hue": 330,
+						"text": "الحلقة النهارده تحفة 👏"
+					},
+					{
+						"name": "كريم",
+						"hue": 150,
+						"text": "تحياتي من الإسكندرية ❤️"
+					},
+					{
+						"name": "سارة",
+						"hue": 30,
+						"text": "ممكن نسمع أغنية قديمة؟ 🎶"
+					}
+				],
+				"countdown": 3
+			}
+		},
+		{
 			"category": "Open source · Accessibility",
 			"title": "a11yOtp",
 			"summary": "Accessible native one-time-code input for Android and iOS.",

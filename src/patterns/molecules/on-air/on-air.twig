@@ -1,0 +1,61 @@
+{# Phone playing the Hanze3 live-radio story: splash, live player with chat that floats out of the screen, a talk show request the admin approves, countdown, ON AIR. Fills its positioned parent. #}
+<div class="m-on-air" aria-hidden="true">
+	<img class="m-on-air__backdrop" src="{{ studio }}" alt="" loading="lazy" decoding="async">
+	<div class="m-on-air__eq">{% for i in 1..40 %}<i></i>{% endfor %}</div>
+
+	<div class="m-on-air__stage">
+		<span class="m-on-air__ring"></span><span class="m-on-air__ring"></span><span class="m-on-air__ring"></span>
+		<p class="m-on-air__sign">ON AIR</p>
+
+		<div class="m-on-air__device">
+			<div class="m-on-air__screen">
+				{# 1. Splash, the app's own frame; the tagline is typed on top. #}
+				<div class="m-on-air__scene m-on-air__scene--splash">
+					<img class="m-on-air__shot" src="{{ splash }}" alt="" loading="lazy" decoding="async">
+					<p class="m-on-air__tagline">{% for char in tagline|split('') %}<span>{{ char }}</span>{% endfor %}<i></i></p>
+				</div>
+
+				{# 2. Main screen, the app's own frame with its live parts redrawn. #}
+				<div class="m-on-air__scene m-on-air__scene--main">
+					<img class="m-on-air__shot" src="{{ main }}" alt="" loading="lazy" decoding="async">
+
+					<div class="m-on-air__tabs">
+						{% for tab in tabs %}<span>{{ tab }}</span>{% endfor %}
+						<i class="m-on-air__underline"></i>
+					</div>
+
+					<div class="m-on-air__news" style="--studio: url('{{ studio }}')">
+						{% for item in news %}
+							<div class="m-on-air__story" dir="rtl"><span class="m-on-air__thumb"></span><span class="m-on-air__story-text"><b>{{ item.label }}</b>{{ item.title }}</span></div>
+						{% endfor %}
+					</div>
+
+					<ul class="m-on-air__chat" style="--studio: url('{{ studio }}')">
+						{% for message in messages %}
+							<li dir="rtl"><span class="m-on-air__avatar" style="--hue: {{ message.hue }}">{{ message.name|slice(0, 1) }}</span><span><b>{{ message.name }}</b>{{ message.text }}</span></li>
+						{% endfor %}
+					</ul>
+
+					<div class="m-on-air__pill">
+						<span class="m-on-air__pill-state m-on-air__pill-state--idle">TALKING APPOINTMENT</span>
+						<span class="m-on-air__pill-state m-on-air__pill-state--pending"><i class="m-on-air__spinner"></i>PENDING APPROVAL</span>
+						<span class="m-on-air__pill-state m-on-air__pill-state--approved">TALK APPROVED ✓</span>
+					</div>
+
+					<div class="m-on-air__countdown">
+						<span class="m-on-air__countdown-idle">Time until talk:<small>There is no appointed talks</small></span>
+						<span class="m-on-air__countdown-live">Time until talk:<b class="m-on-air__ticker">{% for n in countdown..0 %}<span>00:0{{ n }}</span>{% endfor %}</b></span>
+					</div>
+
+					<p class="m-on-air__stamp">APPROVED<small dir="rtl">تمت الموافقة</small></p>
+					<span class="m-on-air__live-glow"></span>
+				</div>
+			</div>
+		</div>
+
+		{# Copies of the chat messages that leave the screen and drift across the slide. #}
+		<div class="m-on-air__floats">
+			{% for message in messages %}<p class="m-on-air__float" dir="rtl"><b>{{ message.name }}</b>{{ message.text }}</p>{% endfor %}
+		</div>
+	</div>
+</div>

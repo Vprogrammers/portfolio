@@ -22,7 +22,9 @@ players.forEach((player) => {
         const centered = slide.dataset.scene === 'centered-ipad';
         const sceneWidth = centered ? 1648 : 2048;
         const sceneHeight = centered ? 928 : 1152;
-        const scale = Math.max(bounds.width / sceneWidth, bounds.height / sceneHeight);
+        const scale = centered
+          ? Math.min(bounds.width / sceneWidth, bounds.height / sceneHeight)
+          : Math.max(bounds.width / sceneWidth, bounds.height / sceneHeight);
         const offsetX = (bounds.width - sceneWidth * scale) / 2;
         const offsetY = (bounds.height - sceneHeight * scale) / 2;
         frames.style.setProperty('--scene-scale', String(scale));

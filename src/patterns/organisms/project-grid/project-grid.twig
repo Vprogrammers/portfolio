@@ -5,7 +5,8 @@
 		{% for project in projects %}
 			{% if project.grid is not same as(false) %}
 				<li class="o-project-grid__item" data-tone="{{ project.tone|default('teal') }}" {% if not project.frames and not project.laptop and not project.phone and not project.image %}data-media="none"{% endif %}>
-					<article class="o-project-grid__tile">
+					{# Tiles without a link are focusable themselves, so keyboard users can reveal the caption. #}
+					<article class="o-project-grid__tile" {% if not project.url %}tabindex="0" aria-labelledby="project-{{ loop.index }}-title"{% endif %}>
 						<div class="o-project-grid__media">
 							{% if project.frames %}
 								{% pattern name='device-scene' data=project|merge({ priority: false }) %}
@@ -18,7 +19,7 @@
 							{% endif %}
 						</div>
 						<div class="o-project-grid__caption">
-							<h3 class="o-project-grid__title">
+							<h3 class="o-project-grid__title" id="project-{{ loop.index }}-title">
 								{% if project.url %}
 									<a class="o-project-grid__link" href="{{ project.url }}">{{ project.gridTitle|default(project.title) }}</a>
 								{% else %}

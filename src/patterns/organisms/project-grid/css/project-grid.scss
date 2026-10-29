@@ -65,6 +65,11 @@
 .o-project-grid__tile {
 	position: absolute;
 	inset: 0;
+
+	&:focus-visible {
+		outline: 3px solid #fff;
+		outline-offset: -6px;
+	}
 }
 
 .o-project-grid__media {

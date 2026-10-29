@@ -91,5 +91,11 @@ players.forEach((player) => {
   window.addEventListener('pagehide', () => {
     cancelAnimationFrame(frame);
     if (cleanupTimer !== undefined) window.clearTimeout(cleanupTimer);
-  }, { once: true });
+  });
+  // A page restored from the back-forward cache keeps this player but not its loop.
+  window.addEventListener('pageshow', (event) => {
+    if (!event.persisted) return;
+    started = performance.now();
+    frame = requestAnimationFrame(tick);
+  });
 });

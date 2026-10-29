@@ -165,17 +165,24 @@
     opacity: 0;
     transform-origin: 0 0;
     transform: matrix3d(
-      0.649114245, -0.0311604215, 0, 0.0000621727765,
-      0.0408669628, 0.549278877, 0, -0.0000281067654,
+      0.576224568, -0.052429472, 0, 0.000006564,
+      0.072292602, 0.574476382, 0, -0.000021019,
       0, 0, 1, 0,
-      768, 402, 0, 1
+      766, 400, 0, 1
     );
     backface-visibility: hidden;
   }
 
   // The concept background already contains its iPad screen artwork.
   // Do not draw a second, unaligned screenshot on top of it.
-  &__slide[data-scene='concept'] &__frames { display: none; }
+  &__slide[data-scene='concept'] &__frame {
+    transform: matrix3d(
+      0.788, 0.049, 0, 0.000011,
+      0.072, 0.775, 0, -0.000021,
+      0, 0, 1, 0,
+      597, 397, 0, 1
+    );
+  }
 
   // A static fallback must show a screen even before JS starts.
   &__slide &__frame:first-child { opacity: 1; }
@@ -265,6 +272,7 @@
 
   .o-project-player[data-enhanced='true'] .o-project-player__slide.is-active .o-project-player__frame { animation: none; }
   .o-project-player[data-enhanced='true'] .o-project-player__slide.is-active .o-project-player__frame { opacity: 0; }
+  .o-project-player[data-enhanced='true'] .o-project-player__slide.is-active .o-project-player__frame:first-child { opacity: 1; }
 
   .o-project-player[data-enhanced='true'] .o-project-player__slide.is-active::before,
   .o-project-player[data-enhanced='true'] .o-project-player__slide.is-active .o-project-player__background { animation: none; transform: none; }

@@ -17,12 +17,11 @@
 		{
 			"category": "Mobile · Kotlin Multiplatform",
 			"title": "Hansgrohe ProApp — In use",
-			"gridTitle": "Hansgrohe ProApp",
 			"summary": "Enterprise product presentations and offline content for field teams.",
 			"tone": "teal",
 			"image": "/assets/img/projects/hansgrohe-background-04.png",
 			"foreground": "/assets/img/projects/hansgrohe-background-04-hands.png",
-			"duration": 20000,
+			"duration": 12000,
 			"staticBackground": true,
 			"frames": [
 				"/assets/img/projects/hansgrohe-screen-01.png",
@@ -30,29 +29,13 @@
 				"/assets/img/projects/hansgrohe-screen-03.png",
 				"/assets/img/projects/hansgrohe-screen-04.png"
 			],
-			"variant": "handheld"
-		},
-		{
-			"category": "Mobile · Kotlin Multiplatform",
-			"title": "Hansgrohe ProApp",
-			"summary": "Enterprise product presentations and offline content for field teams.",
-			"tone": "teal",
-			"image": "/assets/img/projects/hansgrohe-background.png",
-			"imageWide": "/assets/img/projects/hansgrohe-background-ultrawide.png",
-			"duration": 20000,
-			"staticBackground": true,
-			"frames": [
-				"/assets/img/projects/hansgrohe-screen-01.png",
-				"/assets/img/projects/hansgrohe-screen-02.png",
-				"/assets/img/projects/hansgrohe-screen-03.png",
-				"/assets/img/projects/hansgrohe-screen-04.png"
-			],
-			"variant": "centered-ipad",
+			"variant": "handheld",
 			"grid": false
 		},
 		{
 			"category": "Mobile · Kotlin Multiplatform",
 			"title": "Hansgrohe ProApp — Concept",
+			"gridTitle": "Hansgrohe ProApp",
 			"summary": "Enterprise product presentations and offline content for field teams.",
 			"tone": "teal",
 			"image": "/assets/img/projects/hansgrohe-background-02.png",
@@ -65,7 +48,7 @@
 				"/assets/img/projects/hansgrohe-screen-04.png"
 			],
 			"variant": "concept",
-			"grid": false
+			"hero": false
 		},
 		{
 			"category": "iOS · Swift",
@@ -76,7 +59,8 @@
 			"duration": 20000,
 			"phone": {
 				"header": "/assets/img/projects/migros-screen-header.jpg",
-				"feed": "/assets/img/projects/migros-screen-feed.jpg"
+				"feed": "/assets/img/projects/migros-screen-feed.jpg",
+				"backdrop": "/assets/img/projects/migros-backdrop.jpg"
 			}
 		},
 		{

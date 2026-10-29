@@ -49,6 +49,17 @@ $stops: (0, math.div(1158, $max-scroll), math.div(2316, $max-scroll), 1);
 	}
 }
 
+// Slow drift and zoom that keeps the backdrop photo alive behind the phone.
+@keyframes phone-scroll-backdrop {
+	from {
+		transform: scale(1.08) translate3d(-1.5%, 0, 0);
+	}
+
+	to {
+		transform: scale(1.18) translate3d(1.5%, -1.5%, 0);
+	}
+}
+
 // The root fills its positioned parent; the parent sets --phone-h/-x/-y.
 .m-phone-scroll {
 	position: absolute;
@@ -66,6 +77,18 @@ $stops: (0, math.div(1158, $max-scroll), math.div(2316, $max-scroll), 1);
 			linear-gradient(162deg, transparent 52%, rgb(255 255 255 / 0.07) 52% 66%, transparent 66%),
 			linear-gradient(18deg, transparent 58%, rgb(255 255 255 / 0.05) 58% 74%, transparent 74%);
 	}
+}
+
+// The backdrop is small and soft, so a light blur hides its resolution.
+.m-phone-scroll__backdrop {
+	position: absolute;
+	inset: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	filter: blur(3px) saturate(1.1);
+	animation: phone-scroll-backdrop 24s ease-in-out infinite alternate;
 }
 
 .m-phone-scroll__device {
@@ -121,7 +144,8 @@ $stops: (0, math.div(1158, $max-scroll), math.div(2316, $max-scroll), 1);
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.m-phone-scroll__feed {
+	.m-phone-scroll__feed,
+	.m-phone-scroll__backdrop {
 		animation: none;
 	}
 }

@@ -206,8 +206,11 @@
 	animation: none;
 }
 
-.o-project-player[data-paused='true'] .m-phone-scroll__feed {
-	animation-play-state: paused;
+.o-project-player[data-paused='true'] {
+	.m-phone-scroll__feed,
+	.m-phone-scroll__backdrop {
+		animation-play-state: paused;
+	}
 }
 
 // Only the visible slide cycles its screenshots, and pausing freezes them.

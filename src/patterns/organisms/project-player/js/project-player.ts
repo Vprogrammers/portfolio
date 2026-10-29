@@ -15,7 +15,7 @@ players.forEach((player) => {
   let paused = reducedMotion.matches;
   let started = performance.now();
   let frame = 0;
-  let cleanupTimer: ReturnType<typeof setTimeout> | undefined;
+  let cleanupTimer: number | undefined;
 
   // The static HTML displays the first slide even if JavaScript is unavailable.
   slides[0].classList.add('is-active');

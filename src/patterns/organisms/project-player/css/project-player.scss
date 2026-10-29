@@ -93,6 +93,15 @@
     animation: project-image-drift 14s ease-in-out infinite alternate;
   }
 
+  &[data-enhanced='true'] &__slide[data-static-background='true'].is-active &__background {
+    animation: none;
+    transform: none;
+  }
+
+  &[data-enhanced='true'] &__slide[data-static-background='true'].is-active::before {
+    animation: none;
+  }
+
   &[data-paused='true'] &__slide.is-active &__background {
     animation-play-state: paused;
   }

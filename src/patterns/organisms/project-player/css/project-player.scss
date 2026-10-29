@@ -112,7 +112,7 @@
     object-fit: fill;
   }
 
-  // The dedicated ultrawide source has the same scene dimensions.
+  // Match the image variant and its screen position without JS.
   @media (min-aspect-ratio: 2/1) and (min-width: 1024px) {
     &__slide[data-scene='centered-ipad'] &__picture {
       width: 100%;
@@ -226,11 +226,13 @@
 
   &__slide[data-scene='centered-ipad'] &__frame {
     inset: auto;
+    // Override the legacy 1024x768 fixed-size frame used by perspective scenes.
     left: 24.575%;
     top: 20.474%;
     width: 50.85%;
     height: 64.87%;
     transform: none;
+    background-size: 100% 100%;
     border-radius: 1.5%;
     clip-path: inset(0 round 1.5%);
   }

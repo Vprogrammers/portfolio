@@ -74,8 +74,15 @@
 			"category": "Frontend · Twig",
 			"title": "CGIAR",
 			"summary": "Responsive component-driven web development.",
-			"tone": "orange",
-			"image": "/assets/img/projects/cgiar-editorial-background.svg"
+			"tone": "green",
+			"variant": "laptop",
+			"duration": 28000,
+			"laptop": {
+				"url": "cgiar.org",
+				"header": "/assets/img/projects/cgiar-screen-header.jpg",
+				"feed": "/assets/img/projects/cgiar-screen-feed.jpg",
+				"backdrop": "/assets/img/projects/cgiar-backdrop.jpg"
+			}
 		},
 		{
 			"category": "Open source · Accessibility",

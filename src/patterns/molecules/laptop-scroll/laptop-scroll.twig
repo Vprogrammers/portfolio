@@ -1,0 +1,19 @@
+{# Laptop with a browser window: fixed site header and a page that scrolls underneath it. Fills its positioned parent. #}
+<div class="m-laptop-scroll" aria-hidden="true">
+	{% if backdrop %}<img class="m-laptop-scroll__backdrop" src="{{ backdrop }}" alt="" {% if priority %}loading="eager"{% else %}loading="lazy"{% endif %} decoding="async">{% endif %}
+	<div class="m-laptop-scroll__device">
+		<div class="m-laptop-scroll__lid">
+			<div class="m-laptop-scroll__screen">
+				<div class="m-laptop-scroll__browser">
+					<span class="m-laptop-scroll__dots"><span></span><span></span><span></span></span>
+					<span class="m-laptop-scroll__url">{{ url }}</span>
+				</div>
+				<img class="m-laptop-scroll__header" src="{{ header }}" alt="" {% if priority %}loading="eager"{% else %}loading="lazy"{% endif %} decoding="async">
+				<div class="m-laptop-scroll__viewport">
+					<img class="m-laptop-scroll__feed" src="{{ feed }}" alt="" {% if priority %}loading="eager"{% else %}loading="lazy"{% endif %} decoding="async">
+				</div>
+			</div>
+		</div>
+		<div class="m-laptop-scroll__base"></div>
+	</div>
+</div>

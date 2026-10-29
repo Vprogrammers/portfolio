@@ -114,6 +114,10 @@
 	&[data-tone='cyan'] {
 		background: radial-gradient(circle at 68% 40%, #149fae, #0b2a33 72%);
 	}
+
+	&[data-tone='green'] {
+		background: radial-gradient(circle at 68% 40%, #1f6b52, #0a1f19 72%);
+	}
 }
 
 // Slides without a device scene still use artwork with baked-in text, so they
@@ -201,14 +205,30 @@
 	z-index: -2;
 }
 
-// The feed restarts from the top each time its slide comes in, and pausing freezes it.
-.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-phone-scroll__feed {
-	animation: none;
+// Laptop scenes: narrower than the phone's slot would allow, so the intro
+// above and the caption to the left stay clear.
+.o-project-player__slide .m-laptop-scroll {
+	--laptop-w: 46cqw;
+	--laptop-max-h: 66cqh;
+	--laptop-x: 67%;
+	--laptop-y: 52%;
+
+	z-index: -2;
+}
+
+// Feeds restart from the top each time their slide comes in, and pausing freezes them.
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) {
+	.m-phone-scroll__feed,
+	.m-laptop-scroll__feed {
+		animation: none;
+	}
 }
 
 .o-project-player[data-paused='true'] {
 	.m-phone-scroll__feed,
-	.m-phone-scroll__backdrop {
+	.m-phone-scroll__backdrop,
+	.m-laptop-scroll__feed,
+	.m-laptop-scroll__backdrop {
 		animation-play-state: paused;
 	}
 }
@@ -408,6 +428,13 @@
 		--phone-h: 46cqh;
 		--phone-x: 50%;
 		--phone-y: 47%;
+	}
+
+	.o-project-player__slide .m-laptop-scroll {
+		--laptop-w: 92cqw;
+		--laptop-max-h: 44cqh;
+		--laptop-x: 50%;
+		--laptop-y: 47%;
 	}
 }
 

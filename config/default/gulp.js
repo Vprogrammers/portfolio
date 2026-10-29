@@ -12,8 +12,8 @@ const config = {
 		copyAssets: [
 			// copies all source files to dest folder
 			{
-				src: '',
-				dest: '',
+				src: 'src/shared/assets/img/projects/**/*',
+				dest: 'public/assets/img/projects',
 			},
 		],
 		minifyImages: [

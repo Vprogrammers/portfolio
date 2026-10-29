@@ -153,15 +153,15 @@
     position: absolute;
     display: block;
     left: 36.3%;
-    top: 26.9%;
-    width: 27.0%;
-    height: 37.1%;
+    top: 29.8%;
+    width: 32.2%;
+    height: 40.8%;
     background-size: 200% 200%;
     background-repeat: no-repeat;
     background-position: left top;
     opacity: 0;
     // Screen quadrilateral relative to the bounding rectangle.
-    clip-path: polygon(0 11.3%, 86.0% 0, 100% 87.0%, 12.2% 100%);
+    clip-path: polygon(0 10%, 87% 0, 100% 88%, 12% 100%);
   }
 
   // Concept image is 1672 × 941. The white display corners are approximately

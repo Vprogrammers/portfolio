@@ -136,6 +136,8 @@
   // Measured from the 2048x864 Safari capture (804px scene viewport).
   // The 16:9 source is cover-cropped vertically by 174px at this viewport.
   // Adjusted against the latest screenshot to keep the overlay inside the bezel.
+  &__slide[data-background-ready='false'] &__frames { display: none; }
+
   &__frames {
     position: absolute;
     z-index: -1;
@@ -162,19 +164,19 @@
     clip-path: polygon(0 11.3%, 86.0% 0, 100% 87.0%, 12.2% 100%);
   }
 
-  // New 1648 × 928 concept image: the white display corners are approximately
+  // Concept image is 1672 × 941. The white display corners are approximately
   // (480,294), (1139,339), (1215,790), (525,779) in source pixels.
   // Both the background and the overlay share the same cover-sized canvas.
   &__slide[data-scene='concept'] &__frames {
-    width: max(100vw, 177.5862svh);
-    height: max(100svh, 56.3107vw);
+    width: max(100vw, 177.6833svh);
+    height: max(100svh, 56.2799vw);
   }
 
   &__slide[data-scene='concept'] &__frame {
-    left: 29.13%;
-    top: 31.68%;
-    width: 44.60%;
-    height: 53.45%;
+    left: 28.71%;
+    top: 31.24%;
+    width: 44.02%;
+    height: 52.82%;
     clip-path: polygon(0 0, 89.6% 9.1%, 100% 100%, 6.1% 97.8%);
   }
 

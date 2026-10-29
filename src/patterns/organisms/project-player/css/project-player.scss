@@ -133,8 +133,10 @@
     }
   }
 
-  // The generated source files are 2x2 UI montages. Crop one quadrant
-  // before projecting it onto the photographed screen.
+  // Measured from the 2048x864 Safari capture (804px scene viewport).
+  // The 16:9 source is cover-cropped vertically by 174px at this viewport.
+  // Screen corners in normalized source coordinates:
+  // TL (34.7%,30.7%), TR (59.8%,26.3%), BR (63.7%,59.4%), BL (38.2%,64.3%).
   &__frames {
     position: absolute;
     z-index: -1;
@@ -149,16 +151,16 @@
   &__frame {
     position: absolute;
     display: block;
-    left: 37.5%;
-    top: 21.8%;
-    width: 31.5%;
-    height: 37.5%;
+    left: 34.7%;
+    top: 26.3%;
+    width: 29%;
+    height: 38%;
     background-size: 200% 200%;
     background-repeat: no-repeat;
     background-position: left top;
     opacity: 0;
-    transform: rotate(-5deg) skewY(-2deg);
-    clip-path: polygon(0 5%, 94% 0, 100% 91%, 8% 100%);
+    // Screen quadrilateral relative to the bounding rectangle.
+    clip-path: polygon(0 11.6%, 86.6% 0, 100% 87.1%, 12.1% 100%);
   }
 
   &[data-enhanced='true'] &__slide.is-active &__frame {

@@ -133,8 +133,8 @@
     }
   }
 
-  // Match the screenshot's tablet display. Keep the overlay in the same
-  // cover-sized coordinate system as the background to avoid viewport drift.
+  // Scene coordinates are normalized to the 16:9 background image.
+  // A dedicated screen surface is warped to the tablet's photographed corners.
   &__frames {
     position: absolute;
     z-index: -1;
@@ -144,35 +144,42 @@
     height: max(100svh, 56.25vw);
     transform: translate(-50%, -50%);
     pointer-events: none;
-    overflow: visible;
   }
 
   &__frame {
     position: absolute;
     display: block;
-    left: 30.5%;
-    top: 7.4%;
-    width: 50.2%;
-    height: 69.5%;
-    object-fit: fill;
+    left: 31.1%;
+    top: 11.7%;
+    width: 43.7%;
+    height: 59.5%;
+    object-fit: cover;
     opacity: 0;
-    // Four corners follow the photographed tablet screen.
-    clip-path: polygon(0 9%, 89% 0, 100% 82%, 13% 100%);
-    transform: translateZ(0);
+    transform-origin: center;
+    // Rotate the content with the screen rather than cropping a full-scene image.
+    transform: rotate(-5.5deg) skewY(-1.5deg);
+    clip-path: polygon(0 3%, 96% 0, 100% 94%, 5% 100%);
+  }
+
+  // The first supplied UI asset is a 2x2 montage; show its first screen only.
+  &__frame:first-child {
+    object-fit: none;
+    object-position: left top;
   }
 
   &[data-enhanced='true'] &__slide.is-active &__frame {
-    animation: project-tablet-cycle 20s step-end infinite;
+    animation: project-tablet-cycle 20s linear infinite;
   }
-  &[data-enhanced='true'] &__slide.is-active &__frame:nth-child(2) { animation-delay: -5s; }
+  &[data-enhanced='true'] &__slide.is-active &__frame:nth-child(2) { animation-delay: -15s; }
   &[data-enhanced='true'] &__slide.is-active &__frame:nth-child(3) { animation-delay: -10s; }
-  &[data-enhanced='true'] &__slide.is-active &__frame:nth-child(4) { animation-delay: -15s; }
+  &[data-enhanced='true'] &__slide.is-active &__frame:nth-child(4) { animation-delay: -5s; }
   &[data-paused='true'] &__slide.is-active &__frame { animation-play-state: paused; }
 
   @at-root {
     @keyframes project-tablet-cycle {
-      0%, 24.99% { opacity: 1; }
-      25%, 100% { opacity: 0; }
+      0%, 23% { opacity: 1; }
+      25%, 98% { opacity: 0; }
+      100% { opacity: 1; }
     }
   }
 

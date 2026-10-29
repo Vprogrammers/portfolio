@@ -133,7 +133,24 @@
     }
   }
 
-  // Keep the overlay in the same *intrinsic pixel coordinate system* used to\n  // calculate the homography. A viewport-sized element invalidates matrix3d.\n  &__slide[data-background-ready='false'] &__frames { display: none; }\n\n  &__frames {\n    position: absolute;\n    z-index: -1;\n    left: 0;\n    top: 0;\n    width: 2048px;\n    height: 1152px;\n    transform-origin: 0 0;\n    transform: translate(var(--scene-x, 0px), var(--scene-y, 0px)) scale(var(--scene-scale, 1));\n    pointer-events: none;\n  }\n\n  // Homography measured in the 2048x1152 background-image coordinate system.\n  &__frame {
+  // Keep the overlay in the same *intrinsic pixel coordinate system* used to
+  // calculate the homography. A viewport-sized element invalidates matrix3d.
+  &__slide[data-background-ready='false'] &__frames { display: none; }
+
+  &__frames {
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    width: 2048px;
+    height: 1152px;
+    transform-origin: 0 0;
+    transform: translate(var(--scene-x, 0px), var(--scene-y, 0px)) scale(var(--scene-scale, 1));
+    pointer-events: none;
+  }
+
+  // Homography measured in the 2048x1152 background-image coordinate system.
+  &__frame {
     position: absolute;
     display: block;
     left: 0;
@@ -154,7 +171,10 @@
   // Concept image is 1672 × 941. The white display corners are approximately
   // (480,294), (1139,339), (1215,790), (525,779) in source pixels.
   // Both the background and the overlay share the same cover-sized canvas.
-  &__slide[data-scene='concept'] &__frames {\n    width: 1672px;\n    height: 941px;\n  }
+  &__slide[data-scene='concept'] &__frames {
+    width: 1672px;
+    height: 941px;
+  }
 
   &__slide[data-scene='concept'] &__frame {
     left: 28.71%;

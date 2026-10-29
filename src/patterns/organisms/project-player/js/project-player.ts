@@ -20,6 +20,7 @@ players.forEach((player) => {
   // The static HTML displays the first slide even if JavaScript is unavailable.
   slides[0].classList.add('is-active');
   player.dataset.enhanced = 'true';
+  player.dataset.paused = String(paused);
 
   const show = (index: number) => {
     const target = (index + slides.length) % slides.length;
@@ -61,6 +62,7 @@ players.forEach((player) => {
 
   const setPaused = (value: boolean) => {
     paused = value;
+    player.dataset.paused = String(paused);
     toggle.setAttribute('aria-pressed', String(paused));
     toggle.setAttribute('aria-label', paused ? 'Resume automatic project changes' : 'Pause automatic project changes');
     toggle.textContent = paused ? 'Play' : 'Pause';

@@ -14,7 +14,7 @@
         {% if project.frames %}
           <div class="o-project-player__frames" aria-hidden="true">
             {% for frame in project.frames %}
-              <img class="o-project-player__frame" src="{{ frame }}" alt="" loading="eager" decoding="async">
+              <span class="o-project-player__frame" style="background-image: url('{{ frame }}')"></span>
             {% endfor %}
           </div>
         {% endif %}

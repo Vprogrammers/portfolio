@@ -165,22 +165,21 @@
     opacity: 0;
     transform-origin: 0 0;
     transform: matrix3d(
-      0.576224568, -0.052429472, 0, 0.000006564,
-      0.072292602, 0.574476382, 0, -0.000021019,
+      0.576224568, -0.075429472, 0, 0.000006564,
+      0.095292602, 0.574476382, 0, -0.000021019,
       0, 0, 1, 0,
-      766, 400, 0, 1
+      731, 290, 0, 1
     );
     backface-visibility: hidden;
   }
 
-  // The concept background already contains its iPad screen artwork.
-  // Do not draw a second, unaligned screenshot on top of it.
+  // Concept artwork uses a separate tablet perspective from the lifestyle image.
   &__slide[data-scene='concept'] &__frame {
     transform: matrix3d(
       0.788, 0.049, 0, 0.000011,
       0.072, 0.775, 0, -0.000021,
       0, 0, 1, 0,
-      597, 397, 0, 1
+      562, 352, 0, 1
     );
   }
 

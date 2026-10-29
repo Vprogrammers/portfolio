@@ -142,48 +142,40 @@
     z-index: -1;
     left: 0;
     top: 0;
-    width: 2048px;
-    height: 1152px;
+    width: 1024px;
+    height: 768px;
     transform-origin: 0 0;
     transform: translate(var(--scene-x, 0px), var(--scene-y, 0px)) scale(var(--scene-scale, 1));
     pointer-events: none;
   }
 
-  // Homography measured in the 2048x1152 background-image coordinate system.
+  // Perspective transform maps the four corners of the 1024x768 screenshot
+  // onto the photographed tablet's display in the 2048x1152 source image.
+  // The screenshot must be transformed, not cropped to a polygon.
   &__frame {
     position: absolute;
     display: block;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
+    width: 1024px;
+    height: 768px;
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    background-position: center;
-    border-radius: 2.2%;
-    clip-path: inset(0 round 2.2%);
+    border-radius: 18px;
+    clip-path: inset(0 round 18px);
     opacity: 0;
     transform-origin: 0 0;
-    transform: matrix3d(0.256048901988, -0.0294924675937, 0, -0.00000985892774042, 0.0138909664052, 0.352661555581, 0, -0.0000381537515064, 0, 0, 1, 0, 767, 371, 0, 1);
+    transform: matrix3d(
+      0.649114245, -0.0311604215, 0, 0.0000621727765,
+      0.0408669628, 0.549278877, 0, -0.0000281067654,
+      0, 0, 1, 0,
+      767, 401, 0, 1
+    );
     backface-visibility: hidden;
   }
 
-  // Concept image is 1672 × 941. The white display corners are approximately
-  // (480,294), (1139,339), (1215,790), (525,779) in source pixels.
-  // Both the background and the overlay share the same cover-sized canvas.
-  &__slide[data-scene='concept'] &__frames {
-    width: 1672px;
-    height: 941px;
-  }
-
-  &__slide[data-scene='concept'] &__frame {
-    left: 28.71%;
-    top: 31.24%;
-    width: 44.02%;
-    height: 52.82%;
-    transform: none;
-    clip-path: polygon(0 0, 89.6% 9.1%, 100% 100%, 6.1% 97.8%);
-  }
+  // The concept background already contains its iPad screen artwork.
+  // Do not draw a second, unaligned screenshot on top of it.
+  &__slide[data-scene='concept'] &__frames { display: none; }
 
   // A static fallback must show a screen even before JS starts.
   &__slide &__frame:first-child { opacity: 1; }

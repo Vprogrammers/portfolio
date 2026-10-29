@@ -12,14 +12,27 @@ players.forEach((player) => {
   slides.forEach((slide) => {
     const background = slide.querySelector<HTMLImageElement>('.o-project-player__background');
     if (!background || !slide.querySelector('.o-project-player__frames')) return;
-    const updateBackgroundState = () => {\n      const frames = slide.querySelector<HTMLElement>('.o-project-player__frames');\n      if (frames && background.naturalWidth && background.naturalHeight) {\n        const bounds = slide.getBoundingClientRect();\n        const scale = Math.max(bounds.width / background.naturalWidth, bounds.height / background.naturalHeight);\n        const offsetX = (bounds.width - background.naturalWidth * scale) / 2;\n        const offsetY = (bounds.height - background.naturalHeight * scale) / 2;\n        frames.style.setProperty('--scene-scale', String(scale));\n        frames.style.setProperty('--scene-x', `${offsetX}px`);\n        frames.style.setProperty('--scene-y', `${offsetY}px`);\n      }
+    const updateBackgroundState = () => {
+      const frames = slide.querySelector<HTMLElement>('.o-project-player__frames');
+      if (frames && background.naturalWidth && background.naturalHeight) {
+        const bounds = slide.getBoundingClientRect();
+        const scale = Math.max(bounds.width / background.naturalWidth, bounds.height / background.naturalHeight);
+        const offsetX = (bounds.width - background.naturalWidth * scale) / 2;
+        const offsetY = (bounds.height - background.naturalHeight * scale) / 2;
+        frames.style.setProperty('--scene-scale', String(scale));
+        frames.style.setProperty('--scene-x', `${offsetX}px`);
+        frames.style.setProperty('--scene-y', `${offsetY}px`);
+      }
       const ready = background.complete && background.naturalWidth > 0;
       slide.dataset.backgroundReady = String(ready);
       if (background.complete && !ready) {
         console.warn('Project background failed to load:', background.currentSrc || background.src);
       }
     };
-    background.addEventListener('load', updateBackgroundState);\n    const observer = new ResizeObserver(updateBackgroundState);\n    observer.observe(slide);\n    window.addEventListener('pagehide', () => observer.disconnect(), { once: true });
+    background.addEventListener('load', updateBackgroundState);
+    const observer = new ResizeObserver(updateBackgroundState);
+    observer.observe(slide);
+    window.addEventListener('pagehide', () => observer.disconnect(), { once: true });
     background.addEventListener('error', updateBackgroundState);
     updateBackgroundState();
   });

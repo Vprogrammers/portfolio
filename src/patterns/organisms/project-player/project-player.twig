@@ -11,6 +11,13 @@
             {% if loop.first %}fetchpriority="high" loading="eager"{% else %}loading="eager"{% endif %}
             decoding="async">
         {% endif %}
+        {% if project.frames %}
+          <div class="o-project-player__frames" aria-hidden="true">
+            {% for frame in project.frames %}
+              <img class="o-project-player__frame" src="{{ frame }}" alt="" loading="eager" decoding="async">
+            {% endfor %}
+          </div>
+        {% endif %}
         <div class="o-project-player__content">
           <p class="o-project-player__eyebrow">{{ project.category }}</p>
           <h2 class="o-project-player__title">{{ project.title }}</h2>

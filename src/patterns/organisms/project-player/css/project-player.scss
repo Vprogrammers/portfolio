@@ -133,34 +133,37 @@
     }
   }
 
-  // The generated scene is 16:9. The screen quadrilateral is expressed in
-  // scene coordinates, so cover cropping never separates the screen from the tablet.
+  // Align the overlay with the original 16:9 scene under object-fit: cover.
+  // The four images are full-screen UI captures; only the tablet display is visible.
   &__frames {
     position: absolute;
     z-index: -1;
-    width: max(100vw, 177.77778svh);
-    height: max(100svh, 56.25vw);
     left: 50%;
     top: 50%;
+    width: max(100vw, 177.77778svh);
+    height: max(100svh, 56.25vw);
     transform: translate(-50%, -50%);
     pointer-events: none;
+    overflow: visible;
   }
 
   &__frame {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    inset: 0;
+    display: block;
+    left: 37.4%;
+    top: 24.1%;
+    width: 31.4%;
+    height: 40.1%;
     object-fit: fill;
     opacity: 0;
-    clip-path: polygon(37.5% 28.1%, 65.5% 24%, 68.7% 56.3%, 41.8% 64%);
-    transform: perspective(900px) translateZ(0);
+    // Four corners follow the photographed tablet screen.
+    clip-path: polygon(0 10%, 89% 0, 100% 80%, 14% 100%);
+    transform: translateZ(0);
   }
 
   &[data-enhanced='true'] &__slide.is-active &__frame {
     animation: project-tablet-cycle 20s step-end infinite;
   }
-
   &[data-enhanced='true'] &__slide.is-active &__frame:nth-child(2) { animation-delay: -5s; }
   &[data-enhanced='true'] &__slide.is-active &__frame:nth-child(3) { animation-delay: -10s; }
   &[data-enhanced='true'] &__slide.is-active &__frame:nth-child(4) { animation-delay: -15s; }

@@ -156,12 +156,13 @@
     top: 29.8%;
     width: 32.2%;
     height: 40.8%;
-    background-size: 200% 200%;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: left top;
     opacity: 0;
     // Screen quadrilateral relative to the bounding rectangle.
     clip-path: polygon(0 10%, 87% 0, 100% 88%, 12% 100%);
+    border-radius: 12px;
   }
 
   // Concept image is 1672 × 941. The white display corners are approximately
@@ -178,6 +179,7 @@
     width: 44.02%;
     height: 52.82%;
     clip-path: polygon(0 0, 89.6% 9.1%, 100% 100%, 6.1% 97.8%);
+    border-radius: 12px;
   }
 
   // A static fallback must show a screen even before JS starts.
@@ -188,15 +190,12 @@
     animation: project-tablet-cycle 20s step-end infinite;
   }
   &[data-enhanced='true'] &__slide.is-active &__frame:nth-child(2) {
-    background-position: right top;
     animation-delay: -5s;
   }
   &[data-enhanced='true'] &__slide.is-active &__frame:nth-child(3) {
-    background-position: left bottom;
     animation-delay: -10s;
   }
   &[data-enhanced='true'] &__slide.is-active &__frame:nth-child(4) {
-    background-position: right bottom;
     animation-delay: -15s;
   }
   &[data-paused='true'] &__slide.is-active &__frame { animation-play-state: paused; }

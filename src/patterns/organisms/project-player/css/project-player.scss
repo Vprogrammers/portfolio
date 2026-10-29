@@ -183,7 +183,34 @@
     );
   }
 
-  // Centered, front-facing iPad scene: coordinates measured on the 1648 × 928 image.\n  &__slide[data-scene='centered-ipad'] &__frames {\n    width: 1648px;\n    height: 928px;\n  }\n\n  &__slide[data-scene='centered-ipad'] &__frame {\n    left: 406px;\n    top: 190px;\n    width: 837px;\n    height: 601px;\n    inset: auto;\n    transform: none;\n    border-radius: 15px;\n    clip-path: inset(0 round 15px);\n  }\n\n  // A static fallback must show a screen even before JS starts.
+  // Measured against the unscaled 1648 × 928 background image.
+  // The overlay and background share the same cover scaling and origin.
+  &__slide[data-scene='centered-ipad'] &__frames {
+    width: 1648px;
+    height: 928px;
+  }
+
+  &__slide[data-scene='centered-ipad'] &__frame {
+    inset: auto;
+    left: 405px;
+    top: 190px;
+    width: 838px;
+    height: 602px;
+    transform: none;
+    border-radius: 14px;
+    clip-path: inset(0 round 14px);
+  }
+
+  // Keep the heading on the left without obscuring the iPad screen.
+  &__slide[data-scene='centered-ipad'] &__content {
+    max-width: min(34vw, 32rem);
+  }
+
+  &__slide[data-scene='centered-ipad'] &__title {
+    font-size: clamp(2.5rem, 5vw, 6rem);
+  }
+
+  // A static fallback must show a screen even before JS starts.
   &__slide &__frame:first-child { opacity: 1; }
   &[data-enhanced='true'] &__slide:not(.is-active) &__frame { animation: none; }
 

@@ -337,3 +337,32 @@
     animation: none;
   }
 }
+
+/* Small viewports use a full-bleed crop rather than letterboxing the landscape art. */
+@media (max-width: 767px) {
+  .o-project-player__slide {
+    align-items: end;
+    padding: 1.25rem 1.25rem 8rem;
+  }
+  .o-project-player__slide[data-scene='centered-ipad'] .o-project-player__background {
+    object-fit: cover;
+  }
+  .o-project-player__slide[data-scene='centered-ipad'] .o-project-player__content {
+    max-width: 100%;
+    width: 100%;
+  }
+  .o-project-player__slide[data-scene='centered-ipad'] .o-project-player__title {
+    font-size: clamp(2.15rem, 10vw, 3.75rem);
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
+    max-width: 100%;
+  }
+  .o-project-player__slide[data-scene='centered-ipad'] .o-project-player__description {
+    max-width: 26rem;
+    font-size: 1rem;
+  }
+  .o-project-player__slide[data-scene='centered-ipad']::after {
+    background: linear-gradient(0deg, rgb(7 13 23 / 96%) 0%, rgb(7 13 23 / 83%) 35%, rgb(7 13 23 / 10%) 76%);
+  }
+}

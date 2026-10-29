@@ -23,7 +23,7 @@ players.forEach((player) => {
         const sceneWidth = centered ? 1648 : 2048;
         const sceneHeight = centered ? 928 : 1152;
         const scale = centered
-          ? Math.min(bounds.width / sceneWidth, bounds.height / sceneHeight)
+          ? (window.matchMedia('(max-width: 767px)').matches || window.matchMedia('(min-aspect-ratio: 2/1)').matches ? Math.max(bounds.width / sceneWidth, bounds.height / sceneHeight) : Math.min(bounds.width / sceneWidth, bounds.height / sceneHeight))
           : Math.max(bounds.width / sceneWidth, bounds.height / sceneHeight);
         const offsetX = (bounds.width - sceneWidth * scale) / 2;
         const offsetY = (bounds.height - sceneHeight * scale) / 2;

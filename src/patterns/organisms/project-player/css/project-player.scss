@@ -1,73 +1,3 @@
-@use 'sass:list';
-@use 'sass:math';
-
-// Projective transform that maps a $w x $h box onto a screen quad given as
-// (top-left, top-right, bottom-right, bottom-left) points in artwork pixels.
-@function screen-matrix($w, $h, $quad) {
-	$x0: list.nth(list.nth($quad, 1), 1);
-	$y0: list.nth(list.nth($quad, 1), 2);
-	$x1: list.nth(list.nth($quad, 2), 1);
-	$y1: list.nth(list.nth($quad, 2), 2);
-	$x2: list.nth(list.nth($quad, 3), 1);
-	$y2: list.nth(list.nth($quad, 3), 2);
-	$x3: list.nth(list.nth($quad, 4), 1);
-	$y3: list.nth(list.nth($quad, 4), 2);
-	$dx1: $x1 - $x2;
-	$dx2: $x3 - $x2;
-	$dx3: $x0 - $x1 + $x2 - $x3;
-	$dy1: $y1 - $y2;
-	$dy2: $y3 - $y2;
-	$dy3: $y0 - $y1 + $y2 - $y3;
-	$den: $dx1 * $dy2 - $dx2 * $dy1;
-	$g: math.div($dx3 * $dy2 - $dx2 * $dy3, $den);
-	$k: math.div($dx1 * $dy3 - $dx3 * $dy1, $den);
-	$a: $x1 - $x0 + $g * $x1;
-	$b: $x3 - $x0 + $k * $x3;
-	$d: $y1 - $y0 + $g * $y1;
-	$e: $y3 - $y0 + $k * $y3;
-
-	@return matrix3d(
-		math.div($a, $w), math.div($d, $w), 0, math.div($g, $w),
-		math.div($b, $h), math.div($e, $h), 0, math.div($k, $h),
-		0, 0, 1, 0,
-		$x0, $y0, 0, 1
-	);
-}
-
-// Describes one device artwork: its pixel size, the screen quad inside it and
-// how much of its width the device occupies (used to keep it fully visible).
-@mixin device-scene($art-w, $art-h, $quad, $device, $radius) {
-	$tl: list.nth($quad, 1);
-	$tr: list.nth($quad, 2);
-	$br: list.nth($quad, 3);
-	$bl: list.nth($quad, 4);
-	$top: math.hypot(list.nth($tr, 1) - list.nth($tl, 1), list.nth($tr, 2) - list.nth($tl, 2));
-	$bottom: math.hypot(list.nth($br, 1) - list.nth($bl, 1), list.nth($br, 2) - list.nth($bl, 2));
-	$left: math.hypot(list.nth($bl, 1) - list.nth($tl, 1), list.nth($bl, 2) - list.nth($tl, 2));
-	$right: math.hypot(list.nth($br, 1) - list.nth($tr, 1), list.nth($br, 2) - list.nth($tr, 2));
-	// The screenshot box uses the quad's average edge lengths, so it is barely distorted.
-	$w: math.round(math.div($top + $bottom, 2));
-	$h: math.round(math.div($left + $right, 2));
-
-	--scene-ratio: #{math.div($art-w, $art-h)};
-	--scene-device: #{$device};
-
-	.o-project-player__frames {
-		width: #{$art-w}px;
-		height: #{$art-h}px;
-		// 100cqw / artwork width as a unitless factor.
-		transform: scale(tan(atan2(100cqw, #{$art-w}px)));
-	}
-
-	.o-project-player__frame {
-		width: #{$w}px;
-		height: #{$h}px;
-		border-radius: #{$radius}px;
-		clip-path: inset(0 round #{$radius}px);
-		transform: screen-matrix($w, $h, $quad);
-	}
-}
-
 @keyframes project-content-enter {
 	from {
 		opacity: 0;
@@ -92,19 +22,9 @@
 	}
 }
 
-@keyframes project-tablet-cycle {
-	0%,
-	24.99% {
-		opacity: 1;
-	}
-
-	25%,
-	100% {
-		opacity: 0;
-	}
-}
-
 .o-project-player {
+	--player-gutter: clamp(1.5rem, 6vw, 7rem);
+
 	position: relative;
 	min-height: 100vh;
 	min-height: 100svh;
@@ -118,19 +38,38 @@
 	min-height: 100svh;
 }
 
-.o-project-player__sr-only {
+// Persistent identity block; the slides rotate behind it.
+.o-project-player__intro {
 	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip-path: inset(50%);
-	white-space: nowrap;
-	border: 0;
+	z-index: 3;
+	left: var(--player-gutter);
+	top: clamp(7rem, 17vh, 12rem);
+	max-width: min(44rem, calc(100% - 2 * var(--player-gutter)));
+	text-shadow: 0 1px 24px rgb(7 13 23 / 0.45);
+	pointer-events: none;
+}
+
+.o-project-player__name {
+	margin: 0;
+	font-family: var(--font-display);
+	font-size: clamp(1.75rem, 4.6vw, 4.75rem);
+	font-weight: 600;
+	line-height: 1.02;
+	letter-spacing: 0.01em;
+	text-transform: uppercase;
+}
+
+.o-project-player__role {
+	margin: 1rem 0 0;
+	font-size: clamp(0.7rem, 0.95vw, 0.95rem);
+	font-weight: 500;
+	letter-spacing: 0.42em;
+	text-transform: uppercase;
 }
 
 .o-project-player__slide {
+	--scene-portrait-top: 50%;
+
 	position: relative;
 	isolation: isolate;
 	display: grid;
@@ -138,12 +77,12 @@
 	min-height: 100vh;
 	min-height: 100svh;
 	overflow: hidden;
-	padding: clamp(1.5rem, 6vw, 7rem);
+	padding: var(--player-gutter);
 	padding-bottom: clamp(8rem, 15vh, 13rem);
 	background: radial-gradient(circle at 75% 30%, #286778, #111822 70%);
 
-	// Shade only the corner behind the text and controls, so the artwork and
-	// the device screen keep their full brightness.
+	// Shade only the corners behind the intro, caption and controls, so the
+	// artwork and the device screen keep their full brightness.
 	&::after {
 		content: '';
 		position: absolute;
@@ -152,6 +91,7 @@
 		pointer-events: none;
 		background:
 			radial-gradient(ellipse 62% 78% at 0% 100%, rgb(7 13 23 / 0.82) 0%, rgb(7 13 23 / 0.5) 45%, transparent 100%),
+			radial-gradient(ellipse 50% 45% at 0% 0%, rgb(7 13 23 / 0.6) 0%, transparent 100%),
 			linear-gradient(0deg, rgb(7 13 23 / 0.55) 0%, transparent 28%);
 	}
 
@@ -170,6 +110,21 @@
 	&[data-tone='blue'] {
 		background: radial-gradient(circle at 75% 30%, #29578d, #111822 70%);
 	}
+}
+
+// Slides without a device scene still use artwork with baked-in text, so they
+// keep the stronger full-width shade until they get clean imagery.
+.o-project-player__slide:not([data-scene])::after {
+	background:
+		linear-gradient(90deg, rgb(7 13 23 / 0.88) 0%, rgb(7 13 23 / 0.66) 43%, rgb(7 13 23 / 0.24) 100%),
+		linear-gradient(0deg, rgb(7 13 23 / 0.82) 0%, transparent 65%);
+}
+
+// The centered iPad sits behind the text, so shade its left side for contrast.
+.o-project-player__slide[data-scene='centered-ipad']::after {
+	background:
+		linear-gradient(90deg, rgb(7 13 23 / 0.85) 0%, rgb(7 13 23 / 0.6) 30%, transparent 52%),
+		linear-gradient(0deg, rgb(7 13 23 / 0.55) 0%, transparent 28%);
 }
 
 // Slide transitions once JS has taken over.
@@ -229,6 +184,20 @@
 	animation-play-state: paused;
 }
 
+// Device scenes sit behind the slide content.
+.o-project-player__slide .m-device-scene {
+	z-index: -2;
+}
+
+// Only the visible slide cycles its screenshots, and pausing freezes them.
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-device-scene__frame {
+	animation-play-state: paused;
+}
+
+.o-project-player[data-paused='true'] .m-device-scene__frame {
+	animation-play-state: paused;
+}
+
 .o-project-player__picture {
 	position: absolute;
 	z-index: -2;
@@ -239,7 +208,6 @@
 
 .o-project-player__background {
 	position: absolute;
-	z-index: -2;
 	inset: 0;
 	display: block;
 	width: 100%;
@@ -249,183 +217,41 @@
 	background: #111822;
 }
 
-// The artwork and the screen overlay share one box with the artwork's aspect
-// ratio. It covers the slide like object-fit: cover, but never grows so far
-// that the device itself is cropped (portrait viewports). No JS geometry.
-.o-project-player__scene {
-	position: absolute;
-	z-index: -2;
-	left: 50%;
-	top: var(--scene-top, 50%);
-	width: min(max(100%, 100svh * var(--scene-ratio)), var(--scene-fit, 92%) / var(--scene-device));
-	aspect-ratio: var(--scene-ratio);
-	transform: translate(-50%, -50%);
-	container-type: inline-size;
-	pointer-events: none;
-
-	.o-project-player__picture {
-		overflow: visible;
-	}
-
-	.o-project-player__background {
-		object-fit: fill;
-	}
-}
-
-// The overlay lives in the artwork's own pixel coordinates and is scaled to
-// the scene width, so each screen quad stays pinned at every viewport size.
-.o-project-player__frames {
-	position: absolute;
-	z-index: -1;
-	left: 0;
-	top: 0;
-	transform-origin: 0 0;
-	pointer-events: none;
-}
-
-.o-project-player__slide[data-background-ready='false'] .o-project-player__frames {
-	display: none;
-}
-
-// The screenshot is projected onto the screen quad, not cropped to a polygon.
-.o-project-player__frame {
-	position: absolute;
-	display: block;
-	left: 0;
-	top: 0;
-	background-size: cover;
-	background-position: center top;
-	background-repeat: no-repeat;
-	opacity: 0;
-	transform-origin: 0 0;
-	backface-visibility: hidden;
-
-	// A static fallback must show a screen even before JS starts.
-	&:first-child {
-		opacity: 1;
-	}
-}
-
-// Screen quads are measured on the inner display of each source image.
-.o-project-player__slide[data-scene='centered-ipad'] .o-project-player__scene {
-	@include device-scene(1672, 941, ((413 193), (1261 193), (1261 801), (413 801)), 0.548, 8);
-}
-
-// Matches the <source> that swaps in the ultrawide artwork.
-@media (aspect-ratio >= 2 / 1) and (width >= 1024px) {
-	.o-project-player__slide[data-scene='centered-ipad'] .o-project-player__scene {
-		@include device-scene(2048, 768, ((669 206), (1373 206), (1373 650), (669 650)), 0.37, 9);
-	}
-}
-
-.o-project-player__slide[data-scene='concept'] .o-project-player__scene {
-	@include device-scene(1672, 941, ((489 298), (1154 344), (1235 802), (533 790)), 0.52, 10);
-
-	// The concept artwork is a full composition with labels, so show all of it
-	// (object-fit: contain) and fade its edges into the slide background.
-	width: min(100%, 100svh * var(--scene-ratio));
-	mask-image:
-		linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent),
-		linear-gradient(transparent, #000 6%, #000 94%, transparent);
-	mask-composite: intersect;
-}
-
-// Cut-out pixels from the artwork that sit in front of the screen.
-.o-project-player__foreground {
-	position: absolute;
-	display: block;
-	height: auto;
-	pointer-events: none;
-}
-
-.o-project-player__slide[data-background-ready='false'] .o-project-player__foreground {
-	display: none;
-}
-
-// The device is off-centre and held in hands. The fingers on the screen come
-// from a 555 x 410 cut-out taken at (622, 255) of the artwork.
-.o-project-player__slide[data-scene='handheld'] .o-project-player__scene {
-	@include device-scene(1672, 941, ((625 302), (1094 258), (1173 599), (687 661)), 0.4, 9);
-
-	.o-project-player__foreground {
-		left: math.percentage(math.div(622, 1672));
-		top: math.percentage(math.div(255, 941));
-		width: math.percentage(math.div(555, 1672));
-	}
-}
-
-.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .o-project-player__frame {
-	animation: none;
-}
-
-.o-project-player[data-enhanced='true'] .state-o-project-player__slide--active .o-project-player__frame {
-	animation: project-tablet-cycle 20s step-end infinite;
-
-	&:nth-child(2) {
-		animation-delay: -5s;
-	}
-
-	&:nth-child(3) {
-		animation-delay: -10s;
-	}
-
-	&:nth-child(4) {
-		animation-delay: -15s;
-	}
-}
-
-.o-project-player[data-paused='true'] .state-o-project-player__slide--active .o-project-player__frame {
-	animation-play-state: paused;
-}
-
+// Project caption: smaller than the intro, which carries the page title.
 .o-project-player__content {
 	position: relative;
 	z-index: 1;
-	max-width: 72rem;
+	max-width: 40rem;
 	text-shadow: 0 1px 24px rgb(7 13 23 / 0.45);
 }
 
 .o-project-player__eyebrow {
-	font-size: clamp(0.75rem, 1vw, 1rem);
-	letter-spacing: 0.14em;
+	margin: 0;
+	font-size: clamp(0.65rem, 0.8vw, 0.8rem);
+	font-weight: 500;
+	letter-spacing: 0.35em;
 	text-transform: uppercase;
 }
 
 .o-project-player__title {
-	margin: 0.5rem 0 1.5rem;
-	font-size: clamp(3rem, 9vw, 10rem);
-	line-height: 1;
-	overflow-wrap: anywhere;
+	margin: 0.75rem 0 1rem;
+	font-family: var(--font-display);
+	font-size: clamp(1.35rem, 2.4vw, 2.6rem);
+	font-weight: 500;
+	line-height: 1.1;
+	text-transform: uppercase;
 }
 
 .o-project-player__description {
-	max-width: 45rem;
-	font-size: clamp(1rem, 1.6vw, 1.5rem);
-	line-height: 1.5;
+	max-width: 32rem;
+	margin: 0;
+	font-size: clamp(0.95rem, 1.1vw, 1.15rem);
+	line-height: 1.55;
 }
 
-// Slides without a device scene still use artwork with baked-in text, so they
-// keep the stronger full-width shade until they get clean imagery.
-.o-project-player__slide:not([data-scene])::after {
-	background:
-		linear-gradient(90deg, rgb(7 13 23 / 0.88) 0%, rgb(7 13 23 / 0.66) 43%, rgb(7 13 23 / 0.24) 100%),
-		linear-gradient(0deg, rgb(7 13 23 / 0.82) 0%, transparent 65%);
-}
-
-// The centered iPad sits behind the text, so shade its left side for contrast.
-.o-project-player__slide[data-scene='centered-ipad']::after {
-	background:
-		linear-gradient(90deg, rgb(7 13 23 / 0.85) 0%, rgb(7 13 23 / 0.6) 30%, transparent 52%),
-		linear-gradient(0deg, rgb(7 13 23 / 0.55) 0%, transparent 28%);
-}
-
-// Keep the heading on the left without obscuring the iPad screen.
+// Keep the caption on the left without obscuring the iPad screen.
 .o-project-player__slide[data-scene] .o-project-player__content {
-	max-width: min(34vw, 32rem);
-}
-
-.o-project-player__slide[data-scene] .o-project-player__title {
-	font-size: clamp(2.5rem, 5vw, 6rem);
+	max-width: min(36vw, 32rem);
 }
 
 .o-project-player__link {
@@ -443,20 +269,31 @@
 .o-project-player__controls {
 	position: absolute;
 	z-index: 3; // Above the active slide (z-index: 2).
-	inset-inline: clamp(1.5rem, 6vw, 7rem);
+	left: var(--player-gutter);
 	bottom: clamp(1.5rem, 4vh, 3rem);
 	display: flex;
 	align-items: center;
 	flex-wrap: wrap;
-	gap: 0.75rem;
+	gap: 0.6rem;
 
 	button {
-		padding: 0.6rem 1rem;
-		border: 1px solid currentColor;
+		padding: 0.55rem 1rem;
+		border: 1px solid rgb(255 255 255 / 0.6);
 		border-radius: 99px;
 		background: transparent;
 		color: inherit;
+		font: inherit;
+		font-size: 0.7rem;
+		font-weight: 600;
+		letter-spacing: 0.2em;
+		text-transform: uppercase;
 		cursor: pointer;
+		transition: background-color 200ms ease, color 200ms ease;
+
+		&:hover {
+			color: #111822;
+			background: #fff;
+		}
 
 		&:focus-visible {
 			outline: 3px solid #fff;
@@ -467,24 +304,105 @@
 
 .o-project-player__progress {
 	display: block;
-	width: 2rem;
-	height: 2rem;
-	border: 1px solid currentColor;
+	width: 1.75rem;
+	height: 1.75rem;
+	border: 1px solid rgb(255 255 255 / 0.6);
 	border-radius: 50%;
 	background: conic-gradient(currentColor var(--project-progress, 0%), transparent 0);
 }
 
-@media (width <= 575px) {
+// Thin chevron down to the works grid.
+.o-project-player__scroll {
+	position: absolute;
+	z-index: 3;
+	left: 50%;
+	bottom: clamp(1.5rem, 4vh, 3rem);
+	display: block;
+	width: 2.75rem;
+	padding: 0.5rem 0;
+	color: inherit;
+	transform: translateX(-50%);
+	transition: transform 300ms ease;
+
+	svg {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	&:hover {
+		transform: translate(-50%, 0.3rem);
+	}
+
+	&:focus-visible {
+		outline: 3px solid #fff;
+		outline-offset: 4px;
+	}
+}
+
+.o-project-player__scroll-label {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+/* Portrait viewports: intro sits under the header, the device in the middle
+   and the caption at the bottom. */
+@media (aspect-ratio <= 1 / 1) {
+	.o-project-player__intro {
+		top: clamp(5.5rem, 11vh, 8rem);
+	}
+
+	.o-project-player__name {
+		font-size: clamp(1.6rem, 7.6vw, 3.5rem);
+	}
+
 	.o-project-player__slide {
-		padding-bottom: 11rem;
+		--scene-portrait-top: 47%;
 
 		&::after {
-			background: linear-gradient(0deg, rgb(7 13 23 / 0.9) 0%, rgb(7 13 23 / 0.6) 40%, transparent 75%);
+			background:
+				linear-gradient(180deg, rgb(7 13 23 / 0.75) 0%, transparent 26%),
+				linear-gradient(0deg, rgb(7 13 23 / 0.96) 0%, rgb(7 13 23 / 0.8) 24%, transparent 46%);
 		}
 	}
 
+	.o-project-player__slide:not([data-scene])::after {
+		background:
+			linear-gradient(180deg, rgb(7 13 23 / 0.8) 0%, transparent 30%),
+			linear-gradient(0deg, rgb(7 13 23 / 0.94) 0%, rgb(7 13 23 / 0.72) 54%, rgb(7 13 23 / 0.3) 100%);
+	}
+
+	.o-project-player__slide[data-scene] .o-project-player__content {
+		max-width: 34rem;
+	}
+}
+
+@media (width <= 767px) {
+	.o-project-player {
+		--player-gutter: 1.25rem;
+	}
+
+	.o-project-player__slide {
+		padding-bottom: 7rem;
+	}
+
 	.o-project-player__title {
-		font-size: clamp(2.5rem, 13vw, 5rem);
+		font-size: clamp(1.2rem, 5.6vw, 1.75rem);
+	}
+
+	.o-project-player__description {
+		font-size: 0.95rem;
+	}
+}
+
+// Below this width the controls reach the centre, where the arrow sits.
+@media (width <= 1023px) {
+	.o-project-player__scroll {
+		display: none;
 	}
 }
 
@@ -495,60 +413,8 @@
 
 	.o-project-player[data-enhanced='true'] .state-o-project-player__slide--active {
 		&::before,
-		.o-project-player__content,
-		.o-project-player__frame {
+		.o-project-player__content {
 			animation: none;
 		}
-
-		.o-project-player__frame {
-			opacity: 0;
-		}
-
-		.o-project-player__frame:first-child {
-			opacity: 1;
-		}
-	}
-}
-
-/* Small viewports use a full-bleed crop rather than letterboxing the landscape art. */
-@media (width <= 767px) {
-	.o-project-player__slide {
-		align-items: end;
-		padding: 1.25rem 1.25rem 8rem;
-	}
-
-	.o-project-player__slide[data-scene] {
-		&::after {
-			background: linear-gradient(0deg, rgb(7 13 23 / 0.96) 0%, rgb(7 13 23 / 0.8) 30%, transparent 55%);
-		}
-
-		.o-project-player__content {
-			width: 100%;
-			max-width: 100%;
-			margin-top: auto;
-		}
-
-		.o-project-player__title {
-			max-width: 100%;
-			font-size: clamp(2.15rem, 10vw, 3.75rem);
-			overflow-wrap: normal;
-			word-break: normal;
-			hyphens: none;
-		}
-
-		.o-project-player__description {
-			max-width: 26rem;
-			font-size: 1rem;
-		}
-	}
-}
-
-/* Portrait viewports: the scene is narrower than the slide is tall, so lift it
-   above the text and fade its top and bottom edges into the slide background. */
-@media (aspect-ratio <= 1 / 1) {
-	.o-project-player__scene {
-		--scene-top: 36%;
-
-		mask-image: linear-gradient(transparent, #000 10%, #000 90%, transparent);
 	}
 }

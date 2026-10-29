@@ -1,11 +1,21 @@
 @use '../../../../shared/utils/token/css/component';
 
+:root {
+	// Wide display face for names and titles; body copy uses Manrope.
+	--font-display: 'Unbounded', 'Arial Black', sans-serif;
+	--font-body: 'Manrope', arial, sans-serif;
+}
+
 html {
-	font-family: Arial, sans-serif;
+	font-family: var(--font-body);
 	line-height: 1.2;
 	color: component.$body-foreground;
 	background-color: component.$body-background;
+	scroll-behavior: smooth;
 	@media print {
 		background-color: transparent;
+	}
+	@media (prefers-reduced-motion: reduce) {
+		scroll-behavior: auto;
 	}
 }

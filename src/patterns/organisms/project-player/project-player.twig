@@ -1,27 +1,23 @@
 {# Featured project data is supplied by the page's static JSON context. #}
 <section class="o-project-player js-project-player" aria-label="Featured projects" data-interval="7000">
+  {% if intro %}
+    <div class="o-project-player__intro">
+      <h1 class="o-project-player__name">{{ intro.name }}</h1>
+      <p class="o-project-player__role">{{ intro.role }}</p>
+    </div>
+  {% endif %}
   <div class="o-project-player__slides">
     {% for project in projects %}
       <article class="o-project-player__slide" data-project-slide data-tone="{{ project.tone|default('teal') }}" {% if project.variant %}data-scene="{{ project.variant }}"{% endif %} {% if project.duration %}data-duration="{{ project.duration }}"{% endif %} {% if project.staticBackground %}data-static-background="true"{% endif %} {% if not loop.first %}hidden{% endif %}>
-        {# Device scenes wrap the artwork and its screen overlay in one box, so both scale together. #}
-        {% if project.frames %}<div class="o-project-player__scene">{% endif %}
-        {% if project.image %}
+        {% if project.frames %}
+          {% pattern name='device-scene' data=project|merge({ priority: loop.first }) %}
+        {% elseif project.image %}
           <picture class="o-project-player__picture">
             {% if project.imageMobile %}<source media="(max-width: 575px)" srcset="{{ project.imageMobile }}">{% endif %}
             {% if project.imageTablet %}<source media="(min-width: 576px) and (max-width: 1023px)" srcset="{{ project.imageTablet }}">{% endif %}
             {% if project.imageWide %}<source media="(min-aspect-ratio: 2/1) and (min-width: 1024px)" srcset="{{ project.imageWide }}">{% endif %}
             <img class="o-project-player__background" src="{{ project.image }}" alt="" {% if loop.first %}fetchpriority="high"{% endif %} loading="eager" decoding="async">
           </picture>
-        {% endif %}
-        {% if project.frames %}
-          <div class="o-project-player__frames" aria-hidden="true">
-            {% for frame in project.frames %}
-              <span class="o-project-player__frame" style="background-image: url('{{ frame }}')"></span>
-            {% endfor %}
-          </div>
-          {# Parts of the photo in front of the screen (e.g. fingers), layered above the screenshots. #}
-          {% if project.foreground %}<img class="o-project-player__foreground" src="{{ project.foreground }}" alt="" loading="eager" decoding="async">{% endif %}
-        </div>
         {% endif %}
         <div class="o-project-player__content">
           <p class="o-project-player__eyebrow">{{ project.category }}</p>
@@ -35,11 +31,17 @@
     {% endfor %}
   </div>
   {% if projects|length > 1 %}
-    <div class="o-project-player__controls" aria-label="Project controls">
+    <div class="o-project-player__controls" role="group" aria-label="Project controls">
       <button type="button" data-project-prev aria-label="Previous project">Previous</button>
       <button type="button" data-project-toggle aria-label="Pause automatic project changes" aria-pressed="false">Pause</button>
       <button type="button" data-project-next aria-label="Next project">Next</button>
       <span class="o-project-player__progress" data-project-progress aria-hidden="true"></span>
     </div>
+  {% endif %}
+  {% if scrollTarget %}
+    <a class="o-project-player__scroll" href="{{ scrollTarget }}">
+      <span class="o-project-player__scroll-label">See all works</span>
+      <svg viewBox="0 0 44 22" aria-hidden="true" focusable="false"><path d="M1 1l21 20L43 1" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+    </a>
   {% endif %}
 </section>

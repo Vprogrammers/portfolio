@@ -1,4 +1,5 @@
-<main id="main-content">
-  <h1 class="o-project-player__sr-only">Viktor Nešić — Mobile &amp; Frontend Developer</h1>
-  {% pattern name='project-player' data='homepage' %}
-</main>
+{# The layout already wraps the page in <main>. Project data lives in _data/index.json. #}
+{% pattern name='site-header' data={ intro: intro, links: links } %}
+{% pattern name='project-player' data={ intro: intro, projects: projects, scrollTarget: '#works' } %}
+{% pattern name='project-grid' data={ projects: projects } %}
+{% pattern name='site-footer' data={ intro: intro, links: links } %}

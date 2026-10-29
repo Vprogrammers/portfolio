@@ -12,6 +12,8 @@ import './shared/base/grid/css/grid.scss';
 import './shared/base/document/css/document.scss';
 import './shared/base/webfonts/css/webfont-gaegu.scss';
 import './shared/base/webfonts/css/webfont-playfair-display.scss';
+import './shared/base/webfonts/css/webfont-unbounded.scss';
+import './shared/base/webfonts/css/webfont-manrope.scss';
 import './shared/base/print/css/print.scss';
 
 import './patterns/atoms/box';
@@ -28,8 +30,12 @@ import './patterns/atoms/loader';
 import './patterns/atoms/lottie';
 import './patterns/atoms/quote';
 import './patterns/atoms/stage';
+import './patterns/molecules/device-scene';
 import './patterns/molecules/example';
+import './patterns/organisms/project-grid';
 import './patterns/organisms/project-player';
+import './patterns/organisms/site-footer';
+import './patterns/organisms/site-header';
 
 hot(module);
 

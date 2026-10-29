@@ -8,16 +8,7 @@ players.forEach((player) => {
   const progress = player.querySelector<HTMLElement>('[data-project-progress]');
   if (slides.length < 2 || !previous || !next || !toggle) return;
 
-  // CSS handles responsive scene geometry; JS only controls playback.
-  slides.forEach((slide) => {
-    const background = slide.querySelector<HTMLImageElement>('.o-project-player__background');
-    if (!background || !slide.querySelector('.o-project-player__frames')) return;
-    const update = () => { slide.dataset.backgroundReady = String(background.complete && background.naturalWidth > 0); };
-    background.addEventListener('load', update);
-    background.addEventListener('error', update);
-    update();
-  });
-
+  // Scene geometry lives in the device-scene molecule's CSS; JS only controls playback.
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const readInterval = (value: string | undefined, fallback: number) => Math.max(3000, Number(value) || fallback);
   const defaultInterval = readInterval(player.dataset.interval, 7000);

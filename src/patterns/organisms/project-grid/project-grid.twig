@@ -1,0 +1,32 @@
+{# Edge-to-edge project tiles; details appear on hover or focus. #}
+<section class="o-project-grid" id="{{ id|default('works') }}" aria-labelledby="{{ id|default('works') }}-title">
+	<h2 class="o-project-grid__heading" id="{{ id|default('works') }}-title">Works</h2>
+	<ul class="o-project-grid__list">
+		{% for project in projects %}
+			{% if project.grid is not same as(false) %}
+				<li class="o-project-grid__item" data-tone="{{ project.tone|default('teal') }}" {% if not project.frames and not project.image %}data-media="none"{% endif %}>
+					<article class="o-project-grid__tile">
+						<div class="o-project-grid__media">
+							{% if project.frames %}
+								{% pattern name='device-scene' data=project|merge({ priority: false }) %}
+							{% elseif project.image %}
+								<img class="o-project-grid__image" src="{{ project.image }}" alt="" loading="lazy" decoding="async">
+							{% endif %}
+						</div>
+						<div class="o-project-grid__caption">
+							<h3 class="o-project-grid__title">
+								{% if project.url %}
+									<a class="o-project-grid__link" href="{{ project.url }}">{{ project.gridTitle|default(project.title) }}</a>
+								{% else %}
+									{{ project.gridTitle|default(project.title) }}
+								{% endif %}
+							</h3>
+							<p class="o-project-grid__category">{{ project.category }}</p>
+							<p class="o-project-grid__summary">{{ project.summary }}</p>
+						</div>
+					</article>
+				</li>
+			{% endif %}
+		{% endfor %}
+	</ul>
+</section>

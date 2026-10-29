@@ -1,0 +1,10 @@
+{# Contact section; the links come from the page data. #}
+<footer class="o-site-footer" id="contact">
+	<h2 class="o-site-footer__heading">Contact</h2>
+	<ul class="o-site-footer__links">
+		{% for link in links %}
+			<li><a class="o-site-footer__link" href="{{ link.url }}">{{ link.label }}</a></li>
+		{% endfor %}
+	</ul>
+	<p class="o-site-footer__meta">{{ intro.name }} — {{ intro.role }}</p>
+</footer>

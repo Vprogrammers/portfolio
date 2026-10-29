@@ -109,7 +109,8 @@
 			"title": "a11yOtp",
 			"summary": "Accessible native one-time-code input for Android and iOS.",
 			"tone": "blue",
-			"url": "https://github.com/Vprogrammers/a11yOtp"
+			"url": "https://github.com/Vprogrammers/a11yOtp",
+			"hero": false
 		}
 	]
 }

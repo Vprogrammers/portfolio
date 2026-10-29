@@ -2,7 +2,7 @@
 <section class="o-project-player js-project-player" aria-label="Featured projects" data-interval="7000">
   <div class="o-project-player__slides">
     {% for project in projects %}
-      <article class="o-project-player__slide" data-project-slide data-tone="{{ project.tone|default('teal') }}" {% if project.duration %}data-duration="{{ project.duration }}"{% endif %} {% if project.staticBackground %}data-static-background="true"{% endif %} {% if not loop.first %}hidden{% endif %}>
+      <article class="o-project-player__slide" data-project-slide data-tone="{{ project.tone|default('teal') }}" {% if project.variant %}data-scene="{{ project.variant }}"{% endif %} {% if project.duration %}data-duration="{{ project.duration }}"{% endif %} {% if project.staticBackground %}data-static-background="true"{% endif %} {% if not loop.first %}hidden{% endif %}>
         {% if project.image %}
           <img
             class="o-project-player__background"

@@ -133,45 +133,43 @@
     }
   }
 
-  // Overlay coordinates match the fixed 1600x900 demo scene's tablet display.
-  // Both the scene and overlay share cover sizing and centered positioning.
+  // The generated scene is 16:9. The screen quadrilateral is expressed in
+  // scene coordinates, so cover cropping never separates the screen from the tablet.
   &__frames {
     position: absolute;
     z-index: -1;
-    inset: 0;
-    overflow: hidden;
+    width: max(100vw, 177.77778svh);
+    height: max(100svh, 56.25vw);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     pointer-events: none;
   }
 
   &__frame {
     position: absolute;
-    inset: 0;
-    display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: center;
+    inset: 0;
+    object-fit: fill;
     opacity: 0;
+    clip-path: polygon(37.5% 28.1%, 65.5% 24%, 68.7% 56.3%, 41.8% 64%);
+    transform: perspective(900px) translateZ(0);
   }
 
-  &[data-enhanced='true'] &__slide.is-active &__frame:nth-child(1) {
-    animation: project-tablet-first 15s step-end infinite;
+  &[data-enhanced='true'] &__slide.is-active &__frame {
+    animation: project-tablet-cycle 20s step-end infinite;
   }
-  &[data-enhanced='true'] &__slide.is-active &__frame:nth-child(2) {
-    animation: project-tablet-second 15s step-end infinite;
-  }
+
+  &[data-enhanced='true'] &__slide.is-active &__frame:nth-child(2) { animation-delay: -5s; }
+  &[data-enhanced='true'] &__slide.is-active &__frame:nth-child(3) { animation-delay: -10s; }
+  &[data-enhanced='true'] &__slide.is-active &__frame:nth-child(4) { animation-delay: -15s; }
   &[data-paused='true'] &__slide.is-active &__frame { animation-play-state: paused; }
 
   @at-root {
-    @keyframes project-tablet-first {
-      0%, 33.32% { opacity: 0; }
-      33.33%, 66.65% { opacity: 1; }
-      66.66%, 100% { opacity: 0; }
-    }
-    @keyframes project-tablet-second {
-      0%, 66.65% { opacity: 0; }
-      66.66%, 99.99% { opacity: 1; }
-      100% { opacity: 0; }
+    @keyframes project-tablet-cycle {
+      0%, 24.99% { opacity: 1; }
+      25%, 100% { opacity: 0; }
     }
   }
 

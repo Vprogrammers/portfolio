@@ -19,17 +19,18 @@ players.forEach((player) => {
   });
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const defaultInterval = Math.max(3000, Number(player.dataset.interval) || 7000);
-  const getInterval = () => Math.max(3000, Number(slides[active].dataset.duration) || defaultInterval);
+  const readInterval = (value: string | undefined, fallback: number) => Math.max(3000, Number(value) || fallback);
+  const defaultInterval = readInterval(player.dataset.interval, 7000);
   const transitionDuration = 1050;
   let active = 0;
+  const getInterval = () => readInterval(slides[active].dataset.duration, defaultInterval);
   let paused = reducedMotion.matches;
   let started = performance.now();
   let frame = 0;
   let cleanupTimer: number | undefined;
 
   // The static HTML displays the first slide even if JavaScript is unavailable.
-  slides[0].classList.add('is-active');
+  slides[0].classList.add('state-o-project-player__slide--active');
   player.dataset.enhanced = 'true';
   player.dataset.paused = String(paused);
 
@@ -43,17 +44,17 @@ players.forEach((player) => {
 
     // Resolve an interrupted transition before beginning another one.
     slides.forEach((slide, i) => {
-      slide.classList.remove('is-leaving', 'is-active');
+      slide.classList.remove('state-o-project-player__slide--leaving', 'state-o-project-player__slide--active');
       if (i !== active && i !== target) slide.hidden = true;
     });
 
     incoming.hidden = false;
-    incoming.classList.add('is-entering');
+    incoming.classList.add('state-o-project-player__slide--entering');
     // Wait for the initial style to render so Safari can animate the incoming slide.
-    void incoming.offsetWidth;
-    outgoing.classList.add('is-leaving');
-    incoming.classList.add('is-active');
-    incoming.classList.remove('is-entering');
+    incoming.getBoundingClientRect();
+    outgoing.classList.add('state-o-project-player__slide--leaving');
+    incoming.classList.add('state-o-project-player__slide--active');
+    incoming.classList.remove('state-o-project-player__slide--entering');
     outgoing.setAttribute('aria-hidden', 'true');
     incoming.removeAttribute('aria-hidden');
 
@@ -64,8 +65,8 @@ players.forEach((player) => {
     cleanupTimer = window.setTimeout(() => {
       slides.forEach((slide, i) => {
         slide.hidden = i !== active;
-        slide.classList.toggle('is-active', i === active);
-        slide.classList.remove('is-leaving', 'is-entering');
+        slide.classList.toggle('state-o-project-player__slide--active', i === active);
+        slide.classList.remove('state-o-project-player__slide--leaving', 'state-o-project-player__slide--entering');
         if (i !== active) slide.setAttribute('aria-hidden', 'true');
       });
     }, reducedMotion.matches ? 0 : transitionDuration);

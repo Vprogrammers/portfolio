@@ -3,6 +3,8 @@
   <div class="o-project-player__slides">
     {% for project in projects %}
       <article class="o-project-player__slide" data-project-slide data-tone="{{ project.tone|default('teal') }}" {% if project.variant %}data-scene="{{ project.variant }}"{% endif %} {% if project.duration %}data-duration="{{ project.duration }}"{% endif %} {% if project.staticBackground %}data-static-background="true"{% endif %} {% if not loop.first %}hidden{% endif %}>
+        {# Device scenes wrap the artwork and its screen overlay in one box, so both scale together. #}
+        {% if project.frames %}<div class="o-project-player__scene">{% endif %}
         {% if project.image %}
           <picture class="o-project-player__picture">
             {% if project.imageMobile %}<source media="(max-width: 575px)" srcset="{{ project.imageMobile }}">{% endif %}
@@ -17,6 +19,9 @@
               <span class="o-project-player__frame" style="background-image: url('{{ frame }}')"></span>
             {% endfor %}
           </div>
+          {# Parts of the photo in front of the screen (e.g. fingers), layered above the screenshots. #}
+          {% if project.foreground %}<img class="o-project-player__foreground" src="{{ project.foreground }}" alt="" loading="eager" decoding="async">{% endif %}
+        </div>
         {% endif %}
         <div class="o-project-player__content">
           <p class="o-project-player__eyebrow">{{ project.category }}</p>

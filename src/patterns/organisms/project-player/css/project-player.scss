@@ -1,384 +1,537 @@
-.o-project-player {
-  position: relative;
-  min-height: 100vh;
-  min-height: 100svh;
-  color: #fff;
-  background: #111822;
+@use 'sass:list';
+@use 'sass:math';
 
-  &__slides { position: relative; min-height: 100vh; min-height: 100svh; }
+// Projective transform that maps a $w x $h box onto a screen quad given as
+// (top-left, top-right, bottom-right, bottom-left) points in artwork pixels.
+@function screen-matrix($w, $h, $quad) {
+	$x0: list.nth(list.nth($quad, 1), 1);
+	$y0: list.nth(list.nth($quad, 1), 2);
+	$x1: list.nth(list.nth($quad, 2), 1);
+	$y1: list.nth(list.nth($quad, 2), 2);
+	$x2: list.nth(list.nth($quad, 3), 1);
+	$y2: list.nth(list.nth($quad, 3), 2);
+	$x3: list.nth(list.nth($quad, 4), 1);
+	$y3: list.nth(list.nth($quad, 4), 2);
+	$dx1: $x1 - $x2;
+	$dx2: $x3 - $x2;
+	$dx3: $x0 - $x1 + $x2 - $x3;
+	$dy1: $y1 - $y2;
+	$dy2: $y3 - $y2;
+	$dy3: $y0 - $y1 + $y2 - $y3;
+	$den: $dx1 * $dy2 - $dx2 * $dy1;
+	$g: math.div($dx3 * $dy2 - $dx2 * $dy3, $den);
+	$k: math.div($dx1 * $dy3 - $dx3 * $dy1, $den);
+	$a: $x1 - $x0 + $g * $x1;
+	$b: $x3 - $x0 + $k * $x3;
+	$d: $y1 - $y0 + $g * $y1;
+	$e: $y3 - $y0 + $k * $y3;
 
-  &[data-enhanced='true'] &__slide {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    opacity: 0;
-    visibility: hidden;
-    transform: none;
-    transition: opacity 1050ms ease, transform 1600ms ease, visibility 0s linear 1050ms;
-  }
-
-  &[data-enhanced='true'] &__slide.is-active,
-  &[data-enhanced='true'] &__slide.is-leaving {
-    visibility: visible;
-    transition: opacity 1050ms ease, transform 1600ms ease, visibility 0s;
-  }
-
-  &[data-enhanced='true'] &__slide.is-active { opacity: 1; transform: none; z-index: 2; }
-  &[data-enhanced='true'] &__slide.is-leaving { opacity: 0; z-index: 1; }
-  &[data-enhanced='true'] &__slide.is-entering { opacity: 0; transform: none; }
-  &[data-enhanced='true'] &__slide.is-active .o-project-player__content { animation: project-content-enter 900ms both; }
-  &[data-enhanced='true'] &__slide.is-leaving .o-project-player__content { animation: none; }
-
-  @at-root { @keyframes project-content-enter {
-    from { opacity: 0; transform: translateY(22px); }
-    to { opacity: 1; transform: translateY(0); }
-  } }
-
-  &__sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
-
-  &__slide {
-    position: relative;
-    isolation: isolate;
-    display: grid;
-    align-items: end;
-    min-height: 100vh;
-    min-height: 100svh;
-    overflow: hidden;
-    padding: clamp(1.5rem, 6vw, 7rem);
-    padding-bottom: clamp(8rem, 15vh, 13rem);
-    background: radial-gradient(circle at 75% 30%, #286778, #111822 70%);
-
-    // Keep foreground content readable on bright photography.
-    &::after {
-      content: '';
-      position: absolute;
-      z-index: -1;
-      inset: 0;
-      pointer-events: none;
-      background: linear-gradient(
-        90deg,
-        rgb(7 13 23 / 88%) 0%,
-        rgb(7 13 23 / 66%) 43%,
-        rgb(7 13 23 / 24%) 100%
-      ), linear-gradient(
-        0deg,
-        rgb(7 13 23 / 82%) 0%,
-        transparent 65%
-      );
-    }
-
-    &[hidden] { display: none; }
-    &[data-tone='violet'] { background: radial-gradient(circle at 75% 30%, #584e89, #111822 70%); }
-    &[data-tone='orange'] { background: radial-gradient(circle at 75% 30%, #8a5038, #111822 70%); }
-    &[data-tone='blue'] { background: radial-gradient(circle at 75% 30%, #29578d, #111822 70%); }
-  }
-
-  &__background {
-    position: absolute;
-    z-index: -2;
-    inset: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    background: #111822;
-    transform: none;
-    will-change: transform;
-  }
-
-  &__picture {
-    position: absolute;
-    z-index: -2;
-    inset: 0;
-    display: block;
-    overflow: hidden;
-  }
-
-  // The artwork and the screen overlay share one CSS-sized scene. No JS geometry.
-  &__slide[data-scene='centered-ipad'] &__picture {
-    left: 50%;
-    top: 50%;
-    right: auto;
-    bottom: auto;
-    width: min(100%, 177.586svh);
-    height: auto;
-    aspect-ratio: 1648 / 928;
-    transform: translate(-50%, -50%);
-    overflow: visible;
-  }
-
-  &__slide[data-scene='centered-ipad'] &__background {
-    object-fit: fill;
-  }
-
-  // Match the image variant and its screen position without JS.
-  @media (min-aspect-ratio: 2/1) and (min-width: 1024px) {
-    &__slide[data-scene='centered-ipad'] &__picture {
-      width: 100%;
-    }
-  }
-
-  // Keep the actual image in motion throughout the slide, not just during transitions.
-  &[data-enhanced='true'] &__slide.is-active &__background {
-    animation: none;
-  }
-
-  &[data-enhanced='true'] &__slide[data-static-background='true'].is-active &__background {
-    animation: none;
-    transform: none;
-  }
-
-  &[data-enhanced='true'] &__slide[data-static-background='true'].is-active::before {
-    animation: none;
-  }
-
-  &[data-paused='true'] &__slide.is-active &__background {
-    animation-play-state: paused;
-  }
-
-  @at-root {
-    @keyframes project-image-drift {
-      from { transform: none; }
-      to { transform: none; }
-    }
-  }
-
-  // Continuous ambient movement while a project is visible, without zooming its image.
-  &[data-enhanced='true'] &__slide.is-active::before {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    inset: -12%;
-    pointer-events: none;
-    background: radial-gradient(ellipse at 65% 45%, rgb(122 182 207 / 16%), transparent 58%);
-    animation: project-ambient-drift 9s ease-in-out infinite alternate;
-  }
-
-  &[data-paused='true'] &__slide.is-active::before { animation-play-state: paused; }
-
-  @at-root {
-    @keyframes project-ambient-drift {
-      from { transform: translate3d(-5%, 1%, 0); opacity: .35; }
-      to { transform: translate3d(5%, -2%, 0); opacity: .85; }
-    }
-  }
-
-  // Keep the overlay in the same *intrinsic pixel coordinate system* used to
-  // calculate the homography. A viewport-sized element invalidates matrix3d.
-  &__slide[data-background-ready='false'] &__frames { display: none; }
-
-  &__frames {
-    position: absolute;
-    z-index: -1;
-    left: 0;
-    top: 0;
-    width: 1024px;
-    height: 768px;
-    transform-origin: 0 0;
-    transform: translate(var(--scene-x, 0px), var(--scene-y, 0px)) scale(var(--scene-scale, 1));
-    pointer-events: none;
-  }
-
-  // Perspective transform maps the four corners of the 1024x768 screenshot
-  // onto the photographed tablet's display in the 2048x1152 source image.
-  // The screenshot must be transformed, not cropped to a polygon.
-  &__frame {
-    position: absolute;
-    display: block;
-    inset: 0;
-    width: 1024px;
-    height: 768px;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    border-radius: 18px;
-    clip-path: inset(0 round 18px);
-    opacity: 0;
-    transform-origin: 0 0;
-    transform: matrix3d(
-      0.576224568, -0.075429472, 0, 0.000006564,
-      0.095292602, 0.574476382, 0, -0.000021019,
-      0, 0, 1, 0,
-      731, 290, 0, 1
-    );
-    backface-visibility: hidden;
-  }
-
-  // Concept artwork uses a separate tablet perspective from the lifestyle image.
-  &__slide[data-scene='concept'] &__frame {
-    transform: matrix3d(
-      0.788, 0.049, 0, 0.000011,
-      0.072, 0.775, 0, -0.000021,
-      0, 0, 1, 0,
-      562, 352, 0, 1
-    );
-  }
-
-  // Screen coordinates are percentages of the original 1648 x 928 artwork.
-  &__slide[data-scene='centered-ipad'] &__frames {
-    left: 50%;
-    top: 50%;
-    width: min(100%, 177.586svh);
-    height: auto;
-    aspect-ratio: 1648 / 928;
-    transform: translate(-50%, -50%);
-  }
-
-  &__slide[data-scene='centered-ipad'] &__frame {
-    inset: auto;
-    // Override the legacy 1024x768 fixed-size frame used by perspective scenes.
-    left: 24.575%;
-    top: 20.474%;
-    width: 50.85%;
-    height: 64.87%;
-    transform: none;
-    background-size: 100% 100%;
-    border-radius: 1.5%;
-    clip-path: inset(0 round 1.5%);
-  }
-
-  @media (min-aspect-ratio: 2/1) and (min-width: 1024px) {
-    &__slide[data-scene='centered-ipad'] &__frames { width: 100%; }
-    &__slide[data-scene='centered-ipad'] &__frame { top: 26.08%; height: 59.05%; }
-  }
-
-  // Keep the heading on the left without obscuring the iPad screen.
-  &__slide[data-scene='centered-ipad'] &__content {
-    max-width: min(34vw, 32rem);
-  }
-
-  &__slide[data-scene='centered-ipad'] &__title {
-    font-size: clamp(2.5rem, 5vw, 6rem);
-  }
-
-  // A static fallback must show a screen even before JS starts.
-  &__slide &__frame:first-child { opacity: 1; }
-  &[data-enhanced='true'] &__slide:not(.is-active) &__frame { animation: none; }
-
-  &[data-enhanced='true'] &__slide.is-active &__frame {
-    animation: project-tablet-cycle 20s step-end infinite;
-  }
-  &[data-enhanced='true'] &__slide.is-active &__frame:nth-child(2) {
-    animation-delay: -5s;
-  }
-  &[data-enhanced='true'] &__slide.is-active &__frame:nth-child(3) {
-    animation-delay: -10s;
-  }
-  &[data-enhanced='true'] &__slide.is-active &__frame:nth-child(4) {
-    animation-delay: -15s;
-  }
-  &[data-paused='true'] &__slide.is-active &__frame { animation-play-state: paused; }
-
-  @at-root {
-    @keyframes project-tablet-cycle {
-      0%, 24.99% { opacity: 1; }
-      25%, 100% { opacity: 0; }
-    }
-  }
-
-  &__content { position: relative; z-index: 1; max-width: 72rem; }
-  &__eyebrow { font-size: clamp(.75rem, 1vw, 1rem); letter-spacing: .14em; text-transform: uppercase; }
-  &__title { margin: .5rem 0 1.5rem; font-size: clamp(3rem, 9vw, 10rem); line-height: 1; overflow-wrap: anywhere; }
-  &__description { max-width: 45rem; font-size: clamp(1rem, 1.6vw, 1.5rem); line-height: 1.5; }
-  &__link { display: inline-block; margin-top: 1rem; color: inherit; text-underline-offset: .3em; }
-  &__controls {
-    position: absolute;
-    z-index: 1;
-    inset-inline: clamp(1.5rem, 6vw, 7rem);
-    bottom: clamp(1.5rem, 4vh, 3rem);
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: .75rem;
-
-    button {
-      padding: .6rem 1rem;
-      border: 1px solid currentColor;
-      border-radius: 99px;
-      background: transparent;
-      color: inherit;
-      cursor: pointer;
-    }
-
-    button:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
-  }
-
-  &__link:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
-  &__progress {
-    display: block;
-    width: 2rem;
-    height: 2rem;
-    border: 1px solid currentColor;
-    border-radius: 50%;
-    background: conic-gradient(currentColor var(--project-progress, 0%), transparent 0);
-  }
+	@return matrix3d(
+		math.div($a, $w), math.div($d, $w), 0, math.div($g, $w),
+		math.div($b, $h), math.div($e, $h), 0, math.div($k, $h),
+		0, 0, 1, 0,
+		$x0, $y0, 0, 1
+	);
 }
 
-@media (max-width: 575px) {
-  .o-project-player__slide {
-    padding-bottom: 11rem;
+// Describes one device artwork: its pixel size, the screen quad inside it and
+// how much of its width the device occupies (used to keep it fully visible).
+@mixin device-scene($art-w, $art-h, $quad, $device, $radius) {
+	$tl: list.nth($quad, 1);
+	$tr: list.nth($quad, 2);
+	$br: list.nth($quad, 3);
+	$bl: list.nth($quad, 4);
+	$top: math.hypot(list.nth($tr, 1) - list.nth($tl, 1), list.nth($tr, 2) - list.nth($tl, 2));
+	$bottom: math.hypot(list.nth($br, 1) - list.nth($bl, 1), list.nth($br, 2) - list.nth($bl, 2));
+	$left: math.hypot(list.nth($bl, 1) - list.nth($tl, 1), list.nth($bl, 2) - list.nth($tl, 2));
+	$right: math.hypot(list.nth($br, 1) - list.nth($tr, 1), list.nth($br, 2) - list.nth($tr, 2));
+	// The screenshot box uses the quad's average edge lengths, so it is barely distorted.
+	$w: math.round(math.div($top + $bottom, 2));
+	$h: math.round(math.div($left + $right, 2));
 
-    &::after {
-      background: linear-gradient(
-        0deg,
-        rgb(7 13 23 / 94%) 0%,
-        rgb(7 13 23 / 72%) 54%,
-        rgb(7 13 23 / 22%) 100%
-      );
-    }
-  }
+	--scene-ratio: #{math.div($art-w, $art-h)};
+	--scene-device: #{$device};
 
-  .o-project-player__title { font-size: clamp(2.5rem, 13vw, 5rem); }
+	.o-project-player__frames {
+		width: #{$art-w}px;
+		height: #{$art-h}px;
+		// 100cqw / artwork width as a unitless factor.
+		transform: scale(tan(atan2(100cqw, #{$art-w}px)));
+	}
+
+	.o-project-player__frame {
+		width: #{$w}px;
+		height: #{$h}px;
+		border-radius: #{$radius}px;
+		clip-path: inset(0 round #{$radius}px);
+		transform: screen-matrix($w, $h, $quad);
+	}
+}
+
+@keyframes project-content-enter {
+	from {
+		opacity: 0;
+		transform: translateY(22px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes project-ambient-drift {
+	from {
+		transform: translate3d(-5%, 1%, 0);
+		opacity: 0.35;
+	}
+
+	to {
+		transform: translate3d(5%, -2%, 0);
+		opacity: 0.85;
+	}
+}
+
+@keyframes project-tablet-cycle {
+	0%,
+	24.99% {
+		opacity: 1;
+	}
+
+	25%,
+	100% {
+		opacity: 0;
+	}
+}
+
+.o-project-player {
+	position: relative;
+	min-height: 100vh;
+	min-height: 100svh;
+	color: #fff;
+	background: #111822;
+}
+
+.o-project-player__slides {
+	position: relative;
+	min-height: 100vh;
+	min-height: 100svh;
+}
+
+.o-project-player__sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+	border: 0;
+}
+
+.o-project-player__slide {
+	position: relative;
+	isolation: isolate;
+	display: grid;
+	align-items: end;
+	min-height: 100vh;
+	min-height: 100svh;
+	overflow: hidden;
+	padding: clamp(1.5rem, 6vw, 7rem);
+	padding-bottom: clamp(8rem, 15vh, 13rem);
+	background: radial-gradient(circle at 75% 30%, #286778, #111822 70%);
+
+	// Keep foreground content readable on bright photography.
+	&::after {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		inset: 0;
+		pointer-events: none;
+		background:
+			linear-gradient(90deg, rgb(7 13 23 / 0.88) 0%, rgb(7 13 23 / 0.66) 43%, rgb(7 13 23 / 0.24) 100%),
+			linear-gradient(0deg, rgb(7 13 23 / 0.82) 0%, transparent 65%);
+	}
+
+	&[hidden] {
+		display: none;
+	}
+
+	&[data-tone='violet'] {
+		background: radial-gradient(circle at 75% 30%, #584e89, #111822 70%);
+	}
+
+	&[data-tone='orange'] {
+		background: radial-gradient(circle at 75% 30%, #8a5038, #111822 70%);
+	}
+
+	&[data-tone='blue'] {
+		background: radial-gradient(circle at 75% 30%, #29578d, #111822 70%);
+	}
+}
+
+// Slide transitions once JS has taken over.
+.o-project-player[data-enhanced='true'] .o-project-player__slide {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 1050ms ease, visibility 0s linear 1050ms;
+}
+
+.o-project-player[data-enhanced='true'] .state-o-project-player__slide--active,
+.o-project-player[data-enhanced='true'] .state-o-project-player__slide--leaving {
+	visibility: visible;
+	transition: opacity 1050ms ease, visibility 0s;
+}
+
+.o-project-player[data-enhanced='true'] .state-o-project-player__slide--active {
+	z-index: 2;
+	opacity: 1;
+}
+
+.o-project-player[data-enhanced='true'] .state-o-project-player__slide--leaving {
+	z-index: 1;
+	opacity: 0;
+}
+
+.o-project-player[data-enhanced='true'] .state-o-project-player__slide--entering {
+	opacity: 0;
+}
+
+.o-project-player[data-enhanced='true'] .state-o-project-player__slide--active .o-project-player__content {
+	animation: project-content-enter 900ms both;
+}
+
+.o-project-player[data-enhanced='true'] .state-o-project-player__slide--leaving .o-project-player__content {
+	animation: none;
+}
+
+// Continuous ambient movement while a project is visible, without zooming its image.
+.o-project-player[data-enhanced='true'] .state-o-project-player__slide--active::before {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	inset: -12%;
+	pointer-events: none;
+	background: radial-gradient(ellipse at 65% 45%, rgb(122 182 207 / 0.16), transparent 58%);
+	animation: project-ambient-drift 9s ease-in-out infinite alternate;
+}
+
+.o-project-player[data-enhanced='true'] .o-project-player__slide[data-static-background='true']::before {
+	animation: none;
+}
+
+.o-project-player[data-paused='true'] .state-o-project-player__slide--active::before {
+	animation-play-state: paused;
+}
+
+.o-project-player__picture {
+	position: absolute;
+	z-index: -2;
+	inset: 0;
+	display: block;
+	overflow: hidden;
+}
+
+.o-project-player__background {
+	position: absolute;
+	z-index: -2;
+	inset: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	background: #111822;
+}
+
+// The artwork and the screen overlay share one box with the artwork's aspect
+// ratio. It covers the slide like object-fit: cover, but never grows so far
+// that the device itself is cropped (portrait viewports). No JS geometry.
+.o-project-player__scene {
+	position: absolute;
+	z-index: -2;
+	left: 50%;
+	top: var(--scene-top, 50%);
+	width: min(max(100%, 100svh * var(--scene-ratio)), var(--scene-fit, 92%) / var(--scene-device));
+	aspect-ratio: var(--scene-ratio);
+	transform: translate(-50%, -50%);
+	container-type: inline-size;
+	pointer-events: none;
+
+	.o-project-player__picture {
+		overflow: visible;
+	}
+
+	.o-project-player__background {
+		object-fit: fill;
+	}
+}
+
+// The overlay lives in the artwork's own pixel coordinates and is scaled to
+// the scene width, so each screen quad stays pinned at every viewport size.
+.o-project-player__frames {
+	position: absolute;
+	z-index: -1;
+	left: 0;
+	top: 0;
+	transform-origin: 0 0;
+	pointer-events: none;
+}
+
+.o-project-player__slide[data-background-ready='false'] .o-project-player__frames {
+	display: none;
+}
+
+// The screenshot is projected onto the screen quad, not cropped to a polygon.
+.o-project-player__frame {
+	position: absolute;
+	display: block;
+	left: 0;
+	top: 0;
+	background-size: cover;
+	background-position: center top;
+	background-repeat: no-repeat;
+	opacity: 0;
+	transform-origin: 0 0;
+	backface-visibility: hidden;
+
+	// A static fallback must show a screen even before JS starts.
+	&:first-child {
+		opacity: 1;
+	}
+}
+
+// Screen quads are measured on the inner display of each source image.
+.o-project-player__slide[data-scene='centered-ipad'] .o-project-player__scene {
+	@include device-scene(1672, 941, ((413 193), (1261 193), (1261 801), (413 801)), 0.548, 8);
+}
+
+// Matches the <source> that swaps in the ultrawide artwork.
+@media (aspect-ratio >= 2 / 1) and (width >= 1024px) {
+	.o-project-player__slide[data-scene='centered-ipad'] .o-project-player__scene {
+		@include device-scene(2048, 768, ((669 206), (1373 206), (1373 650), (669 650)), 0.37, 9);
+	}
+}
+
+.o-project-player__slide[data-scene='concept'] .o-project-player__scene {
+	@include device-scene(1672, 941, ((489 298), (1154 344), (1235 802), (533 790)), 0.52, 10);
+
+	// The concept artwork is a full composition with labels, so show all of it
+	// (object-fit: contain) and fade its edges into the slide background.
+	width: min(100%, 100svh * var(--scene-ratio));
+	mask-image:
+		linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent),
+		linear-gradient(transparent, #000 6%, #000 94%, transparent);
+	mask-composite: intersect;
+}
+
+// Cut-out pixels from the artwork that sit in front of the screen.
+.o-project-player__foreground {
+	position: absolute;
+	display: block;
+	height: auto;
+	pointer-events: none;
+}
+
+.o-project-player__slide[data-background-ready='false'] .o-project-player__foreground {
+	display: none;
+}
+
+// The device is off-centre and held in hands. The fingers on the screen come
+// from a 555 x 410 cut-out taken at (622, 255) of the artwork.
+.o-project-player__slide[data-scene='handheld'] .o-project-player__scene {
+	@include device-scene(1672, 941, ((625 302), (1094 258), (1173 599), (687 661)), 0.4, 9);
+
+	.o-project-player__foreground {
+		left: math.percentage(math.div(622, 1672));
+		top: math.percentage(math.div(255, 941));
+		width: math.percentage(math.div(555, 1672));
+	}
+}
+
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .o-project-player__frame {
+	animation: none;
+}
+
+.o-project-player[data-enhanced='true'] .state-o-project-player__slide--active .o-project-player__frame {
+	animation: project-tablet-cycle 20s step-end infinite;
+
+	&:nth-child(2) {
+		animation-delay: -5s;
+	}
+
+	&:nth-child(3) {
+		animation-delay: -10s;
+	}
+
+	&:nth-child(4) {
+		animation-delay: -15s;
+	}
+}
+
+.o-project-player[data-paused='true'] .state-o-project-player__slide--active .o-project-player__frame {
+	animation-play-state: paused;
+}
+
+.o-project-player__content {
+	position: relative;
+	z-index: 1;
+	max-width: 72rem;
+}
+
+.o-project-player__eyebrow {
+	font-size: clamp(0.75rem, 1vw, 1rem);
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+}
+
+.o-project-player__title {
+	margin: 0.5rem 0 1.5rem;
+	font-size: clamp(3rem, 9vw, 10rem);
+	line-height: 1;
+	overflow-wrap: anywhere;
+}
+
+.o-project-player__description {
+	max-width: 45rem;
+	font-size: clamp(1rem, 1.6vw, 1.5rem);
+	line-height: 1.5;
+}
+
+// Keep the heading on the left without obscuring the iPad screen.
+.o-project-player__slide[data-scene] .o-project-player__content {
+	max-width: min(34vw, 32rem);
+}
+
+.o-project-player__slide[data-scene] .o-project-player__title {
+	font-size: clamp(2.5rem, 5vw, 6rem);
+}
+
+.o-project-player__link {
+	display: inline-block;
+	margin-top: 1rem;
+	color: inherit;
+	text-underline-offset: 0.3em;
+
+	&:focus-visible {
+		outline: 3px solid #fff;
+		outline-offset: 4px;
+	}
+}
+
+.o-project-player__controls {
+	position: absolute;
+	z-index: 3; // Above the active slide (z-index: 2).
+	inset-inline: clamp(1.5rem, 6vw, 7rem);
+	bottom: clamp(1.5rem, 4vh, 3rem);
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+
+	button {
+		padding: 0.6rem 1rem;
+		border: 1px solid currentColor;
+		border-radius: 99px;
+		background: transparent;
+		color: inherit;
+		cursor: pointer;
+
+		&:focus-visible {
+			outline: 3px solid #fff;
+			outline-offset: 4px;
+		}
+	}
+}
+
+.o-project-player__progress {
+	display: block;
+	width: 2rem;
+	height: 2rem;
+	border: 1px solid currentColor;
+	border-radius: 50%;
+	background: conic-gradient(currentColor var(--project-progress, 0%), transparent 0);
+}
+
+@media (width <= 575px) {
+	.o-project-player__slide {
+		padding-bottom: 11rem;
+
+		&::after {
+			background: linear-gradient(0deg, rgb(7 13 23 / 0.94) 0%, rgb(7 13 23 / 0.72) 54%, rgb(7 13 23 / 0.22) 100%);
+		}
+	}
+
+	.o-project-player__title {
+		font-size: clamp(2.5rem, 13vw, 5rem);
+	}
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .o-project-player[data-enhanced='true'] .o-project-player__slide {
-    transition: none;
-    transform: none;
-  }
+	.o-project-player[data-enhanced='true'] .o-project-player__slide {
+		transition: none;
+	}
 
-  .o-project-player[data-enhanced='true'] .o-project-player__slide.is-active .o-project-player__frame { animation: none; }
-  .o-project-player[data-enhanced='true'] .o-project-player__slide.is-active .o-project-player__frame { opacity: 0; }
-  .o-project-player[data-enhanced='true'] .o-project-player__slide.is-active .o-project-player__frame:first-child { opacity: 1; }
+	.o-project-player[data-enhanced='true'] .state-o-project-player__slide--active {
+		&::before,
+		.o-project-player__content,
+		.o-project-player__frame {
+			animation: none;
+		}
 
-  .o-project-player[data-enhanced='true'] .o-project-player__slide.is-active::before,
-  .o-project-player[data-enhanced='true'] .o-project-player__slide.is-active .o-project-player__background { animation: none; transform: none; }
+		.o-project-player__frame {
+			opacity: 0;
+		}
 
-  .o-project-player[data-enhanced='true'] .o-project-player__slide.is-active .o-project-player__content {
-    animation: none;
-  }
+		.o-project-player__frame:first-child {
+			opacity: 1;
+		}
+	}
 }
 
 /* Small viewports use a full-bleed crop rather than letterboxing the landscape art. */
-@media (max-width: 767px) {
-  .o-project-player__slide {
-    align-items: end;
-    padding: 1.25rem 1.25rem 8rem;
-  }
-  .o-project-player__slide[data-scene='centered-ipad'] .o-project-player__picture,
-  .o-project-player__slide[data-scene='centered-ipad'] .o-project-player__frames {
-    top: 38%;
-    width: 100%;
-  }
-  .o-project-player__slide[data-scene='centered-ipad'] .o-project-player__content {
-    margin-top: auto;
-  }
-  .o-project-player__slide[data-scene='centered-ipad'] .o-project-player__content {
-    max-width: 100%;
-    width: 100%;
-  }
-  .o-project-player__slide[data-scene='centered-ipad'] .o-project-player__title {
-    font-size: clamp(2.15rem, 10vw, 3.75rem);
-    overflow-wrap: normal;
-    word-break: normal;
-    hyphens: none;
-    max-width: 100%;
-  }
-  .o-project-player__slide[data-scene='centered-ipad'] .o-project-player__description {
-    max-width: 26rem;
-    font-size: 1rem;
-  }
-  .o-project-player__slide[data-scene='centered-ipad']::after {
-    background: linear-gradient(0deg, rgb(7 13 23 / 96%) 0%, rgb(7 13 23 / 83%) 35%, rgb(7 13 23 / 10%) 76%);
-  }
+@media (width <= 767px) {
+	.o-project-player__slide {
+		align-items: end;
+		padding: 1.25rem 1.25rem 8rem;
+	}
+
+	.o-project-player__slide[data-scene] {
+		&::after {
+			background: linear-gradient(0deg, rgb(7 13 23 / 0.96) 0%, rgb(7 13 23 / 0.83) 35%, rgb(7 13 23 / 0.1) 76%);
+		}
+
+		.o-project-player__content {
+			width: 100%;
+			max-width: 100%;
+			margin-top: auto;
+		}
+
+		.o-project-player__title {
+			max-width: 100%;
+			font-size: clamp(2.15rem, 10vw, 3.75rem);
+			overflow-wrap: normal;
+			word-break: normal;
+			hyphens: none;
+		}
+
+		.o-project-player__description {
+			max-width: 26rem;
+			font-size: 1rem;
+		}
+	}
+}
+
+/* Portrait viewports: the scene is narrower than the slide is tall, so lift it
+   above the text and fade its top and bottom edges into the slide background. */
+@media (aspect-ratio <= 1 / 1) {
+	.o-project-player__scene {
+		--scene-top: 36%;
+
+		mask-image: linear-gradient(transparent, #000 10%, #000 90%, transparent);
+	}
 }

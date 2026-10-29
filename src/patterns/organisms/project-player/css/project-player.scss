@@ -88,6 +88,12 @@
     will-change: transform;
   }
 
+  // Preserve the full centered iPad photograph on ultrawide viewports.
+  // JS uses the same contain scale and centered offsets for the screen overlay.
+  &__slide[data-scene='centered-ipad'] &__background {
+    object-fit: contain;
+  }
+
   // Keep the actual image in motion throughout the slide, not just during transitions.
   &[data-enhanced='true'] &__slide.is-active &__background {
     animation: none;

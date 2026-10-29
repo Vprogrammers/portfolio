@@ -108,6 +108,9 @@
   // JS uses the same contain scale and centered offsets for the screen overlay.
   &__slide[data-scene='centered-ipad'] &__background {
     object-fit: contain;
+    // A replaced image paints its own background across the entire element.
+    // Keep that box transparent so the ultrawide layer shows through at the sides.
+    background: transparent;
   }
 
   // Keep the actual image in motion throughout the slide, not just during transitions.

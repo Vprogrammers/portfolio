@@ -133,29 +133,7 @@
     }
   }
 
-  // Measured from the 2048x864 Safari capture (804px scene viewport).
-  // The 16:9 source is cover-cropped vertically by 174px at this viewport.
-  // Adjusted against the latest screenshot to keep the overlay inside the bezel.
-  &__slide[data-background-ready='false'] &__frames { display: none; }
-
-  &__frames {
-    position: absolute;
-    z-index: -1;
-    left: 50%;
-    top: 50%;
-    width: max(100vw, 177.77778svh);
-    height: max(100svh, 56.25vw);
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-  }
-
-  // The photographed iPad screen is a perspective quadrilateral, not a clipped rectangle.
-  // Measured from the supplied 2048 × 864 Safari screenshot: the image viewport
-  // starts at y=64. At 2048px width, the 16:9 cover canvas is 2048 × 1152,
-  // centered and vertically cropped by 176px. The inner screen corners on that
-  // canvas are (767,371), (1318,317), (1397,766), (819,813).
-  // Map the complete image plane to these corners using a projective transform.
-  &__frame {
+  // Keep the overlay in the same *intrinsic pixel coordinate system* used to\n  // calculate the homography. A viewport-sized element invalidates matrix3d.\n  &__slide[data-background-ready='false'] &__frames { display: none; }\n\n  &__frames {\n    position: absolute;\n    z-index: -1;\n    left: 0;\n    top: 0;\n    width: 2048px;\n    height: 1152px;\n    transform-origin: 0 0;\n    transform: translate(var(--scene-x, 0px), var(--scene-y, 0px)) scale(var(--scene-scale, 1));\n    pointer-events: none;\n  }\n\n  // Homography measured in the 2048x1152 background-image coordinate system.\n  &__frame {
     position: absolute;
     display: block;
     left: 0;
@@ -176,10 +154,7 @@
   // Concept image is 1672 × 941. The white display corners are approximately
   // (480,294), (1139,339), (1215,790), (525,779) in source pixels.
   // Both the background and the overlay share the same cover-sized canvas.
-  &__slide[data-scene='concept'] &__frames {
-    width: max(100vw, 177.6833svh);
-    height: max(100svh, 56.2799vw);
-  }
+  &__slide[data-scene='concept'] &__frames {\n    width: 1672px;\n    height: 941px;\n  }
 
   &__slide[data-scene='concept'] &__frame {
     left: 28.71%;

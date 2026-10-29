@@ -133,12 +133,14 @@
     }
   }
 
+  // Overlay coordinates match the fixed 1600x900 demo scene's tablet display.
+  // Both the scene and overlay share cover sizing and centered positioning.
   &__frames {
     position: absolute;
-    z-index: -2;
+    z-index: -1;
     inset: 0;
     overflow: hidden;
-    background: #303d3d;
+    pointer-events: none;
   }
 
   &__frame {
@@ -152,21 +154,24 @@
     opacity: 0;
   }
 
-  &__frame:first-child { opacity: 1; }
-
-  &[data-enhanced='true'] &__slide.is-active &__frame {
-    animation: project-frame-cycle 15s linear infinite;
+  &[data-enhanced='true'] &__slide.is-active &__frame:nth-child(1) {
+    animation: project-tablet-first 15s step-end infinite;
   }
-
-  &[data-enhanced='true'] &__slide.is-active &__frame:nth-child(2) { animation-delay: -10s; }
-  &[data-enhanced='true'] &__slide.is-active &__frame:nth-child(3) { animation-delay: -5s; }
+  &[data-enhanced='true'] &__slide.is-active &__frame:nth-child(2) {
+    animation: project-tablet-second 15s step-end infinite;
+  }
   &[data-paused='true'] &__slide.is-active &__frame { animation-play-state: paused; }
 
   @at-root {
-    @keyframes project-frame-cycle {
-      0%, 31% { opacity: 1; }
-      33.33%, 98% { opacity: 0; }
-      100% { opacity: 1; }
+    @keyframes project-tablet-first {
+      0%, 33.32% { opacity: 0; }
+      33.33%, 66.65% { opacity: 1; }
+      66.66%, 100% { opacity: 0; }
+    }
+    @keyframes project-tablet-second {
+      0%, 66.65% { opacity: 0; }
+      66.66%, 99.99% { opacity: 1; }
+      100% { opacity: 0; }
     }
   }
 
@@ -232,7 +237,7 @@
   }
 
   .o-project-player[data-enhanced='true'] .o-project-player__slide.is-active .o-project-player__frame { animation: none; }
-  .o-project-player[data-enhanced='true'] .o-project-player__slide.is-active .o-project-player__frame:not(:first-child) { opacity: 0; }
+  .o-project-player[data-enhanced='true'] .o-project-player__slide.is-active .o-project-player__frame { opacity: 0; }
 
   .o-project-player[data-enhanced='true'] .o-project-player__slide.is-active::before,
   .o-project-player[data-enhanced='true'] .o-project-player__slide.is-active .o-project-player__background { animation: none; transform: none; }

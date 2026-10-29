@@ -135,8 +135,7 @@
 
   // Measured from the 2048x864 Safari capture (804px scene viewport).
   // The 16:9 source is cover-cropped vertically by 174px at this viewport.
-  // Screen corners in normalized source coordinates:
-  // TL (34.7%,30.7%), TR (59.8%,26.3%), BR (63.7%,59.4%), BL (38.2%,64.3%).
+  // Adjusted against the latest screenshot to keep the overlay inside the bezel.
   &__frames {
     position: absolute;
     z-index: -1;
@@ -151,16 +150,16 @@
   &__frame {
     position: absolute;
     display: block;
-    left: 34.7%;
-    top: 26.3%;
-    width: 29%;
-    height: 38%;
+    left: 36.3%;
+    top: 26.9%;
+    width: 27.0%;
+    height: 37.1%;
     background-size: 200% 200%;
     background-repeat: no-repeat;
     background-position: left top;
     opacity: 0;
     // Screen quadrilateral relative to the bounding rectangle.
-    clip-path: polygon(0 11.6%, 86.6% 0, 100% 87.1%, 12.1% 100%);
+    clip-path: polygon(0 11.3%, 86.0% 0, 100% 87.0%, 12.2% 100%);
   }
 
   &[data-enhanced='true'] &__slide.is-active &__frame {

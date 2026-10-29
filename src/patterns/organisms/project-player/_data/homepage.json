@@ -5,7 +5,7 @@
       "title": "Hansgrohe ProApp",
       "summary": "Enterprise product presentations and offline content for field teams.",
       "tone": "teal",
-      "image": "/assets/img/projects/hansgrohe-background.png",
+      "image": "/assets/img/projects/hansgrohe-background-03.png",
       "duration": 20000,
       "staticBackground": true,
       "frames": [
@@ -14,7 +14,7 @@
         "/assets/img/projects/hansgrohe-screen-03.png",
         "/assets/img/projects/hansgrohe-screen-04.png"
       ],
-      "variant": "lifestyle"
+      "variant": "centered-ipad"
     },
     {
       "category": "Mobile · Kotlin Multiplatform",

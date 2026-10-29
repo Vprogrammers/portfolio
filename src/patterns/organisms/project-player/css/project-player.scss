@@ -150,8 +150,11 @@
   }
 
   // The photographed iPad screen is a perspective quadrilateral, not a clipped rectangle.
-  // Coordinates measured on the 1896 × 1066 cover canvas (top crop: 163px).
-  // Map the full image plane to its four screen corners with a projective matrix.
+  // Measured from the supplied 2048 × 864 Safari screenshot: the image viewport
+  // starts at y=64. At 2048px width, the 16:9 cover canvas is 2048 × 1152,
+  // centered and vertically cropped by 176px. The inner screen corners on that
+  // canvas are (767,371), (1318,317), (1397,766), (819,813).
+  // Map the complete image plane to these corners using a projective transform.
   &__frame {
     position: absolute;
     display: block;
@@ -163,9 +166,10 @@
     background-repeat: no-repeat;
     background-position: center;
     border-radius: 2.2%;
+    clip-path: inset(0 round 2.2%);
     opacity: 0;
     transform-origin: 0 0;
-    transform: matrix3d(0.249050039, -0.031843808, 0, -0.000015503, 0.012122961, 0.336604609, 0, -0.000048107, 0, 0, 1, 0, 710, 403, 0, 1);
+    transform: matrix3d(0.256048901988, -0.0294924675937, 0, -0.00000985892774042, 0.0138909664052, 0.352661555581, 0, -0.0000381537515064, 0, 0, 1, 0, 767, 371, 0, 1);
     backface-visibility: hidden;
   }
 

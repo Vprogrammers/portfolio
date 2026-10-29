@@ -222,6 +222,15 @@
     clip-path: inset(0 round 14px);
   }
 
+  // The ultrawide photograph places the tablet screen lower and slightly
+  // shorter than the original scene. Keep the original mapping unchanged.
+  @media (min-aspect-ratio: 2/1) {
+    &__slide[data-scene='centered-ipad'] &__frame {
+      top: 242px;
+      height: 548px;
+    }
+  }
+
   // Keep the heading on the left without obscuring the iPad screen.
   &__slide[data-scene='centered-ipad'] &__content {
     max-width: min(34vw, 32rem);

@@ -84,11 +84,62 @@
 			}
 		},
 		{
-			"category": "Demo · Temporary visual",
-			"title": "MuMe Live — Visual Test",
-			"summary": "Temporary image to evaluate fullscreen presentation. This is not a published case study.",
-			"tone": "teal",
-			"image": "/assets/img/projects/MuMe%20Live%20Chat%20App%20Showcase.png"
+			"category": "Android · Real-time video",
+			"title": "MuMe",
+			"summary": "Live video and chat rooms: hosts open a room, people join with coins and talk in real time.",
+			"tone": "yellow",
+			"variant": "live",
+			"duration": 16000,
+			"live": {
+				"room": "Late Night Talks",
+				"host": {
+					"name": "You",
+					"initials": "VN"
+				},
+				"guests": [
+					{
+						"name": "Mia",
+						"hue": 330
+					},
+					{
+						"name": "Alex",
+						"hue": 200
+					},
+					{
+						"name": "Sara",
+						"hue": 150
+					}
+				],
+				"fee": 5,
+				"wallet": [
+					120,
+					125,
+					130,
+					135,
+					147
+				],
+				"gift": 12,
+				"messages": [
+					{
+						"name": "Mia",
+						"text": "Hi everyone 👋"
+					},
+					{
+						"name": "Alex",
+						"text": "Love this room 💛"
+					},
+					{
+						"name": "Sara",
+						"text": "Where are you all from?"
+					},
+					{
+						"name": "Alex",
+						"text": "sent a gift 🎁"
+					}
+				],
+				"wordmark": "/assets/img/projects/mume-wordmark.png",
+				"nav": "/assets/img/projects/mume-nav.png"
+			}
 		},
 		{
 			"category": "Frontend · Twig",

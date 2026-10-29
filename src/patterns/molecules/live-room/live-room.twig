@@ -1,0 +1,62 @@
+{# Phone playing the MuMe story in HTML/CSS: splash, create a chat room, people join and pay with coins, the room comes alive. Fills its positioned parent. #}
+<div class="m-live-room" aria-hidden="true">
+	<div class="m-live-room__backdrop">
+		{% for i in 1..12 %}<span class="m-live-room__glow"></span>{% endfor %}
+		{% for i in 1..4 %}<span class="m-live-room__bubble"></span>{% endfor %}
+	</div>
+	<div class="m-live-room__device">
+		<div class="m-live-room__screen">
+			<div class="m-live-room__status"><span>9:41</span><span class="m-live-room__status-icons"></span></div>
+
+			{# 1. Splash: the "Me" box dissolves into halftone dots, re-opens from the centre, then "Mu" slides in. #}
+			<div class="m-live-room__scene m-live-room__scene--splash">
+				<div class="m-live-room__logo">
+					<span class="m-live-room__logo-mu">Mu</span>
+					<span class="m-live-room__logo-me"><span class="m-live-room__logo-dots"></span><span class="m-live-room__logo-box"></span><span class="m-live-room__logo-text">Me</span></span>
+				</div>
+			</div>
+
+			{# 2. Create a chat room: the app's leaf-shaped dialog over its streak background. #}
+			<div class="m-live-room__scene m-live-room__scene--create">
+				{% for i in 1..48 %}<span class="m-live-room__streak"></span>{% endfor %}
+				<div class="m-live-room__dialog">
+					<p class="m-live-room__dialog-title">MuMe</p>
+					<p class="m-live-room__dialog-text">Create your MuMe Chat Room</p>
+					<div class="m-live-room__field">
+						<span class="m-live-room__placeholder">Chat room name</span>
+						<span class="m-live-room__typed">{% for char in room|split('') %}<span>{{ char }}</span>{% endfor %}<i class="m-live-room__caret"></i></span>
+					</div>
+					<span class="m-live-room__button m-live-room__button--create">CREATE</span>
+					<span class="m-live-room__button m-live-room__button--cancel">CANCEL</span>
+				</div>
+			</div>
+
+			{# 3. The live room. #}
+			<div class="m-live-room__scene m-live-room__scene--room">
+				{% for i in 1..10 %}<span class="m-live-room__bokeh"></span>{% endfor %}
+				<img class="m-live-room__wordmark" src="{{ wordmark }}" alt="" loading="lazy" decoding="async">
+				<div class="m-live-room__header">
+					<p class="m-live-room__room-name">{{ room }}</p>
+					<p class="m-live-room__meta"><span class="m-live-room__live">LIVE</span><span class="m-live-room__viewers"><span class="m-live-room__ticker"><span>1</span>{% for guest in guests %}<span>{{ loop.index + 1 }}</span>{% endfor %}</span> listening</span></p>
+				</div>
+				<p class="m-live-room__wallet"><i class="m-live-room__coin"></i><span class="m-live-room__ticker">{% for value in wallet %}<span>{{ value }}</span>{% endfor %}</span></p>
+				<div class="m-live-room__grid">
+					<div class="m-live-room__tile m-live-room__tile--host"><span class="m-live-room__avatar">{{ host.initials }}</span><span class="m-live-room__name">{{ host.name }}</span><span class="m-live-room__wave"><i></i><i></i><i></i><i></i></span></div>
+					{% for guest in guests %}
+						<div class="m-live-room__tile" style="--hue: {{ guest.hue }}"><span class="m-live-room__avatar">{{ guest.name|slice(0, 1) }}</span><span class="m-live-room__name">{{ guest.name }}</span></div>
+						<span class="m-live-room__toast">{{ guest.name }} joined</span>
+						<span class="m-live-room__fee">−{{ fee }}<i class="m-live-room__coin"></i></span>
+					{% endfor %}
+				</div>
+				<ul class="m-live-room__chat">
+					{% for message in messages %}<li><b>{{ message.name }}</b> {{ message.text }}</li>{% endfor %}
+				</ul>
+				<span class="m-live-room__gift">🎁 ×{{ gift }}</span>
+				<div class="m-live-room__hearts">{% for i in 1..6 %}<span>{{ ['💛', '❤️', '💚'][i % 3] }}</span>{% endfor %}</div>
+				<div class="m-live-room__input"><span>Enter your message here</span><i></i></div>
+			</div>
+
+			<img class="m-live-room__nav" src="{{ nav }}" alt="" loading="lazy" decoding="async">
+		</div>
+	</div>
+</div>

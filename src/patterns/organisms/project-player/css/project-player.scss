@@ -80,10 +80,28 @@
     display: block;
     width: 100%;
     height: 100%;
-    // Show the entire supplied image without cropping on any viewport.
-    object-fit: contain;
+    // Fill every viewport, including ultrawide displays. Edge cropping is intentional.
+    object-fit: cover;
     object-position: center;
     background: #111822;
+    transform: scale(1.015) translate3d(0, 0, 0);
+    will-change: transform;
+  }
+
+  // Keep the actual image in motion throughout the slide, not just during transitions.
+  &[data-enhanced='true'] &__slide.is-active &__background {
+    animation: project-image-drift 14s ease-in-out infinite alternate;
+  }
+
+  &[data-paused='true'] &__slide.is-active &__background {
+    animation-play-state: paused;
+  }
+
+  @at-root {
+    @keyframes project-image-drift {
+      from { transform: scale(1.015) translate3d(-.35%, 0, 0); }
+      to { transform: scale(1.055) translate3d(.35%, -.35%, 0); }
+    }
   }
 
   // Continuous ambient movement while a project is visible, without zooming its image.
@@ -167,7 +185,8 @@
     transform: none;
   }
 
-  .o-project-player[data-enhanced='true'] .o-project-player__slide.is-active::before { animation: none; }
+  .o-project-player[data-enhanced='true'] .o-project-player__slide.is-active::before,
+  .o-project-player[data-enhanced='true'] .o-project-player__slide.is-active .o-project-player__background { animation: none; transform: none; }
 
   .o-project-player[data-enhanced='true'] .o-project-player__slide.is-active .o-project-player__content {
     animation: none;

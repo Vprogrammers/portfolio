@@ -39,6 +39,7 @@ import './patterns/molecules/fantasy-pitch';
 import './patterns/molecules/lead-flow';
 import './patterns/molecules/live-room';
 import './patterns/molecules/on-air';
+import './patterns/molecules/pageant-stage';
 import './patterns/molecules/phone-scroll';
 import './patterns/molecules/salon-scene';
 import './patterns/molecules/scan-view';

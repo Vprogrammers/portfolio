@@ -1150,6 +1150,127 @@
 			}
 		},
 		{
+			"category": "Android · Java · Firebase",
+			"title": "Masse",
+			"summary": "Online booking for a billiard club: pick a pool table or a dartboard, a date and a free slot. An admin panel keeps the data under control, shows the night's reservations and deletes them.",
+			"tone": "cyan",
+			"variant": "club",
+			"duration": 16000,
+			"club": {
+				"logo": "/assets/img/projects/masse-logo.png",
+				"balls": [
+					"#f5c518",
+					"#1f4fd1",
+					"#d6262e",
+					"#5b2d8f",
+					"#f07a1a",
+					"#1f8f4e"
+				],
+				"tables": [
+					{
+						"name": "Sto No.1",
+						"tag": "19:00"
+					},
+					{
+						"name": "Sto No.2"
+					},
+					{
+						"name": "Sto No.3",
+						"tag": "21:00"
+					},
+					{
+						"name": "Sto No.4",
+						"tag": "20:00"
+					},
+					{
+						"name": "Sto No.5",
+						"tag": "18:00"
+					},
+					{
+						"name": "Sto No.6"
+					}
+				],
+				"boards": [
+					{
+						"name": "Pikado 1"
+					},
+					{
+						"name": "Pikado 2",
+						"tag": "22:00"
+					},
+					{
+						"name": "Pikado 3"
+					},
+					{
+						"name": "Pikado 4",
+						"tag": "20:00"
+					}
+				],
+				"booking": {
+					"title": "Sto No.3",
+					"name": "Marko Petrović",
+					"date": "Datum: 31.10.2026.",
+					"confirm": "Potvrdite rezervaciju",
+					"slots": [
+						{
+							"time": "17h",
+							"busy": true
+						},
+						{
+							"time": "18h",
+							"busy": true
+						},
+						{
+							"time": "19h"
+						},
+						{
+							"time": "20h"
+						},
+						{
+							"time": "21h",
+							"pick": true
+						},
+						{
+							"time": "22h"
+						},
+						{
+							"time": "23h"
+						},
+						{
+							"time": "00h"
+						}
+					]
+				},
+				"admin": {
+					"title": "Rezervacije",
+					"date": "31.10.2026.",
+					"rows": [
+						{
+							"time": "18:00",
+							"place": "Sto No.5",
+							"name": "Jovan M.",
+							"remove": true
+						},
+						{
+							"time": "20:00",
+							"place": "Sto No.4",
+							"name": "Ana K."
+						},
+						{
+							"time": "21:00",
+							"place": "Sto No.3",
+							"name": "Marko P."
+						},
+						{
+							"time": "22:00",
+							"place": "Pikado 2",
+							"name": "Luka S."
+						}
+					]
+				}
+			}
+		},
+		{
 			"category": "Open source · Accessibility",
 			"title": "a11yOtp",
 			"summary": "Accessible native one-time-code input for Android and iOS.",

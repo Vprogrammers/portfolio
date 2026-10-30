@@ -743,6 +743,12 @@
 		opacity: 1;
 	}
 
+	// Touch screens cannot hover, so invisible buttons would only catch stray taps
+	// over the title. There, tapping the title holds the slide instead.
+	@media (hover: none) {
+		display: none;
+	}
+
 	button {
 		padding: 0.55rem 1rem;
 		border: 1px solid rgb(255 255 255 / 0.6);

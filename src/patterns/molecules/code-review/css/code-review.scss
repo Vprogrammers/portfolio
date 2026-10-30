@@ -1,0 +1,296 @@
+/* stylelint-disable plugin/stylelint-bem-namics -- generated keyframe offsets and nth-child loops */
+@use 'sass:color';
+@use 'sass:list';
+@use 'sass:math';
+
+// The whole story runs on one timeline; times below are seconds into it.
+$loop: 16;
+$mono: 'SF Mono', menlo, consolas, monospace;
+$comment-times: (0.8, 2.5, 4.2, 5.9, 7.6, 9.3);
+$summary: 11.2;
+$end: 15.4;
+$severities: (critical: #ff6b6b, major: #ffa94d, minor: #ffd43b, info: #74c0fc);
+// The colour of each finding's highlighted lines, in order.
+$line-colors: (#ff6b6b, #ffa94d, #ffa94d, #ffd43b, #ffd43b);
+
+@function at($s) {
+	@return math.percentage(math.div($s, $loop));
+}
+
+// Hidden until $start, eased in over $in, kept until $end, then faded out.
+@mixin appear($name, $start, $end: $end, $from: translateX(3cqw), $in: 0.4) {
+	@keyframes #{$name} {
+		0%,
+		#{at($start)} {
+			opacity: 0;
+			transform: $from;
+		}
+
+		#{at($start + $in)},
+		#{at($end)} {
+			opacity: 1;
+			transform: none;
+		}
+
+		#{at(math.min($end + 0.4, $loop))},
+		100% {
+			opacity: 0;
+			transform: none;
+		}
+	}
+}
+
+@for $k from 1 through list.length($comment-times) {
+	@include appear(code-review-comment-#{$k}, list.nth($comment-times, $k));
+}
+
+@include appear(code-review-summary, $summary, $end, translateY(2cqh));
+
+// A finding's lines flare up when its comment lands, then keep a soft tint.
+@for $k from 1 through list.length($line-colors) {
+	$t: list.nth($comment-times, $k);
+	$c: list.nth($line-colors, $k);
+
+	@keyframes code-review-line-#{$k} {
+		0%,
+		#{at($t)} {
+			background: transparent;
+			box-shadow: inset 0.3cqw 0 transparent;
+		}
+
+		#{at($t + 0.2)},
+		#{at($t + 1.2)} {
+			background: color.change($c, $alpha: 0.28);
+			box-shadow: inset 0.3cqw 0 $c;
+		}
+
+		#{at($t + 1.8)},
+		#{at($end)} {
+			background: color.change($c, $alpha: 0.1);
+			box-shadow: inset 0.3cqw 0 color.change($c, $alpha: 0.6);
+		}
+
+		100% {
+			background: transparent;
+			box-shadow: inset 0.3cqw 0 transparent;
+		}
+	}
+}
+
+@keyframes code-review-scroll {
+	0%,
+	100% {
+		transform: none;
+	}
+
+	50% {
+		transform: translateY(-6cqh);
+	}
+}
+
+// The root fills its positioned parent.
+.m-code-review {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	container: code-review / size;
+	pointer-events: none;
+	background:
+		radial-gradient(ellipse 50% 60% at 70% 40%, rgb(88 78 137 / 0.35), transparent 70%),
+		linear-gradient(160deg, #15151d, #0b0b10);
+}
+
+// The editor bleeds off the right edge, behind the review thread.
+.m-code-review__editor {
+	position: absolute;
+	inset: 28cqh -4cqw 6cqh 44cqw;
+	overflow: hidden;
+	border-radius: 1.4cqh;
+	background: #1d1e26;
+	box-shadow: 0 3cqh 8cqh rgb(0 0 0 / 0.5);
+}
+
+.m-code-review__tabs {
+	display: flex;
+	margin: 0;
+	background: #16171e;
+	font: 1.4cqh/1 $mono;
+
+	span {
+		padding: 1.4cqh 2cqh;
+		color: rgb(255 255 255 / 0.45);
+
+		&:first-child {
+			background: #1d1e26;
+			color: #fff;
+		}
+	}
+}
+
+.m-code-review__code {
+	margin: 0;
+	padding: 1.6cqh 0;
+	color: #d4d4dc;
+	font: 1.45cqh/2.3cqh $mono;
+	white-space: pre;
+	list-style: none;
+	counter-reset: line;
+	animation: code-review-scroll #{$loop}s ease-in-out infinite;
+
+	i {
+		color: #c792ea;
+		font-style: normal;
+	}
+
+	b {
+		color: #ff79c6;
+		font-weight: 400;
+	}
+
+	s {
+		color: #f1fa8c;
+		text-decoration: none;
+	}
+
+	u {
+		color: #8be9fd;
+		text-decoration: none;
+	}
+}
+
+.m-code-review__line {
+	padding-right: 2cqh;
+	counter-increment: line;
+
+	&::before {
+		content: counter(line);
+		display: inline-block;
+		width: 5cqh;
+		margin-right: 2cqh;
+		padding-right: 1cqh;
+		color: rgb(255 255 255 / 0.25);
+		text-align: right;
+	}
+
+}
+
+@for $k from 1 through list.length($line-colors) {
+	.m-code-review__line--#{$k} {
+		animation: code-review-line-#{$k} #{$loop}s ease-out infinite;
+	}
+}
+
+// Review comments stack up over the right of the editor.
+.m-code-review__thread {
+	position: absolute;
+	right: 4cqw;
+	top: 18cqh;
+	display: flex;
+	flex-direction: column;
+	gap: 1.2cqh;
+	width: min(28cqw, 52cqh);
+	font-family: Inter, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.m-code-review__comment {
+	--severity: #74c0fc;
+
+	padding: 1.3cqh 1.6cqh;
+	border-left: 0.4cqh solid var(--severity);
+	border-radius: 1cqh;
+	background: rgb(37 38 48 / 0.96);
+	box-shadow: 0 1.4cqh 3cqh rgb(0 0 0 / 0.45);
+	opacity: 0;
+
+
+	@for $k from 1 through list.length($comment-times) {
+		&:nth-child(#{$k}) {
+			animation: code-review-comment-#{$k} #{$loop}s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+		}
+	}
+
+	> * {
+		margin: 0;
+	}
+}
+
+@each $name, $color in $severities {
+	.m-code-review__comment--#{$name} {
+		--severity: #{$color};
+	}
+}
+
+.m-code-review__head {
+	display: flex;
+	align-items: center;
+	gap: 0.9cqh;
+	color: #fff;
+	font-size: 1.5cqh;
+
+	em {
+		padding: 0.3cqh 0.8cqh;
+		border-radius: 0.6cqh;
+		background: var(--severity);
+		color: #111;
+		font-size: 1.1cqh;
+		font-style: normal;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+}
+
+.m-code-review__avatar {
+	display: grid;
+	flex: none;
+	place-items: center;
+	width: 2.6cqh;
+	height: 2.6cqh;
+	border-radius: 50%;
+	background: #584e89;
+	font-size: 1.1cqh;
+	font-weight: 700;
+}
+
+.m-code-review__body {
+	margin-top: 0.6cqh;
+	color: rgb(255 255 255 / 0.72);
+	font-size: 1.35cqh;
+	line-height: 1.45;
+}
+
+.m-code-review__summary {
+	margin: 0.8cqh 0 0;
+	padding: 1.3cqh 1.6cqh;
+	border-radius: 1cqh;
+	background: #584e89;
+	color: #fff;
+	font-size: 1.5cqh;
+	font-weight: 600;
+	opacity: 0;
+	animation: code-review-summary #{$loop}s ease-out infinite;
+}
+
+// Portrait parents are narrow: the editor takes the width and the thread drops out.
+@container code-review (aspect-ratio < 1) {
+	.m-code-review__editor {
+		inset: 22cqh -10cqw 40cqh 4cqw;
+	}
+
+	.m-code-review__thread {
+		display: none;
+	}
+}
+
+// Reduced motion: every comment and the summary, with the lines tinted.
+@media (prefers-reduced-motion: reduce) {
+	.m-code-review * {
+		/* stylelint-disable-next-line declaration-no-important -- overrides every generated story animation */
+		animation: none !important;
+	}
+
+	.m-code-review__comment,
+	.m-code-review__summary {
+		opacity: 1;
+	}
+}

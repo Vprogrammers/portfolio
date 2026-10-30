@@ -23,6 +23,8 @@
           {% pattern name='salon-scene' data=project.salon %}
         {% elseif project.scan %}
           {% pattern name='scan-view' data=project.scan %}
+        {% elseif project.review %}
+          {% pattern name='code-review' data=project.review %}
         {% elseif project.crew %}
           {% pattern name='crew-call' data=project.crew %}
         {% elseif project.radio %}

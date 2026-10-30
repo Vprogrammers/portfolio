@@ -1734,6 +1734,153 @@
 			}
 		},
 		{
+			"category": "Android · Java · Firebase",
+			"title": "MyPH",
+			"summary": "A social and dating app for Android that brings people together by city: build a profile, join your city's group chat, make friends, and sign in with Facebook or Google, with a web admin panel behind it.",
+			"tone": "red",
+			"variant": "chat",
+			"duration": 16000,
+			"chat": {
+				"me": {
+					"initial": "S"
+				},
+				"cities": [
+					{
+						"name": "Beograd",
+						"members": "1.2K online",
+						"hue": 330,
+						"people": [
+							{
+								"initial": "A",
+								"hue": 200
+							},
+							{
+								"initial": "M",
+								"hue": 40
+							},
+							{
+								"initial": "J",
+								"hue": 120
+							}
+						]
+					},
+					{
+						"name": "Novi Sad",
+						"members": "640 online",
+						"hue": 280,
+						"people": [
+							{
+								"initial": "T",
+								"hue": 20
+							},
+							{
+								"initial": "N",
+								"hue": 180
+							},
+							{
+								"initial": "I",
+								"hue": 260
+							}
+						]
+					},
+					{
+						"name": "Niš",
+						"members": "410 online",
+						"hue": 200,
+						"people": [
+							{
+								"initial": "D",
+								"hue": 300
+							},
+							{
+								"initial": "V",
+								"hue": 90
+							}
+						]
+					},
+					{
+						"name": "Kragujevac",
+						"members": "290 online",
+						"hue": 20,
+						"people": [
+							{
+								"initial": "L",
+								"hue": 160
+							},
+							{
+								"initial": "K",
+								"hue": 230
+							}
+						]
+					}
+				],
+				"profile": {
+					"title": "Build your profile",
+					"rows": [
+						{
+							"label": "I am a",
+							"options": [
+								"Female",
+								"Male"
+							],
+							"pick": 1
+						},
+						{
+							"label": "Interested in",
+							"options": [
+								"Women",
+								"Men",
+								"Everyone"
+							],
+							"pick": 3
+						},
+						{
+							"label": "My city is",
+							"options": [
+								"Beograd",
+								"Novi Sad",
+								"Niš"
+							],
+							"pick": 2
+						}
+					]
+				},
+				"room": {
+					"title": "Novi Sad · group chat",
+					"online": "640 online",
+					"messages": [
+						{
+							"initial": "T",
+							"hue": 20,
+							"text": "Ko ide večeras na Štrand? 🌅"
+						},
+						{
+							"initial": "N",
+							"hue": 180,
+							"text": "Ja! Ponesite odbojku 🏐"
+						},
+						{
+							"initial": "S",
+							"hue": 340,
+							"text": "Može i ja, nova sam u gradu 👋",
+							"mine": true
+						},
+						{
+							"initial": "I",
+							"hue": 260,
+							"text": "Dobrodošla! 🎉"
+						}
+					]
+				},
+				"request": {
+					"initial": "N",
+					"hue": 180,
+					"title": "New friend request",
+					"body": "Nikola wants to be your friend."
+				}
+			}
+		},
+		{
 			"category": "Open source · Accessibility",
 			"title": "a11yOtp",
 			"summary": "An open-source, accessible one-time-code input for Android and iOS, built natively on each platform.",

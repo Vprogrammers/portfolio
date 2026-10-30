@@ -1,0 +1,428 @@
+/* stylelint-disable plugin/stylelint-bem-namics -- generated keyframe offsets and nth-child loops */
+@use 'sass:list';
+@use 'sass:math';
+
+// The whole story runs on one timeline; times below are seconds into it.
+$loop: 16;
+$accent: #ff4f81;
+$profile: (0.4, 5);
+$pick-times: (1.4, 2.4, 3.4);
+$fly: (5, 6.2);
+$room: (6.6, 15);
+$msg-start: 7.2;
+$msg-step: 1.1;
+$messages: 4;
+$request: 12.6;
+$reset: 15;
+
+@function at($s) {
+	@return math.percentage(math.div($s, $loop));
+}
+
+// Hidden until $start, eased in over $in, kept until $end, then faded out.
+@mixin appear($name, $start, $end, $from: translateY(1.6cqh), $in: 0.35) {
+	@keyframes #{$name} {
+		0%,
+		#{at($start)} {
+			opacity: 0;
+			transform: $from;
+		}
+
+		#{at($start + $in)},
+		#{at($end)} {
+			opacity: 1;
+			transform: none;
+		}
+
+		#{at(math.min($end + 0.3, $loop))},
+		100% {
+			opacity: 0;
+			transform: $from;
+		}
+	}
+}
+
+@include appear(city-chat-profile, list.nth($profile, 1), list.nth($profile, 2), scale(0.92));
+@include appear(city-chat-room, list.nth($room, 1), list.nth($room, 2), translateX(4cqh), 0.45);
+@include appear(city-chat-request, $request, $reset, translateY(-3cqh), 0.4);
+
+@for $k from 1 through list.length($pick-times) {
+	@keyframes city-chat-pick-#{$k} {
+		0%,
+		#{at(list.nth($pick-times, $k))} {
+			background: rgb(255 255 255 / 0.08);
+			color: #fff;
+		}
+
+		#{at(list.nth($pick-times, $k) + 0.15)},
+		100% {
+			background: $accent;
+			color: #fff;
+		}
+	}
+}
+
+@for $k from 1 through $messages {
+	@include appear(city-chat-msg-#{$k}, $msg-start + ($k - 1) * $msg-step, $reset, translateY(2cqh), 0.3);
+}
+
+// The person's bubble flies from the profile into the second city.
+@keyframes city-chat-fly {
+	0%,
+	#{at(list.nth($fly, 1))} {
+		opacity: 0;
+		translate: 0 0;
+		scale: 1.4;
+	}
+
+	#{at(list.nth($fly, 1) + 0.1)} {
+		opacity: 1;
+	}
+
+	#{at(list.nth($fly, 2))},
+	#{at($reset)} {
+		opacity: 1;
+		translate: var(--to-x) var(--to-y);
+		scale: 1;
+	}
+
+	#{at($reset + 0.3)},
+	100% {
+		opacity: 0;
+		translate: var(--to-x) var(--to-y);
+	}
+}
+
+@keyframes city-chat-glow {
+	0%,
+	#{at(list.nth($fly, 2) - 0.2)},
+	#{at($reset)},
+	100% {
+		box-shadow: 0 0 0 0 transparent;
+	}
+
+	#{at(list.nth($fly, 2) + 0.1)},
+	#{at($reset - 0.1)} {
+		box-shadow: 0 0 0 0.5cqh $accent, 0 0 5cqh rgb(255 79 129 / 0.5);
+	}
+}
+
+@keyframes city-chat-float {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+
+	50% {
+		transform: translateY(-1.2cqh);
+	}
+}
+
+// The root fills its positioned parent; the parent sets --chat-h/-x/-y.
+.m-city-chat {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	container: city-chat / size;
+	pointer-events: none;
+	background:
+		radial-gradient(ellipse 55% 60% at 64% 50%, rgb(255 79 129 / 0.2), transparent 70%),
+		linear-gradient(160deg, #1a0f19, #0a070b);
+	font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.m-city-chat__stage {
+	--h: var(--chat-h, 64cqh);
+
+	position: absolute;
+	left: var(--chat-x, 50%);
+	top: var(--chat-y, 50%);
+	width: calc(var(--h) * 1.2);
+	height: var(--h);
+	transform: translate(-50%, -50%);
+	color: #fff;
+}
+
+// City bubbles spread across the stage, each with a few members orbiting.
+.m-city-chat__cities {
+	position: absolute;
+	inset: 0;
+}
+
+.m-city-chat__city {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 20cqh;
+	height: 20cqh;
+	border-radius: 50%;
+	background: radial-gradient(circle at 35% 30%, hsl(var(--hue) 70% 45% / 0.55), hsl(var(--hue) 70% 25% / 0.35));
+	box-shadow: inset 0 0 0 0.2cqh hsl(var(--hue) 70% 70% / 0.4);
+	animation: city-chat-float 5s ease-in-out infinite;
+
+	b {
+		font-size: 1.8cqh;
+	}
+
+	small {
+		color: rgb(255 255 255 / 0.7);
+		font-size: 1.2cqh;
+	}
+
+}
+
+@for $k from 1 through 4 {
+	.m-city-chat__city--#{$k} {
+		left: #{list.nth((4%, 58%, 6%, 62%), $k)};
+		top: #{list.nth((4%, 2%, 60%, 62%), $k)};
+		animation-delay: -#{$k * 1.2}s;
+	}
+}
+
+.m-city-chat__city--2 {
+	animation:
+		city-chat-float 5s ease-in-out -2.4s infinite,
+		city-chat-glow #{$loop}s ease-out infinite;
+}
+
+.m-city-chat__dot {
+	position: absolute;
+	display: grid;
+	place-items: center;
+	width: 3.6cqh;
+	height: 3.6cqh;
+	border: 0.25cqh solid #1a0f19;
+	border-radius: 50%;
+	background: hsl(var(--hue) 60% 55%);
+	font-size: 1.4cqh;
+	font-style: normal;
+	font-weight: 700;
+
+	@for $i from 1 through 4 {
+		&:nth-of-type(#{$i}) {
+			$a: math.div($i * 90deg + 20deg, 1deg) * math.div(math.$pi, 180);
+
+			left: calc(50% + #{math.cos($a) * 10}cqh - 1.8cqh);
+			top: calc(50% + #{math.sin($a) * 10}cqh - 1.8cqh);
+		}
+	}
+}
+
+.m-city-chat__profile,
+.m-city-chat__room {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	display: flex;
+	flex-direction: column;
+	gap: 1.2cqh;
+	padding: 2.4cqh;
+	border-radius: 2cqh;
+	background: rgb(30 18 30 / 0.94);
+	box-shadow: 0 3cqh 6cqh rgb(0 0 0 / 0.55), inset 0 0 0 0.15cqh rgb(255 255 255 / 0.06);
+	translate: -50% -50%;
+	opacity: 0;
+
+	> p {
+		margin: 0;
+	}
+}
+
+.m-city-chat__profile {
+	align-items: center;
+	width: 38cqh;
+	animation: city-chat-profile #{$loop}s ease-out infinite;
+}
+
+.m-city-chat__me,
+.m-city-chat__flyer {
+	display: grid;
+	place-items: center;
+	width: 8cqh;
+	height: 8cqh;
+	border-radius: 50%;
+	background: $accent;
+	font-size: 3cqh;
+	font-weight: 700;
+}
+
+.m-city-chat__title {
+	font-size: 2cqh;
+	font-weight: 700;
+}
+
+.m-city-chat__row {
+	display: flex;
+	flex-direction: column;
+	gap: 0.6cqh;
+	align-self: stretch;
+
+	small {
+		color: rgb(255 255 255 / 0.6);
+		font-size: 1.15cqh;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+
+	span {
+		display: flex;
+		gap: 0.6cqh;
+	}
+
+	em {
+		flex: 1;
+		padding: 0.8cqh 0;
+		border-radius: 2cqh;
+		background: rgb(255 255 255 / 0.08);
+		font-size: 1.3cqh;
+		font-style: normal;
+		text-align: center;
+	}
+}
+
+@for $k from 1 through list.length($pick-times) {
+	.m-city-chat__row:nth-of-type(#{$k + 1}) .is-pick {
+		animation: city-chat-pick-#{$k} #{$loop}s ease-out infinite;
+	}
+}
+
+// Lands on the second city, from the centre of the stage.
+.m-city-chat__flyer {
+	--to-x: calc(var(--h) * 1.2 * 0.18 - 8cqh);
+	--to-y: calc(var(--h) * -0.32 + 6cqh);
+
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 4.4cqh;
+	height: 4.4cqh;
+	margin: -2.2cqh;
+	border: 0.3cqh solid #fff;
+	font-size: 1.8cqh;
+	opacity: 0;
+	animation: city-chat-fly #{$loop}s cubic-bezier(0.5, 0, 0.2, 1) infinite;
+}
+
+.m-city-chat__room {
+	left: 50%;
+	top: 58%;
+	width: 42cqh;
+	animation: city-chat-room #{$loop}s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+
+.m-city-chat__room-title {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+
+	b {
+		font-size: 1.8cqh;
+	}
+
+	small {
+		color: #4ade80;
+		font-size: 1.2cqh;
+	}
+}
+
+.m-city-chat__msg {
+	display: flex;
+	align-items: flex-end;
+	gap: 1cqh;
+	opacity: 0;
+
+	i {
+		display: grid;
+		flex: none;
+		place-items: center;
+		width: 3.4cqh;
+		height: 3.4cqh;
+		border-radius: 50%;
+		background: hsl(var(--hue) 60% 55%);
+		font-size: 1.3cqh;
+		font-style: normal;
+		font-weight: 700;
+	}
+
+	span {
+		padding: 1cqh 1.4cqh;
+		border-radius: 1.6cqh 1.6cqh 1.6cqh 0.4cqh;
+		background: rgb(255 255 255 / 0.08);
+		font-size: 1.35cqh;
+		line-height: 1.35;
+	}
+
+	@for $k from 1 through $messages {
+		&:nth-of-type(#{$k + 1}) {
+			animation: city-chat-msg-#{$k} #{$loop}s ease-out infinite;
+		}
+	}
+}
+
+.m-city-chat__msg--mine {
+	flex-direction: row-reverse;
+
+	span {
+		border-radius: 1.6cqh 1.6cqh 0.4cqh;
+		background: $accent;
+	}
+}
+
+.m-city-chat__request {
+	position: absolute;
+	right: -2cqh;
+	top: -2cqh;
+	display: flex;
+	gap: 1.2cqh;
+	width: 32cqh;
+	margin: 0;
+	padding: 1.4cqh;
+	border-radius: 1.6cqh;
+	background: rgb(250 250 250 / 0.97);
+	color: #1b1b1b;
+	font-size: 1.3cqh;
+	line-height: 1.35;
+	box-shadow: 0 2cqh 5cqh rgb(0 0 0 / 0.45);
+	opacity: 0;
+	animation: city-chat-request #{$loop}s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+
+	i {
+		display: grid;
+		flex: none;
+		place-items: center;
+		width: 4cqh;
+		height: 4cqh;
+		border-radius: 50%;
+		background: hsl(var(--hue) 60% 55%);
+		color: #fff;
+		font-style: normal;
+		font-weight: 700;
+	}
+
+	b {
+		display: block;
+		font-size: 1.45cqh;
+	}
+}
+
+// Portrait parents: lay out at landscape proportions and scale down.
+@container city-chat (aspect-ratio < 1) {
+	.m-city-chat__stage {
+		transform: translate(-50%, -50%) scale(0.6);
+	}
+}
+
+// Reduced motion: the cities and the group chat.
+@media (prefers-reduced-motion: reduce) {
+	.m-city-chat * {
+		/* stylelint-disable-next-line declaration-no-important -- overrides every generated story animation */
+		animation: none !important;
+	}
+
+	.m-city-chat__room,
+	.m-city-chat__msg {
+		opacity: 1;
+	}
+}

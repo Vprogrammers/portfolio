@@ -1,0 +1,27 @@
+{# People finding each other by city: a profile card picks gender, interest and city, the person's bubble drifts into that city's group, the group chat comes alive with messages, and a new friend request lands. People are initials, not photos. Fills its positioned parent. #}
+<div class="m-city-chat" aria-hidden="true">
+	<div class="m-city-chat__stage">
+		<div class="m-city-chat__cities">
+			{% for city in cities %}
+				<div class="m-city-chat__city m-city-chat__city--{{ loop.index }}" style="--hue: {{ city.hue }}">
+					<b>{{ city.name }}</b><small>{{ city.members }}</small>
+					{% for p in city.people %}<i class="m-city-chat__dot" style="--hue: {{ p.hue }}">{{ p.initial }}</i>{% endfor %}
+				</div>
+			{% endfor %}
+		</div>
+
+		<div class="m-city-chat__profile">
+			<span class="m-city-chat__me">{{ me.initial }}</span>
+			<p class="m-city-chat__title">{{ profile.title }}</p>
+			{% for row in profile.rows %}<p class="m-city-chat__row"><small>{{ row.label }}</small><span>{% for o in row.options %}<em class="{{ loop.index == row.pick ? 'is-pick' : '' }}">{{ o }}</em>{% endfor %}</span></p>{% endfor %}
+		</div>
+		<span class="m-city-chat__flyer">{{ me.initial }}</span>
+
+		<div class="m-city-chat__room">
+			<p class="m-city-chat__room-title"><b>{{ room.title }}</b><small>{{ room.online }}</small></p>
+			{% for msg in room.messages %}<p class="m-city-chat__msg{{ msg.mine ? ' m-city-chat__msg--mine' : '' }}" style="--hue: {{ msg.hue }}"><i>{{ msg.initial }}</i><span>{{ msg.text }}</span></p>{% endfor %}
+		</div>
+
+		<p class="m-city-chat__request"><i style="--hue: {{ request.hue }}">{{ request.initial }}</i><span><b>{{ request.title }}</b>{{ request.body }}</span></p>
+	</div>
+</div>

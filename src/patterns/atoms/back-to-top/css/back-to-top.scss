@@ -52,3 +52,9 @@
 		transition: none;
 	}
 }
+
+// While the button glides the page back up, the scenes hold still so every frame goes to scrolling.
+.state-a-back-to-top--gliding main * {
+	/* stylelint-disable-next-line declaration-no-important -- pauses every scene animation for the length of the glide */
+	animation-play-state: paused !important;
+}

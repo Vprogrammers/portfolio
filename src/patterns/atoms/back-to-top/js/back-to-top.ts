@@ -1,21 +1,30 @@
 // Shows the button once the threshold element (e.g. the works grid's first row)
 // has scrolled out above the viewport, or after one and a half screens.
-// Starts at full speed and settles gently at the top.
-const easeOutQuart = (t: number) => 1 - (1 - t) ** 4;
 
-// Scrolls to the top with our own easing, so every browser glides the same way,
-// then calls done. Longer pages take a little longer, within limits.
+// Starts at once and settles gently at the top.
+const easeOutCubic = (t: number) => 1 - (1 - t) ** 3;
+
+// Browsers' own smooth scrolling differs a lot (near-instant in Safari, stuttering
+// in Chrome on this animated page), so the button glides with its own easing.
+// While it runs, the page's CSS smooth scrolling is switched off so the steps
+// are not animated twice, and the scenes' animations pause to keep frames free.
 const glideToTop = (done: () => void) => {
+  const root = document.documentElement;
   const start = window.scrollY;
-  const duration = Math.min(1000, Math.max(450, start / 5));
+  const duration = Math.min(1100, Math.max(600, start / 5));
   const begin = performance.now();
+  root.style.scrollBehavior = 'auto';
+  root.classList.add('state-a-back-to-top--gliding');
   const step = (now: number) => {
     const progress = Math.min(1, (now - begin) / duration);
-    // The page sets scroll-behavior: smooth, so each step must be instant or
-    // the browser would animate every frame on top of this easing.
-    window.scrollTo({ top: start * (1 - easeOutQuart(progress)), behavior: 'instant' as ScrollBehavior });
-    if (progress < 1) requestAnimationFrame(step);
-    else done();
+    window.scrollTo(0, Math.round(start * (1 - easeOutCubic(progress))));
+    if (progress < 1) {
+      requestAnimationFrame(step);
+      return;
+    }
+    root.style.scrollBehavior = '';
+    root.classList.remove('state-a-back-to-top--gliding');
+    done();
   };
   requestAnimationFrame(step);
 };
@@ -31,14 +40,15 @@ document.querySelectorAll<HTMLAnchorElement>('.js-back-to-top').forEach((button)
   window.addEventListener('resize', update);
   update();
 
-  // Keyboard users continue from the top of the page, once the scroll has finished
-  // (focusing earlier would cut the glide short).
+  // Keyboard users continue from the top of the page, once the glide has finished.
   const focusTop = () => document.querySelector<HTMLElement>('.o-site-header__mark')?.focus({ preventScroll: true });
 
   button.addEventListener('click', (event) => {
     event.preventDefault();
     if (reducedMotion.matches) {
-      window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+      document.documentElement.style.scrollBehavior = 'auto';
+      window.scrollTo(0, 0);
+      document.documentElement.style.scrollBehavior = '';
       focusTop();
     } else glideToTop(focusTop);
   });

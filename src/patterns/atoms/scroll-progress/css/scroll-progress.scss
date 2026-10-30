@@ -6,7 +6,7 @@
 	top: 0;
 	z-index: 15;
 	height: 3px;
-	background: rgb(255 255 255 / 0.12);
+	background: rgb(7 13 23 / 0.55);
 }
 
 .a-scroll-progress__fill {
@@ -18,7 +18,7 @@
 	transform-origin: 0 50%;
 }
 
-// A little brighter once it rides along the top of the viewport.
+// Once it rides along the top of the viewport the track fades out, leaving the fill.
 .state-a-scroll-progress--stuck {
-	background: rgb(11 15 23 / 0.6);
+	background: rgb(7 13 23 / 0.25);
 }

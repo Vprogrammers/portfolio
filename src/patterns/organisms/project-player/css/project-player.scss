@@ -145,6 +145,7 @@
 .o-project-player__slide[data-scene='scan']::before,
 .o-project-player__slide[data-scene='review']::before,
 .o-project-player__slide[data-scene='deck']::before,
+.o-project-player__slide[data-scene='fantasy']::before,
 .o-project-player__slide[data-scene='live']::before {
 	display: none;
 }
@@ -158,6 +159,7 @@
 .o-project-player__slide[data-scene='scan']::after,
 .o-project-player__slide[data-scene='review']::after,
 .o-project-player__slide[data-scene='deck']::after,
+.o-project-player__slide[data-scene='fantasy']::after,
 .o-project-player__slide[data-scene='live']::after {
 	background:
 		radial-gradient(ellipse 48% 70% at 0% 100%, rgb(7 13 23 / 0.85) 0%, rgb(7 13 23 / 0.45) 50%, transparent 100%),
@@ -292,6 +294,16 @@
 	z-index: -2;
 }
 
+// Goaleadors pitch and panel right of the caption.
+.o-project-player__slide .m-fantasy-pitch {
+	--stage-w: 54cqw;
+	--stage-h: 66cqh;
+	--stage-x: 70%;
+	--stage-y: 58%;
+
+	z-index: -2;
+}
+
 // PhotoStory crew call: the two phones right of the caption, with room for the chip beside them.
 .o-project-player__slide .m-crew-call {
 	--phone-h: 62cqh;
@@ -319,6 +331,7 @@
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-scan-view *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-code-review *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-swipe-deck *,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-fantasy-pitch *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-live-room * {
 	animation-play-state: paused;
 }
@@ -331,6 +344,7 @@
 .o-project-player[data-paused='true'] .m-scan-view *,
 .o-project-player[data-paused='true'] .m-code-review *,
 .o-project-player[data-paused='true'] .m-swipe-deck *,
+.o-project-player[data-paused='true'] .m-fantasy-pitch *,
 .o-project-player[data-paused='true'] .m-live-room * {
 	animation-play-state: paused;
 }
@@ -589,6 +603,13 @@
 		--deck-h: 42cqh;
 		--deck-x: 50%;
 		--deck-y: 44%;
+	}
+
+	.o-project-player__slide .m-fantasy-pitch {
+		--stage-w: 92cqw;
+		--stage-h: 40cqh;
+		--stage-x: 50%;
+		--stage-y: 44%;
 	}
 
 	.o-project-player__slide .m-crew-call {

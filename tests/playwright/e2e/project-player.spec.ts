@@ -53,3 +53,12 @@ test('a swipe changes the project on touch screens, also with reduced motion', a
   await expect(slides.nth(0)).toBeVisible();
   await context.close();
 });
+
+test('the side arrows change the project for mouse users', async ({ page }) => {
+  await page.goto('/');
+  const slides = page.locator('.js-project-player [data-project-slide]');
+  await page.locator('.o-project-player__arrow--next').click();
+  await expect(slides.nth(1)).toBeVisible();
+  await page.locator('.o-project-player__arrow--prev').click();
+  await expect(slides.nth(0)).toBeVisible();
+});

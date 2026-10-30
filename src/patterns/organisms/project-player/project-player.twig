@@ -97,6 +97,13 @@
       <button type="button" data-project-next aria-label="Next project">Next</button>
       <span class="o-project-player__progress" data-project-progress aria-hidden="true"></span>
     </div>
+    {# Faint arrows for mouse users; keyboard and screen-reader users have the controls above, touch users swipe. #}
+    <button class="o-project-player__arrow o-project-player__arrow--prev" type="button" data-project-step="-1" tabindex="-1" aria-hidden="true">
+      <svg viewBox="0 0 22 44" focusable="false"><path d="M21 1L1 22l20 21" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+    </button>
+    <button class="o-project-player__arrow o-project-player__arrow--next" type="button" data-project-step="1" tabindex="-1" aria-hidden="true">
+      <svg viewBox="0 0 22 44" focusable="false"><path d="M1 1l20 21L1 43" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+    </button>
   {% endif %}
   {% if scrollTarget %}
     <a class="o-project-player__scroll" href="{{ scrollTarget }}">

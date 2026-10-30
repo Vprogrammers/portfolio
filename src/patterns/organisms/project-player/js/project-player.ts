@@ -160,6 +160,10 @@ players.forEach((player) => {
   // Touch screens have no visible controls, so a swipe changes the project. It
   // also works with reduced motion, where nothing advances on its own.
   onSwipe(player, (step) => show(active + step));
+  // The faint side arrows step like a swipe, without pausing the slider.
+  player.querySelectorAll<HTMLElement>('[data-project-step]').forEach((arrow) => {
+    arrow.addEventListener('click', () => show(active + Number(arrow.dataset.projectStep)));
+  });
   slides.forEach((slide) => {
     const content = slide.querySelector<HTMLElement>('.o-project-player__content');
     if (!content) return;

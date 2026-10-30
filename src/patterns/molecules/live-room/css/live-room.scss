@@ -1,0 +1,1187 @@
+/* stylelint-disable plugin/stylelint-bem-namics -- generated keyframe offsets and nth-child loops */
+@use 'sass:list';
+@use 'sass:math';
+
+// The whole story runs on one timeline; times below are seconds into it.
+$loop: 16;
+$yellow: #fdd602;
+$green: #286943;
+$ink: #090a0a;
+
+// Screen is 1080 x 2520 px; every size inside it is in cqw of the screen width.
+$screen-h: math.div(2520, 1080) * 100;
+
+@function at($s) {
+	@return math.percentage(math.div($s, $loop));
+}
+
+// Hidden until $start, eases in over $in, stays until $end, then fades out.
+@mixin appear($name, $start, $end, $from: translateY(3cqw) scale(0.92), $in: 0.35) {
+	@keyframes #{$name} {
+		0%,
+		#{at($start)} {
+			opacity: 0;
+			transform: $from;
+		}
+
+		#{at($start + $in)},
+		#{at($end)} {
+			opacity: 1;
+			transform: none;
+		}
+
+		#{at(math.min($end + 0.3, $loop))},
+		100% {
+			opacity: 0;
+			transform: none;
+		}
+	}
+}
+
+// Steps a vertical list of values (a ticker) to item n at each time.
+@mixin ticker($name, $times) {
+	@keyframes #{$name} {
+		0% {
+			transform: translateY(0);
+		}
+
+		@each $t in $times {
+			$k: list.index($times, $t);
+
+			#{at($t)} {
+				transform: translateY(-100% * ($k - 1));
+			}
+
+			#{at($t + 0.3)} {
+				transform: translateY(-100% * $k);
+			}
+		}
+
+		#{at(15.6)},
+		100% {
+			transform: translateY(-100% * list.length($times));
+		}
+	}
+}
+
+$guest-joins: (7.6, 8.6, 9.6);
+$chat-times: (10.8, 11.6, 12.4, 13.2);
+
+@keyframes live-scene-splash {
+	0%,
+	#{at(3)} {
+		opacity: 1;
+	}
+
+	#{at(3.3)},
+	#{at(15.6)} {
+		opacity: 0;
+	}
+
+	#{at(15.9)},
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes live-scene-create {
+	0%,
+	#{at(3.1)} {
+		opacity: 0;
+	}
+
+	#{at(3.3)},
+	#{at(6.8)} {
+		opacity: 1;
+	}
+
+	#{at(7)},
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes live-scene-room {
+	0%,
+	#{at(6.7)} {
+		opacity: 0;
+	}
+
+	#{at(7)},
+	#{at(15.5)} {
+		opacity: 1;
+	}
+
+	#{at(15.8)},
+	100% {
+		opacity: 0;
+	}
+}
+
+// Halftone: dots shrink to nothing, bottom rows first.
+@keyframes live-logo-dots {
+	0%,
+	#{at(0.2)} {
+		--dot: 1.6cqw;
+
+		opacity: 1;
+		mask-position: 0 100%;
+	}
+
+	#{at(1.2)} {
+		--dot: 0;
+
+		opacity: 1;
+		mask-position: 0 0;
+	}
+
+	#{at(1.25)},
+	100% {
+		--dot: 0;
+
+		opacity: 0;
+	}
+}
+
+@keyframes live-logo-text {
+	0%,
+	#{at(0.5)} {
+		opacity: 1;
+	}
+
+	#{at(1.1)},
+	#{at(1.4)} {
+		opacity: 0;
+	}
+
+	#{at(1.8)},
+	#{at(15)} {
+		opacity: 1;
+	}
+
+	#{at(15.1)},
+	100% {
+		opacity: 1;
+	}
+}
+
+// The box re-opens from a thin centre line.
+@keyframes live-logo-box {
+	0%,
+	#{at(1.3)} {
+		clip-path: inset(0 50% 0 50%);
+	}
+
+	#{at(1.35)} {
+		clip-path: inset(0 49% 0 49%);
+	}
+
+	#{at(1.9)},
+	#{at(15)} {
+		clip-path: inset(0);
+	}
+
+	#{at(15.1)},
+	100% {
+		clip-path: inset(0 50% 0 50%);
+	}
+}
+
+@keyframes live-logo-mu {
+	0%,
+	#{at(1.9)} {
+		clip-path: inset(0 100% 0 0);
+		transform: translateX(-30%);
+	}
+
+	#{at(2.5)},
+	#{at(15)} {
+		clip-path: inset(0);
+		transform: none;
+	}
+
+	#{at(15.1)},
+	100% {
+		clip-path: inset(0 100% 0 0);
+		transform: translateX(-30%);
+	}
+}
+
+@include appear(live-dialog, 3.3, 6.4, scale(0.9));
+
+@keyframes live-placeholder {
+	0%,
+	#{at(3.95)} {
+		opacity: 1;
+	}
+
+	#{at(4)},
+	100% {
+		opacity: 0;
+	}
+}
+
+@for $i from 1 through 24 {
+	@keyframes live-char-#{$i} {
+		0%,
+		#{at(4 + ($i - 1) * 0.1)} {
+			max-width: 0;
+		}
+
+		#{at(4.01 + ($i - 1) * 0.1)},
+		#{at(7)} {
+			max-width: 1.2em;
+		}
+
+		#{at(7.01)},
+		100% {
+			max-width: 0;
+		}
+	}
+}
+
+@keyframes live-press {
+	0%,
+	#{at(6)} {
+		transform: none;
+		filter: none;
+	}
+
+	#{at(6.12)} {
+		transform: scale(0.95);
+		filter: brightness(1.25);
+	}
+
+	#{at(6.3)},
+	100% {
+		transform: none;
+		filter: none;
+	}
+}
+
+@keyframes live-nav {
+	0%,
+	#{at(3.1)} {
+		opacity: 0;
+		filter: brightness(1);
+	}
+
+	#{at(3.3)},
+	#{at(6.7)} {
+		opacity: 1;
+		filter: brightness(0.35);
+	}
+
+	#{at(7)},
+	#{at(15.5)} {
+		opacity: 1;
+		filter: brightness(1);
+	}
+
+	#{at(15.8)},
+	100% {
+		opacity: 0;
+	}
+}
+
+@include appear(live-header, 6.9, 15.6, translateY(-2cqw));
+@include appear(live-host, 7, 15.6, scale(0.6));
+
+@for $i from 1 through list.length($guest-joins) {
+	$t: list.nth($guest-joins, $i);
+
+	@include appear(live-guest-#{$i}, $t, 15.6, scale(0.4), 0.3);
+	@include appear(live-toast-#{$i}, $t, $t + 0.9, translateY(2cqw));
+
+	// The entry fee leaves the new tile and flies into the host's wallet.
+	@keyframes live-fee-#{$i} {
+		0%,
+		#{at($t + 0.15)} {
+			opacity: 0;
+			transform: none;
+		}
+
+		#{at($t + 0.3)} {
+			opacity: 1;
+			transform: none;
+		}
+
+		#{at($t + 0.85)} {
+			opacity: 1;
+			transform: translate(var(--fly-x), var(--fly-y)) scale(0.7);
+		}
+
+		#{at($t + 0.95)},
+		100% {
+			opacity: 0;
+			transform: translate(var(--fly-x), var(--fly-y)) scale(0.7);
+		}
+	}
+}
+
+@for $i from 1 through list.length($chat-times) {
+	$t: list.nth($chat-times, $i);
+
+	@keyframes live-chat-#{$i} {
+		0%,
+		#{at($t)} {
+			max-height: 0;
+			opacity: 0;
+			transform: translateY(2cqw);
+		}
+
+		#{at($t + 0.35)},
+		#{at(15.6)} {
+			max-height: 12cqw;
+			opacity: 1;
+			transform: none;
+		}
+
+		#{at(15.7)},
+		100% {
+			max-height: 0;
+			opacity: 0;
+		}
+	}
+}
+
+@keyframes live-gift {
+	0%,
+	#{at(13.2)} {
+		opacity: 0;
+		transform: translate(-50%, 0) scale(0.3);
+	}
+
+	#{at(13.5)} {
+		opacity: 1;
+		transform: translate(-50%, -4cqw) scale(1.15);
+	}
+
+	#{at(13.8)},
+	#{at(14.4)} {
+		opacity: 1;
+		transform: translate(-50%, -6cqw) scale(1);
+	}
+
+	#{at(14.8)},
+	100% {
+		opacity: 0;
+		transform: translate(-50%, -10cqw) scale(0.9);
+	}
+}
+
+@for $i from 1 through 6 {
+	$t: 10.9 + ($i - 1) * 0.6;
+
+	@keyframes live-heart-#{$i} {
+		0%,
+		#{at($t)} {
+			opacity: 0;
+			transform: translate(0, 0) scale(0.5);
+		}
+
+		#{at($t + 0.2)} {
+			opacity: 1;
+		}
+
+		#{at($t + 1.6)},
+		100% {
+			opacity: 0;
+			transform: translate(#{if($i % 2 == 0, -6cqw, 4cqw)}, -48cqw) scale(1.1);
+		}
+	}
+}
+
+@include ticker(live-viewers, (7.6, 8.6, 9.6));
+@include ticker(live-wallet, (8.3, 9.3, 10.3, 13.8));
+
+// Ambient motion, independent of the story timeline.
+@keyframes live-drift {
+	from {
+		transform: translate3d(0, 0, 0);
+	}
+
+	to {
+		transform: translate3d(var(--dx, 4cqw), var(--dy, -12cqh), 0);
+	}
+}
+
+@keyframes live-streak {
+	from {
+		transform: translateX(0);
+	}
+
+	to {
+		transform: translateX(-30cqw);
+	}
+}
+
+@keyframes live-blink {
+	50% {
+		opacity: 0;
+	}
+}
+
+@keyframes live-wave {
+	50% {
+		transform: scaleY(0.35);
+	}
+}
+
+@property --dot {
+	syntax: '<length>';
+	inherits: false;
+	initial-value: 1.6cqw;
+}
+
+// The root fills its positioned parent; the parent sets --phone-h/-x/-y.
+.m-live-room {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	container-type: size;
+	pointer-events: none;
+	background: radial-gradient(ellipse at 60% 40%, #2b2410, #0b0a07 70%);
+}
+
+.m-live-room__backdrop {
+	position: absolute;
+	inset: 0;
+}
+
+// Warm bokeh and the app's floating chat bubbles around the phone.
+.m-live-room__glow {
+	position: absolute;
+	border-radius: 50%;
+	background: radial-gradient(circle, rgb(253 214 2 / 0.35), transparent 70%);
+	filter: blur(2px);
+	animation: live-drift 14s ease-in-out infinite alternate;
+
+	@for $i from 1 through 12 {
+		&:nth-child(#{$i}) {
+			--dx: #{(($i * 37) % 11 - 5) * 1cqw};
+			--dy: #{-(4 + ($i * 13) % 9) * 1cqh};
+
+			left: #{($i * 53) % 100 * 1%};
+			top: #{($i * 31) % 100 * 1%};
+			width: #{6 + ($i * 7) % 10}cqh;
+			height: #{6 + ($i * 7) % 10}cqh;
+			opacity: #{0.25 + ($i % 4) * 0.12};
+			animation-duration: #{10 + ($i * 3) % 9}s;
+			animation-delay: -#{$i * 1.3}s;
+		}
+	}
+}
+
+.m-live-room__bubble {
+	position: absolute;
+	width: 9cqh;
+	height: 7.5cqh;
+	border-radius: 50%;
+	background:
+		radial-gradient(circle at 30% 50%, #3d3205 0.55cqh, transparent 0.65cqh),
+		radial-gradient(circle at 50% 50%, #3d3205 0.55cqh, transparent 0.65cqh),
+		radial-gradient(circle at 70% 50%, #3d3205 0.55cqh, transparent 0.65cqh),
+		rgb(253 214 2 / 0.75);
+	filter: blur(0.5px);
+	animation: live-drift 12s ease-in-out infinite alternate;
+
+	&::after {
+		content: '';
+		position: absolute;
+		left: 18%;
+		bottom: -1.2cqh;
+		border: 1.4cqh solid transparent;
+		border-top-color: rgb(253 214 2 / 0.75);
+		border-left-width: 0.4cqh;
+	}
+
+	// Kept to the right half, away from the slide's text.
+	&:nth-child(13) {
+		--dy: -6cqh;
+
+		left: 52%;
+		top: 26%;
+		transform: scale(0.8);
+	}
+
+	&:nth-child(14) {
+		--dx: -3cqw;
+
+		left: 82%;
+		top: 12%;
+		animation-delay: -4s;
+	}
+
+	&:nth-child(15) {
+		--dy: -10cqh;
+
+		left: 55%;
+		top: 76%;
+		animation-delay: -7s;
+		transform: scale(0.7);
+	}
+
+	&:nth-child(16) {
+		--dx: -5cqw;
+
+		left: 89%;
+		top: 58%;
+		animation-delay: -2s;
+	}
+}
+
+.m-live-room__device {
+	--h: var(--phone-h, 82cqh);
+
+	position: absolute;
+	left: var(--phone-x, 50%);
+	top: var(--phone-y, 50%);
+	height: var(--h);
+	padding: calc(var(--h) * 0.012);
+	border-radius: calc(var(--h) * 0.055);
+	background: #0d0f12;
+	box-shadow:
+		0 0 0 calc(var(--h) * 0.004) #4a505a,
+		0 calc(var(--h) * 0.04) calc(var(--h) * 0.12) rgb(0 0 0 / 0.55);
+	transform: translate(-50%, -50%);
+}
+
+.m-live-room__screen {
+	position: relative;
+	height: 100%;
+	aspect-ratio: 1080 / 2520;
+	overflow: hidden;
+	border-radius: calc(var(--h) * 0.045);
+	background: $ink;
+	container-type: inline-size;
+	font-family: Roboto, Arial, sans-serif;
+	color: #fff;
+}
+
+.m-live-room__status {
+	position: absolute;
+	z-index: 5;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: 8cqw;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 6cqw;
+	font-size: 3.2cqw;
+	font-weight: 500;
+	background: #000;
+}
+
+.m-live-room__status-icons {
+	width: 12cqw;
+	height: 2.4cqw;
+	background:
+		linear-gradient(90deg, #fff 0 60%, transparent 0) right / 5cqw 100% no-repeat,
+		repeating-linear-gradient(90deg, #fff 0 0.7cqw, transparent 0 1.2cqw) left / 5cqw 100% no-repeat;
+	border-radius: 0.4cqw;
+}
+
+.m-live-room__scene {
+	position: absolute;
+	inset: 0;
+	opacity: 0;
+}
+
+.m-live-room__scene--splash {
+	background: $yellow;
+	animation: live-scene-splash #{$loop}s linear infinite;
+}
+
+.m-live-room__scene--create {
+	background: $ink;
+	animation: live-scene-create #{$loop}s linear infinite;
+}
+
+.m-live-room__scene--room {
+	background: radial-gradient(ellipse at 50% 30%, #2a2a28, #0b0b0b 75%);
+	animation: live-scene-room #{$loop}s linear infinite;
+}
+
+// Splash logo, measured on the device recording.
+.m-live-room__logo {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	display: flex;
+	align-items: flex-end;
+	gap: 2cqw;
+	transform: translate(-50%, -50%);
+	color: $green;
+	line-height: 1;
+}
+
+.m-live-room__logo-mu {
+	font-size: 15.5cqw;
+	padding-bottom: 0.4cqw;
+	animation: live-logo-mu #{$loop}s cubic-bezier(0.2, 0.7, 0.2, 1) infinite;
+}
+
+.m-live-room__logo-me {
+	position: relative;
+	width: 29cqw;
+	height: 18.3cqw;
+}
+
+.m-live-room__logo-box,
+.m-live-room__logo-dots {
+	position: absolute;
+	inset: 0;
+	border-radius: 0.6cqw;
+}
+
+.m-live-room__logo-box {
+	background: $green;
+	animation: live-logo-box #{$loop}s cubic-bezier(0.3, 0, 0.2, 1) infinite;
+}
+
+.m-live-room__logo-dots {
+	--dot: 1.6cqw;
+
+	background: radial-gradient(circle, $green var(--dot), transparent calc(var(--dot) + 0.1cqw)) 0 0 / 3cqw 3cqw;
+	mask-image: linear-gradient(#000 60%, transparent 80%);
+	mask-size: 100% 250%;
+	animation: live-logo-dots #{$loop}s ease-in infinite;
+}
+
+.m-live-room__logo-text {
+	position: absolute;
+	inset: 0;
+	display: grid;
+	place-items: center;
+	font-size: 19cqw;
+	color: $yellow;
+	animation: live-logo-text #{$loop}s linear infinite;
+}
+
+// Create-room scene: horizontal streaks drifting behind the leaf dialog.
+.m-live-room__streak {
+	position: absolute;
+	height: 0.35cqw;
+	animation: live-streak 6s linear infinite;
+
+	@for $i from 1 through 48 {
+		&:nth-child(#{$i}) {
+			left: #{($i * 41) % 130 * 1cqw};
+			top: #{10 + ($i * 29) % 205 * 1cqw};
+			width: #{2.5 + ($i % 3) * 0.8}cqw;
+			background: list.nth((#45607a, #2c4f8f, #4f6672), ($i % 3) + 1);
+			animation-delay: -#{($i * 0.37) % 6}s;
+		}
+	}
+}
+
+.m-live-room__dialog {
+	position: absolute;
+	left: 7.5cqw;
+	top: 79.6cqw;
+	width: 85cqw;
+	height: 84.3cqw;
+	padding: 4cqw 0 0 5cqw;
+	border-radius: 0 23.6cqw 0 24cqw;
+	background: $yellow;
+	color: $green;
+	animation: live-dialog #{$loop}s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+
+.m-live-room__dialog-title {
+	margin: 0;
+	font-size: 5.6cqw;
+	font-weight: 700;
+}
+
+.m-live-room__dialog-text {
+	margin: 2.6cqw 0 0;
+	font-size: 3.6cqw;
+	color: #6b6a4f;
+}
+
+.m-live-room__field {
+	position: relative;
+	width: 68cqw;
+	height: 11.9cqw;
+	margin: 5cqw 0 0 3.5cqw;
+	padding: 0 5cqw;
+	display: flex;
+	align-items: center;
+	border: 0.35cqw solid $green;
+	border-radius: 6cqw;
+	font-size: 3.8cqw;
+}
+
+.m-live-room__placeholder {
+	position: absolute;
+	color: #85814f;
+	animation: live-placeholder #{$loop}s linear infinite;
+}
+
+.m-live-room__typed {
+	color: #1f2a1f;
+
+	> span {
+		display: inline-block;
+		max-width: 0;
+		overflow: hidden;
+		vertical-align: bottom;
+		white-space: pre;
+
+		@for $i from 1 through 24 {
+			&:nth-child(#{$i}) {
+				animation: live-char-#{$i} #{$loop}s step-end infinite;
+			}
+		}
+	}
+}
+
+.m-live-room__caret {
+	display: inline-block;
+	width: 0.3cqw;
+	height: 4.4cqw;
+	margin-left: 0.3cqw;
+	vertical-align: -0.8cqw;
+	background: $green;
+	animation: live-blink 0.9s step-end infinite;
+}
+
+.m-live-room__button {
+	display: grid;
+	place-items: center;
+	width: 68cqw;
+	height: 14.2cqw;
+	margin: 7.3cqw 0 0 3.5cqw;
+	border-radius: 7cqw;
+	background: $green;
+	color: $yellow;
+	font-size: 4cqw;
+	font-weight: 700;
+	letter-spacing: 0.1cqw;
+}
+
+.m-live-room__button--create {
+	animation: live-press #{$loop}s ease-out infinite;
+}
+
+.m-live-room__button--cancel {
+	margin-top: 5cqw;
+	color: #e3201b;
+}
+
+// Live room.
+.m-live-room__bokeh {
+	position: absolute;
+	border-radius: 50%;
+	background: rgb(255 255 255 / 0.1);
+	animation: live-drift 9s ease-in-out infinite alternate;
+
+	@for $i from 1 through 10 {
+		&:nth-child(#{$i}) {
+			--dx: #{(($i * 7) % 5 - 2) * 1cqw};
+			--dy: -#{8 + ($i * 5) % 10}cqw;
+
+			left: #{($i * 37) % 95 * 1cqw};
+			top: #{20 + ($i * 23) % 180 * 1cqw};
+			width: #{5 + ($i * 3) % 6}cqw;
+			height: #{5 + ($i * 3) % 6}cqw;
+			animation-delay: -#{$i * 0.9}s;
+		}
+	}
+}
+
+.m-live-room__wordmark {
+	position: absolute;
+	right: 2cqw;
+	top: 10cqw;
+	width: 30cqw;
+	height: auto;
+}
+
+.m-live-room__header {
+	position: absolute;
+	left: 5cqw;
+	top: 11cqw;
+	animation: live-header #{$loop}s ease-out infinite;
+}
+
+.m-live-room__room-name {
+	margin: 0;
+	font-size: 5.4cqw;
+	font-weight: 700;
+}
+
+.m-live-room__meta {
+	display: flex;
+	align-items: center;
+	gap: 2cqw;
+	margin: 1.6cqw 0 0;
+	font-size: 3.2cqw;
+	color: #cfcfcf;
+}
+
+.m-live-room__live {
+	padding: 0.5cqw 1.8cqw;
+	border-radius: 1cqw;
+	background: #e3201b;
+	color: #fff;
+	font-weight: 700;
+	letter-spacing: 0.2cqw;
+}
+
+.m-live-room__viewers {
+	display: flex;
+	align-items: center;
+	gap: 1cqw;
+}
+
+// A one-line window onto a vertical list of values.
+.m-live-room__ticker {
+	display: inline-flex;
+	flex-direction: column;
+	height: 1.2em;
+	overflow: hidden;
+	line-height: 1.2em;
+
+	> span {
+		animation: live-viewers #{$loop}s cubic-bezier(0.3, 0.7, 0.3, 1) infinite;
+	}
+}
+
+.m-live-room__wallet {
+	position: absolute;
+	right: 4cqw;
+	top: 22cqw;
+	display: flex;
+	align-items: center;
+	gap: 1.2cqw;
+	margin: 0;
+	padding: 1cqw 2.6cqw 1cqw 1.4cqw;
+	border-radius: 5cqw;
+	background: $yellow;
+	color: $green;
+	font-size: 3.8cqw;
+	font-weight: 700;
+	animation: live-header #{$loop}s ease-out infinite;
+
+	.m-live-room__ticker > span {
+		/* stylelint-disable-next-line no-unknown-animations -- defined by the ticker() mixin */
+		animation-name: live-wallet;
+	}
+}
+
+.m-live-room__coin {
+	display: inline-block;
+	width: 3.6cqw;
+	height: 3.6cqw;
+	border-radius: 50%;
+	background: radial-gradient(circle, #ffe55c 45%, #c99a00 47% 60%, #ffe55c 62%);
+	box-shadow: inset 0 0 0 0.3cqw #b38600;
+}
+
+.m-live-room__grid {
+	position: absolute;
+	left: 4cqw;
+	top: 32cqw;
+	width: 92cqw;
+	height: 104cqw;
+}
+
+.m-live-room__tile {
+	--hue: 48;
+
+	position: absolute;
+	width: 44cqw;
+	height: 50cqw;
+	display: grid;
+	place-items: center;
+	border-radius: 3.5cqw;
+	background: linear-gradient(160deg, hsl(var(--hue) 45% 26%), hsl(var(--hue) 40% 10%));
+	box-shadow: inset 0 0 0 0.3cqw rgb(255 255 255 / 0.06);
+	opacity: 0;
+
+	&:nth-child(1) {
+		left: 0;
+		top: 0;
+		animation: live-host #{$loop}s cubic-bezier(0.2, 0.9, 0.3, 1.3) infinite;
+	}
+
+	&:nth-child(2) {
+		left: 48cqw;
+		top: 0;
+	}
+
+	&:nth-child(5) {
+		left: 0;
+		top: 54cqw;
+	}
+
+	&:nth-child(8) {
+		left: 48cqw;
+		top: 54cqw;
+	}
+}
+
+.m-live-room__tile--host {
+	box-shadow: inset 0 0 0 0.5cqw $yellow;
+}
+
+@for $i from 1 through 3 {
+	.m-live-room__grid > :nth-child(#{3 * $i - 1}) {
+		animation: live-guest-#{$i} #{$loop}s cubic-bezier(0.2, 0.9, 0.3, 1.3) infinite;
+	}
+
+	.m-live-room__grid > :nth-child(#{3 * $i}) {
+		animation: live-toast-#{$i} #{$loop}s ease-out infinite;
+	}
+
+	.m-live-room__grid > :nth-child(#{3 * $i + 1}) {
+		animation: live-fee-#{$i} #{$loop}s cubic-bezier(0.5, 0, 0.3, 1) infinite;
+	}
+}
+
+.m-live-room__avatar {
+	display: grid;
+	place-items: center;
+	width: 18cqw;
+	height: 18cqw;
+	border-radius: 50%;
+	background: hsl(var(--hue) 70% 55%);
+	color: #111;
+	font-size: 7cqw;
+	font-weight: 700;
+}
+
+.m-live-room__tile--host .m-live-room__avatar {
+	background: $yellow;
+	color: $green;
+}
+
+.m-live-room__name {
+	position: absolute;
+	left: 3cqw;
+	bottom: 2.6cqw;
+	font-size: 3.4cqw;
+	font-weight: 500;
+}
+
+.m-live-room__wave {
+	position: absolute;
+	right: 3cqw;
+	bottom: 3cqw;
+	display: flex;
+	align-items: flex-end;
+	gap: 0.6cqw;
+	height: 3.4cqw;
+
+	i {
+		width: 0.8cqw;
+		height: 100%;
+		border-radius: 0.4cqw;
+		background: $yellow;
+		animation: live-wave 0.8s ease-in-out infinite;
+
+		&:nth-child(2) { animation-delay: -0.2s; }
+		&:nth-child(3) { animation-delay: -0.5s; }
+		&:nth-child(4) { animation-delay: -0.35s; }
+	}
+}
+
+// "joined" toast over the new tile, and its fee chip flying to the wallet.
+.m-live-room__toast,
+.m-live-room__fee {
+	position: absolute;
+	padding: 1cqw 2.4cqw;
+	border-radius: 4cqw;
+	font-size: 3cqw;
+	font-weight: 700;
+	white-space: nowrap;
+	opacity: 0;
+}
+
+.m-live-room__toast {
+	background: rgb(0 0 0 / 0.7);
+	color: #fff;
+}
+
+.m-live-room__fee {
+	display: flex;
+	align-items: center;
+	gap: 0.8cqw;
+	background: $yellow;
+	color: $green;
+}
+
+// Toast and fee positions per guest tile; --fly-* points at the wallet.
+.m-live-room__grid > :nth-child(3) {
+	left: 54cqw;
+	top: 40cqw;
+}
+.m-live-room__grid > :nth-child(4) {
+	--fly-x: 18cqw;
+	--fly-y: -32cqw;
+	left: 62cqw;
+	top: 20cqw;
+}
+.m-live-room__grid > :nth-child(6) {
+	left: 6cqw;
+	top: 94cqw;
+}
+.m-live-room__grid > :nth-child(7) {
+	--fly-x: 66cqw;
+	--fly-y: -86cqw;
+	left: 14cqw;
+	top: 74cqw;
+}
+.m-live-room__grid > :nth-child(9) {
+	left: 54cqw;
+	top: 94cqw;
+}
+.m-live-room__grid > :nth-child(10) {
+	--fly-x: 18cqw;
+	--fly-y: -86cqw;
+	left: 62cqw;
+	top: 74cqw;
+}
+
+.m-live-room__chat {
+	position: absolute;
+	left: 4cqw;
+	right: 22cqw;
+	bottom: 36cqw;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	gap: 1.4cqw;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	li {
+		max-height: 0;
+		overflow: hidden;
+		padding: 0 2.4cqw;
+		border-radius: 3cqw;
+		background: rgb(0 0 0 / 0.55);
+		font-size: 3.4cqw;
+		line-height: 7.6cqw;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		opacity: 0;
+
+		@for $i from 1 through 4 {
+			&:nth-child(#{$i}) {
+				animation: live-chat-#{$i} #{$loop}s ease-out infinite;
+			}
+		}
+	}
+
+	b {
+		color: $yellow;
+	}
+}
+
+.m-live-room__gift {
+	position: absolute;
+	left: 50%;
+	top: 118cqw;
+	padding: 2cqw 5cqw;
+	border-radius: 6cqw;
+	background: $yellow;
+	color: $green;
+	font-size: 7cqw;
+	font-weight: 700;
+	box-shadow: 0 2cqw 6cqw rgb(253 214 2 / 0.35);
+	opacity: 0;
+	animation: live-gift #{$loop}s cubic-bezier(0.2, 0.9, 0.3, 1.2) infinite;
+}
+
+.m-live-room__hearts > span {
+	position: absolute;
+	bottom: 38cqw;
+	font-size: 6cqw;
+	opacity: 0;
+
+	@for $i from 1 through 6 {
+		&:nth-child(#{$i}) {
+			right: #{4 + ($i % 3) * 4}cqw;
+			animation: live-heart-#{$i} #{$loop}s ease-out infinite;
+		}
+	}
+}
+
+.m-live-room__input {
+	position: absolute;
+	left: 1cqw;
+	right: 1cqw;
+	bottom: 20.4cqw;
+	height: 11cqw;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 3cqw;
+	background: #0e0e0e;
+	border-top: 0.3cqw solid #1d1d1d;
+	font: 700 4.2cqw 'Courier New', monospace;
+	color: #6e6e6e;
+
+	i {
+		width: 0;
+		height: 0;
+		border-top: 2.6cqw solid transparent;
+		border-bottom: 2.6cqw solid transparent;
+		border-left: 5cqw solid #2e8b4f;
+	}
+}
+
+.m-live-room__nav {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	display: block;
+	width: 100%;
+	height: auto;
+	opacity: 0;
+	animation: live-nav #{$loop}s linear infinite;
+}
+
+// Reduced motion: show the finished room only.
+@media (prefers-reduced-motion: reduce) {
+	.m-live-room *,
+	.m-live-room *::after {
+		/* stylelint-disable-next-line declaration-no-important -- overrides every generated story animation */
+		animation: none !important;
+	}
+
+	.m-live-room__scene--room,
+	.m-live-room__nav,
+	.m-live-room__header,
+	.m-live-room__wallet,
+	.m-live-room__tile,
+	.m-live-room__chat li {
+		opacity: 1;
+	}
+
+	.m-live-room__chat li {
+		max-height: 12cqw;
+	}
+
+	.m-live-room__ticker > span {
+		transform: translateY(-300%);
+	}
+
+	.m-live-room__wallet .m-live-room__ticker > span {
+		transform: translateY(-400%);
+	}
+}
+
+// Portrait parents have text above and below the phone, so drop the chat bubbles there.
+@container (aspect-ratio < 1) {
+	.m-live-room__bubble {
+		display: none;
+	}
+}

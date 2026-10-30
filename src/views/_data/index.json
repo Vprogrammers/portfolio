@@ -21,13 +21,23 @@
 			"tone": "teal",
 			"image": "/assets/img/projects/hansgrohe-background-04.png",
 			"foreground": "/assets/img/projects/hansgrohe-background-04-hands.png",
-			"duration": 12000,
 			"staticBackground": true,
-			"frames": [
-				"/assets/img/projects/hansgrohe-screen-01.png",
-				"/assets/img/projects/hansgrohe-screen-02.png",
-				"/assets/img/projects/hansgrohe-screen-03.png",
-				"/assets/img/projects/hansgrohe-screen-04.png"
+			"frameSets": [
+				[
+					"/assets/img/projects/proapp-splash.jpg",
+					"/assets/img/projects/proapp-download.jpg",
+					"/assets/img/projects/proapp-discover-axor.jpg",
+					"/assets/img/projects/proapp-axor-finish.jpg",
+					"/assets/img/projects/proapp-discover-pro.jpg",
+					"/assets/img/projects/proapp-sustainability-people.jpg"
+				],
+				[
+					"/assets/img/projects/proapp-presentations.jpg",
+					"/assets/img/projects/proapp-ecostat.jpg",
+					"/assets/img/projects/proapp-vernis.jpg",
+					"/assets/img/projects/proapp-axor-citterio.jpg",
+					"/assets/img/projects/proapp-sustainability.jpg"
+				]
 			],
 			"variant": "handheld",
 			"grid": false
@@ -39,13 +49,23 @@
 			"summary": "Enterprise product presentations and offline content for field teams.",
 			"tone": "teal",
 			"image": "/assets/img/projects/hansgrohe-background-02.png",
-			"duration": 20000,
 			"staticBackground": true,
-			"frames": [
-				"/assets/img/projects/hansgrohe-screen-01.png",
-				"/assets/img/projects/hansgrohe-screen-02.png",
-				"/assets/img/projects/hansgrohe-screen-03.png",
-				"/assets/img/projects/hansgrohe-screen-04.png"
+			"frameSets": [
+				[
+					"/assets/img/projects/proapp-splash.jpg",
+					"/assets/img/projects/proapp-download.jpg",
+					"/assets/img/projects/proapp-discover-axor.jpg",
+					"/assets/img/projects/proapp-axor-finish.jpg",
+					"/assets/img/projects/proapp-discover-pro.jpg",
+					"/assets/img/projects/proapp-sustainability-people.jpg"
+				],
+				[
+					"/assets/img/projects/proapp-presentations.jpg",
+					"/assets/img/projects/proapp-ecostat.jpg",
+					"/assets/img/projects/proapp-vernis.jpg",
+					"/assets/img/projects/proapp-axor-citterio.jpg",
+					"/assets/img/projects/proapp-sustainability.jpg"
+				]
 			],
 			"variant": "concept",
 			"hero": false
@@ -64,11 +84,62 @@
 			}
 		},
 		{
-			"category": "Demo · Temporary visual",
-			"title": "MuMe Live — Visual Test",
-			"summary": "Temporary image to evaluate fullscreen presentation. This is not a published case study.",
-			"tone": "teal",
-			"image": "/assets/img/projects/MuMe%20Live%20Chat%20App%20Showcase.png"
+			"category": "Android · Real-time video",
+			"title": "MuMe",
+			"summary": "Live video and chat rooms: hosts open a room, people join with coins and talk in real time.",
+			"tone": "yellow",
+			"variant": "live",
+			"duration": 16000,
+			"live": {
+				"room": "Late Night Talks",
+				"host": {
+					"name": "You",
+					"initials": "VN"
+				},
+				"guests": [
+					{
+						"name": "Mia",
+						"hue": 330
+					},
+					{
+						"name": "Alex",
+						"hue": 200
+					},
+					{
+						"name": "Sara",
+						"hue": 150
+					}
+				],
+				"fee": 5,
+				"wallet": [
+					120,
+					125,
+					130,
+					135,
+					147
+				],
+				"gift": 12,
+				"messages": [
+					{
+						"name": "Mia",
+						"text": "Hi everyone 👋"
+					},
+					{
+						"name": "Alex",
+						"text": "Love this room 💛"
+					},
+					{
+						"name": "Sara",
+						"text": "Where are you all from?"
+					},
+					{
+						"name": "Alex",
+						"text": "sent a gift 🎁"
+					}
+				],
+				"wordmark": "/assets/img/projects/mume-wordmark.png",
+				"nav": "/assets/img/projects/mume-nav.png"
+			}
 		},
 		{
 			"category": "Frontend · Twig",
@@ -81,7 +152,68 @@
 				"url": "cgiar.org",
 				"header": "/assets/img/projects/cgiar-screen-header.jpg",
 				"feed": "/assets/img/projects/cgiar-screen-feed.jpg",
+				"hover": "/assets/img/projects/cgiar-cards-hover.jpg",
 				"backdrop": "/assets/img/projects/cgiar-backdrop.jpg"
+			}
+		},
+		{
+			"category": "Android · Java · Firebase",
+			"title": "Hanze3",
+			"summary": "Live radio for an Egyptian broadcaster: listeners tune in, chat live and book their own talk show once an admin approves it.",
+			"tone": "red",
+			"variant": "radio",
+			"duration": 16000,
+			"radio": {
+				"splash": "/assets/img/projects/hanze-splash.jpg",
+				"main": "/assets/img/projects/hanze-main.jpg",
+				"studio": "/assets/img/projects/hanze-studio.jpg",
+				"tagline": "Listen, Talk, ENJOY !",
+				"tabs": [
+					"Headlines",
+					"Sports",
+					"World",
+					"Business",
+					"Tech"
+				],
+				"news": [
+					{
+						"label": "عاجل",
+						"title": "نشرة أخبار الساعة العاشرة"
+					},
+					{
+						"label": "رياضة",
+						"title": "ملخص مباريات الدوري المصري"
+					},
+					{
+						"label": "العالم",
+						"title": "جولة في أهم أخبار العالم"
+					}
+				],
+				"messages": [
+					{
+						"name": "أحمد",
+						"hue": 210,
+						"text": "مساء الخير يا جماعة 🌙"
+					},
+					{
+						"name": "منى",
+						"hue": 330,
+						"text": "الحلقة النهارده تحفة 👏"
+					},
+					{
+						"name": "كريم",
+						"hue": 150,
+						"text": "الحكم ده",
+						"censor": "حمار",
+						"after": "😡"
+					},
+					{
+						"name": "سارة",
+						"hue": 30,
+						"text": "ممكن نسمع أغنية قديمة؟ 🎶"
+					}
+				],
+				"countdown": 3
 			}
 		},
 		{
@@ -89,7 +221,8 @@
 			"title": "a11yOtp",
 			"summary": "Accessible native one-time-code input for Android and iOS.",
 			"tone": "blue",
-			"url": "https://github.com/Vprogrammers/a11yOtp"
+			"url": "https://github.com/Vprogrammers/a11yOtp",
+			"hero": false
 		}
 	]
 }

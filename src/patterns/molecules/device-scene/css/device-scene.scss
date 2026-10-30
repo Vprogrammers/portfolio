@@ -68,15 +68,22 @@
 	}
 }
 
-@keyframes device-scene-cycle {
-	0%,
-	24.99% {
-		opacity: 1;
-	}
+// Seconds each screenshot stays on screen, and the largest supported set.
+$frame-time: 2;
+$max-frames: 12;
 
-	25%,
-	100% {
-		opacity: 0;
+// One keyframe set per frame count: each frame is visible for 1/n of the cycle.
+@for $n from 2 through $max-frames {
+	@keyframes device-scene-cycle-#{$n} {
+		0%,
+		#{math.div(100%, $n) - 0.01%} {
+			opacity: 1;
+		}
+
+		#{math.div(100%, $n)},
+		100% {
+			opacity: 0;
+		}
 	}
 }
 
@@ -137,19 +144,26 @@
 	opacity: 0;
 	transform-origin: 0 0;
 	backface-visibility: hidden;
-	animation: device-scene-cycle 12s step-end infinite;
+}
 
-	&:nth-child(2) {
-		animation-delay: -3s;
-	}
+// Frame i shows during [(i-1) * t, i * t) of an n * t cycle, so it starts
+// (n - i + 1) * t into its own cycle.
+@for $n from 2 through $max-frames {
+	.m-device-scene__frames[data-count='#{$n}'] .m-device-scene__frame {
+		animation: device-scene-cycle-#{$n} #{$n * $frame-time}s step-end infinite;
 
-	&:nth-child(3) {
-		animation-delay: -6s;
+		@for $i from 2 through $n {
+			/* stylelint-disable-next-line plugin/stylelint-bem-namics -- generated nth-child */
+			&:nth-child(#{$i}) {
+				animation-delay: -#{($n - $i + 1) * $frame-time}s;
+			}
+		}
 	}
+}
 
-	&:nth-child(4) {
-		animation-delay: -9s;
-	}
+// A single screenshot just stays visible.
+.m-device-scene__frames[data-count='1'] .m-device-scene__frame {
+	opacity: 1;
 }
 
 // Cut-out pixels from the artwork that sit in front of the screen.
@@ -159,10 +173,21 @@
 	height: auto;
 }
 
+// Only the active screenshot set is rendered; showing a set restarts its cycle.
+.m-device-scene__frames[data-set] {
+	display: none;
+}
+
+@for $k from 0 through 3 {
+	.m-device-scene[data-active-set='#{$k}'] .m-device-scene__frames[data-set='#{$k}'] {
+		display: block;
+	}
+}
+
 .m-device-scene[data-ready='false'] {
 	.m-device-scene__frames,
 	.m-device-scene__foreground {
-		display: none;
+		visibility: hidden;
 	}
 }
 
@@ -212,8 +237,10 @@
 	}
 }
 
+// Matches the [data-count] cycle selectors so it wins over them.
 @media (prefers-reduced-motion: reduce) {
-	.m-device-scene__frame {
+	.m-device-scene__frame,
+	.m-device-scene__frames[data-count] .m-device-scene__frame {
 		animation: none;
 
 		&:first-child {

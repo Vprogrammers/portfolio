@@ -1,0 +1,999 @@
+/* stylelint-disable plugin/stylelint-bem-namics -- generated keyframe offsets and nth-child loops */
+@use 'sass:list';
+@use 'sass:math';
+
+// The whole story runs on one timeline; times below are seconds into it.
+$loop: 16;
+$red: #e53935;
+$green: #2e7d32;
+$arabic: 'Noto Sans Arabic', 'Geeza Pro', 'Segoe UI', tahoma, sans-serif;
+
+// Overlay boxes are measured on the 1080 x 2520 px device recording;
+// 1cqw is 10.8 px of it.
+$tag-chars: 21;
+$tab-times: (3, 4.8, 6.6);
+$tab-ends: (4.8, 6.6, 17);
+$tab-lines: ((0, 24.4), (25.2, 16.2), (43.4, 15.2));
+$tab-left: (3, 27.2, 45.3, 62.1, 84.1);
+$message-times: (5, 6.2, 7.4, 8.6);
+$press: 9.6;
+$approve: 11.2;
+$count-times: (12.6, 13.4, 14.2);
+$on-air: 14.4;
+
+@function pick($cond, $a, $b) {
+	@if $cond {
+		@return $a;
+	}
+
+	@return $b;
+}
+
+@function at($s) {
+	@return math.percentage(math.div($s, $loop));
+}
+
+// Hidden until $start, eased in over $in, kept until $end, then faded out.
+@mixin appear($name, $start, $end, $from: translateY(2cqw), $in: 0.35) {
+	@keyframes #{$name} {
+		0%,
+		#{at($start)} {
+			opacity: 0;
+			transform: $from;
+		}
+
+		#{at($start + $in)},
+		#{at($end)} {
+			opacity: 1;
+			transform: none;
+		}
+
+		#{at(math.min($end + 0.3, $loop))},
+		100% {
+			opacity: 0;
+			transform: none;
+		}
+	}
+}
+
+@keyframes on-air-splash {
+	0%,
+	#{at(3)} {
+		opacity: 1;
+	}
+
+	#{at(3.3)},
+	#{at(15.7)} {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes on-air-main {
+	0%,
+	#{at(2.9)} {
+		opacity: 0;
+	}
+
+	#{at(3.2)},
+	#{at(15.7)} {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+@for $i from 1 through $tag-chars {
+	@keyframes on-air-char-#{$i} {
+		0%,
+		#{at(0.4 + ($i - 1) * 0.1)} {
+			max-width: 0;
+		}
+
+		#{at(0.41 + ($i - 1) * 0.1)},
+		#{at(3.3)} {
+			max-width: 1.2em;
+		}
+
+		#{at(3.31)},
+		100% {
+			max-width: 0;
+		}
+	}
+}
+
+// Tabs: the underline slides to each tab, the active label turns white.
+@keyframes on-air-underline {
+	@each $t in $tab-times {
+		$k: list.index($tab-times, $t);
+		$line: list.nth($tab-lines, $k);
+
+		#{at($t)},
+		#{at(math.min(list.nth($tab-ends, $k) - 0.35, $loop))} {
+			left: list.nth($line, 1) * 1cqw;
+			width: list.nth($line, 2) * 1cqw;
+		}
+	}
+
+	0% {
+		left: 0;
+		width: 24.4cqw;
+	}
+}
+
+@for $k from 1 through list.length($tab-times) {
+	$start: list.nth($tab-times, $k);
+	$end: list.nth($tab-ends, $k);
+
+	@keyframes on-air-tab-#{$k} {
+		0%,
+		#{at(math.max($start - 0.01, 0))} {
+			color: #b3b3b3;
+		}
+
+		#{at($start)},
+		#{at(math.min($end - 0.01, $loop))} {
+			color: #fff;
+		}
+
+		#{at(math.min($end, $loop))},
+		100% {
+			color: #b3b3b3;
+		}
+	}
+
+	@include appear(on-air-story-#{$k}, math.max($start, 3.2), math.min($end - 0.3, 15.4), translateX(-4cqw));
+}
+
+@for $k from 1 through list.length($message-times) {
+	$t: list.nth($message-times, $k);
+
+	@keyframes on-air-message-#{$k} {
+		0%,
+		#{at($t)} {
+			max-height: 0;
+			opacity: 0;
+			transform: translateY(3cqw);
+		}
+
+		#{at($t + 0.35)},
+		#{at(15.6)} {
+			max-height: 20cqw;
+			opacity: 1;
+			transform: none;
+		}
+
+		100% {
+			max-height: 0;
+			opacity: 0;
+		}
+	}
+
+	// The swear filter catches the word a beat after the message lands.
+	@keyframes on-air-censor-#{$k} {
+		0%,
+		#{at($t + 1.1)} {
+			opacity: 1;
+			transform: none;
+		}
+
+		#{at($t + 1.4)},
+		100% {
+			opacity: 0;
+			transform: scale(0.6);
+		}
+	}
+
+	@keyframes on-air-stars-#{$k} {
+		0%,
+		#{at($t + 1.2)} {
+			opacity: 0;
+			transform: scale(1.6);
+		}
+
+		#{at($t + 1.5)},
+		100% {
+			opacity: 1;
+			transform: none;
+		}
+	}
+
+	// The copy leaves the chat a beat later and drifts out across the slide.
+	@keyframes on-air-float-#{$k} {
+		0%,
+		#{at($t + 0.5)} {
+			opacity: 0;
+			transform: none;
+		}
+
+		#{at($t + 0.8)} {
+			opacity: 1;
+			transform: translate(6cqw, -1cqh) scale(1.02);
+		}
+
+		#{at($t + 3.2)},
+		100% {
+			opacity: 0;
+			transform: translate(var(--fly-x), var(--fly-y)) scale(0.9);
+		}
+	}
+}
+
+@keyframes on-air-press {
+	0%,
+	#{at($press)} {
+		transform: none;
+	}
+
+	#{at($press + 0.12)} {
+		transform: scale(0.95);
+	}
+
+	#{at($press + 0.3)},
+	100% {
+		transform: none;
+	}
+}
+
+@keyframes on-air-pill-idle {
+	0%,
+	#{at($press + 0.15)} {
+		opacity: 1;
+	}
+
+	#{at($press + 0.3)},
+	100% {
+		opacity: 0;
+	}
+}
+
+@include appear(on-air-pill-pending, $press + 0.2, $approve - 0.2, scale(0.9), 0.2);
+
+@keyframes on-air-pill-approved {
+	0%,
+	#{at($approve)} {
+		opacity: 0;
+		background: #fff;
+	}
+
+	#{at($approve + 0.2)},
+	#{at(15.6)} {
+		opacity: 1;
+		background: $green;
+	}
+
+	100% {
+		opacity: 0;
+		background: $green;
+	}
+}
+
+@keyframes on-air-countdown-idle {
+	0%,
+	#{at($approve + 0.5)} {
+		opacity: 1;
+	}
+
+	#{at($approve + 0.8)},
+	100% {
+		opacity: 0;
+	}
+}
+
+@include appear(on-air-countdown-live, $approve + 0.7, 15.6, translateY(2cqw));
+
+@keyframes on-air-ticker {
+	0% {
+		transform: translateY(0);
+	}
+
+	@each $t in $count-times {
+		$k: list.index($count-times, $t);
+
+		#{at($t)} {
+			transform: translateY(-100% * ($k - 1));
+		}
+
+		#{at($t + 0.25)} {
+			transform: translateY(-100% * $k);
+		}
+	}
+
+	100% {
+		transform: translateY(-100% * list.length($count-times));
+	}
+}
+
+// The admin's stamp slams onto the screen.
+@keyframes on-air-stamp {
+	0%,
+	#{at($approve)} {
+		opacity: 0;
+		transform: translate(-50%, -50%) rotate(-12deg) scale(2.6);
+	}
+
+	#{at($approve + 0.22)} {
+		opacity: 1;
+		transform: translate(-50%, -50%) rotate(-12deg) scale(0.94);
+	}
+
+	#{at($approve + 0.35)},
+	#{at($approve + 1.4)} {
+		opacity: 1;
+		transform: translate(-50%, -50%) rotate(-12deg) scale(1);
+	}
+
+	#{at($approve + 1.7)},
+	100% {
+		opacity: 0;
+		transform: translate(-50%, -50%) rotate(-12deg) scale(1);
+	}
+}
+
+@keyframes on-air-glow {
+	0%,
+	#{at($on-air)} {
+		opacity: 0;
+	}
+
+	#{at($on-air + 0.2)},
+	#{at($on-air + 0.6)},
+	#{at($on-air + 1.2)} {
+		opacity: 1;
+	}
+
+	#{at($on-air + 0.4)},
+	#{at($on-air + 0.9)} {
+		opacity: 0.55;
+	}
+
+	#{at(15.7)},
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes on-air-sign {
+	0%,
+	#{at($on-air)} {
+		color: #5a2323;
+		background: #2a1414;
+		box-shadow: none;
+		text-shadow: none;
+	}
+
+	#{at($on-air + 0.15)},
+	#{at(15.7)} {
+		color: #fff;
+		background: $red;
+		box-shadow: 0 0 2cqh rgb(229 57 53 / 0.8), 0 0 7cqh rgb(229 57 53 / 0.45);
+		text-shadow: 0 0 1cqh rgb(255 255 255 / 0.7);
+	}
+
+	100% {
+		color: #5a2323;
+		background: #2a1414;
+		box-shadow: none;
+		text-shadow: none;
+	}
+}
+
+// Ambient motion, independent of the story timeline.
+@keyframes on-air-ring {
+	from {
+		opacity: 0.55;
+		transform: translate(-50%, -50%) scale(0.45);
+	}
+
+	to {
+		opacity: 0;
+		transform: translate(-50%, -50%) scale(1.35);
+	}
+}
+
+@keyframes on-air-bar {
+	50% {
+		transform: scaleY(0.15);
+	}
+}
+
+@keyframes on-air-drift {
+	from {
+		transform: scale(1.1) translate3d(-1.5%, 0, 0);
+	}
+
+	to {
+		transform: scale(1.2) translate3d(1.5%, -1.5%, 0);
+	}
+}
+
+@keyframes on-air-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes on-air-blink {
+	50% {
+		opacity: 0;
+	}
+}
+
+// The root fills its positioned parent; the parent sets --phone-h/-x/-y.
+.m-on-air {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	container: on-air / size;
+	pointer-events: none;
+	background: #0b0c0e;
+}
+
+.m-on-air__backdrop {
+	position: absolute;
+	inset: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	filter: blur(6px) brightness(0.42) saturate(0.8);
+	animation: on-air-drift 24s ease-in-out infinite alternate;
+}
+
+// A soft equaliser along the bottom of the scene.
+.m-on-air__eq {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 9cqh;
+	display: flex;
+	align-items: flex-end;
+	gap: 0.6cqw;
+	padding: 0 1cqw;
+	opacity: 0.35;
+
+	i {
+		flex: 1;
+		height: 100%;
+		border-radius: 0.4cqw 0.4cqw 0 0;
+		background: linear-gradient(to top, rgb(255 255 255 / 0.5), rgb(255 255 255 / 0.05));
+		transform-origin: bottom;
+		animation: on-air-bar 1.1s ease-in-out infinite;
+
+		@for $i from 1 through 40 {
+			&:nth-child(#{$i}) {
+				animation-duration: #{0.7 + ($i * 37 % 9) * 0.09}s;
+				animation-delay: -#{($i * 0.13) % 1.2}s;
+			}
+		}
+	}
+}
+
+.m-on-air__stage {
+	--h: var(--phone-h, 82cqh);
+
+	position: absolute;
+	left: var(--phone-x, 50%);
+	top: var(--phone-y, 50%);
+	height: var(--h);
+	transform: translate(-50%, -50%);
+}
+
+// Broadcast rings, like the app's LIVE icon, around the phone.
+.m-on-air__ring {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: calc(var(--h) * 1.15);
+	aspect-ratio: 1;
+	border: 0.25cqh solid rgb(255 255 255 / 0.3);
+	border-radius: 50%;
+	animation: on-air-ring 4.5s ease-out infinite;
+
+	&:nth-child(2) {
+		animation-delay: -1.5s;
+	}
+
+	&:nth-child(3) {
+		animation-delay: -3s;
+	}
+}
+
+.m-on-air__sign {
+	position: absolute;
+	left: calc(100% + 4cqh);
+	top: 14%;
+	margin: 0;
+	padding: 1.2cqh 2.6cqh;
+	border-radius: 1.4cqh;
+	font: 700 3.6cqh/1 Arial, sans-serif;
+	letter-spacing: 0.4cqh;
+	white-space: nowrap;
+	animation: on-air-sign #{$loop}s steps(1, end) infinite;
+}
+
+.m-on-air__device {
+	height: 100%;
+	padding: calc(var(--h) * 0.012);
+	border-radius: calc(var(--h) * 0.05);
+	background: #0d0f12;
+	box-shadow:
+		0 0 0 calc(var(--h) * 0.004) #4a505a,
+		0 calc(var(--h) * 0.04) calc(var(--h) * 0.12) rgb(0 0 0 / 0.6);
+}
+
+.m-on-air__screen {
+	position: relative;
+	height: 100%;
+	aspect-ratio: 1080 / 2520;
+	overflow: hidden;
+	border-radius: calc(var(--h) * 0.04);
+	background: #000;
+	container-type: inline-size;
+	font-family: 'Open Sans', Roboto, Arial, sans-serif;
+	color: #fff;
+}
+
+.m-on-air__scene {
+	position: absolute;
+	inset: 0;
+}
+
+.m-on-air__scene--splash {
+	z-index: 2;
+	animation: on-air-splash #{$loop}s linear infinite;
+}
+
+.m-on-air__scene--main {
+	opacity: 0;
+	animation: on-air-main #{$loop}s linear infinite;
+}
+
+.m-on-air__shot {
+	position: absolute;
+	inset: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.m-on-air__tagline {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 174cqw;
+	margin: 0;
+	text-align: center;
+	font-size: 6.6cqw;
+	font-weight: 700;
+	white-space: pre;
+
+	span {
+		display: inline-block;
+		max-width: 0;
+		overflow: hidden;
+		vertical-align: bottom;
+
+		@for $i from 1 through $tag-chars {
+			&:nth-child(#{$i}) {
+				animation: on-air-char-#{$i} #{$loop}s step-end infinite;
+			}
+		}
+	}
+
+	i {
+		display: inline-block;
+		width: 0.5cqw;
+		height: 7cqw;
+		margin-left: 0.6cqw;
+		vertical-align: -1cqw;
+		background: #fff;
+		animation: on-air-blink 0.9s step-end infinite;
+	}
+}
+
+.m-on-air__tabs {
+	position: absolute;
+	left: 3.33cqw;
+	top: 44.8cqw;
+	width: 93.3cqw;
+	height: 9.9cqw;
+	overflow: hidden;
+	background: #050505;
+	font-size: 4.4cqw;
+	line-height: 8.6cqw;
+
+	span {
+		position: absolute;
+		top: 0;
+		color: #b3b3b3;
+		white-space: nowrap;
+
+		@for $k from 1 through list.length($tab-left) {
+			&:nth-child(#{$k}) {
+				left: list.nth($tab-left, $k) * 1cqw;
+			}
+		}
+
+		@for $k from 1 through list.length($tab-times) {
+			&:nth-child(#{$k}) {
+				animation: on-air-tab-#{$k} #{$loop}s linear infinite;
+			}
+		}
+	}
+}
+
+.m-on-air__underline {
+	position: absolute;
+	left: 0;
+	top: 9.26cqw;
+	width: 24.4cqw;
+	height: 0.45cqw;
+	background: #fff;
+	animation: on-air-underline #{$loop}s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+// The news strip the recording left empty, filled with a story per tab.
+.m-on-air__news {
+	position: absolute;
+	left: 3.8cqw;
+	top: 54.63cqw;
+	width: 92.3cqw;
+	height: 12.2cqw;
+	overflow: hidden;
+	border-radius: 0 0 2.6cqw 2.6cqw;
+	background: #2b2b2b;
+}
+
+.m-on-air__story {
+	position: absolute;
+	inset: 1.6cqw 2.4cqw;
+	display: flex;
+	align-items: center;
+	gap: 2.6cqw;
+	opacity: 0;
+
+	@for $k from 1 through list.length($tab-times) {
+		&:nth-child(#{$k}) {
+			animation: on-air-story-#{$k} #{$loop}s ease-out infinite;
+		}
+
+		&:nth-child(#{$k}) .m-on-air__thumb {
+			filter: hue-rotate(#{($k - 1) * 40}deg) saturate(1.3);
+			background-position: (20% + $k * 22%) 40%;
+		}
+	}
+}
+
+.m-on-air__thumb {
+	flex: none;
+	width: 15cqw;
+	height: 100%;
+	border-radius: 1.6cqw;
+	background: var(--studio) center / 260% auto;
+}
+
+.m-on-air__story-text {
+	display: flex;
+	flex-direction: column;
+	gap: 0.4cqw;
+	font-family: $arabic;
+	font-size: 3.6cqw;
+	line-height: 1.3;
+
+	b {
+		color: $red;
+		font-size: 2.8cqw;
+	}
+}
+
+// Live chat: the studio photo the app failed to load, with demo messages.
+.m-on-air__chat {
+	position: absolute;
+	left: 3.8cqw;
+	top: 79.07cqw;
+	width: 92.3cqw;
+	height: 85.1cqw;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	gap: 2.4cqw;
+	margin: 0;
+	padding: 3cqw;
+	list-style: none;
+	background:
+		linear-gradient(rgb(18 18 18 / 0.72), rgb(18 18 18 / 0.88)),
+		var(--studio) center / cover;
+
+	li {
+		display: flex;
+		align-items: flex-start;
+		gap: 2cqw;
+		max-height: 0;
+		overflow: hidden;
+		opacity: 0;
+		font-family: $arabic;
+		font-size: 3.9cqw;
+		line-height: 1.45;
+
+		@for $k from 1 through list.length($message-times) {
+			&:nth-child(#{$k}) {
+				animation: on-air-message-#{$k} #{$loop}s ease-out infinite;
+			}
+		}
+
+		> span:last-child {
+			padding: 1.6cqw 3cqw;
+			border-radius: 3cqw;
+			background: rgb(255 255 255 / 0.09);
+		}
+	}
+
+	b {
+		display: block;
+		color: #ff8a80;
+		font-size: 3.2cqw;
+	}
+}
+
+// A caught swear word: shown struck through, then swapped for stars.
+.m-on-air__censor {
+	display: inline-grid;
+	vertical-align: bottom;
+
+	> * {
+		grid-area: 1 / 1;
+		justify-self: center;
+	}
+
+	> s {
+		padding: 0 1cqw;
+		border-radius: 1cqw;
+		background: rgb(229 57 53 / 0.35);
+		color: #ff8a80;
+		text-decoration-thickness: 0.4cqw;
+	}
+
+	> span {
+		color: #ffd54f;
+		letter-spacing: 0.4cqw;
+		opacity: 0;
+	}
+}
+
+@for $k from 1 through list.length($message-times) {
+	.m-on-air__chat li:nth-child(#{$k}) .m-on-air__censor {
+		> s {
+			animation: on-air-censor-#{$k} #{$loop}s ease-in infinite;
+		}
+
+		> span {
+			animation: on-air-stars-#{$k} #{$loop}s cubic-bezier(0.3, 1.6, 0.5, 1) infinite;
+		}
+	}
+}
+
+.m-on-air__avatar {
+	--hue: 0;
+
+	flex: none;
+	display: grid;
+	place-items: center;
+	width: 8.6cqw;
+	height: 8.6cqw;
+	border-radius: 50%;
+	background: hsl(var(--hue) 55% 48%);
+	font-size: 4cqw;
+	font-weight: 700;
+}
+
+.m-on-air__pill {
+	position: absolute;
+	left: 26.67cqw;
+	top: 179.17cqw;
+	width: 69.6cqw;
+	height: 12.7cqw;
+	border-radius: 6.4cqw;
+	background: #fff;
+	color: #111;
+	font-size: 4.1cqw;
+	animation: on-air-press #{$loop}s ease-out infinite;
+}
+
+.m-on-air__pill-state {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 2cqw;
+	border-radius: inherit;
+}
+
+.m-on-air__pill-state--idle {
+	animation: on-air-pill-idle #{$loop}s linear infinite;
+}
+
+.m-on-air__pill-state--pending {
+	opacity: 0;
+	animation: on-air-pill-pending #{$loop}s ease-out infinite;
+}
+
+.m-on-air__pill-state--approved {
+	opacity: 0;
+	color: #fff;
+	font-weight: 700;
+	animation: on-air-pill-approved #{$loop}s ease-out infinite;
+}
+
+.m-on-air__spinner {
+	width: 4cqw;
+	height: 4cqw;
+	border: 0.6cqw solid #ddd;
+	border-top-color: #111;
+	border-radius: 50%;
+	animation: on-air-spin 0.8s linear infinite;
+}
+
+.m-on-air__countdown {
+	position: absolute;
+	left: 24.1cqw;
+	top: 193.5cqw;
+	width: 51.85cqw;
+	height: 13cqw;
+	background: #181818;
+	font-size: 5cqw;
+	text-align: center;
+
+	> span {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		line-height: 1.25;
+	}
+
+	small {
+		font-size: 3.8cqw;
+	}
+}
+
+.m-on-air__countdown-idle {
+	animation: on-air-countdown-idle #{$loop}s linear infinite;
+}
+
+.m-on-air__countdown-live {
+	opacity: 0;
+	animation: on-air-countdown-live #{$loop}s ease-out infinite;
+}
+
+.m-on-air__ticker {
+	display: inline-flex;
+	flex-direction: column;
+	height: 1.2em;
+	overflow: hidden;
+	font-size: 6cqw;
+	line-height: 1.2em;
+	color: #ff8a80;
+
+	span {
+		animation: on-air-ticker #{$loop}s cubic-bezier(0.3, 0.7, 0.3, 1) infinite;
+	}
+}
+
+.m-on-air__stamp {
+	position: absolute;
+	left: 50%;
+	top: 118cqw;
+	margin: 0;
+	padding: 2cqw 6cqw 2.4cqw;
+	border: 1.2cqw solid $green;
+	border-radius: 3cqw;
+	background: rgb(255 255 255 / 0.94);
+	color: $green;
+	font: 900 11cqw/1 Arial, sans-serif;
+	letter-spacing: 0.6cqw;
+	text-align: center;
+	opacity: 0;
+	animation: on-air-stamp #{$loop}s cubic-bezier(0.5, 0, 0.3, 1) infinite;
+
+	small {
+		display: block;
+		margin-top: 1cqw;
+		font: 700 4.6cqw/1.2 $arabic;
+		letter-spacing: 0;
+	}
+}
+
+.m-on-air__live-glow {
+	position: absolute;
+	inset: 0;
+	box-shadow: inset 0 0 16cqw 2cqw rgb(229 57 53 / 0.75);
+	opacity: 0;
+	animation: on-air-glow #{$loop}s linear infinite;
+}
+
+// Floating copies, positioned over the chat in stage percentages.
+.m-on-air__floats {
+	position: absolute;
+	inset: 0;
+}
+
+.m-on-air__float {
+	position: absolute;
+	left: 45%;
+	max-width: 70%;
+	margin: 0;
+	padding: 1cqh 1.8cqh;
+	border-radius: 2cqh;
+	background: rgb(255 255 255 / 0.95);
+	color: #151515;
+	font: 1.8cqh/1.4 $arabic;
+	white-space: nowrap;
+	box-shadow: 0 1cqh 3cqh rgb(0 0 0 / 0.35);
+	opacity: 0;
+
+	b {
+		margin-left: 0.8cqh;
+		color: $red;
+	}
+
+	@for $k from 1 through list.length($message-times) {
+		&:nth-child(#{$k}) {
+			// Every copy drifts right, into the open space beside the phone.
+			--fly-x: #{30 + $k * 3}cqw;
+			--fly-y: #{pick($k % 2 == 1, -8cqh - $k * 2cqh, 4cqh + $k * 1cqh)};
+
+			top: #{58 + $k * 4}%;
+			animation: on-air-float-#{$k} #{$loop}s cubic-bezier(0.25, 0.6, 0.3, 1) infinite;
+		}
+	}
+}
+
+// Portrait parents have text above and below the phone; keep the scene inside it.
+@container on-air (aspect-ratio < 1) {
+	.m-on-air__sign,
+	.m-on-air__floats {
+		display: none;
+	}
+}
+
+// Reduced motion: show the live main screen with its chat.
+@media (prefers-reduced-motion: reduce) {
+	.m-on-air *,
+	.m-on-air *::after {
+		/* stylelint-disable-next-line declaration-no-important -- overrides every generated story animation */
+		animation: none !important;
+	}
+
+	.m-on-air__scene--splash,
+	.m-on-air__floats,
+	.m-on-air__ring {
+		display: none;
+	}
+
+	.m-on-air__scene--main,
+	.m-on-air__story:first-child,
+	.m-on-air__chat li {
+		opacity: 1;
+	}
+
+	.m-on-air__chat li {
+		max-height: 20cqw;
+	}
+
+	.m-on-air__censor > s {
+		opacity: 0;
+	}
+
+	.m-on-air__censor > span {
+		opacity: 1;
+	}
+}

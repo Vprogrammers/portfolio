@@ -10,7 +10,11 @@
 				</div>
 				<img class="m-laptop-scroll__header" src="{{ header }}" alt="" {% if priority %}loading="eager"{% else %}loading="lazy"{% endif %} decoding="async">
 				<div class="m-laptop-scroll__viewport">
-					<img class="m-laptop-scroll__feed" src="{{ feed }}" alt="" {% if priority %}loading="eager"{% else %}loading="lazy"{% endif %} decoding="async">
+					<div class="m-laptop-scroll__page">
+						<img class="m-laptop-scroll__feed" src="{{ feed }}" alt="" {% if priority %}loading="eager"{% else %}loading="lazy"{% endif %} decoding="async">
+						{# Hovered copies of the first row of cards, lit one by one while the page rests on them. #}
+						{% if hover %}{% for i in 1..4 %}<span class="m-laptop-scroll__hover" style="--hover: url('{{ hover }}')"></span>{% endfor %}{% endif %}
+					</div>
 				</div>
 			</div>
 		</div>

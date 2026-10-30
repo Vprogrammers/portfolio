@@ -36,6 +36,10 @@
 		background: radial-gradient(circle at 75% 30%, #584e89, #111822 70%);
 	}
 
+	&[data-tone='red'] {
+		background: radial-gradient(circle at 70% 40%, #5a1717, #0d0b0b 72%);
+	}
+
 	&[data-tone='orange'] {
 		background: radial-gradient(circle at 75% 30%, #8a5038, #111822 70%);
 	}
@@ -54,6 +58,11 @@
 
 	.m-phone-scroll {
 		--phone-h: 86cqh;
+	}
+
+	.m-live-room,
+	.m-on-air {
+		--phone-h: 88cqh;
 	}
 
 	.m-laptop-scroll {

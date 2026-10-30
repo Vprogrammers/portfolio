@@ -17,7 +17,7 @@
 		{
 			"category": "Mobile · Kotlin Multiplatform",
 			"title": "Hansgrohe ProApp",
-			"summary": "Enterprise product presentations and offline content for field teams.",
+			"summary": "A Kotlin Multiplatform iPad app that gives Hansgrohe's sales teams product presentations and a complete offline catalogue, so every customer meeting runs smoothly with or without a connection.",
 			"tone": "teal",
 			"image": "/assets/img/projects/hansgrohe-background-04.png",
 			"foreground": "/assets/img/projects/hansgrohe-background-04-hands.png",
@@ -45,7 +45,7 @@
 		{
 			"category": "Mobile · Kotlin Multiplatform",
 			"title": "Hansgrohe ProApp",
-			"summary": "Enterprise product presentations and offline content for field teams.",
+			"summary": "A Kotlin Multiplatform iPad app that gives Hansgrohe's sales teams product presentations and a complete offline catalogue, so every customer meeting runs smoothly with or without a connection.",
 			"tone": "teal",
 			"image": "/assets/img/projects/hansgrohe-background-02.png",
 			"staticBackground": true,
@@ -72,7 +72,7 @@
 		{
 			"category": "iOS · Swift",
 			"title": "Migros iMpuls",
-			"summary": "Maintaining and releasing a production iOS application.",
+			"summary": "Ongoing development, maintenance and App Store releases of iMpuls, the health and wellbeing app from Switzerland's largest retailer, keeping a production iOS app stable, current and shipping on schedule.",
 			"tone": "cyan",
 			"variant": "phone",
 			"duration": 20000,
@@ -86,7 +86,7 @@
 		{
 			"category": "iOS · SwiftUI · WKWebView · PoC",
 			"title": "Bucherer",
-			"summary": "An iOS proof of concept for a luxury retailer: can a WebView wrapper sign in, keep the session and complete a purchase on a site that is part Salesforce, part not? The findings became the estimate for the app.",
+			"summary": "An iOS proof of concept for a luxury watch retailer, proving that a native WebView wrapper can sign in, keep the session and complete a purchase across a partly Salesforce-based storefront. The findings shaped the delivery estimate for the full app.",
 			"tone": "gold",
 			"variant": "web",
 			"duration": 18000,
@@ -151,7 +151,7 @@
 		{
 			"category": "Android · Real-time video",
 			"title": "MuMe",
-			"summary": "Live video and chat rooms: hosts open a room, people join with coins and talk in real time.",
+			"summary": "An Android app for live video chat rooms: hosts open a room, guests join by paying with coins, and the conversation happens in real time.",
 			"tone": "yellow",
 			"variant": "live",
 			"duration": 16000,
@@ -209,7 +209,7 @@
 		{
 			"category": "Frontend · Twig",
 			"title": "CGIAR",
-			"summary": "Responsive component-driven web development.",
+			"summary": "A responsive, component-driven frontend for CGIAR, the global agricultural research partnership, built from reusable Twig components.",
 			"tone": "green",
 			"variant": "laptop",
 			"duration": 28000,
@@ -225,7 +225,7 @@
 		{
 			"category": "Android · Java · Firebase",
 			"title": "Hanze3",
-			"summary": "Live radio for an Egyptian broadcaster: listeners tune in, chat live and book their own talk show once an admin approves it.",
+			"summary": "A live radio app for an Egyptian broadcaster: listeners tune in, chat in real time behind a profanity filter and book their own on-air slot once a moderator approves it.",
 			"tone": "red",
 			"variant": "radio",
 			"duration": 16000,
@@ -285,7 +285,7 @@
 		{
 			"category": "KMP · SwiftUI · Compose · Firebase",
 			"title": "PhotoStory",
-			"summary": "Crew booking for a photo studio: the admin books an event and picks the crew, everyone gets a push to accept or decline, and a declined offer moves on to the next person.",
+			"summary": "Crew scheduling for a photo studio, built with Kotlin Multiplatform: the admin books an event and invites the crew, each member accepts or declines from a push notification, and a declined offer moves on to the next person.",
 			"tone": "red",
 			"variant": "crew",
 			"duration": 18000,
@@ -376,7 +376,7 @@
 		{
 			"category": "KMP · SwiftUI · Compose · Firebase",
 			"title": "BezBrige!",
-			"summary": "A sales app for insurance agents: the admin assigns contacts, agents call them and offer insurance, credit or a fund, and every client moves through call statuses and awareness levels up to a signed contract.",
+			"summary": "A sales CRM for insurance agents, built with Kotlin Multiplatform: assigned leads, call outcomes and awareness levels guide every client from the first call to a signed contract for insurance, credit or an investment fund.",
 			"tone": "red",
 			"variant": "leads",
 			"duration": 18000,
@@ -466,7 +466,7 @@
 		{
 			"category": "iOS · Swift · UIKit",
 			"title": "Sliike",
-			"summary": "Beauty booking for Afro-American women in Canada: find a salon or stylist, pick a service, a day and a time, and get reminded. I built the native iOS app in Swift and UIKit.",
+			"summary": "A native iOS app in Swift and UIKit for a beauty booking platform for Afro-American women in Canada: discover salons and stylists, choose a service and a time, and get reminded before the appointment.",
 			"tone": "orange",
 			"variant": "salon",
 			"duration": 18000,
@@ -520,7 +520,7 @@
 		{
 			"category": "iOS · Swift · UIKit · Code review",
 			"title": "KOCH Scan App",
-			"summary": "A B2B scanner app for a Swiss building supplier: tradespeople scan the barcode on KOCH labels, add articles to a list under a commission and order them. I reviewed the codebase ahead of taking over its maintenance.",
+			"summary": "A B2B scanning app for a Swiss building supplier that lets tradespeople scan labels, collect articles by commission and order on site. I audited the Swift codebase in preparation for taking over its maintenance.",
 			"tone": "blue",
 			"variant": "scan",
 			"duration": 16000,
@@ -562,7 +562,7 @@
 		{
 			"category": "iOS · Objective-C · Code review",
 			"title": "PMI Market(i)",
-			"summary": "An internal iPad and iPhone app for Philip Morris field teams in the Nordics: shelf photos with tags, a store map, share of market and sync. I reviewed the legacy Objective-C codebase ahead of taking over its maintenance.",
+			"summary": "An internal iPad and iPhone app for Philip Morris field teams in the Nordics, covering shelf photography, store mapping, share of market and offline sync. I audited the legacy Objective-C codebase and set out a maintenance roadmap.",
 			"tone": "violet",
 			"variant": "review",
 			"duration": 16000,
@@ -608,7 +608,7 @@
 		{
 			"category": "iOS · Swift · UIKit",
 			"title": "Swipe XYZ",
-			"summary": "A shoe and fashion shopping app for a client in the Arab world: categories, filters, product pages and a swipe view to like products straight into the bag, then orders, bills and a profile. I built the native iOS app in UIKit.",
+			"summary": "A native iOS shopping app for a fashion and footwear retailer in the Arab world, combining classic browsing with a swipe-to-like product feed that sends favourites straight to the bag.",
 			"tone": "green",
 			"variant": "deck",
 			"duration": 16000,
@@ -676,7 +676,7 @@
 		{
 			"category": "Android · iOS · Fantasy soccer · MVP",
 			"title": "Goaleadors",
-			"summary": "A fantasy soccer game across the top five European leagues: draft a squad on a budget, score points every matchday and climb a league pyramid, free-to-play or premium. The MVP was built; the client has paused it.",
+			"summary": "A fantasy football platform spanning Europe's top five leagues: draft a squad on a budget, score every matchday and climb a multi-tier league pyramid in free or premium play. The MVP shipped before the client paused the product.",
 			"tone": "blue",
 			"variant": "fantasy",
 			"duration": 16000,
@@ -826,7 +826,7 @@
 		{
 			"category": "Android · iOS · Competition",
 			"title": "Bikini",
-			"summary": "Android and iOS apps for a beauty competition in Asia: contestants, live audience voting, the judges' scores and the winner on the night.",
+			"summary": "Android and iOS apps for a beauty competition in Asia, bringing contestants, live audience voting, the judges' scores and the final result together on the night.",
 			"tone": "violet",
 			"variant": "pageant",
 			"duration": 16000,
@@ -871,7 +871,7 @@
 		{
 			"category": "iOS · Swift · Kids",
 			"title": "ÇocukFlix",
-			"summary": "A cartoon app for Turkish children: curated YouTube cartoons in Turkish, favourites, push notifications and a parental gate that keeps settings for grown-ups.",
+			"summary": "A safe cartoon app for Turkish children: curated cartoons in Turkish, favourites and notifications, with a parental gate that keeps the settings in grown-up hands.",
 			"tone": "cyan",
 			"variant": "kids",
 			"duration": 16000,
@@ -943,7 +943,7 @@
 		{
 			"category": "Design system · Tokens · iOS · Android · Web",
 			"title": "Design Token Pipeline",
-			"summary": "An assessment of an enterprise design system that app teams in many countries build on. I analysed the iOS and Android libraries and proposed one automated token flow from Figma to Web, iOS and Android through Style Dictionary and CI, with accessibility keys and a safe path for renaming tokens.",
+			"summary": "A technical assessment of an enterprise design system used by app teams across many countries. I reviewed the iOS and Android libraries and designed an automated token pipeline from Figma to Web, iOS and Android, with accessibility keys and a safe migration path for renamed tokens.",
 			"tone": "green",
 			"variant": "tokens",
 			"duration": 16000,
@@ -999,7 +999,7 @@
 		{
 			"category": "Kotlin Multiplatform · Compose · Ktor · Internal",
 			"title": "Anubis",
-			"summary": "A server-driven UI framework for Kotlin Multiplatform: a JSON layout from a Ktor server becomes a native Compose screen, so the app's UI can change without a release.",
+			"summary": "A server-driven UI framework for Kotlin Multiplatform: screens are described as JSON on a Ktor server and rendered natively with Compose, so layouts can change without an app release.",
 			"tone": "violet",
 			"variant": "sdui",
 			"duration": 16000,
@@ -1026,7 +1026,7 @@
 		{
 			"category": "Kotlin Multiplatform · MVI · Internal",
 			"title": "YAMVIP",
-			"summary": "Yet Another MVI Presenter: a multiplatform MVI engine that shares presentation logic between Android and iOS, with a clear Model, UIState, Intent and Effect split, built for unit testing and convention over configuration.",
+			"summary": "A multiplatform MVI engine that shares presentation logic between Android and iOS, with a strict split between Model, UIState, Intent and Effect, designed for testability and convention over configuration.",
 			"tone": "orange",
 			"variant": "mvi",
 			"duration": 16000,
@@ -1089,7 +1089,7 @@
 		{
 			"category": "Kotlin Multiplatform · Compose · SwiftUI · Internal",
 			"title": "KMP Template",
-			"summary": "A starter template for Kotlin Multiplatform apps: multi-module clean architecture with YAMVIP and Anubis built in, Koin, SQLDelight and Moko resources, a Compose and a SwiftUI app generated with Tuist, and CI from day one.",
+			"summary": "A production-ready starting point for Kotlin Multiplatform apps: a modular clean architecture with YAMVIP and Anubis, Koin, SQLDelight and Moko resources, Compose and SwiftUI apps generated with Tuist, and CI from the first commit.",
 			"tone": "violet",
 			"variant": "kit",
 			"duration": 16000,
@@ -1163,7 +1163,7 @@
 		{
 			"category": "Android · Java · Firebase",
 			"title": "Masse",
-			"summary": "Online booking for a billiard club: pick a pool table or a dartboard, a date and a free slot. An admin panel keeps the data under control, shows the night's reservations and deletes them.",
+			"summary": "Online booking for a billiard club: guests reserve a pool table or a dartboard for a free slot, while an admin panel manages the data and the evening's reservations.",
 			"tone": "cyan",
 			"variant": "club",
 			"duration": 16000,
@@ -1282,9 +1282,608 @@
 			}
 		},
 		{
+			"category": "iOS · Swift · Core ML · Vision",
+			"title": "AppleDetect",
+			"summary": "An iOS app that grades apples with on-device machine learning: the camera detects every apple in a crate, a Core ML model sorts each one into four quality classes, and the result guides which crate it goes into.",
+			"tone": "green",
+			"variant": "apples",
+			"duration": 16000,
+			"apples": {
+				"apples": [
+					{
+						"x": 72,
+						"y": 45,
+						"class": 1,
+						"confidence": 97
+					},
+					{
+						"x": 71,
+						"y": 22,
+						"class": 1,
+						"confidence": 88
+					},
+					{
+						"x": 30,
+						"y": 40,
+						"class": 1,
+						"confidence": 88
+					},
+					{
+						"x": 12,
+						"y": 45,
+						"class": 1,
+						"confidence": 97
+					},
+					{
+						"x": 16,
+						"y": 82,
+						"class": 1,
+						"confidence": 91
+					},
+					{
+						"x": 29,
+						"y": 78,
+						"class": 2,
+						"confidence": 89
+					},
+					{
+						"x": 46,
+						"y": 21,
+						"class": 2,
+						"confidence": 89
+					},
+					{
+						"x": 46,
+						"y": 65,
+						"class": 2,
+						"confidence": 89
+					},
+					{
+						"x": 14,
+						"y": 22,
+						"class": 2,
+						"confidence": 97
+					},
+					{
+						"x": 34,
+						"y": 24,
+						"class": 3,
+						"confidence": 89
+					},
+					{
+						"x": 70,
+						"y": 62,
+						"class": 3,
+						"confidence": 88
+					},
+					{
+						"x": 17,
+						"y": 60,
+						"class": 3,
+						"confidence": 95
+					},
+					{
+						"x": 83,
+						"y": 77,
+						"class": 4,
+						"confidence": 93
+					},
+					{
+						"x": 89,
+						"y": 40,
+						"class": 4,
+						"confidence": 95
+					}
+				],
+				"classes": [
+					{
+						"name": "Class 1",
+						"short": "C1",
+						"note": "Excellent"
+					},
+					{
+						"name": "Class 2",
+						"short": "C2",
+						"note": "Minor defects"
+					},
+					{
+						"name": "Class 3",
+						"short": "C3",
+						"note": "Visible defects"
+					},
+					{
+						"name": "Class 4",
+						"short": "C4",
+						"note": "Major defects"
+					}
+				],
+				"hud": {
+					"count": "Apples",
+					"inference": "Inference 18 ms",
+					"model": "Core ML · on device"
+				}
+			}
+		},
+		{
+			"category": "Android · Java · CoinGecko API · MVP",
+			"title": "Cryptocent",
+			"summary": "A cryptocurrency market app for Android: live prices, sparklines and detailed charts from the CoinGecko API, with onboarding, sign-in and sections for trading, a portfolio and a wallet, delivered as an MVP.",
+			"tone": "orange",
+			"variant": "coins",
+			"duration": 16000,
+			"coins": {
+				"brand": "Cryptocent",
+				"api": "CoinGecko · live",
+				"tabs": [
+					"Crypto",
+					"Trade",
+					"Portfolio",
+					"Wallet",
+					"Locker"
+				],
+				"coins": [
+					{
+						"symbol": "BTC",
+						"name": "Bitcoin",
+						"hue": 35,
+						"spark": "0,13 10,13 20,15 30,13 40,12 50,12 60,8 70,7 80,7 90,8 100,3",
+						"prices": [
+							"$67,412",
+							"$67,580",
+							"$67,733"
+						],
+						"change": "+2.41%"
+					},
+					{
+						"symbol": "ETH",
+						"name": "Ethereum",
+						"hue": 230,
+						"spark": "0,12 10,8 20,9 30,9 40,5 50,7 60,10 70,10 80,9 90,6 100,3",
+						"prices": [
+							"$3,248",
+							"$3,261",
+							"$3,255"
+						],
+						"change": "+1.12%"
+					},
+					{
+						"symbol": "SOL",
+						"name": "Solana",
+						"hue": 280,
+						"spark": "0,16 10,14 20,13 30,12 40,9 50,10 60,11 70,15 80,16 90,19 100,20",
+						"prices": [
+							"$148.20",
+							"$147.65",
+							"$146.90"
+						],
+						"change": "-0.84%"
+					},
+					{
+						"symbol": "ADA",
+						"name": "Cardano",
+						"hue": 210,
+						"spark": "0,15 10,14 20,11 30,13 40,16 50,18 60,18 70,15 80,12 90,9 100,5",
+						"prices": [
+							"$0.452",
+							"$0.455",
+							"$0.458"
+						],
+						"change": "+0.67%"
+					},
+					{
+						"symbol": "XRP",
+						"name": "XRP",
+						"hue": 195,
+						"spark": "0,18 10,19 20,23 30,23 40,27 50,27 60,24 70,23 80,27 90,27 100,27",
+						"prices": [
+							"$0.612",
+							"$0.609",
+							"$0.604"
+						],
+						"change": "-1.35%"
+					}
+				],
+				"detail": {
+					"name": "Bitcoin",
+					"price": "$67,733",
+					"change": "+2.41%",
+					"ranges": [
+						"1D",
+						"7D",
+						"1M",
+						"1Y"
+					],
+					"line": "0,78 10,70 20,71 30,75 40,70 50,63 60,59 70,66 80,70 90,63 100,58 110,50 120,42 130,47 140,41 150,41 160,39 170,33 180,36 190,30 200,31 210,24 220,22 230,17 240,12 250,19 260,23 270,19 280,25 290,19 300,17",
+					"marker": {
+						"value": "$66,980",
+						"date": "Oct 27, 14:00"
+					},
+					"stats": [
+						{
+							"label": "Market cap",
+							"value": "$1.33T"
+						},
+						{
+							"label": "24h volume",
+							"value": "$28.4B"
+						},
+						{
+							"label": "24h high",
+							"value": "$68,102"
+						}
+					]
+				}
+			}
+		},
+		{
+			"category": "Android tablet · Java · Firebase",
+			"title": "Feniks",
+			"summary": "An Android tablet app for an ice cream shop that tracks what is left of every flavour across two display cases and tells the kitchen which flavour to make next.",
+			"tone": "violet",
+			"variant": "feniks",
+			"duration": 16000,
+			"feniks": {
+				"brand": "Feniks sladoledi",
+				"add": "Dodaj sladoled",
+				"cases": [
+					{
+						"name": "Prva vitrina",
+						"tubs": [
+							{
+								"name": "Vanila",
+								"color": "#f6e7b8",
+								"level": 78
+							},
+							{
+								"name": "Čokolada",
+								"color": "#6b3e26",
+								"level": 64
+							},
+							{
+								"name": "Jagoda",
+								"color": "#f48fb1",
+								"level": 70
+							},
+							{
+								"name": "Pistaći",
+								"color": "#a5c96b",
+								"level": 40
+							},
+							{
+								"name": "Limun",
+								"color": "#f7e463",
+								"level": 82
+							},
+							{
+								"name": "Kokos",
+								"color": "#f4f1ea",
+								"level": 58
+							},
+							{
+								"name": "Borovnica",
+								"color": "#7e6bc4",
+								"level": 66
+							}
+						]
+					},
+					{
+						"name": "Druga vitrina",
+						"tubs": [
+							{
+								"name": "Straćatela",
+								"color": "#efe7dc",
+								"level": 72,
+								"low": false
+							},
+							{
+								"name": "Lešnik",
+								"color": "#b48a5a",
+								"level": 60,
+								"low": false
+							},
+							{
+								"name": "Malina",
+								"color": "#e2557a",
+								"level": 22,
+								"low": true
+							},
+							{
+								"name": "Karamela",
+								"color": "#d79a45",
+								"level": 76,
+								"low": false
+							},
+							{
+								"name": "Menta",
+								"color": "#9fe3c6",
+								"level": 62,
+								"low": false
+							},
+							{
+								"name": "Banana",
+								"color": "#f3dc7a",
+								"level": 54,
+								"low": false
+							},
+							{
+								"name": "Višnja",
+								"color": "#9c2b45",
+								"level": 68,
+								"low": false
+							}
+						]
+					}
+				],
+				"push": {
+					"app": "Feniks",
+					"title": "Napravi: Malina",
+					"body": "Druga vitrina, treća polica je skoro prazna."
+				}
+			}
+		},
+		{
+			"category": "Android · Java · JWT",
+			"title": "DigitalPass",
+			"summary": "A digital pass prototype for Android: accounts and passes backed by signed JWT credentials, decoded on the device, with live expiry countdowns, online status and credential renewal.",
+			"tone": "violet",
+			"variant": "pass",
+			"duration": 16000,
+			"pass": {
+				"brand": "Digital Pass",
+				"holder": {
+					"initials": "MK",
+					"name": "Mila Kovač",
+					"pass": "Access pass · Level 2"
+				},
+				"expires": "User expiration time",
+				"countdown": [
+					"04:00",
+					"00:03",
+					"00:02",
+					"00:01",
+					"00:00"
+				],
+				"jwt": {
+					"label": "Pass credential · JWT",
+					"header": "eyJhbGciOiJFUzI1NiJ9",
+					"payload": "eyJzdWIiOiJtay0yMTQiLCJleHAiOjE3MzA0fQ",
+					"signature": "MEUCIQD4x9…",
+					"claims": "{\n  \"sub\": \"mk-214\",\n  \"type\": \"pass\",\n  \"exp\": 1730400000\n}"
+				},
+				"refresh": "Get Pass Credential"
+			}
+		},
+		{
+			"category": "iOS · Swift · UIKit",
+			"title": "ConnectClub",
+			"summary": "A members' club app for taxi drivers: sign in with Face ID, verify a driving licence by photographing both sides, carry a member badge and unlock offers from partner companies.",
+			"tone": "orange",
+			"variant": "club2",
+			"duration": 16000,
+			"club2": {
+				"photo": "/assets/img/projects/connectclub-taxi.jpg",
+				"faceid": "Face ID",
+				"licence": {
+					"title": "DRIVING LICENCE",
+					"front": "Front of your driver licence",
+					"back": "Back of your driver licence"
+				},
+				"brand": "Connect Club",
+				"member": {
+					"name": "Luka Marić",
+					"id": "BADGE · CC-08417",
+					"level": "VERIFIED DRIVER"
+				},
+				"offers": [
+					{
+						"deal": "−10%",
+						"partner": "Fuel partner",
+						"hue": 45
+					},
+					{
+						"deal": "−25%",
+						"partner": "Car wash",
+						"hue": 200
+					},
+					{
+						"deal": "Free",
+						"partner": "Tyre check",
+						"hue": 140
+					}
+				]
+			}
+		},
+		{
+			"category": "iOS · Swift · Firebase · AR",
+			"title": "Yaaxa",
+			"summary": "A short-video social app for iOS that connects people through the videos they share: record with AR avatars and effects powered by the DeepAR SDK, add filters, stickers and music, film duets side by side, and find matches in the feed.",
+			"tone": "violet",
+			"variant": "duet",
+			"duration": 16000,
+			"duet": {
+				"filters": [
+					"Normal",
+					"Sepia",
+					"Mono",
+					"Cool",
+					"Normal"
+				],
+				"stickers": [
+					"😍",
+					"🔥",
+					"✨"
+				],
+				"music": "Summer Nights · Original sound",
+				"modes": [
+					"15s",
+					"Duet",
+					"60s"
+				],
+				"post": {
+					"user": "nina.dance",
+					"caption": "Duet with @maks ✨ #duet #summer",
+					"likes": [
+						"0",
+						"1.2K",
+						"4.8K",
+						"12.6K"
+					],
+					"comments": "348",
+					"shares": "91"
+				}
+			}
+		},
+		{
+			"category": "Android · Java · Firebase",
+			"title": "MyPH",
+			"summary": "A social and dating app for Android that brings people together by city: build a profile, join your city's group chat, make friends, and sign in with Facebook or Google, with a web admin panel behind it.",
+			"tone": "red",
+			"variant": "chat",
+			"duration": 16000,
+			"chat": {
+				"me": {
+					"initial": "S"
+				},
+				"cities": [
+					{
+						"name": "Beograd",
+						"members": "1.2K online",
+						"hue": 330,
+						"people": [
+							{
+								"initial": "A",
+								"hue": 200
+							},
+							{
+								"initial": "M",
+								"hue": 40
+							},
+							{
+								"initial": "J",
+								"hue": 120
+							}
+						]
+					},
+					{
+						"name": "Novi Sad",
+						"members": "640 online",
+						"hue": 280,
+						"people": [
+							{
+								"initial": "T",
+								"hue": 20
+							},
+							{
+								"initial": "N",
+								"hue": 180
+							},
+							{
+								"initial": "I",
+								"hue": 260
+							}
+						]
+					},
+					{
+						"name": "Niš",
+						"members": "410 online",
+						"hue": 200,
+						"people": [
+							{
+								"initial": "D",
+								"hue": 300
+							},
+							{
+								"initial": "V",
+								"hue": 90
+							}
+						]
+					},
+					{
+						"name": "Kragujevac",
+						"members": "290 online",
+						"hue": 20,
+						"people": [
+							{
+								"initial": "L",
+								"hue": 160
+							},
+							{
+								"initial": "K",
+								"hue": 230
+							}
+						]
+					}
+				],
+				"profile": {
+					"title": "Build your profile",
+					"rows": [
+						{
+							"label": "I am a",
+							"options": [
+								"Female",
+								"Male"
+							],
+							"pick": 1
+						},
+						{
+							"label": "Interested in",
+							"options": [
+								"Women",
+								"Men",
+								"Everyone"
+							],
+							"pick": 3
+						},
+						{
+							"label": "My city is",
+							"options": [
+								"Beograd",
+								"Novi Sad",
+								"Niš"
+							],
+							"pick": 2
+						}
+					]
+				},
+				"room": {
+					"title": "Novi Sad · group chat",
+					"online": "640 online",
+					"messages": [
+						{
+							"initial": "T",
+							"hue": 20,
+							"text": "Ko ide večeras na Štrand? 🌅"
+						},
+						{
+							"initial": "N",
+							"hue": 180,
+							"text": "Ja! Ponesite odbojku 🏐"
+						},
+						{
+							"initial": "S",
+							"hue": 340,
+							"text": "Može i ja, nova sam u gradu 👋",
+							"mine": true
+						},
+						{
+							"initial": "I",
+							"hue": 260,
+							"text": "Dobrodošla! 🎉"
+						}
+					]
+				},
+				"request": {
+					"initial": "N",
+					"hue": 180,
+					"title": "New friend request",
+					"body": "Nikola wants to be your friend."
+				}
+			}
+		},
+		{
 			"category": "Open source · Accessibility",
 			"title": "a11yOtp",
-			"summary": "Accessible native one-time-code input for Android and iOS.",
+			"summary": "An open-source, accessible one-time-code input for Android and iOS, built natively on each platform.",
 			"tone": "blue",
 			"url": "https://github.com/Vprogrammers/a11yOtp",
 			"hero": false

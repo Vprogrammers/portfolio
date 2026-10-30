@@ -1,0 +1,527 @@
+/* stylelint-disable plugin/stylelint-bem-namics -- generated keyframe offsets and nth-child loops */
+@use 'sass:list';
+@use 'sass:math';
+
+// The whole story runs on one timeline; times below are seconds into it.
+$loop: 16;
+$mono: 'SF Mono', menlo, consolas, monospace;
+$gold: #f7b500;
+$up: #16c784;
+$down: #ea3943;
+$rows: 5;
+$row-start: 0.4;
+$row-step: 0.25;
+$tick-times: (0, 3, 5.4);
+$open: 6.2;
+$detail: (6.6, 14.6);
+$line: (7, 9.2);
+$cross: (9.6, 13.6);
+$reset: 15;
+
+@function at($s) {
+	@return math.percentage(math.div($s, $loop));
+}
+
+// Hidden until $start, eased in over $in, kept until $end, then faded out.
+@mixin appear($name, $start, $end: $reset, $from: translateY(1.4cqh), $in: 0.35) {
+	@keyframes #{$name} {
+		0%,
+		#{at($start)} {
+			opacity: 0;
+			transform: $from;
+		}
+
+		#{at($start + $in)},
+		#{at($end)} {
+			opacity: 1;
+			transform: none;
+		}
+
+		#{at(math.min($end + 0.3, $loop))},
+		100% {
+			opacity: 0;
+			transform: $from;
+		}
+	}
+}
+
+@for $k from 1 through $rows {
+	$t: $row-start + ($k - 1) * $row-step;
+
+	@include appear(coin-board-row-#{$k}, $t, $reset, translateX(-3cqh), 0.3);
+
+	@keyframes coin-board-spark-#{$k} {
+		0%,
+		#{at($t + 0.2)} {
+			stroke-dashoffset: 200;
+		}
+
+		#{at($t + 1.4)},
+		#{at($reset)} {
+			stroke-dashoffset: 0;
+		}
+
+		#{at($reset + 0.3)},
+		100% {
+			stroke-dashoffset: 200;
+		}
+	}
+}
+
+// Prices tick: each value shows until the next one replaces it.
+@for $k from 1 through list.length($tick-times) {
+	$next: $reset;
+
+	@if $k < list.length($tick-times) {
+		$next: list.nth($tick-times, $k + 1) - 0.1;
+	}
+
+	@include appear(coin-board-tick-#{$k}, list.nth($tick-times, $k), $next, translateY(1cqh), 0.15);
+}
+
+@keyframes coin-board-flash {
+	@for $i from 2 through list.length($tick-times) {
+		$t: list.nth($tick-times, $i);
+
+		#{at($t - 0.05)},
+		#{at($t + 0.6)} {
+			background: transparent;
+		}
+
+		#{at($t + 0.1)} {
+			background: rgb(22 199 132 / 0.2);
+		}
+	}
+}
+
+// The first row is picked before the detail opens.
+@keyframes coin-board-pick {
+	0%,
+	#{at($open)},
+	#{at($reset)},
+	100% {
+		box-shadow: inset 0 0 0 0 transparent;
+	}
+
+	#{at($open + 0.15)},
+	#{at($reset - 0.1)} {
+		box-shadow: inset 0 0 0 0.25cqh $gold;
+	}
+}
+
+@include appear(coin-board-detail, list.nth($detail, 1), list.nth($detail, 2), translateX(5cqh), 0.45);
+
+@keyframes coin-board-line {
+	0%,
+	#{at(list.nth($line, 1))} {
+		stroke-dashoffset: 700;
+	}
+
+	#{at(list.nth($line, 2))},
+	100% {
+		stroke-dashoffset: 0;
+	}
+}
+
+@keyframes coin-board-area {
+	0%,
+	#{at(list.nth($line, 2) - 0.6)} {
+		opacity: 0;
+	}
+
+	#{at(list.nth($line, 2) + 0.4)},
+	100% {
+		opacity: 1;
+	}
+}
+
+// The crosshair slides along the chart and the marker follows it.
+@keyframes coin-board-cross {
+	0%,
+	#{at(list.nth($cross, 1))} {
+		left: 18%;
+		opacity: 0;
+	}
+
+	#{at(list.nth($cross, 1) + 0.3)} {
+		left: 22%;
+		opacity: 1;
+	}
+
+	#{at(list.nth($cross, 2))} {
+		left: 72%;
+		opacity: 1;
+	}
+
+	#{at(list.nth($cross, 2) + 0.3)},
+	100% {
+		left: 72%;
+		opacity: 0;
+	}
+}
+
+@keyframes coin-board-live {
+	50% {
+		opacity: 0.3;
+	}
+}
+
+// The root fills its positioned parent; the parent sets --board-h/-x/-y.
+.m-coin-board {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	container: coin-board / size;
+	pointer-events: none;
+	background:
+		linear-gradient(rgb(255 255 255 / 0.03) 0.1cqh, transparent 0.1cqh) 0 0 / 100% 5cqh,
+		radial-gradient(ellipse 55% 60% at 64% 50%, rgb(247 181 0 / 0.16), transparent 70%),
+		linear-gradient(160deg, #10131a, #08090d);
+	font-family: Roboto, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.m-coin-board__stage {
+	--h: var(--board-h, 62cqh);
+
+	position: absolute;
+	left: var(--board-x, 50%);
+	top: var(--board-y, 50%);
+	display: flex;
+	align-items: center;
+	gap: 3cqh;
+	height: var(--h);
+	transform: translate(-50%, -50%);
+	color: #e8ecf3;
+}
+
+.m-coin-board__list,
+.m-coin-board__detail {
+	display: flex;
+	flex-direction: column;
+	gap: 1cqh;
+	padding: 2cqh;
+	border-radius: 1.8cqh;
+	background: #161a23;
+	box-shadow: 0 3cqh 6cqh rgb(0 0 0 / 0.5), inset 0 0 0 0.15cqh rgb(255 255 255 / 0.05);
+
+	> p {
+		margin: 0;
+	}
+}
+
+.m-coin-board__list {
+	width: calc(var(--h) * 0.72);
+}
+
+.m-coin-board__head {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 0.6cqh;
+
+	b {
+		color: $gold;
+		font-size: 2.2cqh;
+		letter-spacing: 0.02em;
+	}
+}
+
+.m-coin-board__api {
+	display: flex;
+	align-items: center;
+	gap: 0.6cqh;
+	color: #8a93a6;
+	font: 1.15cqh $mono;
+
+	i {
+		width: 0.9cqh;
+		height: 0.9cqh;
+		border-radius: 50%;
+		background: $up;
+		animation: coin-board-live 1.4s ease-in-out infinite;
+	}
+}
+
+.m-coin-board__row {
+	--hue: 40;
+
+	display: grid;
+	grid-template-columns: auto 1fr 9cqh auto;
+	align-items: center;
+	gap: 1.2cqh;
+	padding: 1cqh;
+	border-radius: 1cqh;
+	opacity: 0;
+}
+
+@for $k from 1 through $rows {
+	.m-coin-board__row:nth-of-type(#{$k}) {
+		animation: coin-board-row-#{$k} #{$loop}s ease-out infinite;
+
+		.m-coin-board__spark polyline {
+			animation: coin-board-spark-#{$k} #{$loop}s ease-out infinite;
+		}
+	}
+}
+
+// The first row is the one that opens; its own highlight runs inside it.
+.m-coin-board__row:first-of-type .m-coin-board__name {
+	border-radius: 0.6cqh;
+	animation: coin-board-pick #{$loop}s ease-out infinite;
+}
+
+.m-coin-board__icon {
+	display: grid;
+	place-items: center;
+	width: 3.6cqh;
+	height: 3.6cqh;
+	border-radius: 50%;
+	background: hsl(var(--hue) 85% 52%);
+	color: #fff;
+	font-size: 1.6cqh;
+	font-style: normal;
+	font-weight: 700;
+}
+
+.m-coin-board__name {
+	display: flex;
+	flex-direction: column;
+	padding: 0.2cqh 0.6cqh;
+
+	b {
+		font-size: 1.6cqh;
+	}
+
+	small {
+		color: #8a93a6;
+		font-size: 1.2cqh;
+	}
+}
+
+.m-coin-board__spark {
+	width: 100%;
+	height: 3.4cqh;
+
+	polyline {
+		fill: none;
+		stroke: $up;
+		stroke-width: 2;
+		stroke-linejoin: round;
+		stroke-dasharray: 200;
+		vector-effect: non-scaling-stroke;
+	}
+}
+
+.m-coin-board__spark--down polyline {
+	stroke: $down;
+}
+
+.m-coin-board__price {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	font-family: $mono;
+
+	b {
+		display: grid;
+		justify-items: end;
+		overflow: hidden;
+		padding: 0 0.4cqh;
+		border-radius: 0.4cqh;
+		font-size: 1.5cqh;
+		font-weight: 600;
+		animation: coin-board-flash #{$loop}s linear infinite;
+	}
+
+	em {
+		grid-area: 1 / 1;
+		font-style: normal;
+		opacity: 0;
+	}
+
+	small {
+		font-size: 1.15cqh;
+	}
+
+	.is-up {
+		color: $up;
+	}
+
+	.is-down {
+		color: $down;
+	}
+}
+
+@for $k from 1 through list.length($tick-times) {
+	.m-coin-board__price em:nth-child(#{$k}) {
+		animation: coin-board-tick-#{$k} #{$loop}s ease-out infinite;
+	}
+}
+
+.m-coin-board__tabs {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 0.8cqh;
+	padding-top: 1.2cqh;
+	border-top: 0.15cqh solid rgb(255 255 255 / 0.06);
+
+	span {
+		color: #8a93a6;
+		font-size: 1.2cqh;
+
+		&:first-child {
+			color: $gold;
+		}
+	}
+}
+
+.m-coin-board__detail {
+	width: calc(var(--h) * 0.8);
+	opacity: 0;
+	animation: coin-board-detail #{$loop}s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+
+.m-coin-board__title {
+	display: flex;
+	align-items: baseline;
+	gap: 1.2cqh;
+
+	b {
+		font-size: 2cqh;
+	}
+
+	span {
+		font: 600 2.2cqh $mono;
+	}
+
+	small {
+		color: $up;
+		font: 1.3cqh $mono;
+	}
+}
+
+.m-coin-board__ranges {
+	display: flex;
+	gap: 0.8cqh;
+
+	span {
+		padding: 0.4cqh 1cqh;
+		border-radius: 1cqh;
+		color: #8a93a6;
+		font-size: 1.15cqh;
+
+		&:nth-child(2) {
+			background: rgb(247 181 0 / 0.16);
+			color: $gold;
+		}
+	}
+}
+
+.m-coin-board__chart {
+	position: relative;
+	height: calc(var(--h) * 0.42);
+	border-radius: 1cqh;
+	background:
+		linear-gradient(rgb(255 255 255 / 0.04) 0.1cqh, transparent 0.1cqh) 0 0 / 100% 25%;
+
+	svg {
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.m-coin-board__line {
+	fill: none;
+	stroke: $gold;
+	stroke-width: 2.4;
+	stroke-linejoin: round;
+	stroke-dasharray: 700;
+	vector-effect: non-scaling-stroke;
+	animation: coin-board-line #{$loop}s ease-in-out infinite;
+}
+
+.m-coin-board__area {
+	fill: url('#coin-board-fill');
+	opacity: 0;
+	animation: coin-board-area #{$loop}s ease-out infinite;
+}
+
+.m-coin-board__cross,
+.m-coin-board__marker {
+	position: absolute;
+	top: 0;
+	opacity: 0;
+	animation: coin-board-cross #{$loop}s ease-in-out infinite;
+}
+
+.m-coin-board__cross {
+	bottom: 0;
+	width: 0.15cqh;
+	background: rgb(255 255 255 / 0.5);
+}
+
+.m-coin-board__marker {
+	display: flex;
+	flex-direction: column;
+	padding: 0.6cqh 1cqh;
+	border-radius: 0.8cqh;
+	background: #232938;
+	box-shadow: 0 1cqh 2cqh rgb(0 0 0 / 0.4);
+	font-family: $mono;
+	white-space: nowrap;
+	transform: translateX(-50%);
+
+	b {
+		font-size: 1.4cqh;
+	}
+
+	small {
+		color: #8a93a6;
+		font-size: 1.1cqh;
+	}
+}
+
+.m-coin-board__stats {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1cqh;
+
+	span {
+		display: flex;
+		flex-direction: column;
+		padding: 1cqh;
+		border-radius: 0.8cqh;
+		background: rgb(255 255 255 / 0.04);
+	}
+
+	small {
+		color: #8a93a6;
+		font-size: 1.1cqh;
+	}
+
+	b {
+		font: 600 1.4cqh $mono;
+	}
+}
+
+// Portrait parents: the market list alone, scaled to fit.
+@container coin-board (aspect-ratio < 1) {
+	.m-coin-board__detail {
+		display: none;
+	}
+}
+
+// Reduced motion: the board and the opened chart, still.
+@media (prefers-reduced-motion: reduce) {
+	.m-coin-board * {
+		/* stylelint-disable-next-line declaration-no-important -- overrides every generated story animation */
+		animation: none !important;
+	}
+
+	.m-coin-board__row,
+	.m-coin-board__detail,
+	.m-coin-board__area,
+	.m-coin-board__price em:last-child {
+		opacity: 1;
+	}
+}

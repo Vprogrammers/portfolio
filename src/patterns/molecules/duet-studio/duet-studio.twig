@@ -1,0 +1,26 @@
+{# A short-video studio in duet mode: two vertical clips side by side, filters cycling over them, AR sparkle and stickers dropping in, a record ring filling, then the clip posts to the feed and the likes roll in. People are drawn as silhouettes. Fills its positioned parent. #}
+<div class="m-duet-studio" aria-hidden="true">
+	<div class="m-duet-studio__stage">
+		<div class="m-duet-studio__frame">
+			<div class="m-duet-studio__split">
+				{% for side in ['left', 'right'] %}
+					<div class="m-duet-studio__clip m-duet-studio__clip--{{ side }}">
+						<svg class="m-duet-studio__person" viewBox="0 0 100 120"><circle cx="50" cy="34" r="19"/><path d="M10 120c0-36 18-60 40-60s40 24 40 60z"/></svg>
+						{% if side == 'right' %}{% for i in 1..6 %}<i class="m-duet-studio__spark"></i>{% endfor %}{% endif %}
+					</div>
+				{% endfor %}
+				<p class="m-duet-studio__filter">{% for f in filters %}<em>{{ f }}</em>{% endfor %}</p>
+				{% for sticker in stickers %}<span class="m-duet-studio__sticker">{{ sticker }}</span>{% endfor %}
+			</div>
+			<p class="m-duet-studio__music">♪ {{ music }}</p>
+			<span class="m-duet-studio__record"><i></i></span>
+			<p class="m-duet-studio__mode">{% for m in modes %}<span>{{ m }}</span>{% endfor %}</p>
+
+			<div class="m-duet-studio__posted">
+				<p class="m-duet-studio__caption"><b>@{{ post.user }}</b>{{ post.caption }}</p>
+				<p class="m-duet-studio__actions"><span class="m-duet-studio__likes">♥<b>{% for n in post.likes %}<em>{{ n }}</em>{% endfor %}</b></span><span>💬<b>{{ post.comments }}</b></span><span>↗<b>{{ post.shares }}</b></span></p>
+				<div class="m-duet-studio__hearts">{% for i in 1..6 %}<i>♥</i>{% endfor %}</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -43,6 +43,20 @@
           {% pattern name='kmp-stack' data=project.kit %}
         {% elseif project.club %}
           {% pattern name='club-floor' data=project.club %}
+        {% elseif project.apples %}
+          {% pattern name='apple-sort' data=project.apples %}
+        {% elseif project.coins %}
+          {% pattern name='coin-board' data=project.coins %}
+        {% elseif project.feniks %}
+          {% pattern name='freezer-case' data=project.feniks %}
+        {% elseif project.pass %}
+          {% pattern name='pass-card' data=project.pass %}
+        {% elseif project.club2 %}
+          {% pattern name='driver-club' data=project.club2 %}
+        {% elseif project.duet %}
+          {% pattern name='duet-studio' data=project.duet %}
+        {% elseif project.chat %}
+          {% pattern name='city-chat' data=project.chat %}
         {% elseif project.crew %}
           {% pattern name='crew-call' data=project.crew %}
         {% elseif project.radio %}
@@ -61,14 +75,17 @@
             <img class="o-project-player__background" src="{{ project.image }}" alt="" {% if loop.first %}fetchpriority="high"{% endif %} loading="eager" decoding="async">
           </picture>
         {% endif %}
-        <div class="o-project-player__content">
+        {# Only the title (and the employer) show; the details open above it on hover, focus or tap. #}
+        <div class="o-project-player__content" tabindex="0">
+          <div class="o-project-player__details">
+            <p class="o-project-player__eyebrow">{{ project.category }}</p>
+            <p class="o-project-player__description">{{ project.summary }}</p>
+            {% if project.url %}
+              <a class="o-project-player__link" href="{{ project.url }}">Explore {{ project.title }}</a>
+            {% endif %}
+          </div>
           {% if project.employer %}{% pattern name='employer' data=employers[project.employer] %}{% endif %}
-          <p class="o-project-player__eyebrow">{{ project.category }}</p>
-          <h2 class="o-project-player__title">{{ project.title }}</h2>
-          <p class="o-project-player__description">{{ project.summary }}</p>
-          {% if project.url %}
-            <a class="o-project-player__link" href="{{ project.url }}">Explore {{ project.title }}</a>
-          {% endif %}
+          <h2 class="o-project-player__title">{{ project.title }}<span class="o-project-player__more" aria-hidden="true"></span></h2>
         </div>
       </article>
     {% endfor %}

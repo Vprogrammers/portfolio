@@ -1,0 +1,466 @@
+/* stylelint-disable plugin/stylelint-bem-namics -- generated keyframe offsets and nth-child loops */
+@use 'sass:list';
+@use 'sass:math';
+
+// The whole story runs on one timeline; times below are seconds into it.
+$loop: 16;
+$pink: #ff2d78;
+$cyan: #22d3ee;
+// Each filter's look on the clips: none, sepia, high contrast, cool, back to none.
+$filter-times: (0, 1.6, 3.2, 4.8, 6.4);
+$filters: (none, sepia(0.8) saturate(1.3), contrast(1.6) grayscale(0.4), hue-rotate(160deg) saturate(1.4), none);
+$sticker-times: (2.4, 3.6, 5);
+$record: (1, 8.6);
+$posted: (9, 15);
+$like-times: (9.6, 10.6, 11.6, 12.6);
+$reset: 15;
+
+@function at($s) {
+	@return math.percentage(math.div($s, $loop));
+}
+
+// Hidden until $start, eased in over $in, kept until $end, then faded out.
+@mixin appear($name, $start, $end, $from: scale(0.6), $in: 0.3) {
+	@keyframes #{$name} {
+		0%,
+		#{at($start)} {
+			opacity: 0;
+			transform: $from;
+		}
+
+		#{at($start + $in)},
+		#{at($end)} {
+			opacity: 1;
+			transform: none;
+		}
+
+		#{at(math.min($end + 0.3, $loop))},
+		100% {
+			opacity: 0;
+			transform: $from;
+		}
+	}
+}
+
+@keyframes duet-studio-filter {
+	@for $k from 1 through list.length($filter-times) {
+		#{at(list.nth($filter-times, $k))},
+		#{at(list.nth($filter-times, $k) + 1.5)} {
+			filter: list.nth($filters, $k);
+		}
+	}
+
+	100% {
+		filter: none;
+	}
+}
+
+@for $k from 1 through list.length($filter-times) {
+	@include appear(duet-studio-filter-#{$k}, list.nth($filter-times, $k), list.nth($filter-times, $k) + 1.4, translateY(1cqh), 0.2);
+}
+
+@for $k from 1 through list.length($sticker-times) {
+	$t: list.nth($sticker-times, $k);
+
+	@keyframes duet-studio-sticker-#{$k} {
+		0%,
+		#{at($t)} {
+			opacity: 0;
+			transform: translateY(-10cqh) rotate(-30deg) scale(0.4);
+		}
+
+		#{at($t + 0.35)} {
+			opacity: 1;
+			transform: translateY(0.6cqh) rotate(8deg) scale(1.1);
+		}
+
+		#{at($t + 0.55)},
+		#{at(list.nth($record, 2))} {
+			opacity: 1;
+			transform: rotate(0) scale(1);
+		}
+
+		#{at(list.nth($record, 2) + 0.3)},
+		100% {
+			opacity: 0;
+		}
+	}
+}
+
+// The record button's ring fills while the duet records.
+@keyframes duet-studio-record {
+	0%,
+	#{at(list.nth($record, 1))} {
+		background: conic-gradient($pink 0deg, rgb(255 255 255 / 0.25) 0deg);
+	}
+
+	@for $i from 1 through 10 {
+		#{at(list.nth($record, 1) + (list.nth($record, 2) - list.nth($record, 1)) * $i * 0.1)} {
+			background: conic-gradient($pink #{$i * 36}deg, rgb(255 255 255 / 0.25) 0deg);
+		}
+	}
+
+	#{at(list.nth($record, 2) + 0.2)},
+	100% {
+		background: conic-gradient($pink 0deg, rgb(255 255 255 / 0.25) 0deg);
+	}
+}
+
+@include appear(duet-studio-posted, list.nth($posted, 1), list.nth($posted, 2), translateY(3cqh), 0.4);
+
+@for $k from 1 through list.length($like-times) {
+	$next: $reset;
+
+	@if $k < list.length($like-times) {
+		$next: list.nth($like-times, $k + 1) - 0.1;
+	}
+
+	@include appear(duet-studio-like-#{$k}, list.nth($like-times, $k), $next, translateY(1cqh), 0.15);
+}
+
+@keyframes duet-studio-heart {
+	0% {
+		opacity: 0;
+		transform: translate(0, 0) scale(0.6);
+	}
+
+	15% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		transform: translate(var(--dx), -26cqh) scale(1.3);
+	}
+}
+
+@keyframes duet-studio-sway {
+	0%,
+	100% {
+		transform: translateX(-50%) rotate(-3deg);
+	}
+
+	50% {
+		transform: translateX(-50%) translateY(-1cqh) rotate(3deg);
+	}
+}
+
+@keyframes duet-studio-twinkle {
+	0%,
+	100% {
+		opacity: 0;
+		transform: scale(0.4) rotate(0);
+	}
+
+	50% {
+		opacity: 1;
+		transform: scale(1) rotate(45deg);
+	}
+}
+
+@keyframes duet-studio-dim {
+	0%,
+	#{at(list.nth($posted, 1))},
+	100% {
+		opacity: 1;
+	}
+
+	#{at(list.nth($posted, 1) + 0.4)},
+	#{at(list.nth($posted, 2))} {
+		opacity: 0;
+	}
+}
+
+// The root fills its positioned parent; the parent sets --duet-h/-x/-y.
+.m-duet-studio {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	container: duet-studio / size;
+	pointer-events: none;
+	background:
+		radial-gradient(ellipse 40% 55% at 58% 45%, rgb(255 45 120 / 0.22), transparent 70%),
+		radial-gradient(ellipse 40% 55% at 76% 55%, rgb(34 211 238 / 0.18), transparent 70%),
+		linear-gradient(160deg, #120c16, #07060a);
+	font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.m-duet-studio__stage {
+	--h: var(--duet-h, 72cqh);
+
+	position: absolute;
+	left: var(--duet-x, 50%);
+	top: var(--duet-y, 50%);
+	height: var(--h);
+	transform: translate(-50%, -50%);
+}
+
+// A tall phone-shaped frame, without the phone chrome.
+.m-duet-studio__frame {
+	position: relative;
+	height: 100%;
+	aspect-ratio: 9 / 16;
+	overflow: hidden;
+	border-radius: 3cqh;
+	background: #000;
+	box-shadow: 0 0 0 0.3cqh rgb(255 255 255 / 0.15), 0 4cqh 8cqh rgb(0 0 0 / 0.6);
+	color: #fff;
+}
+
+.m-duet-studio__split {
+	position: absolute;
+	inset: 0;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0.4cqh;
+	animation: duet-studio-filter #{$loop}s steps(1, end) infinite;
+}
+
+.m-duet-studio__clip {
+	position: relative;
+	overflow: hidden;
+	background:
+		radial-gradient(circle at 70% 20%, rgb(255 210 120 / 0.6), transparent 40%),
+		linear-gradient(170deg, #ff8a5c, #b53471 60%, #3a0f3a);
+}
+
+.m-duet-studio__clip--right {
+	background:
+		radial-gradient(circle at 30% 25%, rgb(140 220 255 / 0.6), transparent 40%),
+		linear-gradient(170deg, #4dd0e1, #3f51b5 60%, #1a1240);
+}
+
+// A dancing silhouette: head and shoulders, swaying.
+.m-duet-studio__person {
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	width: 78%;
+	fill: rgb(0 0 0 / 0.72);
+	transform-origin: 50% 100%;
+	animation: duet-studio-sway 1.4s ease-in-out infinite;
+}
+
+.m-duet-studio__clip--right .m-duet-studio__person {
+	animation-delay: -0.7s;
+}
+
+// AR sparkles around the second clip's face.
+.m-duet-studio__spark {
+	position: absolute;
+	width: 2cqh;
+	height: 2cqh;
+	background: #fff59d;
+	clip-path: polygon(50% 0, 61% 38%, 100% 50%, 61% 62%, 50% 100%, 39% 62%, 0 50%, 39% 38%);
+	animation: duet-studio-twinkle 1.6s ease-in-out infinite;
+
+	@for $i from 1 through 6 {
+		&:nth-child(#{$i + 1}) {
+			left: #{18 + ($i * 37 % 64)}%;
+			top: #{36 + ($i * 23 % 22)}%;
+			animation-delay: -#{$i * 0.27}s;
+		}
+	}
+}
+
+.m-duet-studio__filter {
+	position: absolute;
+	left: 50%;
+	top: 6cqh;
+	display: grid;
+	margin: 0;
+	translate: -50% 0;
+
+	em {
+		grid-area: 1 / 1;
+		padding: 0.6cqh 1.6cqh;
+		border-radius: 2cqh;
+		background: rgb(0 0 0 / 0.55);
+		font-size: 1.5cqh;
+		font-style: normal;
+		font-weight: 700;
+		text-align: center;
+		opacity: 0;
+	}
+}
+
+@for $k from 1 through list.length($filter-times) {
+	.m-duet-studio__filter em:nth-child(#{$k}) {
+		animation: duet-studio-filter-#{$k} #{$loop}s ease-out infinite;
+	}
+}
+
+.m-duet-studio__sticker {
+	position: absolute;
+	font-size: 4.4cqh;
+	opacity: 0;
+
+	@for $k from 1 through list.length($sticker-times) {
+		&:nth-of-type(#{$k}) {
+			left: #{list.nth((12%, 58%, 34%), $k)};
+			top: #{list.nth((22%, 18%, 44%), $k)};
+			animation: duet-studio-sticker-#{$k} #{$loop}s cubic-bezier(0.3, 1.2, 0.5, 1) infinite;
+		}
+	}
+}
+
+.m-duet-studio__music {
+	position: absolute;
+	left: 2cqh;
+	top: 2cqh;
+	margin: 0;
+	font-size: 1.4cqh;
+	font-weight: 600;
+	animation: duet-studio-dim #{$loop}s ease-out infinite;
+}
+
+.m-duet-studio__record {
+	position: absolute;
+	left: 50%;
+	bottom: 7cqh;
+	display: grid;
+	place-items: center;
+	width: 8cqh;
+	height: 8cqh;
+	border-radius: 50%;
+	translate: -50% 0;
+	animation:
+		duet-studio-record #{$loop}s linear infinite,
+		duet-studio-dim #{$loop}s ease-out infinite;
+
+	i {
+		width: 6cqh;
+		height: 6cqh;
+		border-radius: 50%;
+		background: $pink;
+		box-shadow: 0 0 0 0.6cqh #000;
+	}
+}
+
+.m-duet-studio__mode {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 2.4cqh;
+	display: flex;
+	justify-content: center;
+	gap: 2cqh;
+	margin: 0;
+	font-size: 1.3cqh;
+	font-weight: 700;
+	animation: duet-studio-dim #{$loop}s ease-out infinite;
+
+	span {
+		opacity: 0.6;
+
+		&:nth-child(2) {
+			color: $cyan;
+			opacity: 1;
+		}
+	}
+}
+
+// After recording: the posted clip with its caption, counters and floating hearts.
+.m-duet-studio__posted {
+	position: absolute;
+	inset: 0;
+	opacity: 0;
+	animation: duet-studio-posted #{$loop}s ease-out infinite;
+}
+
+.m-duet-studio__caption {
+	position: absolute;
+	left: 2cqh;
+	right: 9cqh;
+	bottom: 3cqh;
+	margin: 0;
+	font-size: 1.4cqh;
+	line-height: 1.4;
+	text-shadow: 0 0.2cqh 0.6cqh rgb(0 0 0 / 0.7);
+
+	b {
+		display: block;
+		font-size: 1.6cqh;
+	}
+}
+
+.m-duet-studio__actions {
+	position: absolute;
+	right: 1.6cqh;
+	bottom: 4cqh;
+	display: flex;
+	flex-direction: column;
+	gap: 2cqh;
+	margin: 0;
+	font-size: 3cqh;
+	text-align: center;
+
+	span {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	b {
+		display: grid;
+		font-size: 1.3cqh;
+	}
+
+	em {
+		grid-area: 1 / 1;
+		font-style: normal;
+		opacity: 0;
+	}
+}
+
+.m-duet-studio__likes {
+	color: $pink;
+
+	b {
+		color: #fff;
+	}
+}
+
+@for $k from 1 through list.length($like-times) {
+	.m-duet-studio__likes em:nth-child(#{$k}) {
+		animation: duet-studio-like-#{$k} #{$loop}s steps(1, end) infinite;
+	}
+}
+
+.m-duet-studio__hearts {
+	position: absolute;
+	right: 3cqh;
+	bottom: 18cqh;
+
+	i {
+		--dx: 0;
+
+		position: absolute;
+		color: $pink;
+		font-size: 3cqh;
+		font-style: normal;
+		opacity: 0;
+		animation: duet-studio-heart 2.2s ease-out infinite;
+
+		@for $i from 1 through 6 {
+			&:nth-child(#{$i}) {
+				--dx: #{($i * 37 % 12) - 6}cqh;
+
+				animation-delay: -#{$i * 0.37}s;
+			}
+		}
+	}
+}
+
+// Reduced motion: the posted duet.
+@media (prefers-reduced-motion: reduce) {
+	.m-duet-studio * {
+		/* stylelint-disable-next-line declaration-no-important -- overrides every generated story animation */
+		animation: none !important;
+	}
+
+	.m-duet-studio__posted,
+	.m-duet-studio__likes em:last-child {
+		opacity: 1;
+	}
+}

@@ -1,0 +1,10 @@
+{# A coding agent at work in a terminal: the lines of a session appear one by one (a command, agents being routed, findings by severity, a fix, a clean re-review), with standards badges below. Each line is [kind, text]; kinds: cmd, agent, high, medium, fix, ok, note. Fills its positioned parent. #}
+<div class="m-agent-review" aria-hidden="true">
+	<div class="m-agent-review__window">
+		<p class="m-agent-review__bar"><i></i><i></i><i></i><span>{{ title }}</span></p>
+		<ol class="m-agent-review__log">
+			{% for line in lines %}<li class="m-agent-review__line m-agent-review__line--{{ line[0] }}">{{ line[1] }}</li>{% endfor %}
+		</ol>
+	</div>
+	<p class="m-agent-review__badges">{% for badge in badges %}<span>{{ badge }}</span>{% endfor %}</p>
+</div>

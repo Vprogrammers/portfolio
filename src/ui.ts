@@ -34,6 +34,7 @@ import './patterns/atoms/lottie';
 import './patterns/atoms/quote';
 import './patterns/atoms/scroll-progress';
 import './patterns/atoms/stage';
+import './patterns/molecules/agent-review';
 import './patterns/molecules/apple-sort';
 import './patterns/molecules/city-chat';
 import './patterns/molecules/club-floor';

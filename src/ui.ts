@@ -68,6 +68,7 @@ import './patterns/molecules/token-flow';
 import './patterns/molecules/web-wrap';
 import './patterns/molecules/wipe-clean';
 import './patterns/organisms/about';
+import './patterns/organisms/case-study';
 import './patterns/organisms/project-grid';
 import './patterns/organisms/project-player';
 import './patterns/organisms/site-footer';

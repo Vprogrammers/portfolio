@@ -43,7 +43,7 @@
 	position: absolute;
 	z-index: 3;
 	left: var(--player-gutter);
-	top: clamp(7rem, 17vh, 12rem);
+	top: clamp(5.25rem, 12vh, 9rem);
 	max-width: min(44rem, calc(100% - 2 * var(--player-gutter)));
 	text-shadow: 0 1px 24px rgb(7 13 23 / 0.45);
 	pointer-events: none;
@@ -993,7 +993,7 @@
    and the caption at the bottom. */
 @media (aspect-ratio <= 1 / 1) {
 	.o-project-player__intro {
-		top: clamp(5.5rem, 11vh, 8rem);
+		top: clamp(4.5rem, 9vh, 6.5rem);
 	}
 
 	.o-project-player__name {

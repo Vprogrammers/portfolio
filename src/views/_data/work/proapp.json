@@ -1,0 +1,238 @@
+{
+	"_nitro": {
+		"pageTitle": "Hansgrohe ProApp — case study · Viktor Nešić"
+	},
+	"intro": {
+		"name": "Viktor Nešić",
+		"role": "Mobile & Frontend Developer"
+	},
+	"links": [
+		{
+			"label": "GitHub",
+			"icon": "github",
+			"url": "https://github.com/Vprogrammers"
+		},
+		{
+			"label": "LinkedIn",
+			"icon": "linkedin",
+			"url": "https://www.linkedin.com/in/viktor-nesic"
+		},
+		{
+			"label": "v.nesic.developer@gmail.com",
+			"icon": "mail",
+			"url": "/about#contact-form"
+		}
+	],
+	"employers": {
+		"merkle": {
+			"label": "Delivered at",
+			"name": "Merkle",
+			"note": "Enterprise mobile & digital engineering"
+		}
+	},
+	"caseStudy": {
+		"kicker": "Case study · Mobile · Kotlin Multiplatform",
+		"title": "Hansgrohe ProApp",
+		"lead": "An enterprise iPad app that puts Hansgrohe's and AXOR's whole product world in a sales rep's hands: catalogue, product stories and ready-made presentations, all available offline in showrooms, on building sites and wherever the network drops.",
+		"employer": "merkle",
+		"hero": "/assets/img/projects/hansgrohe-background-04.jpg",
+		"scene": {
+			"variant": "handheld",
+			"image": "/assets/img/projects/hansgrohe-background-04.jpg",
+			"foreground": "/assets/img/projects/hansgrohe-background-04-hands.png",
+			"frames": [
+				"/assets/img/projects/proapp-splash.jpg",
+				"/assets/img/projects/proapp-download.jpg",
+				"/assets/img/projects/proapp-discover-axor.jpg",
+				"/assets/img/projects/proapp-axor-finish.jpg",
+				"/assets/img/projects/proapp-discover-pro.jpg",
+				"/assets/img/projects/proapp-axor-bathtub.jpg",
+				"/assets/img/projects/proapp-presentations.jpg",
+				"/assets/img/projects/proapp-ecostat.jpg",
+				"/assets/img/projects/proapp-vernis.jpg",
+				"/assets/img/projects/proapp-sustainability.jpg"
+			]
+		},
+		"facts": [
+			{
+				"label": "Client",
+				"value": "Hansgrohe, global sanitary-products manufacturer"
+			},
+			{
+				"label": "My role",
+				"value": "iOS & Kotlin Multiplatform developer"
+			},
+			{
+				"label": "Period",
+				"value": "Sep 2022 – Jul 2024"
+			},
+			{
+				"label": "Platform",
+				"value": "iPad · Swift/UIKit on a shared KMP core"
+			}
+		],
+		"brief": {
+			"title": "The brief",
+			"text": [
+				"Hansgrohe's international field sales teams meet architects, installers and retailers in places where a reliable connection is the exception. They needed one tool to show the full hansgrohe, AXOR and PRO ranges, tell the story behind each product and build a presentation for the customer in front of them.",
+				"So the app had to work completely offline, stay in sync with a large and frequently updated catalogue in several languages, and feel as premium as the products it presents."
+			]
+		},
+		"contributions": {
+			"title": "What I did",
+			"items": [
+				"Built native Swift/UIKit features on top of shared Kotlin Multiplatform repositories for presentation, domain and data logic.",
+				"Wrote the SQL queries on the SQLDelight database that the offline-first catalogue reads from.",
+				"Implemented local media handling and content synchronisation, including the first-launch download that makes the catalogue available offline.",
+				"Built catalogue and product screens: brand discovery, product detail with specifications, finishes and variants, and annotated product stories.",
+				"Worked daily with designers, backend developers, QA and the client's Product Owner."
+			]
+		},
+		"screens": {
+			"title": "Inside the app",
+			"items": [
+				{
+					"src": "/assets/img/projects/proapp-splash.jpg",
+					"caption": "Launch screen"
+				},
+				{
+					"src": "/assets/img/projects/proapp-download.jpg",
+					"caption": "First launch downloads the catalogue for offline use"
+				},
+				{
+					"src": "/assets/img/projects/proapp-discover-axor.jpg",
+					"caption": "Discover: news across the hansgrohe, AXOR and PRO brands"
+				},
+				{
+					"src": "/assets/img/projects/proapp-discover-pro.jpg",
+					"caption": "PRO: company, sustainability and technologies"
+				},
+				{
+					"src": "/assets/img/projects/proapp-vernis.jpg",
+					"caption": "Product detail with specifications, finishes and variants"
+				},
+				{
+					"src": "/assets/img/projects/proapp-ecostat.jpg",
+					"caption": "Variants explained with numbered callouts"
+				},
+				{
+					"src": "/assets/img/projects/proapp-axor-finish.jpg",
+					"caption": "Annotated finish details"
+				},
+				{
+					"src": "/assets/img/projects/proapp-axor-bathtub.jpg",
+					"caption": "Full-screen product stories"
+				},
+				{
+					"src": "/assets/img/projects/proapp-presentations.jpg",
+					"caption": "Presentations: build, share and favourite decks"
+				},
+				{
+					"src": "/assets/img/projects/proapp-sustainability.jpg",
+					"caption": "Editorial content pages"
+				}
+			]
+		},
+		"architecture": {
+			"title": "Architecture",
+			"text": "Native UI on iOS, everything below it shared in Kotlin, and a local database that the app always reads from. Synchronisation fills it in the background whenever a connection is available.",
+			"layers": [
+				{
+					"name": "iPad app (Swift · UIKit)",
+					"items": [
+						"Catalogue & product screens",
+						"Media viewer",
+						"AR & rich media",
+						"Authentication flow"
+					]
+				},
+				{
+					"name": "Shared Kotlin Multiplatform layer",
+					"items": [
+						"Presentation logic",
+						"Domain logic",
+						"Data layer",
+						"Reusable project architecture"
+					]
+				},
+				{
+					"name": "Offline-first local storage",
+					"items": [
+						"SQLDelight",
+						"Local media cache",
+						"Queued sync actions"
+					]
+				},
+				{
+					"name": "Synchronisation",
+					"items": [
+						"GraphQL sync",
+						"Background refresh",
+						"Conflict and update handling"
+					]
+				},
+				{
+					"name": "Backend services",
+					"items": [
+						"GraphQL backend",
+						"Azure authentication",
+						"Product content & translations",
+						"Media assets"
+					]
+				}
+			]
+		},
+		"stack": {
+			"title": "Stack",
+			"items": [
+				"Swift",
+				"UIKit",
+				"Kotlin Multiplatform",
+				"GraphQL",
+				"SQLDelight",
+				"Azure authentication",
+				"Offline-first sync",
+				"iPadOS"
+			]
+		},
+		"team": {
+			"title": "Team",
+			"text": "Three mobile developers and an intern, three designers, a QA tester, a Scrum Master, the client's Product Owner and an agency project manager, working with the backend and web teams.",
+			"items": [
+				[
+					"4",
+					"mobile developers incl. intern"
+				],
+				[
+					"3",
+					"designers"
+				],
+				[
+					"1",
+					"QA tester"
+				],
+				[
+					"2",
+					"years on the project"
+				]
+			]
+		},
+		"outcome": {
+			"title": "The result",
+			"text": "Sales reps open the app in any meeting and have the complete catalogue, the product stories and their own presentations ready, with or without a connection. The shared Kotlin core kept business logic in one place, ready for more platforms."
+		},
+		"back": {
+			"label": "All works",
+			"url": "/#works"
+		},
+		"cta": {
+			"title": "Planning an app like this?",
+			"text": "I build offline-first, enterprise-grade mobile apps on iOS, Android and Kotlin Multiplatform.",
+			"label": "Get in touch",
+			"url": "/about#contact-form"
+		}
+	},
+	"analytics": {
+		"gaMeasurementId": "G-ZM0VPP0G2C"
+	}
+}

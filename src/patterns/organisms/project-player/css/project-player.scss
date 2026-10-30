@@ -842,8 +842,9 @@
 	}
 
 	// Touch screens cannot hover, so invisible buttons would only catch stray taps
-	// over the title. There, tapping the title holds the slide instead.
-	@media (hover: none) {
+	// over the title. There, tapping the title holds the slide instead. With
+	// reduced motion nothing rotates, so the controls stay as the way through.
+	@media (hover: none) and (prefers-reduced-motion: no-preference) {
 		display: none;
 	}
 

@@ -26,8 +26,10 @@ players.forEach((player) => {
   // carry on where they stopped the next time their slide comes round.
   const getInterval = () => Math.min(readInterval(slides[active].dataset.duration, defaultInterval), defaultInterval);
   let paused = reducedMotion.matches;
-  // Held while a visitor reads a project's details; the slide waits, then carries on.
-  let held = false;
+  // Held while a visitor reads a project's details, by pointer or keyboard; the
+  // slide waits until neither is left, then carries on.
+  let hovered = false;
+  let focused = false;
   let started = performance.now();
   let frame = 0;
   let cleanupTimer: number | undefined;
@@ -115,7 +117,7 @@ players.forEach((player) => {
     started = performance.now();
   };
 
-  const running = () => !paused && !held && !document.hidden;
+  const running = () => !paused && !hovered && !focused && !document.hidden;
   const tick = (now: number) => {
     if (running()) {
       const elapsed = now - started;
@@ -131,11 +133,10 @@ players.forEach((player) => {
   slides.forEach((slide) => {
     const content = slide.querySelector<HTMLElement>('.o-project-player__content');
     if (!content) return;
-    const hold = (value: boolean) => () => { held = value; };
-    content.addEventListener('mouseenter', hold(true));
-    content.addEventListener('mouseleave', hold(false));
-    content.addEventListener('focusin', hold(true));
-    content.addEventListener('focusout', hold(false));
+    content.addEventListener('mouseenter', () => { hovered = true; });
+    content.addEventListener('mouseleave', () => { hovered = false; });
+    content.addEventListener('focusin', () => { focused = true; });
+    content.addEventListener('focusout', (event) => { focused = content.contains(event.relatedTarget as Node | null); });
   });
   reducedMotion.addEventListener('change', () => setPaused(reducedMotion.matches));
   setPaused(paused);

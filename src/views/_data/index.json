@@ -1891,6 +1891,60 @@
 			}
 		},
 		{
+			"category": "Mobile · Cleaning services",
+			"title": "Houseleek Renhold",
+			"summary": "A presentation app for a Norwegian cleaning company: every service, from homes and offices to stairs, windows and car care, with photos, a short description and a direct line to book.",
+			"tone": "teal",
+			"hero": false,
+			"scene": {
+				"pattern": "wipe-clean",
+				"logo": "/assets/img/projects/houseleek-logo.png",
+				"cta": "Get started",
+				"services": [
+					{
+						"icon": "🏠",
+						"name": "Home cleaning",
+						"note": "Daily and regular"
+					},
+					{
+						"icon": "📦",
+						"name": "Move-out",
+						"note": "Empty homes, top to bottom"
+					},
+					{
+						"icon": "🛋️",
+						"name": "Furniture & carpets",
+						"note": "Deep stain removal"
+					},
+					{
+						"icon": "🚗",
+						"name": "Car care",
+						"note": "Inside and out"
+					},
+					{
+						"icon": "🏢",
+						"name": "Offices",
+						"note": "Daily or weekly"
+					},
+					{
+						"icon": "🪜",
+						"name": "Stairs",
+						"note": "Housing co-ops"
+					},
+					{
+						"icon": "🪟",
+						"name": "Windows",
+						"note": "Service agreements"
+					},
+					{
+						"icon": "🌿",
+						"name": "Garden & facade",
+						"note": "And more on request"
+					}
+				]
+			}
+		},
+		{
 			"category": "Open source · Accessibility",
 			"title": "a11yOtp",
 			"summary": "An open-source, accessible one-time-code input for Android and iOS, built natively on each platform.",

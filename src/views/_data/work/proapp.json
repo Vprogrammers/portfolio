@@ -230,9 +230,17 @@
 			"text": "I build offline-first, enterprise-grade mobile apps on iOS, Android and Kotlin Multiplatform.",
 			"label": "Get in touch",
 			"url": "/about#contact-form"
+		},
+		"next": {
+			"title": "Migros iMpuls",
+			"url": "/work-migros"
 		}
 	},
 	"analytics": {
 		"gaMeasurementId": "G-ZM0VPP0G2C"
+	},
+	"meta": {
+		"description": "An enterprise iPad app that puts Hansgrohe's and AXOR's whole product world in a sales rep's hands: catalogue, product stories and ready-made presentations, all available offline in showrooms, on building sites and wherever the network drops.",
+		"path": "/work-proapp"
 	}
 }

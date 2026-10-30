@@ -51,6 +51,25 @@ $layers: (#5eead4, #7dd3fc, #fdba74, #a5b4fc, #f9a8d4);
 	inset: 0;
 }
 
+// Panel scenes take the right part of the hero and fade in from the copy's side.
+// The panel stays landscape, so the scenes keep their wide layout.
+.o-case-study__hero--panel .o-case-study__hero-scene {
+	top: 12%;
+	bottom: 6%;
+	left: 34%;
+	mask-image:
+		linear-gradient(90deg, transparent, #000 14%),
+		linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);
+	mask-composite: intersect;
+}
+
+// Beside a panel scene the copy keeps to the left part of the hero.
+@media (width > 900px) {
+	.o-case-study__hero--panel .o-case-study__hero-content {
+		max-width: min(44rem, 38%);
+	}
+}
+
 .o-case-study__hero-image {
 	position: absolute;
 	z-index: -2;
@@ -409,6 +428,79 @@ $layers: (#5eead4, #7dd3fc, #fdba74, #a5b4fc, #f9a8d4);
 	}
 }
 
+// Findings as cards: an optional tag, a title and a short note.
+.o-case-study__findings {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+	gap: 1rem;
+	margin: 2rem 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.o-case-study__finding {
+	padding: 1.25rem 1.4rem;
+	border: 1px solid rgb(255 255 255 / 0.1);
+	border-radius: 1rem;
+	background: rgb(255 255 255 / 0.03);
+
+	h3 {
+		margin: 0.6rem 0 0.4rem;
+		font-size: 1.05rem;
+		line-height: 1.35;
+	}
+
+	p {
+		margin: 0;
+		color: rgb(255 255 255 / 0.75);
+		font-size: 0.95rem;
+		line-height: 1.6;
+	}
+}
+
+.o-case-study__tag {
+	display: inline-block;
+	padding: 0.2rem 0.65rem;
+	border-radius: 99px;
+	background: rgb(94 234 212 / 0.14);
+	color: $accent;
+	font-size: 0.7rem;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+}
+
+// The way on to the next case study, as one large link.
+.o-case-study__next {
+	display: flex;
+	flex-direction: column;
+	gap: 0.4rem;
+	padding-top: 2rem;
+	border-top: 1px solid rgb(255 255 255 / 0.12);
+	color: inherit;
+	text-decoration: none;
+
+	&:hover .o-case-study__next-title,
+	&:focus-visible .o-case-study__next-title {
+		color: $accent;
+	}
+}
+
+.o-case-study__next-label {
+	color: rgb(255 255 255 / 0.6);
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.25em;
+	text-transform: uppercase;
+}
+
+.o-case-study__next-title {
+	font-family: var(--font-display);
+	font-size: clamp(1.6rem, 4vw, 3rem);
+	font-weight: 700;
+	transition: color 200ms ease;
+}
+
 @media (width <= 900px) {
 	.o-case-study__facts,
 	.o-case-study__numbers {
@@ -427,6 +519,19 @@ $layers: (#5eead4, #7dd3fc, #fdba74, #a5b4fc, #f9a8d4);
 @media (width <= 600px) {
 	.o-case-study__screen {
 		width: 82vw;
+	}
+
+	// Panel scenes stand above the copy on phones.
+	.o-case-study__hero--panel {
+		padding-top: calc(50svh + 3rem);
+
+		.o-case-study__hero-scene {
+			top: 3.5rem;
+			bottom: auto;
+			left: 0;
+			height: 50svh;
+			mask-image: linear-gradient(180deg, #000 80%, transparent);
+		}
 	}
 
 	// Portrait scenes leave a band above the artwork; fade its edges into the page.

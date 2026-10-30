@@ -1,10 +1,33 @@
-{# A project case study: hero (an animated device scene or an image) with key facts, the brief, contributions, a screen gallery, a layered architecture, stack, team, result and a closing call to action. Data per project lives in src/views/_data/work/<project>.json. #}
+{# A project case study: hero (the project's animated scene from the home page, or an image) with key facts, the brief, contributions, and optional screens, findings, layers, stack, team and result, then a call to action and the next case study. Data per project lives in src/views/_data/work/<project>.json. #}
 <article class="o-case-study" id="top">
-	<header class="o-case-study__hero">
-		{# The project's animated scene from the home page when there is one, otherwise a still image. #}
+	{# "device" scenes cover the hero like the home slide; the others stand in a panel beside the copy. #}
+	<header class="o-case-study__hero{% if scene and sceneType != 'device' %} o-case-study__hero--panel{% endif %}">
 		{% if scene %}
-			<div class="o-case-study__hero-scene">{% pattern name='device-scene' data=scene|merge({ priority: true }) %}</div>
-		{% else %}
+			<div class="o-case-study__hero-scene">
+				{# Nitro needs each pattern name written out. #}
+				{% if sceneType == 'device' %}
+					{% pattern name='device-scene' data=scene|merge({ priority: true }) %}
+				{% elseif sceneType == 'phone' %}
+					{% pattern name='phone-scroll' data=scene|merge({ priority: true }) %}
+				{% elseif sceneType == 'laptop' %}
+					{% pattern name='laptop-scroll' data=scene|merge({ priority: true }) %}
+				{% elseif sceneType == 'web' %}
+					{% pattern name='web-wrap' data=scene %}
+				{% elseif sceneType == 'scan' %}
+					{% pattern name='scan-view' data=scene %}
+				{% elseif sceneType == 'review' %}
+					{% pattern name='code-review' data=scene %}
+				{% elseif sceneType == 'tokens' %}
+					{% pattern name='token-flow' data=scene %}
+				{% elseif sceneType == 'sdui' %}
+					{% pattern name='sdui-live' data=scene %}
+				{% elseif sceneType == 'mvi' %}
+					{% pattern name='mvi-loop' data=scene %}
+				{% elseif sceneType == 'kit' %}
+					{% pattern name='kmp-stack' data=scene %}
+				{% endif %}
+			</div>
+		{% elseif hero %}
 			<img class="o-case-study__hero-image" src="{{ hero }}" alt="" fetchpriority="high" decoding="async">
 		{% endif %}
 		<div class="o-case-study__hero-content">
@@ -37,34 +60,54 @@
 		</section>
 	</div>
 
-	<section class="o-case-study__screens" aria-labelledby="case-screens">
-		<h2 class="o-case-study__heading o-case-study__heading--inset" id="case-screens">{{ screens.title }}</h2>
-		{# Scrolls sideways; focusable so keyboard users can scroll it with the arrow keys. #}
-		<ul class="o-case-study__gallery" tabindex="0" aria-label="{{ screens.title }}, scrolls sideways">
-			{% for screen in screens.items %}
-				<li class="o-case-study__screen">
-					<figure>
-						<div class="o-case-study__device"><img src="{{ screen.src }}" alt="{{ screen.caption }}" loading="lazy" decoding="async"></div>
-						<figcaption>{{ screen.caption }}</figcaption>
-					</figure>
-				</li>
-			{% endfor %}
-		</ul>
-	</section>
-
-	<div class="o-case-study__body">
-		<section aria-labelledby="case-architecture">
-			<h2 class="o-case-study__heading" id="case-architecture">{{ architecture.title }}</h2>
-			<p class="o-case-study__text o-case-study__text--narrow">{{ architecture.text }}</p>
-			<ol class="o-case-study__layers">
-				{% for layer in architecture.layers %}
-					<li class="o-case-study__layer o-case-study__layer--{{ loop.index }}">
-						<h3>{{ layer.name }}</h3>
-						<ul>{% for item in layer.items %}<li>{{ item }}</li>{% endfor %}</ul>
+	{% if screens %}
+		<section class="o-case-study__screens" aria-labelledby="case-screens">
+			<h2 class="o-case-study__heading o-case-study__heading--inset" id="case-screens">{{ screens.title }}</h2>
+			{# Scrolls sideways; focusable so keyboard users can scroll it with the arrow keys. #}
+			<ul class="o-case-study__gallery" tabindex="0" aria-label="{{ screens.title }}, scrolls sideways">
+				{% for screen in screens.items %}
+					<li class="o-case-study__screen">
+						<figure>
+							<div class="o-case-study__device"><img src="{{ screen.src }}" alt="{{ screen.caption }}" loading="lazy" decoding="async"></div>
+							<figcaption>{{ screen.caption }}</figcaption>
+						</figure>
 					</li>
 				{% endfor %}
-			</ol>
+			</ul>
 		</section>
+	{% endif %}
+
+	<div class="o-case-study__body">
+		{% if findings %}
+			<section aria-labelledby="case-findings">
+				<h2 class="o-case-study__heading" id="case-findings">{{ findings.title }}</h2>
+				{% if findings.text %}<p class="o-case-study__text o-case-study__text--narrow">{{ findings.text }}</p>{% endif %}
+				<ul class="o-case-study__findings">
+					{% for item in findings.items %}
+						<li class="o-case-study__finding">
+							{% if item.tag %}<span class="o-case-study__tag">{{ item.tag }}</span>{% endif %}
+							<h3>{{ item.title }}</h3>
+							<p>{{ item.text }}</p>
+						</li>
+					{% endfor %}
+				</ul>
+			</section>
+		{% endif %}
+
+		{% if architecture %}
+			<section aria-labelledby="case-architecture">
+				<h2 class="o-case-study__heading" id="case-architecture">{{ architecture.title }}</h2>
+				{% if architecture.text %}<p class="o-case-study__text o-case-study__text--narrow">{{ architecture.text }}</p>{% endif %}
+				<ol class="o-case-study__layers">
+					{% for layer in architecture.layers %}
+						<li class="o-case-study__layer o-case-study__layer--{{ loop.index }}">
+							<h3>{{ layer.name }}</h3>
+							<ul>{% for item in layer.items %}<li>{{ item }}</li>{% endfor %}</ul>
+						</li>
+					{% endfor %}
+				</ol>
+			</section>
+		{% endif %}
 
 		<section class="o-case-study__split" aria-labelledby="case-team">
 			<div>
@@ -76,9 +119,11 @@
 			<div>
 				<h2 class="o-case-study__heading" id="case-team">{{ team.title }}</h2>
 				<p class="o-case-study__text">{{ team.text }}</p>
-				<dl class="o-case-study__numbers">
-					{% for item in team.items %}<div><dt>{{ item[1] }}</dt><dd>{{ item[0] }}</dd></div>{% endfor %}
-				</dl>
+				{% if team.items %}
+					<dl class="o-case-study__numbers">
+						{% for item in team.items %}<div><dt>{{ item[1] }}</dt><dd>{{ item[0] }}</dd></div>{% endfor %}
+					</dl>
+				{% endif %}
 			</div>
 		</section>
 
@@ -95,5 +140,12 @@
 				<a class="o-case-study__button o-case-study__button--ghost" href="{{ back.url }}">{{ back.label }}</a>
 			</p>
 		</aside>
+
+		{% if next %}
+			<a class="o-case-study__next" href="{{ next.url }}">
+				<span class="o-case-study__next-label">Next case study</span>
+				<span class="o-case-study__next-title">{{ next.title }} <span aria-hidden="true">→</span></span>
+			</a>
+		{% endif %}
 	</div>
 </article>

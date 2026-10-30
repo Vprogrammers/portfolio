@@ -1,0 +1,37 @@
+{# A design token pipeline: a colour token edited in Figma lands in the tokens JSON, passes CI validation, goes through Style Dictionary and comes out as Web, iOS and Android code at once, recolouring the same button on every platform. Fills its positioned parent. #}
+<div class="m-token-flow" aria-hidden="true">
+	<div class="m-token-flow__stage">
+		{# Source: Figma with Tokens Studio, and the token JSON it exports. #}
+		<div class="m-token-flow__source">
+			<p class="m-token-flow__label">{{ source.label }}</p>
+			<div class="m-token-flow__swatch"><i></i><span><b>{{ token.name }}</b><small><em>{{ token.from }}</em><em>{{ token.to }}</em></small></span></div>
+			<pre class="m-token-flow__json">{
+  "<b>{{ token.path }}</b>": {
+    "value": "<span class="m-token-flow__value"><em>{{ token.from }}</em><em>{{ token.to }}</em></span>",
+    "type": "color"
+  }
+}</pre>
+			<p class="m-token-flow__checks">{% for check in checks %}<span>✓ {{ check }}</span>{% endfor %}</p>
+		</div>
+
+		{# Style Dictionary in the middle, with packets travelling in and out. #}
+		<div class="m-token-flow__engine">
+			<i class="m-token-flow__wire m-token-flow__wire--in"><b></b></i>
+			<p class="m-token-flow__node">{{ engine }}</p>
+			{% for output in outputs %}<i class="m-token-flow__wire m-token-flow__wire--out m-token-flow__wire--{{ loop.index }}"><b></b></i>{% endfor %}
+		</div>
+
+		{# One generated file per platform, each with the same component. #}
+		<div class="m-token-flow__outputs">
+			{% for output in outputs %}
+				<div class="m-token-flow__output m-token-flow__output--{{ loop.index }}">
+					<p class="m-token-flow__platform"><span>{{ output.platform }}</span><small>{{ output.file }}</small></p>
+					<code class="m-token-flow__code">{{ output.before }}<span class="m-token-flow__value"><em>{{ output.from }}</em><em>{{ output.to }}</em></span>{{ output.after }}</code>
+					<span class="m-token-flow__button">{{ output.button }}</span>
+				</div>
+			{% endfor %}
+		</div>
+
+		<p class="m-token-flow__prs">{{ prs }}</p>
+	</div>
+</div>

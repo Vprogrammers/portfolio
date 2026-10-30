@@ -1,0 +1,525 @@
+/* stylelint-disable plugin/stylelint-bem-namics -- generated keyframe offsets and nth-child loops */
+@use 'sass:list';
+@use 'sass:math';
+
+// The whole story runs on one timeline; times below are seconds into it.
+$loop: 16;
+$mono: 'SF Mono', menlo, consolas, monospace;
+$from: #2457d6;
+$to: #0fa37f;
+$edit: 1.6;
+$json: 2.4;
+$check-times: (3, 3.4, 3.8);
+$wire-in: 4.2;
+$engine: 4.9;
+$out-times: (5.4, 5.8, 6.2);
+$prs: 7.2;
+$reset: 14.8;
+
+@function at($s) {
+	@return math.percentage(math.div($s, $loop));
+}
+
+// Hidden until $start, eased in over $in, kept until the reset, then faded out.
+@mixin appear($name, $start, $from: translateY(1cqh), $in: 0.3) {
+	@keyframes #{$name} {
+		0%,
+		#{at($start)} {
+			opacity: 0;
+			transform: $from;
+		}
+
+		#{at($start + $in)},
+		#{at($reset)} {
+			opacity: 1;
+			transform: none;
+		}
+
+		#{at($reset + 0.4)},
+		100% {
+			opacity: 0;
+			transform: $from;
+		}
+	}
+}
+
+// 1 for the value that is showing before the change, 0 for the other.
+@function shown($show, $before) {
+	@if ($show == old) == $before {
+		@return 1;
+	}
+
+	@return 0;
+}
+
+// The old value gives way to the new one at $t, and comes back at the reset.
+@mixin swap($name, $t, $show) {
+	@keyframes #{$name} {
+		0%,
+		#{at($t)} {
+			opacity: shown($show, true);
+		}
+
+		#{at($t + 0.2)},
+		#{at($reset)} {
+			opacity: shown($show, false);
+		}
+
+		#{at($reset + 0.4)},
+		100% {
+			opacity: shown($show, true);
+		}
+	}
+}
+
+// A colour that turns at $t, with a flash, and turns back at the reset.
+@mixin recolor($name, $t, $prop: background-color) {
+	@keyframes #{$name} {
+		0%,
+		#{at($t)} {
+			#{$prop}: $from;
+			box-shadow: 0 0 0 0 rgb(15 163 127 / 0);
+		}
+
+		#{at($t + 0.15)} {
+			box-shadow: 0 0 0 0.8cqh rgb(15 163 127 / 0.35);
+		}
+
+		#{at($t + 0.5)},
+		#{at($reset)} {
+			#{$prop}: $to;
+			box-shadow: 0 0 0 0 rgb(15 163 127 / 0);
+		}
+
+		#{at($reset + 0.4)},
+		100% {
+			#{$prop}: $from;
+		}
+	}
+}
+
+// A packet runs along a wire from 0 to 100%.
+@mixin packet($name, $t) {
+	@keyframes #{$name} {
+		0%,
+		#{at($t)} {
+			left: 0;
+			opacity: 0;
+		}
+
+		#{at($t + 0.05)} {
+			opacity: 1;
+		}
+
+		#{at($t + 0.5)} {
+			left: 100%;
+			opacity: 1;
+		}
+
+		#{at($t + 0.6)},
+		100% {
+			left: 100%;
+			opacity: 0;
+		}
+	}
+}
+
+@include recolor(token-flow-swatch, $edit);
+@include swap(token-flow-old-edit, $edit, old);
+@include swap(token-flow-new-edit, $edit, new);
+@include swap(token-flow-old-json, $json, old);
+@include swap(token-flow-new-json, $json, new);
+@include packet(token-flow-wire-in, $wire-in);
+
+@for $k from 1 through list.length($check-times) {
+	@include appear(token-flow-check-#{$k}, list.nth($check-times, $k), scale(0.6), 0.2);
+}
+
+@for $k from 1 through list.length($out-times) {
+	$t: list.nth($out-times, $k);
+
+	@include packet(token-flow-wire-#{$k}, $t - 0.5);
+	@include swap(token-flow-old-#{$k}, $t, old);
+	@include swap(token-flow-new-#{$k}, $t, new);
+	@include recolor(token-flow-button-#{$k}, $t + 0.1);
+}
+
+@include appear(token-flow-prs, $prs, translateY(2cqh), 0.4);
+
+@keyframes token-flow-json-line {
+	0%,
+	#{at($json - 0.1)},
+	#{at($json + 1.2)},
+	100% {
+		background: transparent;
+	}
+
+	#{at($json + 0.1)} {
+		background: rgb(15 163 127 / 0.3);
+	}
+}
+
+@keyframes token-flow-engine {
+	0%,
+	#{at($engine - 0.1)},
+	#{at($engine + 1.4)},
+	100% {
+		box-shadow: 0 0 0 0 rgb(94 234 212 / 0);
+	}
+
+	#{at($engine + 0.2)} {
+		box-shadow: 0 0 0 1.4cqh rgb(94 234 212 / 0.25), 0 0 5cqh rgb(94 234 212 / 0.5);
+	}
+}
+
+// The root fills its positioned parent; the parent sets --flow-w/-h/-x/-y.
+.m-token-flow {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	container: token-flow / size;
+	pointer-events: none;
+	background:
+		radial-gradient(circle at 1px 1px, rgb(255 255 255 / 0.07) 1px, transparent 1.5px) 0 0 / 3cqh 3cqh,
+		radial-gradient(ellipse 55% 60% at 66% 50%, rgb(15 163 127 / 0.18), transparent 70%),
+		linear-gradient(160deg, #0f1720, #090d12);
+	font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.m-token-flow__stage {
+	--w: var(--flow-w, 62cqw);
+	--h: var(--flow-h, 62cqh);
+
+	position: absolute;
+	left: var(--flow-x, 50%);
+	top: var(--flow-y, 50%);
+	display: grid;
+	grid-template-columns: 1fr 0.5fr 1.1fr;
+	align-items: center;
+	gap: 0 calc(var(--w) * 0.02);
+	width: var(--w);
+	height: var(--h);
+	transform: translate(-50%, -50%);
+	color: #e6edf3;
+}
+
+.m-token-flow__source,
+.m-token-flow__output {
+	border-radius: 1.4cqh;
+	background: rgb(22 30 40 / 0.92);
+	box-shadow: 0 2cqh 5cqh rgb(0 0 0 / 0.45), inset 0 0 0 0.15cqh rgb(255 255 255 / 0.06);
+}
+
+.m-token-flow__source {
+	display: flex;
+	flex-direction: column;
+	gap: 1.4cqh;
+	padding: 2cqh;
+
+	> p {
+		margin: 0;
+	}
+}
+
+.m-token-flow__label {
+	color: #8b98a5;
+	font-size: 1.3cqh;
+	font-weight: 600;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+.m-token-flow__swatch {
+	display: flex;
+	align-items: center;
+	gap: 1.4cqh;
+	padding: 1.2cqh;
+	border-radius: 1cqh;
+	background: rgb(255 255 255 / 0.05);
+
+	i {
+		flex: none;
+		width: 5cqh;
+		height: 5cqh;
+		border-radius: 1cqh;
+		background: $from;
+		animation: token-flow-swatch #{$loop}s ease-out infinite;
+	}
+
+	b {
+		display: block;
+		font-size: 1.6cqh;
+	}
+
+	small {
+		display: grid;
+		color: #8b98a5;
+		font: 1.4cqh/1.4 $mono;
+	}
+
+	em {
+		grid-area: 1 / 1;
+		font-style: normal;
+		animation: token-flow-old-edit #{$loop}s linear infinite;
+
+		&:last-child {
+			color: #5eead4;
+			animation: token-flow-new-edit #{$loop}s linear infinite;
+		}
+	}
+}
+
+.m-token-flow__json {
+	margin: 0;
+	padding: 1.2cqh 1.4cqh;
+	border-radius: 1cqh;
+	background: #0b1117;
+	color: #a5b3c1;
+	font: 1.35cqh/1.6 $mono;
+	white-space: pre;
+	animation: token-flow-json-line #{$loop}s ease-out infinite;
+
+	b {
+		color: #7dd3fc;
+		font-weight: 400;
+	}
+
+	em {
+		color: #fca5a5;
+		font-style: normal;
+		animation: token-flow-old-json #{$loop}s linear infinite;
+
+		&:last-child {
+			color: #5eead4;
+			animation: token-flow-new-json #{$loop}s linear infinite;
+		}
+	}
+}
+
+.m-token-flow__checks {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.8cqh;
+
+	span {
+		padding: 0.5cqh 1cqh;
+		border-radius: 2cqh;
+		background: rgb(15 163 127 / 0.18);
+		color: #5eead4;
+		font-size: 1.25cqh;
+		font-weight: 600;
+		opacity: 0;
+
+		@for $k from 1 through list.length($check-times) {
+			&:nth-child(#{$k}) {
+				animation: token-flow-check-#{$k} #{$loop}s cubic-bezier(0.3, 1.5, 0.5, 1) infinite;
+			}
+		}
+	}
+}
+
+// The engine column: wires in and out, and the Style Dictionary node.
+.m-token-flow__engine {
+	position: relative;
+	align-self: stretch;
+	display: grid;
+	place-items: center;
+}
+
+.m-token-flow__node {
+	position: relative;
+	z-index: 1;
+	margin: 0;
+	padding: 1.6cqh 1.4cqh;
+	border-radius: 1.2cqh;
+	background: linear-gradient(160deg, #134e4a, #0f2e2c);
+	color: #ccfbf1;
+	font-size: 1.5cqh;
+	font-weight: 700;
+	line-height: 1.25;
+	text-align: center;
+	box-shadow: inset 0 0 0 0.15cqh rgb(94 234 212 / 0.4);
+	animation: token-flow-engine #{$loop}s ease-out infinite;
+}
+
+.m-token-flow__wire {
+	position: absolute;
+	height: 0.25cqh;
+	background: rgb(255 255 255 / 0.14);
+	transform-origin: 0 50%;
+
+	b {
+		position: absolute;
+		top: 50%;
+		width: 1.4cqh;
+		height: 1.4cqh;
+		margin: -0.7cqh 0 0 -0.7cqh;
+		border-radius: 50%;
+		background: #5eead4;
+		box-shadow: 0 0 1.6cqh #5eead4;
+		opacity: 0;
+	}
+}
+
+.m-token-flow__wire--in {
+	left: -10%;
+	right: 50%;
+	top: 50%;
+
+	b {
+		animation: token-flow-wire-in #{$loop}s ease-in-out infinite;
+	}
+}
+
+// Three wires fan out to the outputs at a third, half and two thirds of the column.
+@for $k from 1 through 3 {
+	.m-token-flow__wire--#{$k} {
+		left: 50%;
+		top: 50%;
+		width: 62%;
+		transform: rotate(#{($k - 2) * 34}deg);
+
+		b {
+			animation: token-flow-wire-#{$k} #{$loop}s ease-in-out infinite;
+		}
+	}
+}
+
+.m-token-flow__outputs {
+	display: flex;
+	flex-direction: column;
+	gap: 1.6cqh;
+}
+
+.m-token-flow__output {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	align-items: center;
+	gap: 0.8cqh 1.4cqh;
+	padding: 1.4cqh 1.6cqh;
+}
+
+.m-token-flow__platform {
+	grid-column: 1 / -1;
+	display: flex;
+	justify-content: space-between;
+	margin: 0;
+	font-size: 1.4cqh;
+	font-weight: 700;
+
+	small {
+		color: #8b98a5;
+		font: 400 1.2cqh $mono;
+	}
+}
+
+.m-token-flow__code {
+	overflow: hidden;
+	color: #a5b3c1;
+	font: 1.3cqh/1.4 $mono;
+	white-space: nowrap;
+
+	em {
+		color: #fca5a5;
+		font-style: normal;
+	}
+}
+
+// Both values of a token share one slot, so the swap does not shift the line.
+.m-token-flow__value {
+	display: inline-grid;
+
+	em {
+		grid-area: 1 / 1;
+	}
+}
+
+.m-token-flow__button {
+	padding: 0.9cqh 1.6cqh;
+	border-radius: 0.8cqh;
+	background: $from;
+	color: #fff;
+	font-size: 1.3cqh;
+	font-weight: 700;
+	white-space: nowrap;
+}
+
+// Each platform keeps its own look: pill on iOS, rounded rectangle on Android.
+.m-token-flow__output--2 .m-token-flow__button {
+	border-radius: 3cqh;
+}
+
+.m-token-flow__output--3 .m-token-flow__button {
+	border-radius: 2cqh;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+@for $k from 1 through list.length($out-times) {
+	.m-token-flow__output--#{$k} {
+		.m-token-flow__code em {
+			animation: token-flow-old-#{$k} #{$loop}s linear infinite;
+
+			&:last-of-type {
+				color: #5eead4;
+				animation: token-flow-new-#{$k} #{$loop}s linear infinite;
+			}
+		}
+
+		.m-token-flow__button {
+			animation: token-flow-button-#{$k} #{$loop}s ease-out infinite;
+		}
+	}
+}
+
+.m-token-flow__prs {
+	position: absolute;
+	right: 0;
+	bottom: -6cqh;
+	margin: 0;
+	padding: 0.8cqh 1.6cqh;
+	border-radius: 2cqh;
+	background: rgb(15 163 127 / 0.2);
+	color: #5eead4;
+	font: 1.3cqh/1.2 $mono;
+	opacity: 0;
+	animation: token-flow-prs #{$loop}s ease-out infinite;
+}
+
+// Portrait parents: source above, outputs below, engine wires hidden.
+@container token-flow (aspect-ratio < 1) {
+	.m-token-flow__stage {
+		grid-template-columns: 1fr 1fr;
+		gap: 2cqh;
+	}
+
+	.m-token-flow__engine,
+	.m-token-flow__prs,
+	.m-token-flow__json,
+	.m-token-flow__code {
+		display: none;
+	}
+}
+
+// Reduced motion: the token already changed on every platform.
+@media (prefers-reduced-motion: reduce) {
+	.m-token-flow * {
+		/* stylelint-disable-next-line declaration-no-important -- overrides every generated story animation */
+		animation: none !important;
+	}
+
+	.m-token-flow__swatch i,
+	.m-token-flow__button {
+		background: $to;
+	}
+
+	.m-token-flow em:first-child,
+	.m-token-flow__code em:first-of-type {
+		opacity: 0;
+	}
+
+	.m-token-flow__checks span,
+	.m-token-flow__prs {
+		opacity: 1;
+	}
+}

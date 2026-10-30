@@ -934,6 +934,61 @@
 			}
 		},
 		{
+			"category": "Design system · Tokens · iOS · Android · Web",
+			"title": "Design Token Pipeline",
+			"summary": "An assessment of an enterprise design system that app teams in many countries build on. I analysed the iOS and Android libraries and proposed one automated token flow from Figma to Web, iOS and Android through Style Dictionary and CI, with accessibility keys and a safe path for renaming tokens.",
+			"tone": "green",
+			"variant": "tokens",
+			"duration": 16000,
+			"tokens": {
+				"source": {
+					"label": "Figma · Tokens Studio"
+				},
+				"token": {
+					"name": "Brand / Primary",
+					"path": "color.brand.primary",
+					"from": "#2457D6",
+					"to": "#0FA37F"
+				},
+				"checks": [
+					"schema",
+					"naming",
+					"duplicates"
+				],
+				"engine": "Style Dictionary",
+				"outputs": [
+					{
+						"platform": "Web",
+						"file": "tokens.css",
+						"before": "--brand-primary: ",
+						"from": "#2457d6",
+						"to": "#0fa37f",
+						"after": ";",
+						"button": "Continue"
+					},
+					{
+						"platform": "iOS",
+						"file": "Colors.swift",
+						"before": "Color(hex: ",
+						"from": "0x2457D6",
+						"to": "0x0FA37F",
+						"after": ")",
+						"button": "Continue"
+					},
+					{
+						"platform": "Android",
+						"file": "Color.kt",
+						"before": "Color(",
+						"from": "0xFF2457D6",
+						"to": "0xFF0FA37F",
+						"after": ")",
+						"button": "Continue"
+					}
+				],
+				"prs": "PRs opened → web/* · ios/* · android/*"
+			}
+		},
+		{
 			"category": "Open source · Accessibility",
 			"title": "a11yOtp",
 			"summary": "Accessible native one-time-code input for Android and iOS.",

@@ -33,6 +33,8 @@
           {% pattern name='pageant-stage' data=project.pageant %}
         {% elseif project.kids %}
           {% pattern name='kids-tv' data=project.kids %}
+        {% elseif project.tokens %}
+          {% pattern name='token-flow' data=project.tokens %}
         {% elseif project.crew %}
           {% pattern name='crew-call' data=project.crew %}
         {% elseif project.radio %}

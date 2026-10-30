@@ -45,6 +45,7 @@ import './patterns/molecules/phone-scroll';
 import './patterns/molecules/salon-scene';
 import './patterns/molecules/scan-view';
 import './patterns/molecules/swipe-deck';
+import './patterns/molecules/token-flow';
 import './patterns/molecules/web-wrap';
 import './patterns/organisms/project-grid';
 import './patterns/organisms/project-player';

@@ -1622,6 +1622,38 @@
 			}
 		},
 		{
+			"category": "Android · Java · JWT",
+			"title": "DigitalPass",
+			"summary": "A digital pass prototype for Android: accounts and passes backed by signed JWT credentials, decoded on the device, with live expiry countdowns, online status and credential renewal.",
+			"tone": "violet",
+			"variant": "pass",
+			"duration": 16000,
+			"pass": {
+				"brand": "Digital Pass",
+				"holder": {
+					"initials": "MK",
+					"name": "Mila Kovač",
+					"pass": "Access pass · Level 2"
+				},
+				"expires": "User expiration time",
+				"countdown": [
+					"04:00",
+					"00:03",
+					"00:02",
+					"00:01",
+					"00:00"
+				],
+				"jwt": {
+					"label": "Pass credential · JWT",
+					"header": "eyJhbGciOiJFUzI1NiJ9",
+					"payload": "eyJzdWIiOiJtay0yMTQiLCJleHAiOjE3MzA0fQ",
+					"signature": "MEUCIQD4x9…",
+					"claims": "{\n  \"sub\": \"mk-214\",\n  \"type\": \"pass\",\n  \"exp\": 1730400000\n}"
+				},
+				"refresh": "Get Pass Credential"
+			}
+		},
+		{
 			"category": "Open source · Accessibility",
 			"title": "a11yOtp",
 			"summary": "An open-source, accessible one-time-code input for Android and iOS, built natively on each platform.",

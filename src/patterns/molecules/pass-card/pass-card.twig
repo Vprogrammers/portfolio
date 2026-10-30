@@ -1,0 +1,21 @@
+{# A digital pass backed by a signed credential: the pass card flips to show its JWT split into header, payload and signature, the expiry counts down to zero, and a fresh credential is issued and the card turns valid again. Fills its positioned parent. #}
+<div class="m-pass-card" aria-hidden="true">
+	<div class="m-pass-card__stage">
+		<div class="m-pass-card__flip">
+			<div class="m-pass-card__face m-pass-card__face--front">
+				<p class="m-pass-card__top"><b>{{ brand }}</b><span class="m-pass-card__status"><i></i><span class="m-pass-card__state"><em>Online</em><em>Expired</em></span></span></p>
+				<span class="m-pass-card__avatar">{{ holder.initials }}</span>
+				<p class="m-pass-card__name">{{ holder.name }}</p>
+				<p class="m-pass-card__type">{{ holder.pass }}</p>
+				<p class="m-pass-card__timer"><small>{{ expires }}</small><b>{% for t in countdown %}<em>{{ t }}</em>{% endfor %}</b></p>
+				<span class="m-pass-card__qr"></span>
+			</div>
+			<div class="m-pass-card__face m-pass-card__face--back">
+				<p class="m-pass-card__label">{{ jwt.label }}</p>
+				<p class="m-pass-card__jwt"><span class="is-header">{{ jwt.header }}</span>.<span class="is-payload">{{ jwt.payload }}</span>.<span class="is-signature">{{ jwt.signature }}</span></p>
+				<pre class="m-pass-card__claims">{{ jwt.claims }}</pre>
+			</div>
+		</div>
+		<span class="m-pass-card__refresh">{{ refresh }}</span>
+	</div>
+</div>

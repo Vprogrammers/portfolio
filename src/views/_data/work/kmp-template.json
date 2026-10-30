@@ -1,0 +1,219 @@
+{
+	"_nitro": {
+		"pageTitle": "KMP Template — case study · Viktor Nešić"
+	},
+	"meta": {
+		"description": "A production-ready starting point for Kotlin Multiplatform apps: a modular clean architecture with YAMVIP and Anubis, a 100% Compose Android app, a 100% SwiftUI iOS app and CI from the first commit.",
+		"path": "/work-kmp-template"
+	},
+	"intro": {
+		"name": "Viktor Nešić",
+		"role": "Mobile & Frontend Developer"
+	},
+	"links": [
+		{
+			"label": "GitHub",
+			"icon": "github",
+			"url": "https://github.com/Vprogrammers"
+		},
+		{
+			"label": "LinkedIn",
+			"icon": "linkedin",
+			"url": "https://www.linkedin.com/in/viktor-nesic"
+		},
+		{
+			"label": "v.nesic.developer@gmail.com",
+			"icon": "mail",
+			"url": "/about#contact-form"
+		}
+	],
+	"employers": {
+		"merkle": {
+			"label": "Delivered at",
+			"name": "Merkle",
+			"note": "Enterprise mobile & digital engineering"
+		}
+	},
+	"caseStudy": {
+		"kicker": "Case study · Kotlin Multiplatform · Starter · Internal",
+		"title": "KMP Template",
+		"lead": "A production-ready starting point for Kotlin Multiplatform apps: a modular clean architecture with YAMVIP and Anubis, a 100% Compose Android app, a 100% SwiftUI iOS app and CI from the first commit.",
+		"employer": "merkle",
+		"sceneType": "kit",
+		"scene": {
+			"command": "mise install && ./gradlew build",
+			"layers": [
+				{
+					"label": "apps",
+					"hue": 150,
+					"blocks": [
+						{
+							"name": "androidApp",
+							"note": "Compose · NavHost"
+						},
+						{
+							"name": "iosApp",
+							"note": "SwiftUI · Tuist"
+						}
+					]
+				},
+				{
+					"label": "shared",
+					"hue": 265,
+					"blocks": [
+						{
+							"name": "features",
+							"note": "presenters"
+						},
+						{
+							"name": "domain",
+							"note": "use cases"
+						},
+						{
+							"name": "data",
+							"note": "repositories"
+						}
+					]
+				},
+				{
+					"label": "core & libraries",
+					"hue": 215,
+					"blocks": [
+						{
+							"name": "YAMVIP",
+							"note": "MVI"
+						},
+						{
+							"name": "Anubis",
+							"note": "SDUI"
+						},
+						{
+							"name": "Koin · SQLDelight",
+							"note": "DI · DB"
+						},
+						{
+							"name": "Moko",
+							"note": "resources"
+						}
+					]
+				}
+			],
+			"ci": [
+				"android build",
+				"ios build",
+				"unit tests",
+				"version bump"
+			]
+		},
+		"facts": [
+			{
+				"label": "Context",
+				"value": "Internal engineering at Merkle"
+			},
+			{
+				"label": "My role",
+				"value": "Contributor: implementation and design"
+			},
+			{
+				"label": "Period",
+				"value": "Sep 2023 – Oct 2024 (approx.)"
+			},
+			{
+				"label": "Platform",
+				"value": "Kotlin Multiplatform · Compose · SwiftUI"
+			}
+		],
+		"brief": {
+			"title": "The idea",
+			"text": [
+				"Every new KMP project used to start with the same week of setup. The template packs the team's decisions into a repository that builds on both platforms from day one.",
+				"New apps start from proven structure instead of a blank page."
+			]
+		},
+		"contributions": {
+			"title": "What I did",
+			"items": [
+				"Worked on the multi-module clean architecture and the Gradle convention plugin.",
+				"Wired in SQLDelight, Koin dependency injection and Moko resources.",
+				"Integrated YAMVIP presenters and Anubis server-driven UI.",
+				"Worked on the Compose Android app with NavHost and the SwiftUI iOS app with NavigationStack, generated with Tuist.",
+				"Set up CI that builds both apps, with the version from a file and the build number from CI."
+			]
+		},
+		"architecture": {
+			"title": "What's inside",
+			"layers": [
+				{
+					"name": "Apps",
+					"items": [
+						"Android: Compose, NavHost",
+						"iOS: SwiftUI, NavigationStack, Tuist"
+					]
+				},
+				{
+					"name": "Shared features",
+					"items": [
+						"YAMVIP presenters",
+						"Anubis SDUI",
+						"Samples: AppMenu, RandomUser"
+					]
+				},
+				{
+					"name": "Core",
+					"items": [
+						"Clean architecture modules",
+						"Koin",
+						"SQLDelight",
+						"Moko resources"
+					]
+				},
+				{
+					"name": "Tooling",
+					"items": [
+						"Gradle convention plugin",
+						"mise tool versions",
+						"CI for Android and iOS"
+					]
+				}
+			]
+		},
+		"stack": {
+			"title": "Stack",
+			"items": [
+				"Kotlin Multiplatform",
+				"Compose",
+				"SwiftUI",
+				"Tuist",
+				"Koin",
+				"SQLDelight",
+				"Moko resources",
+				"CI/CD"
+			]
+		},
+		"team": {
+			"title": "Team",
+			"text": "An internal engineering group of five to nine people, depending on client assignments. I contributed implementation and shared in the technical decisions. This is internal reference work, not production software adopted by a client."
+		},
+		"outcome": {
+			"title": "The result",
+			"text": "A template the team could start new KMP projects from, with architecture, tooling and CI already decided."
+		},
+		"back": {
+			"label": "All works",
+			"url": "/#works"
+		},
+		"cta": {
+			"title": "Have a project like this?",
+			"text": "I build and rescue native iOS, Android and Kotlin Multiplatform apps, and I'm happy to look at yours.",
+			"label": "Get in touch",
+			"url": "/about#contact-form"
+		},
+		"next": {
+			"title": "Hansgrohe ProApp",
+			"url": "/work-proapp"
+		}
+	},
+	"analytics": {
+		"gaMeasurementId": "G-ZM0VPP0G2C"
+	}
+}

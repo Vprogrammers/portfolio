@@ -514,6 +514,47 @@
 			}
 		},
 		{
+			"category": "iOS · Swift · UIKit · Code review",
+			"title": "KOCH Scan App",
+			"summary": "A B2B scanner app for a Swiss building supplier: tradespeople scan the barcode on KOCH labels, add articles to a list under a commission and order them. I reviewed the codebase ahead of taking over its maintenance.",
+			"tone": "blue",
+			"variant": "scan",
+			"duration": 16000,
+			"scan": {
+				"logo": "/assets/img/projects/koch-logo.png",
+				"hint": "EAN-Strichcode scannen",
+				"tabs": [
+					"SCANNEN",
+					"LISTE",
+					"BESTELLEN",
+					"STANDORTE",
+					"NEWS"
+				],
+				"commission": "Baustelle Zürich-West",
+				"items": [
+					{
+						"name": "Möbelgriff Edelstahl 128 mm",
+						"number": "KOCH 470.128",
+						"ean": "7640123456789",
+						"amounts": [
+							1,
+							2,
+							3
+						]
+					},
+					{
+						"name": "Topfband 110° mit Dämpfung",
+						"number": "KOCH 312.110",
+						"ean": "7640987654321",
+						"amounts": [
+							1,
+							2
+						]
+					}
+				]
+			}
+		},
+		{
 			"category": "Open source · Accessibility",
 			"title": "a11yOtp",
 			"summary": "Accessible native one-time-code input for Android and iOS.",

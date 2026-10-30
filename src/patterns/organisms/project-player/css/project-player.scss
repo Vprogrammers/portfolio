@@ -142,6 +142,7 @@
 .o-project-player__slide[data-scene='web']::before,
 .o-project-player__slide[data-scene='leads']::before,
 .o-project-player__slide[data-scene='salon']::before,
+.o-project-player__slide[data-scene='scan']::before,
 .o-project-player__slide[data-scene='live']::before {
 	display: none;
 }
@@ -152,6 +153,7 @@
 .o-project-player__slide[data-scene='web']::after,
 .o-project-player__slide[data-scene='leads']::after,
 .o-project-player__slide[data-scene='salon']::after,
+.o-project-player__slide[data-scene='scan']::after,
 .o-project-player__slide[data-scene='live']::after {
 	background:
 		radial-gradient(ellipse 48% 70% at 0% 100%, rgb(7 13 23 / 0.85) 0%, rgb(7 13 23 / 0.45) 50%, transparent 100%),
@@ -271,6 +273,11 @@
 	z-index: -2;
 }
 
+// KOCH scan view: the camera fills the slide behind the caption.
+.o-project-player__slide .m-scan-view {
+	z-index: -2;
+}
+
 // PhotoStory crew call: the two phones right of the caption, with room for the chip beside them.
 .o-project-player__slide .m-crew-call {
 	--phone-h: 62cqh;
@@ -295,6 +302,7 @@
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-web-wrap *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-lead-flow *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-salon-scene *,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-scan-view *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-live-room * {
 	animation-play-state: paused;
 }
@@ -304,6 +312,7 @@
 .o-project-player[data-paused='true'] .m-web-wrap *,
 .o-project-player[data-paused='true'] .m-lead-flow *,
 .o-project-player[data-paused='true'] .m-salon-scene *,
+.o-project-player[data-paused='true'] .m-scan-view *,
 .o-project-player[data-paused='true'] .m-live-room * {
 	animation-play-state: paused;
 }

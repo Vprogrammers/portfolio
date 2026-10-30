@@ -1,0 +1,17 @@
+{# Contact form. With a Web3Forms `accessKey` it sends the message directly; without one it opens the visitor's mail app with the message filled in, addressed to `email`. #}
+<form class="m-contact-form js-contact-form" id="{{ id|default('contact-form') }}" action="https://api.web3forms.com/submit" method="post" data-email="{{ email }}" data-access-key="{{ accessKey|default('') }}" novalidate>
+	<h2 class="m-contact-form__title">{{ title }}</h2>
+	<p class="m-contact-form__text">{{ text }}</p>
+	<div class="m-contact-form__row">
+		<label class="m-contact-form__field"><span>Name</span><input type="text" name="name" autocomplete="name" required></label>
+		<label class="m-contact-form__field"><span>Email</span><input type="email" name="email" autocomplete="email" required></label>
+	</div>
+	<label class="m-contact-form__field"><span>What can I help with?</span><textarea name="message" rows="5" required></textarea></label>
+	{# Spam trap: people never see or fill this field. #}
+	<input class="m-contact-form__trap" type="checkbox" name="botcheck" tabindex="-1" aria-hidden="true">
+	<p class="m-contact-form__actions">
+		<button class="m-contact-form__submit" type="submit">Send message</button>
+		<span class="m-contact-form__alt">or write to <a href="mailto:{{ email }}">{{ email }}</a></span>
+	</p>
+	<p class="m-contact-form__status" role="status" aria-live="polite"></p>
+</form>

@@ -20,7 +20,7 @@
 		{
 			"label": "v.nesic.developer@gmail.com",
 			"icon": "mail",
-			"url": "mailto:v.nesic.developer@gmail.com"
+			"url": "/about#contact-form"
 		}
 	],
 	"projects": [
@@ -1905,5 +1905,8 @@
 			"name": "Merkle",
 			"note": "Enterprise mobile & digital engineering"
 		}
+	},
+	"analytics": {
+		"cloudflareToken": ""
 	}
 }

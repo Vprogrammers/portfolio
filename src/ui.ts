@@ -38,6 +38,7 @@ import './patterns/molecules/city-chat';
 import './patterns/molecules/club-floor';
 import './patterns/molecules/code-review';
 import './patterns/molecules/coin-board';
+import './patterns/molecules/contact-form';
 import './patterns/molecules/crew-call';
 import './patterns/molecules/device-scene';
 import './patterns/molecules/driver-club';

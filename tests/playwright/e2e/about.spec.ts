@@ -9,8 +9,8 @@ test('the name in the hero opens the About page', async ({ page }) => {
 
 test('the About page offers email and LinkedIn contact', async ({ page }) => {
   await page.goto('/about');
-  await expect(page.locator('.o-about__cta a[href="mailto:v.nesic.developer@gmail.com"]')).toBeVisible();
-  await expect(page.locator('.o-about__cta a[href="https://www.linkedin.com/in/viktor-nesic"]')).toBeVisible();
+  await expect(page.locator('.m-contact-form a[href="mailto:v.nesic.developer@gmail.com"]')).toBeVisible();
+  await expect(page.locator('.o-about__elsewhere a[href="https://www.linkedin.com/in/viktor-nesic"]')).toBeVisible();
   await expect(page.locator('.o-site-header__nav a[href="/#works"]')).toBeVisible();
 });
 
@@ -45,4 +45,17 @@ test('the progress line between the hero and the works sticks to the top and fil
   await page.evaluate(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' as ScrollBehavior }));
   await expect.poll(progress).toBe(1);
   await expect.poll(() => line.evaluate((el) => Math.round(el.getBoundingClientRect().top))).toBe(0);
+});
+
+test('the contact form validates and, without a service key, opens the mail app with the message', async ({ page }) => {
+  await page.goto('/about#contact-form');
+  const form = page.locator('#contact-form');
+  await form.getByRole('button', { name: 'Send message' }).click();
+  await expect(form.locator('.m-contact-form__status')).toHaveText('');
+
+  await form.getByLabel('Name').fill('Ana Test');
+  await form.getByLabel('Email').fill('ana@example.com');
+  await form.getByLabel('What can I help with?').fill('An iOS app for our shop.');
+  await form.getByRole('button', { name: 'Send message' }).click();
+  await expect(form.locator('.m-contact-form__status')).toContainText('mail app');
 });

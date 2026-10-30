@@ -1891,12 +1891,258 @@
 			}
 		},
 		{
+			"category": "Mobile · Cleaning services",
+			"title": "Houseleek Renhold",
+			"summary": "A presentation app for a Norwegian cleaning company: every service, from homes and offices to stairs, windows and car care, with photos, a short description and a direct line to book.",
+			"tone": "teal",
+			"hero": false,
+			"scene": {
+				"pattern": "wipe-clean",
+				"logo": "/assets/img/projects/houseleek-logo.png",
+				"cta": "Get started",
+				"services": [
+					{
+						"icon": "🏠",
+						"name": "Home cleaning",
+						"note": "Daily and regular"
+					},
+					{
+						"icon": "📦",
+						"name": "Move-out",
+						"note": "Empty homes, top to bottom"
+					},
+					{
+						"icon": "🛋️",
+						"name": "Furniture & carpets",
+						"note": "Deep stain removal"
+					},
+					{
+						"icon": "🚗",
+						"name": "Car care",
+						"note": "Inside and out"
+					},
+					{
+						"icon": "🏢",
+						"name": "Offices",
+						"note": "Daily or weekly"
+					},
+					{
+						"icon": "🪜",
+						"name": "Stairs",
+						"note": "Housing co-ops"
+					},
+					{
+						"icon": "🪟",
+						"name": "Windows",
+						"note": "Service agreements"
+					},
+					{
+						"icon": "🌿",
+						"name": "Garden & facade",
+						"note": "And more on request"
+					}
+				]
+			}
+		},
+		{
+			"category": "Mobile · Matchmaking",
+			"title": "PerfectMatrimony",
+			"summary": "A matchmaking app for an Indian client: members fill in a detailed profile, and the app searches the database and suggests partners whose details match, with the community and family preferences that matter in Indian marriages.",
+			"tone": "red",
+			"hero": false,
+			"scene": {
+				"pattern": "match-mandala",
+				"fields": [
+					"Age",
+					"Community",
+					"Language",
+					"City",
+					"Family"
+				],
+				"people": [
+					{
+						"initial": "A",
+						"name": "Arjun",
+						"values": [
+							"29",
+							"Matches",
+							"Hindi",
+							"Pune",
+							"Joint"
+						]
+					},
+					{
+						"initial": "P",
+						"name": "Priya",
+						"values": [
+							"27",
+							"Matches",
+							"Hindi",
+							"Mumbai",
+							"Joint"
+						]
+					}
+				],
+				"score": "94% match",
+				"banner": "It's a match!"
+			}
+		},
+		{
 			"category": "Open source · Accessibility",
 			"title": "a11yOtp",
-			"summary": "An open-source, accessible one-time-code input for Android and iOS, built natively on each platform.",
+			"summary": "An open-source, accessible one-time-code input for Android and iOS: one real text field drawn as boxes, so screen readers, SMS autofill and paste treat it as a single field.",
 			"tone": "blue",
 			"url": "https://github.com/Vprogrammers/a11yOtp",
-			"hero": false
+			"hero": false,
+			"scene": {
+				"pattern": "otp-sms",
+				"sms": {
+					"app": "Messages · now",
+					"from": "Bank",
+					"text": "Your sign-in code is 482913. Do not share it."
+				},
+				"title": "Enter the code",
+				"hint": "We sent a 6-digit code to your phone.",
+				"code": "482913",
+				"chip": "From Messages  482 913",
+				"verify": "Verify",
+				"verified": "Verified ✓",
+				"reader": [
+					"Verification code, text field, 6 digits",
+					"Code entered, 6 of 6 digits",
+					"Verify, button. Code verified"
+				]
+			}
+		},
+		{
+			"category": "Open source · AI agents",
+			"title": "Mobile A11y Agent Skills",
+			"summary": "Accessibility agents and skills for coding agents: they implement, test and review native Android, iOS and Kotlin Multiplatform UI, mapping findings to WCAG 2.2 and the EAA without false compliance claims.",
+			"tone": "violet",
+			"url": "https://github.com/Vprogrammers/mobile-a11y-agent-skills",
+			"hero": false,
+			"scene": {
+				"pattern": "agent-review",
+				"title": "claude · sign-in-feature",
+				"lines": [
+					[
+						"cmd",
+						"/plugin install mobile-a11y-agent-skills@vprogrammers-mobile-a11y"
+					],
+					[
+						"cmd",
+						"Make the sign-in flow accessible on Android and iOS"
+					],
+					[
+						"agent",
+						"kmp-a11y-architect → shared contract for labels and errors"
+					],
+					[
+						"agent",
+						"android-a11y-engineer · ios-a11y-engineer"
+					],
+					[
+						"high",
+						"High · Error message is not announced (no live region)"
+					],
+					[
+						"high",
+						"High · Password field loses focus after the error"
+					],
+					[
+						"medium",
+						"Medium · “Show password” icon is 36 pt; needs 44 pt"
+					],
+					[
+						"fix",
+						"liveRegion = Polite · UIAccessibility.post(.announcement)"
+					],
+					[
+						"fix",
+						"Focus returns to the field; target enlarged"
+					],
+					[
+						"agent",
+						"accessibility-reviewer → independent review"
+					],
+					[
+						"ok",
+						"0 blocking issues · WCAG 2.2 AA mapped"
+					]
+				],
+				"badges": [
+					"5 agents",
+					"6 skills",
+					"Compose · Views",
+					"SwiftUI · UIKit",
+					"WCAG 2.2"
+				]
+			}
+		},
+		{
+			"category": "Open source · AI agents",
+			"title": "Mobile A11y Agent Skills Lite",
+			"summary": "The copy-ready edition of the a11y agent skills: drop them into Claude Code, Codex, Cursor or another agent with one command and get accessibility reviews of mobile screens.",
+			"tone": "violet",
+			"url": "https://github.com/Vprogrammers/mobile-a11y-agent-skills-lite",
+			"hero": false,
+			"scene": {
+				"pattern": "agent-review",
+				"title": "terminal · checkout-screen",
+				"lines": [
+					[
+						"cmd",
+						"npx skills add Vprogrammers/mobile-a11y-agent-skills-lite --skill '*' -y"
+					],
+					[
+						"note",
+						"Installed 6 skills: mobile-a11y-workflow, -review, android-a11y, ios-a11y, kmp-a11y, -testing"
+					],
+					[
+						"cmd",
+						"Review the checkout screen for accessibility"
+					],
+					[
+						"agent",
+						"mobile-a11y-review · Compose + SwiftUI"
+					],
+					[
+						"high",
+						"High · Pay button has no accessible name (TalkBack: “Button”)"
+					],
+					[
+						"medium",
+						"Medium · Quantity stepper is 40 dp; needs 48 dp"
+					],
+					[
+						"medium",
+						"Medium · Price text does not scale with Dynamic Type"
+					],
+					[
+						"fix",
+						"contentDescription + Modifier.minimumInteractiveComponentSize()"
+					],
+					[
+						"fix",
+						".dynamicTypeSize(...) on the price label"
+					],
+					[
+						"agent",
+						"Re-review"
+					],
+					[
+						"ok",
+						"No open issues · device check still needed for VoiceOver"
+					]
+				],
+				"badges": [
+					"npx skills add",
+					"Claude Code",
+					"Codex",
+					"Cursor",
+					"TalkBack · VoiceOver"
+				]
+			}
 		}
 	],
 	"employers": {

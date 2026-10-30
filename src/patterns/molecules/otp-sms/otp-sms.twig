@@ -1,0 +1,16 @@
+{# One-time code sign-in on a phone: an SMS with the code slides in, the code fills the boxes digit by digit while a screen-reader caption counts along, and the Verify button confirms. Fills its positioned parent. #}
+<div class="m-otp-sms" aria-hidden="true">
+	<div class="m-otp-sms__phone">
+		<div class="m-otp-sms__sms"><span class="m-otp-sms__app">{{ sms.app }}</span><b>{{ sms.from }}</b><span>{{ sms.text }}</span></div>
+		<p class="m-otp-sms__title">{{ title }}</p>
+		<p class="m-otp-sms__hint">{{ hint }}</p>
+		<div class="m-otp-sms__boxes">
+			{% for digit in code|split('') %}<span class="m-otp-sms__box m-otp-sms__box--{{ loop.index }}"><i>{{ digit }}</i></span>{% endfor %}
+		</div>
+		<span class="m-otp-sms__chip">{{ chip }}</span>
+		<span class="m-otp-sms__verify"><b>{{ verify }}</b><b>{{ verified }}</b></span>
+	</div>
+	<p class="m-otp-sms__reader">
+		{% for line in reader %}<span class="m-otp-sms__said m-otp-sms__said--{{ loop.index }}">{{ line }}</span>{% endfor %}
+	</p>
+</div>

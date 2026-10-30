@@ -1,0 +1,16 @@
+{# A cleaning company's services behind fogged glass: a squeegee wipes each row clean, revealing the services with a sparkle, under the company's logo. Fills its positioned parent. #}
+<div class="m-wipe-clean" aria-hidden="true">
+	<div class="m-wipe-clean__stage">
+		<img class="m-wipe-clean__logo" src="{{ logo }}" alt="" loading="lazy" decoding="async">
+		{% for row in services|batch(4) %}
+			<div class="m-wipe-clean__row m-wipe-clean__row--{{ loop.index }}">
+				{% for service in row %}
+					<div class="m-wipe-clean__tile"><span class="m-wipe-clean__icon">{{ service.icon }}</span><b>{{ service.name }}</b><small>{{ service.note }}</small><i class="m-wipe-clean__sparkle"></i></div>
+				{% endfor %}
+				<i class="m-wipe-clean__fog"></i>
+				<i class="m-wipe-clean__squeegee"></i>
+			</div>
+		{% endfor %}
+		<span class="m-wipe-clean__cta">{{ cta }}</span>
+	</div>
+</div>

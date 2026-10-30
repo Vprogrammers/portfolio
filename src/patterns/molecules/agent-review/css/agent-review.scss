@@ -1,0 +1,237 @@
+/* stylelint-disable plugin/stylelint-bem-namics -- generated keyframe offsets and nth-child loops */
+@use 'sass:math';
+
+// One timeline; line n appears at $start + (n - 1) * $step and stays until $reset.
+$loop: 14;
+$lines: 12;
+$start: 0.6;
+$step: 0.9;
+$reset: 12.8;
+$accent: #9b8cff;
+
+@function at($s) {
+	@return math.percentage(math.div($s, $loop));
+}
+
+@for $n from 1 through $lines {
+	$t: $start + ($n - 1) * $step;
+
+	@keyframes agent-review-line-#{$n} {
+		0%,
+		#{at($t)},
+		#{at($reset)},
+		100% {
+			opacity: 0;
+			transform: translateX(-1cqh);
+		}
+
+		#{at($t + 0.2)},
+		#{at($reset - 0.2)} {
+			opacity: 1;
+			transform: none;
+		}
+	}
+}
+
+@keyframes agent-review-caret {
+	50% {
+		opacity: 0;
+	}
+}
+
+.m-agent-review {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	container: agent-review / size;
+	pointer-events: none;
+	background:
+		radial-gradient(ellipse 55% 70% at 55% 40%, rgb(155 140 255 / 0.28), transparent 70%),
+		linear-gradient(160deg, #15122b, #08070f);
+	font-family: 'SF Mono', Menlo, Consolas, monospace;
+}
+
+.m-agent-review__window {
+	position: absolute;
+	left: var(--agent-x, 50%);
+	top: 46%;
+	width: min(88cqw, 120cqh);
+	overflow: hidden;
+	border: 0.2cqh solid rgb(255 255 255 / 0.12);
+	border-radius: 1.6cqh;
+	background: rgb(10 9 20 / 0.92);
+	box-shadow: 0 3cqh 8cqh rgb(0 0 0 / 0.5);
+	transform: translate(-50%, -50%);
+}
+
+.m-agent-review__bar {
+	display: flex;
+	gap: 0.8cqh;
+	align-items: center;
+	margin: 0;
+	padding: 1.2cqh 1.6cqh;
+	background: rgb(255 255 255 / 0.05);
+	color: rgb(255 255 255 / 0.5);
+	font-size: 1.3cqh;
+
+	i {
+		width: 1.2cqh;
+		height: 1.2cqh;
+		border-radius: 50%;
+		background: #ff5f57;
+
+		&:nth-child(2) {
+			background: #febc2e;
+		}
+
+		&:nth-child(3) {
+			background: #28c840;
+		}
+	}
+
+	span {
+		margin-left: 1cqh;
+	}
+}
+
+.m-agent-review__log {
+	display: grid;
+	gap: 0.9cqh;
+	min-height: 52cqh;
+	margin: 0;
+	padding: 2cqh 2.4cqh 2.6cqh;
+	list-style: none;
+	color: rgb(255 255 255 / 0.85);
+	font-size: 1.55cqh;
+	line-height: 1.35;
+	align-content: start;
+}
+
+.m-agent-review__line {
+	opacity: 0;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+	&::before {
+		display: inline-block;
+		width: 2.6cqh;
+	}
+}
+
+@for $n from 1 through $lines {
+	.m-agent-review__line:nth-child(#{$n}) {
+		animation: agent-review-line-#{$n} #{$loop}s ease-out infinite;
+	}
+}
+
+.m-agent-review__line--cmd {
+	color: #fff;
+
+	&::before {
+		content: '❯';
+		color: $accent;
+	}
+}
+
+.m-agent-review__line--agent {
+	color: $accent;
+
+	&::before {
+		content: '↳';
+	}
+}
+
+.m-agent-review__line--high {
+	color: #ff8a8a;
+
+	&::before {
+		content: '●';
+	}
+}
+
+.m-agent-review__line--medium {
+	color: #ffc66b;
+
+	&::before {
+		content: '●';
+	}
+}
+
+.m-agent-review__line--fix {
+	color: #7fd4ff;
+
+	&::before {
+		content: '✎';
+	}
+}
+
+.m-agent-review__line--ok {
+	color: #6ee7a0;
+	font-weight: 700;
+
+	&::before {
+		content: '✓';
+	}
+
+	// A blinking caret after the final verdict.
+	&:last-child::after {
+		content: '';
+		display: inline-block;
+		width: 0.9cqh;
+		height: 1.7cqh;
+		margin-left: 0.8cqh;
+		vertical-align: -0.3cqh;
+		background: #6ee7a0;
+		animation: agent-review-caret 1s steps(1) infinite;
+	}
+}
+
+.m-agent-review__line--note {
+	color: rgb(255 255 255 / 0.5);
+
+	&::before {
+		content: '';
+	}
+}
+
+.m-agent-review__badges {
+	position: absolute;
+	left: var(--agent-x, 50%);
+	bottom: 3cqh;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 1cqh;
+	width: 90cqw;
+	margin: 0;
+	transform: translateX(-50%);
+
+	span {
+		padding: 0.6cqh 1.4cqh;
+		border: 0.2cqh solid rgb(155 140 255 / 0.5);
+		border-radius: 2cqh;
+		color: #d9d3ff;
+		font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+		font-size: 1.3cqh;
+	}
+}
+
+@container agent-review (aspect-ratio < 1) {
+	.m-agent-review__window {
+		width: 150cqw;
+		transform: translate(-50%, -50%) scale(0.6);
+	}
+}
+
+// Reduced motion: the whole session at once.
+@media (prefers-reduced-motion: reduce) {
+	.m-agent-review * {
+		/* stylelint-disable-next-line declaration-no-important -- overrides every generated story animation */
+		animation: none !important;
+	}
+
+	.m-agent-review__line {
+		opacity: 1;
+	}
+}

@@ -237,8 +237,10 @@ $max-frames: 12;
 	}
 }
 
+// Matches the [data-count] cycle selectors so it wins over them.
 @media (prefers-reduced-motion: reduce) {
-	.m-device-scene__frame {
+	.m-device-scene__frame,
+	.m-device-scene__frames[data-count] .m-device-scene__frame {
 		animation: none;
 
 		&:first-child {

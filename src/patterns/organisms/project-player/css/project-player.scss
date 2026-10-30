@@ -134,12 +134,14 @@
 
 // The live room has its own ambient light.
 .o-project-player__slide[data-scene='radio']::before,
+.o-project-player__slide[data-scene='crew']::before,
 .o-project-player__slide[data-scene='live']::before {
 	display: none;
 }
 
 // The MuMe phone stands in the lower half, so keep the shade in the caption corner.
 .o-project-player__slide[data-scene='radio']::after,
+.o-project-player__slide[data-scene='crew']::after,
 .o-project-player__slide[data-scene='live']::after {
 	background:
 		radial-gradient(ellipse 48% 70% at 0% 100%, rgb(7 13 23 / 0.85) 0%, rgb(7 13 23 / 0.45) 50%, transparent 100%),
@@ -232,6 +234,15 @@
 	z-index: -2;
 }
 
+// PhotoStory crew call: the two phones right of the caption, with room for the chip beside them.
+.o-project-player__slide .m-crew-call {
+	--phone-h: 62cqh;
+	--phone-x: 68%;
+	--phone-y: 57%;
+
+	z-index: -2;
+}
+
 // MuMe live room: phone to the right of the caption.
 .o-project-player__slide .m-live-room {
 	--phone-h: 80cqh;
@@ -242,11 +253,13 @@
 
 // The live room restarts its story with the slide and freezes when paused.
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-on-air *,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-crew-call *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-live-room * {
 	animation-name: none;
 }
 
 .o-project-player[data-paused='true'] .m-on-air *,
+.o-project-player[data-paused='true'] .m-crew-call *,
 .o-project-player[data-paused='true'] .m-live-room * {
 	animation-play-state: paused;
 }
@@ -480,6 +493,12 @@
 
 	.o-project-player__slide .m-on-air {
 		--phone-h: 48cqh;
+		--phone-x: 50%;
+		--phone-y: 47%;
+	}
+
+	.o-project-player__slide .m-crew-call {
+		--phone-h: 40cqh;
 		--phone-x: 50%;
 		--phone-y: 47%;
 	}

@@ -15,6 +15,8 @@
       <article class="o-project-player__slide" data-project-slide data-tone="{{ project.tone|default('teal') }}" {% if project.variant %}data-scene="{{ project.variant }}"{% endif %} {% if project.duration %}data-duration="{{ project.duration }}"{% endif %} {% if project.staticBackground %}data-static-background="true"{% endif %} {% if not loop.first %}hidden{% endif %}>
         {% if project.frameSets or project.frames %}
           {% pattern name='device-scene' data=project|merge({ priority: loop.first }) %}
+        {% elseif project.crew %}
+          {% pattern name='crew-call' data=project.crew %}
         {% elseif project.radio %}
           {% pattern name='on-air' data=project.radio %}
         {% elseif project.live %}

@@ -217,6 +217,97 @@
 			}
 		},
 		{
+			"category": "KMP · SwiftUI · Compose · Firebase",
+			"title": "PhotoStory",
+			"summary": "Crew booking for a photo studio: the admin books an event and picks the crew, everyone gets a push to accept or decline, and a declined offer moves on to the next person.",
+			"tone": "red",
+			"variant": "crew",
+			"duration": 18000,
+			"crew": {
+				"background": "/assets/img/projects/photostory-start.jpg",
+				"logo": "/assets/img/projects/photostory-logo.png",
+				"month": "Novembar 2026",
+				"offset": 6,
+				"days": 30,
+				"busy": [
+					1,
+					6,
+					7,
+					8,
+					13,
+					14,
+					15,
+					22,
+					27,
+					28,
+					29
+				],
+				"pick": 21,
+				"date": "Subota, 21. Novembar 2026.",
+				"fields": [
+					{
+						"hint": "Početak i trajanje",
+						"value": "16:00 · 8 sati"
+					},
+					{
+						"hint": "Mesto održavanja",
+						"value": "Sala Panorama, Užice"
+					},
+					{
+						"hint": "Izaberi tip proslave",
+						"value": "Venčanje",
+						"select": true
+					},
+					{
+						"hint": "Ime i prezime slavljenika",
+						"value": "Ana i Luka"
+					}
+				],
+				"crew": [
+					{
+						"role": "Fotograf",
+						"name": "Marko",
+						"hue": 210
+					},
+					{
+						"role": "Snimatelj",
+						"name": "Jelena",
+						"hue": 330
+					},
+					{
+						"role": "Dron",
+						"name": "Nikola",
+						"hue": 150,
+						"backup": {
+							"name": "Stefan",
+							"hue": 30
+						}
+					},
+					{
+						"role": "Pomoćno osoblje",
+						"name": "Ivana",
+						"hue": 270
+					}
+				],
+				"type": "Venčanje",
+				"summary": "Subota 21.11. · 16:00 · Sala Panorama",
+				"today": "Petak, 30. oktobar",
+				"push": {
+					"title": "Nova proslava",
+					"body": "Zakazana je nova proslava za 21.11.2026. 16:00 u Sala Panorama"
+				},
+				"offer": {
+					"role": "Snimanje dronom",
+					"forwarded": "Ponuda je prosleđena dalje",
+					"next": {
+						"name": "Stefan",
+						"hue": 30,
+						"text": "Ponuda poslata: Stefan"
+					}
+				}
+			}
+		},
+		{
 			"category": "Open source · Accessibility",
 			"title": "a11yOtp",
 			"summary": "Accessible native one-time-code input for Android and iOS.",

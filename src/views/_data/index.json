@@ -39,7 +39,8 @@
 				]
 			],
 			"variant": "handheld",
-			"grid": false
+			"grid": false,
+			"employer": "merkle"
 		},
 		{
 			"category": "Mobile · Kotlin Multiplatform",
@@ -65,7 +66,8 @@
 				]
 			],
 			"variant": "concept",
-			"hero": false
+			"hero": false,
+			"employer": "merkle"
 		},
 		{
 			"category": "iOS · Swift",
@@ -78,7 +80,8 @@
 				"header": "/assets/img/projects/migros-screen-header.jpg",
 				"feed": "/assets/img/projects/migros-screen-feed.jpg",
 				"backdrop": "/assets/img/projects/migros-backdrop.jpg"
-			}
+			},
+			"employer": "merkle"
 		},
 		{
 			"category": "iOS · SwiftUI · WKWebView · PoC",
@@ -142,7 +145,8 @@
 						}
 					]
 				}
-			}
+			},
+			"employer": "merkle"
 		},
 		{
 			"category": "Android · Real-time video",
@@ -215,7 +219,8 @@
 				"feed": "/assets/img/projects/cgiar-screen-feed.jpg",
 				"hover": "/assets/img/projects/cgiar-cards-hover.jpg",
 				"backdrop": "/assets/img/projects/cgiar-backdrop.jpg"
-			}
+			},
+			"employer": "merkle"
 		},
 		{
 			"category": "Android · Java · Firebase",
@@ -551,7 +556,8 @@
 						]
 					}
 				]
-			}
+			},
+			"employer": "merkle"
 		},
 		{
 			"category": "iOS · Objective-C · Code review",
@@ -596,7 +602,8 @@
 					}
 				],
 				"summary": "Review done: a maintenance plan from the riskiest dependencies down."
-			}
+			},
+			"employer": "merkle"
 		},
 		{
 			"category": "iOS · Swift · UIKit",
@@ -986,7 +993,8 @@
 					}
 				],
 				"prs": "PRs opened → web/* · ios/* · android/*"
-			}
+			},
+			"employer": "merkle"
 		},
 		{
 			"category": "Kotlin Multiplatform · Compose · Ktor · Internal",
@@ -1012,7 +1020,8 @@
 					}
 				],
 				"button": "See all"
-			}
+			},
+			"employer": "merkle"
 		},
 		{
 			"category": "Kotlin Multiplatform · MVI · Internal",
@@ -1074,7 +1083,8 @@
 					}
 				],
 				"toast": "4 users found"
-			}
+			},
+			"employer": "merkle"
 		},
 		{
 			"category": "Kotlin Multiplatform · Compose · SwiftUI · Internal",
@@ -1147,7 +1157,8 @@
 					"unit tests",
 					"version bump"
 				]
-			}
+			},
+			"employer": "merkle"
 		},
 		{
 			"category": "Android · Java · Firebase",
@@ -1278,5 +1289,12 @@
 			"url": "https://github.com/Vprogrammers/a11yOtp",
 			"hero": false
 		}
-	]
+	],
+	"employers": {
+		"merkle": {
+			"label": "Delivered at",
+			"name": "Merkle",
+			"note": "Enterprise mobile & digital engineering"
+		}
+	}
 }

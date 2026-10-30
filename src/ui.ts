@@ -21,6 +21,7 @@ import './patterns/atoms/button';
 import './patterns/atoms/checkbox';
 import './patterns/atoms/cta';
 import './patterns/atoms/datepicker';
+import './patterns/atoms/employer';
 import './patterns/atoms/gondel';
 import './patterns/atoms/heading';
 import './patterns/atoms/icon';

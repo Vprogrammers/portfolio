@@ -62,6 +62,7 @@
           </picture>
         {% endif %}
         <div class="o-project-player__content">
+          {% if project.employer %}{% pattern name='employer' data=employers[project.employer] %}{% endif %}
           <p class="o-project-player__eyebrow">{{ project.category }}</p>
           <h2 class="o-project-player__title">{{ project.title }}</h2>
           <p class="o-project-player__description">{{ project.summary }}</p>

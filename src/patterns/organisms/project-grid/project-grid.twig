@@ -64,6 +64,7 @@
 								{% endif %}
 							</h3>
 							<p class="o-project-grid__category">{{ project.category }}</p>
+							{% if project.employer %}{% pattern name='employer' data=employers[project.employer] %}{% endif %}
 							<p class="o-project-grid__summary">{{ project.summary }}</p>
 						</div>
 					</article>

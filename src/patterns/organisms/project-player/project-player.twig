@@ -19,6 +19,8 @@
           {% pattern name='web-wrap' data=project.web %}
         {% elseif project.leads %}
           {% pattern name='lead-flow' data=project.leads %}
+        {% elseif project.salon %}
+          {% pattern name='salon-scene' data=project.salon %}
         {% elseif project.crew %}
           {% pattern name='crew-call' data=project.crew %}
         {% elseif project.radio %}

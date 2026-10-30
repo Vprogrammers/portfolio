@@ -38,6 +38,7 @@ import './patterns/molecules/lead-flow';
 import './patterns/molecules/live-room';
 import './patterns/molecules/on-air';
 import './patterns/molecules/phone-scroll';
+import './patterns/molecules/salon-scene';
 import './patterns/molecules/web-wrap';
 import './patterns/organisms/project-grid';
 import './patterns/organisms/project-player';

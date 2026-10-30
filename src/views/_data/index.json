@@ -460,6 +460,60 @@
 			}
 		},
 		{
+			"category": "iOS · Swift · UIKit",
+			"title": "Sliike",
+			"summary": "Beauty booking for Black women in Canada: find a salon or stylist, pick a service, a day and a time, and get reminded. I built the native iOS app in Swift and UIKit.",
+			"tone": "orange",
+			"variant": "salon",
+			"duration": 18000,
+			"salon": {
+				"tagline": "Find your beautiful",
+				"search": "Search braids, locs, salons…",
+				"categories": [
+					{
+						"name": "Braids",
+						"hue": 20
+					},
+					{
+						"name": "Locs",
+						"hue": 35
+					},
+					{
+						"name": "Twists",
+						"hue": 340
+					},
+					{
+						"name": "Natural",
+						"hue": 150
+					},
+					{
+						"name": "Nails",
+						"hue": 280
+					}
+				],
+				"salons": [
+					{
+						"name": "Crown & Coils Studio",
+						"rating": "4.9",
+						"meta": "1.2 km · Toronto",
+						"hue": 22
+					},
+					{
+						"name": "Halo Braid Bar",
+						"rating": "4.8",
+						"meta": "2.4 km · Toronto",
+						"hue": 330
+					},
+					{
+						"name": "Nubian Glow",
+						"rating": "4.7",
+						"meta": "3.1 km · Toronto",
+						"hue": 160
+					}
+				]
+			}
+		},
+		{
 			"category": "Open source · Accessibility",
 			"title": "a11yOtp",
 			"summary": "Accessible native one-time-code input for Android and iOS.",

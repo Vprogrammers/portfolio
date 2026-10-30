@@ -292,3 +292,14 @@
 		transform: none;
 	}
 }
+
+// Tiles out of view hold their scene still (see js/project-grid.ts). Pseudo-elements
+// are listed too, since they do not inherit animation-play-state.
+.state-o-project-grid__item--offscreen {
+	*,
+	*::before,
+	*::after {
+		/* stylelint-disable-next-line declaration-no-important -- scene rules set animation shorthands, which reset the play state */
+		animation-play-state: paused !important;
+	}
+}

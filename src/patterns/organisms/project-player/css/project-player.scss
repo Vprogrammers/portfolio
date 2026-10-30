@@ -265,7 +265,8 @@
 // Feeds restart from the top each time their slide comes in, and pausing freezes them.
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) {
 	.m-phone-scroll__feed,
-	.m-laptop-scroll__feed {
+	.m-laptop-scroll__page,
+	.m-laptop-scroll__hover {
 		animation: none;
 	}
 }
@@ -273,7 +274,8 @@
 .o-project-player[data-paused='true'] {
 	.m-phone-scroll__feed,
 	.m-phone-scroll__backdrop,
-	.m-laptop-scroll__feed,
+	.m-laptop-scroll__page,
+	.m-laptop-scroll__hover,
 	.m-laptop-scroll__backdrop {
 		animation-play-state: paused;
 	}

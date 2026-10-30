@@ -152,6 +152,7 @@
 				"url": "cgiar.org",
 				"header": "/assets/img/projects/cgiar-screen-header.jpg",
 				"feed": "/assets/img/projects/cgiar-screen-feed.jpg",
+				"hover": "/assets/img/projects/cgiar-cards-hover.jpg",
 				"backdrop": "/assets/img/projects/cgiar-backdrop.jpg"
 			}
 		},

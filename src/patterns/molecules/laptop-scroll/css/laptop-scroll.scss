@@ -16,6 +16,17 @@ $max-scroll: $feed-h - $viewport-h;
 // global presence, impact in numbers, partners, footer.
 $stops: (0, 640, 1538, 3223, 4035, 5029, $max-scroll);
 
+// "Our work" cards in the 1200 x 5589 px feed image, and the hover sprite
+// cut from its first two rows (cards turn white with green text on hover).
+$feed-size: (1200, 5589);
+$card-size: (260, 243);
+$card-cols: (40, 327, 613, 900);
+$card-row: 1582;
+$sprite-size: (1120, 511);
+// The page rests on "our work" (the 3rd stop); each card is hovered in turn.
+$hover-start: 31%;
+$hover-step: 2%;
+
 @function cqw($px) {
 	@return math.div($px, $page-w) * 100cqw;
 }
@@ -42,6 +53,31 @@ $stops: (0, 640, 1538, 3223, 4035, 5029, $max-scroll);
 
 	100% {
 		transform: scroll-to(0);
+	}
+}
+
+@for $k from 1 through list.length($card-cols) {
+	$on: $hover-start + $hover-step * ($k - 1);
+
+	@keyframes laptop-scroll-hover-#{$k} {
+		0%,
+		#{$on} {
+			opacity: 0;
+			transform: none;
+		}
+
+		/* stylelint-disable-next-line plugin/stylelint-bem-namics -- generated keyframe offsets */
+		#{$on + 0.5%},
+		#{$on + $hover-step} {
+			opacity: 1;
+			transform: scale(1.015);
+		}
+
+		#{$on + $hover-step + 0.5%},
+		100% {
+			opacity: 0;
+			transform: none;
+		}
 	}
 }
 
@@ -158,12 +194,46 @@ $stops: (0, 640, 1538, 3223, 4035, 5029, $max-scroll);
 	overflow: hidden;
 }
 
+.m-laptop-scroll__page {
+	position: relative;
+	animation: laptop-scroll-feed 28s infinite;
+	will-change: transform;
+}
+
 .m-laptop-scroll__feed {
 	display: block;
 	width: 100%;
 	height: auto;
-	animation: laptop-scroll-feed 28s infinite;
-	will-change: transform;
+}
+
+.m-laptop-scroll__hover {
+	$fw: list.nth($feed-size, 1);
+	$fh: list.nth($feed-size, 2);
+	$cw: list.nth($card-size, 1);
+	$ch: list.nth($card-size, 2);
+	$sw: list.nth($sprite-size, 1);
+	$sh: list.nth($sprite-size, 2);
+
+	position: absolute;
+	top: math.percentage(math.div($card-row, $fh));
+	width: math.percentage(math.div($cw, $fw));
+	height: math.percentage(math.div($ch, $fh));
+	border-radius: 0.4cqw;
+	background: var(--hover) no-repeat;
+	background-size: math.percentage(math.div($sw, $cw)) math.percentage(math.div($sh, $ch));
+	box-shadow: 0 0.6cqw 1.6cqw rgb(0 0 0 / 0.25);
+	opacity: 0;
+
+	@for $k from 1 through list.length($card-cols) {
+		$x: list.nth($card-cols, $k);
+
+		/* stylelint-disable-next-line plugin/stylelint-bem-namics -- generated nth-of-type loop */
+		&:nth-of-type(#{$k}) {
+			left: math.percentage(math.div($x, $fw));
+			background-position: math.percentage(math.div($x - list.nth($card-cols, 1), $sw - $cw)) 0;
+			animation: laptop-scroll-hover-#{$k} 28s infinite;
+		}
+	}
 }
 
 // Aluminium base, slightly wider than the lid, with the opening notch.
@@ -189,7 +259,8 @@ $stops: (0, 640, 1538, 3223, 4035, 5029, $max-scroll);
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.m-laptop-scroll__feed,
+	.m-laptop-scroll__page,
+	.m-laptop-scroll__hover,
 	.m-laptop-scroll__backdrop {
 		animation: none;
 	}

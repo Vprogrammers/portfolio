@@ -11,13 +11,13 @@
 			<div class="m-on-air__screen">
 				{# 1. Splash, the app's own frame; the tagline is typed on top. #}
 				<div class="m-on-air__scene m-on-air__scene--splash">
-					<img class="m-on-air__shot" src="{{ splash }}" alt="" loading="lazy" decoding="async">
+					<img class="m-on-air__shot" src="{{ splash }}" alt="" loading="eager" decoding="async">
 					<p class="m-on-air__tagline">{% for char in tagline|split('') %}<span>{{ char }}</span>{% endfor %}<i></i></p>
 				</div>
 
 				{# 2. Main screen, the app's own frame with its live parts redrawn. #}
 				<div class="m-on-air__scene m-on-air__scene--main">
-					<img class="m-on-air__shot" src="{{ main }}" alt="" loading="lazy" decoding="async">
+					<img class="m-on-air__shot" src="{{ main }}" alt="" loading="eager" decoding="async">
 
 					<div class="m-on-air__tabs">
 						{% for tab in tabs %}<span>{{ tab }}</span>{% endfor %}

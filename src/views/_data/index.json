@@ -17,7 +17,7 @@
 		{
 			"category": "Mobile · Kotlin Multiplatform",
 			"title": "Hansgrohe ProApp",
-			"summary": "Enterprise product presentations and offline content for field teams.",
+			"summary": "A Kotlin Multiplatform iPad app that gives Hansgrohe's sales teams product presentations and a complete offline catalogue, so every customer meeting runs smoothly with or without a connection.",
 			"tone": "teal",
 			"image": "/assets/img/projects/hansgrohe-background-04.png",
 			"foreground": "/assets/img/projects/hansgrohe-background-04-hands.png",
@@ -45,7 +45,7 @@
 		{
 			"category": "Mobile · Kotlin Multiplatform",
 			"title": "Hansgrohe ProApp",
-			"summary": "Enterprise product presentations and offline content for field teams.",
+			"summary": "A Kotlin Multiplatform iPad app that gives Hansgrohe's sales teams product presentations and a complete offline catalogue, so every customer meeting runs smoothly with or without a connection.",
 			"tone": "teal",
 			"image": "/assets/img/projects/hansgrohe-background-02.png",
 			"staticBackground": true,
@@ -72,7 +72,7 @@
 		{
 			"category": "iOS · Swift",
 			"title": "Migros iMpuls",
-			"summary": "Maintaining and releasing a production iOS application.",
+			"summary": "Ongoing development, maintenance and App Store releases of iMpuls, the health and wellbeing app from Switzerland's largest retailer, keeping a production iOS app stable, current and shipping on schedule.",
 			"tone": "cyan",
 			"variant": "phone",
 			"duration": 20000,
@@ -86,7 +86,7 @@
 		{
 			"category": "iOS · SwiftUI · WKWebView · PoC",
 			"title": "Bucherer",
-			"summary": "An iOS proof of concept for a luxury retailer: can a WebView wrapper sign in, keep the session and complete a purchase on a site that is part Salesforce, part not? The findings became the estimate for the app.",
+			"summary": "An iOS proof of concept for a luxury watch retailer, proving that a native WebView wrapper can sign in, keep the session and complete a purchase across a partly Salesforce-based storefront. The findings shaped the delivery estimate for the full app.",
 			"tone": "gold",
 			"variant": "web",
 			"duration": 18000,
@@ -151,7 +151,7 @@
 		{
 			"category": "Android · Real-time video",
 			"title": "MuMe",
-			"summary": "Live video and chat rooms: hosts open a room, people join with coins and talk in real time.",
+			"summary": "An Android app for live video chat rooms: hosts open a room, guests join by paying with coins, and the conversation happens in real time.",
 			"tone": "yellow",
 			"variant": "live",
 			"duration": 16000,
@@ -209,7 +209,7 @@
 		{
 			"category": "Frontend · Twig",
 			"title": "CGIAR",
-			"summary": "Responsive component-driven web development.",
+			"summary": "A responsive, component-driven frontend for CGIAR, the global agricultural research partnership, built from reusable Twig components.",
 			"tone": "green",
 			"variant": "laptop",
 			"duration": 28000,
@@ -225,7 +225,7 @@
 		{
 			"category": "Android · Java · Firebase",
 			"title": "Hanze3",
-			"summary": "Live radio for an Egyptian broadcaster: listeners tune in, chat live and book their own talk show once an admin approves it.",
+			"summary": "A live radio app for an Egyptian broadcaster: listeners tune in, chat in real time behind a profanity filter and book their own on-air slot once a moderator approves it.",
 			"tone": "red",
 			"variant": "radio",
 			"duration": 16000,
@@ -285,7 +285,7 @@
 		{
 			"category": "KMP · SwiftUI · Compose · Firebase",
 			"title": "PhotoStory",
-			"summary": "Crew booking for a photo studio: the admin books an event and picks the crew, everyone gets a push to accept or decline, and a declined offer moves on to the next person.",
+			"summary": "Crew scheduling for a photo studio, built with Kotlin Multiplatform: the admin books an event and invites the crew, each member accepts or declines from a push notification, and a declined offer moves on to the next person.",
 			"tone": "red",
 			"variant": "crew",
 			"duration": 18000,
@@ -376,7 +376,7 @@
 		{
 			"category": "KMP · SwiftUI · Compose · Firebase",
 			"title": "BezBrige!",
-			"summary": "A sales app for insurance agents: the admin assigns contacts, agents call them and offer insurance, credit or a fund, and every client moves through call statuses and awareness levels up to a signed contract.",
+			"summary": "A sales CRM for insurance agents, built with Kotlin Multiplatform: assigned leads, call outcomes and awareness levels guide every client from the first call to a signed contract for insurance, credit or an investment fund.",
 			"tone": "red",
 			"variant": "leads",
 			"duration": 18000,
@@ -466,7 +466,7 @@
 		{
 			"category": "iOS · Swift · UIKit",
 			"title": "Sliike",
-			"summary": "Beauty booking for Afro-American women in Canada: find a salon or stylist, pick a service, a day and a time, and get reminded. I built the native iOS app in Swift and UIKit.",
+			"summary": "A native iOS app in Swift and UIKit for a beauty booking platform for Afro-American women in Canada: discover salons and stylists, choose a service and a time, and get reminded before the appointment.",
 			"tone": "orange",
 			"variant": "salon",
 			"duration": 18000,
@@ -520,7 +520,7 @@
 		{
 			"category": "iOS · Swift · UIKit · Code review",
 			"title": "KOCH Scan App",
-			"summary": "A B2B scanner app for a Swiss building supplier: tradespeople scan the barcode on KOCH labels, add articles to a list under a commission and order them. I reviewed the codebase ahead of taking over its maintenance.",
+			"summary": "A B2B scanning app for a Swiss building supplier that lets tradespeople scan labels, collect articles by commission and order on site. I audited the Swift codebase in preparation for taking over its maintenance.",
 			"tone": "blue",
 			"variant": "scan",
 			"duration": 16000,
@@ -562,7 +562,7 @@
 		{
 			"category": "iOS · Objective-C · Code review",
 			"title": "PMI Market(i)",
-			"summary": "An internal iPad and iPhone app for Philip Morris field teams in the Nordics: shelf photos with tags, a store map, share of market and sync. I reviewed the legacy Objective-C codebase ahead of taking over its maintenance.",
+			"summary": "An internal iPad and iPhone app for Philip Morris field teams in the Nordics, covering shelf photography, store mapping, share of market and offline sync. I audited the legacy Objective-C codebase and set out a maintenance roadmap.",
 			"tone": "violet",
 			"variant": "review",
 			"duration": 16000,
@@ -608,7 +608,7 @@
 		{
 			"category": "iOS · Swift · UIKit",
 			"title": "Swipe XYZ",
-			"summary": "A shoe and fashion shopping app for a client in the Arab world: categories, filters, product pages and a swipe view to like products straight into the bag, then orders, bills and a profile. I built the native iOS app in UIKit.",
+			"summary": "A native iOS shopping app for a fashion and footwear retailer in the Arab world, combining classic browsing with a swipe-to-like product feed that sends favourites straight to the bag.",
 			"tone": "green",
 			"variant": "deck",
 			"duration": 16000,
@@ -676,7 +676,7 @@
 		{
 			"category": "Android · iOS · Fantasy soccer · MVP",
 			"title": "Goaleadors",
-			"summary": "A fantasy soccer game across the top five European leagues: draft a squad on a budget, score points every matchday and climb a league pyramid, free-to-play or premium. The MVP was built; the client has paused it.",
+			"summary": "A fantasy football platform spanning Europe's top five leagues: draft a squad on a budget, score every matchday and climb a multi-tier league pyramid in free or premium play. The MVP shipped before the client paused the product.",
 			"tone": "blue",
 			"variant": "fantasy",
 			"duration": 16000,
@@ -826,7 +826,7 @@
 		{
 			"category": "Android · iOS · Competition",
 			"title": "Bikini",
-			"summary": "Android and iOS apps for a beauty competition in Asia: contestants, live audience voting, the judges' scores and the winner on the night.",
+			"summary": "Android and iOS apps for a beauty competition in Asia, bringing contestants, live audience voting, the judges' scores and the final result together on the night.",
 			"tone": "violet",
 			"variant": "pageant",
 			"duration": 16000,
@@ -871,7 +871,7 @@
 		{
 			"category": "iOS · Swift · Kids",
 			"title": "ÇocukFlix",
-			"summary": "A cartoon app for Turkish children: curated YouTube cartoons in Turkish, favourites, push notifications and a parental gate that keeps settings for grown-ups.",
+			"summary": "A safe cartoon app for Turkish children: curated cartoons in Turkish, favourites and notifications, with a parental gate that keeps the settings in grown-up hands.",
 			"tone": "cyan",
 			"variant": "kids",
 			"duration": 16000,
@@ -943,7 +943,7 @@
 		{
 			"category": "Design system · Tokens · iOS · Android · Web",
 			"title": "Design Token Pipeline",
-			"summary": "An assessment of an enterprise design system that app teams in many countries build on. I analysed the iOS and Android libraries and proposed one automated token flow from Figma to Web, iOS and Android through Style Dictionary and CI, with accessibility keys and a safe path for renaming tokens.",
+			"summary": "A technical assessment of an enterprise design system used by app teams across many countries. I reviewed the iOS and Android libraries and designed an automated token pipeline from Figma to Web, iOS and Android, with accessibility keys and a safe migration path for renamed tokens.",
 			"tone": "green",
 			"variant": "tokens",
 			"duration": 16000,
@@ -999,7 +999,7 @@
 		{
 			"category": "Kotlin Multiplatform · Compose · Ktor · Internal",
 			"title": "Anubis",
-			"summary": "A server-driven UI framework for Kotlin Multiplatform: a JSON layout from a Ktor server becomes a native Compose screen, so the app's UI can change without a release.",
+			"summary": "A server-driven UI framework for Kotlin Multiplatform: screens are described as JSON on a Ktor server and rendered natively with Compose, so layouts can change without an app release.",
 			"tone": "violet",
 			"variant": "sdui",
 			"duration": 16000,
@@ -1026,7 +1026,7 @@
 		{
 			"category": "Kotlin Multiplatform · MVI · Internal",
 			"title": "YAMVIP",
-			"summary": "Yet Another MVI Presenter: a multiplatform MVI engine that shares presentation logic between Android and iOS, with a clear Model, UIState, Intent and Effect split, built for unit testing and convention over configuration.",
+			"summary": "A multiplatform MVI engine that shares presentation logic between Android and iOS, with a strict split between Model, UIState, Intent and Effect, designed for testability and convention over configuration.",
 			"tone": "orange",
 			"variant": "mvi",
 			"duration": 16000,
@@ -1089,7 +1089,7 @@
 		{
 			"category": "Kotlin Multiplatform · Compose · SwiftUI · Internal",
 			"title": "KMP Template",
-			"summary": "A starter template for Kotlin Multiplatform apps: multi-module clean architecture with YAMVIP and Anubis built in, Koin, SQLDelight and Moko resources, a Compose and a SwiftUI app generated with Tuist, and CI from day one.",
+			"summary": "A production-ready starting point for Kotlin Multiplatform apps: a modular clean architecture with YAMVIP and Anubis, Koin, SQLDelight and Moko resources, Compose and SwiftUI apps generated with Tuist, and CI from the first commit.",
 			"tone": "violet",
 			"variant": "kit",
 			"duration": 16000,
@@ -1163,7 +1163,7 @@
 		{
 			"category": "Android · Java · Firebase",
 			"title": "Masse",
-			"summary": "Online booking for a billiard club: pick a pool table or a dartboard, a date and a free slot. An admin panel keeps the data under control, shows the night's reservations and deletes them.",
+			"summary": "Online booking for a billiard club: guests reserve a pool table or a dartboard for a free slot, while an admin panel manages the data and the evening's reservations.",
 			"tone": "cyan",
 			"variant": "club",
 			"duration": 16000,
@@ -1284,7 +1284,7 @@
 		{
 			"category": "Open source · Accessibility",
 			"title": "a11yOtp",
-			"summary": "Accessible native one-time-code input for Android and iOS.",
+			"summary": "An open-source, accessible one-time-code input for Android and iOS, built natively on each platform.",
 			"tone": "blue",
 			"url": "https://github.com/Vprogrammers/a11yOtp",
 			"hero": false

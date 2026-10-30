@@ -32,3 +32,24 @@ test('reduced motion disables autoplay by default', async ({ page }) => {
   await expect(pauseToggle).toHaveAttribute('aria-pressed', 'true');
   await expect(pauseToggle).toHaveText('Play');
 });
+
+test('a swipe changes the project on touch screens, also with reduced motion', async ({ browser }) => {
+  const context = await browser.newContext({ hasTouch: true, isMobile: true, viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
+  const page = await context.newPage();
+  await page.goto('/');
+  const player = page.locator('.js-project-player');
+  const slides = player.locator('[data-project-slide]');
+  await expect(player.locator('.o-project-player__controls')).toBeHidden();
+
+  const swipe = (fromX: number, toX: number) => player.evaluate((element, [a, b]) => {
+    const touch = (x: number) => new Touch({ identifier: 1, target: element, clientX: x, clientY: 400 });
+    element.dispatchEvent(new TouchEvent('touchstart', { changedTouches: [touch(a)], bubbles: true }));
+    element.dispatchEvent(new TouchEvent('touchend', { changedTouches: [touch(b)], bubbles: true }));
+  }, [fromX, toX]);
+
+  await swipe(320, 80);
+  await expect(slides.nth(1)).toBeVisible();
+  await swipe(80, 320);
+  await expect(slides.nth(0)).toBeVisible();
+  await context.close();
+});

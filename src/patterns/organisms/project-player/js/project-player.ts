@@ -17,6 +17,20 @@ const showHint = (player: HTMLElement, reducedMotion: boolean) => {
   window.setTimeout(() => { player.dataset.hint = 'false'; }, 3400);
 };
 
+// Calls back with 1 or -1 for a clear horizontal swipe (left = next), ignoring vertical scrolls.
+const onSwipe = (element: HTMLElement, handler: (step: number) => void) => {
+  let startX = 0;
+  let startY = 0;
+  element.addEventListener('touchstart', (event) => {
+    ({ clientX: startX, clientY: startY } = event.changedTouches[0]);
+  }, { passive: true });
+  element.addEventListener('touchend', (event) => {
+    const dx = event.changedTouches[0].clientX - startX;
+    const dy = event.changedTouches[0].clientY - startY;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) handler(dx < 0 ? 1 : -1);
+  }, { passive: true });
+};
+
 players.forEach((player) => {
   const slides = Array.from(player.querySelectorAll<HTMLElement>('[data-project-slide]'));
   const previous = player.querySelector<HTMLButtonElement>('[data-project-prev]');
@@ -143,6 +157,9 @@ players.forEach((player) => {
   previous.addEventListener('click', () => { show(active - 1); setPaused(true); });
   next.addEventListener('click', () => { show(active + 1); setPaused(true); });
   toggle.addEventListener('click', () => setPaused(!paused));
+  // Touch screens have no visible controls, so a swipe changes the project. It
+  // also works with reduced motion, where nothing advances on its own.
+  onSwipe(player, (step) => show(active + step));
   slides.forEach((slide) => {
     const content = slide.querySelector<HTMLElement>('.o-project-player__content');
     if (!content) return;

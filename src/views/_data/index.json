@@ -1015,6 +1015,68 @@
 			}
 		},
 		{
+			"category": "Kotlin Multiplatform · MVI · Internal",
+			"title": "YAMVIP",
+			"summary": "Yet Another MVI Presenter: a multiplatform MVI engine that shares presentation logic between Android and iOS, with a clear Model, UIState, Intent and Effect split, built for unit testing and convention over configuration.",
+			"tone": "orange",
+			"variant": "mvi",
+			"duration": 16000,
+			"mvi": {
+				"presenter": {
+					"name": "YamviPresenter",
+					"generics": "<Model, UIState, Effect>"
+				},
+				"nodes": [
+					{
+						"name": "Intent",
+						"note": "Search(\"ana\")"
+					},
+					{
+						"name": "Reducer",
+						"note": "reduce()"
+					},
+					{
+						"name": "Model",
+						"note": "internal state"
+					},
+					{
+						"name": "Mapper",
+						"note": "map()"
+					},
+					{
+						"name": "UIState",
+						"note": "→ Compose · SwiftUI"
+					}
+				],
+				"effect": "ShowToast",
+				"heading": "Users",
+				"query": "ana",
+				"users": [
+					{
+						"name": "Ana Silva",
+						"city": "Lisbon",
+						"hue": 200
+					},
+					{
+						"name": "Anabel Ruiz",
+						"city": "Madrid",
+						"hue": 20
+					},
+					{
+						"name": "Anna Berg",
+						"city": "Oslo",
+						"hue": 140
+					},
+					{
+						"name": "Ananya Rao",
+						"city": "Pune",
+						"hue": 290
+					}
+				],
+				"toast": "4 users found"
+			}
+		},
+		{
 			"category": "Open source · Accessibility",
 			"title": "a11yOtp",
 			"summary": "Accessible native one-time-code input for Android and iOS.",

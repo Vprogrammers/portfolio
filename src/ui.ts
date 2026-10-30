@@ -39,6 +39,7 @@ import './patterns/molecules/kids-tv';
 import './patterns/molecules/laptop-scroll';
 import './patterns/molecules/lead-flow';
 import './patterns/molecules/live-room';
+import './patterns/molecules/mvi-loop';
 import './patterns/molecules/on-air';
 import './patterns/molecules/pageant-stage';
 import './patterns/molecules/phone-scroll';

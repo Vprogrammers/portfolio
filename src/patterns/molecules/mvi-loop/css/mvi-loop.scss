@@ -1,0 +1,458 @@
+/* stylelint-disable plugin/stylelint-bem-namics -- generated keyframe offsets and nth-child loops */
+@use 'sass:list';
+@use 'sass:math';
+
+// The whole story runs on one timeline; times below are seconds into it.
+$loop: 16;
+$mono: 'SF Mono', menlo, consolas, monospace;
+$accent: #f59e0b;
+$nodes: 5;
+// Two full turns of the loop: typing, then the results arriving.
+$turns: ((0.8, 4.4), (5.6, 9.2));
+$type: (1, 2.2);
+$loading: (3.6, 6.4);
+$results: 8.4;
+$effect: 10.4;
+$toast: (11, 13.6);
+$reset: 15;
+
+@function at($s) {
+	@return math.percentage(math.div($s, $loop));
+}
+
+// Hidden until $start, eased in over $in, kept until $end, then faded out.
+@mixin appear($name, $start, $end: $reset, $from: translateY(1.4cqh), $in: 0.3) {
+	@keyframes #{$name} {
+		0%,
+		#{at($start)} {
+			opacity: 0;
+			transform: $from;
+		}
+
+		#{at($start + $in)},
+		#{at($end)} {
+			opacity: 1;
+			transform: none;
+		}
+
+		#{at(math.min($end + 0.3, $loop))},
+		100% {
+			opacity: 0;
+			transform: $from;
+		}
+	}
+}
+
+// The spark circles the ring once per turn, resting between turns.
+@keyframes mvi-loop-spark {
+	0% {
+		opacity: 0;
+		transform: rotate(-90deg);
+	}
+
+	@each $turn in $turns {
+		$a: list.nth($turn, 1);
+		$b: list.nth($turn, 2);
+
+		#{at($a)} {
+			opacity: 0;
+			transform: rotate(-90deg);
+		}
+
+		#{at($a + 0.1)} {
+			opacity: 1;
+			transform: rotate(-90deg);
+		}
+
+		#{at($b)} {
+			opacity: 1;
+			transform: rotate(270deg);
+		}
+
+		#{at($b + 0.1)} {
+			opacity: 0;
+			transform: rotate(270deg);
+		}
+	}
+
+	100% {
+		opacity: 0;
+		transform: rotate(270deg);
+	}
+}
+
+// Each node lights up as the spark passes it on either turn.
+@for $k from 1 through $nodes {
+	@keyframes mvi-loop-node-#{$k} {
+		0%,
+		100% {
+			border-color: rgb(255 255 255 / 0.14);
+			background: rgb(30 27 22 / 0.94);
+		}
+
+		@each $turn in $turns {
+			$a: list.nth($turn, 1);
+			$t: $a + (list.nth($turn, 2) - $a) * math.div($k - 1, $nodes);
+
+			#{at($t - 0.05)} {
+				border-color: rgb(255 255 255 / 0.14);
+				background: rgb(30 27 22 / 0.94);
+			}
+
+			#{at($t + 0.1)} {
+				border-color: $accent;
+				background: rgb(245 158 11 / 0.22);
+			}
+
+			#{at($t + 0.7)} {
+				border-color: rgb(255 255 255 / 0.14);
+				background: rgb(30 27 22 / 0.94);
+			}
+		}
+	}
+}
+
+@keyframes mvi-loop-type {
+	0%,
+	#{at(list.nth($type, 1))} {
+		clip-path: inset(0 100% 0 0);
+	}
+
+	#{at(list.nth($type, 2))},
+	#{at($reset)} {
+		clip-path: inset(0);
+	}
+
+	#{at($reset + 0.3)},
+	100% {
+		clip-path: inset(0 100% 0 0);
+	}
+}
+
+@include appear(mvi-loop-spinner, list.nth($loading, 1), list.nth($loading, 2), scale(0.5), 0.2);
+@include appear(mvi-loop-effect, $effect, list.nth($toast, 2), scale(0.6), 0.3);
+@include appear(mvi-loop-toast, list.nth($toast, 1), list.nth($toast, 2), translateY(3cqh), 0.35);
+
+@for $k from 1 through 4 {
+	@include appear(mvi-loop-user-#{$k}, $results + ($k - 1) * 0.15, $reset, translateX(4cqh), 0.3);
+}
+
+@keyframes mvi-loop-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes mvi-loop-blink {
+	50% {
+		opacity: 0;
+	}
+}
+
+// The root fills its positioned parent; the parent sets --loop-h/-x/-y.
+.m-mvi-loop {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	container: mvi-loop / size;
+	pointer-events: none;
+	background:
+		radial-gradient(ellipse 55% 60% at 64% 50%, rgb(245 158 11 / 0.18), transparent 70%),
+		linear-gradient(160deg, #19150f, #0c0a07);
+	font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.m-mvi-loop__stage {
+	--h: var(--loop-h, 64cqh);
+
+	position: absolute;
+	left: var(--loop-x, 50%);
+	top: var(--loop-y, 50%);
+	display: flex;
+	align-items: center;
+	gap: calc(var(--h) * 0.1);
+	height: var(--h);
+	transform: translate(-50%, -50%);
+}
+
+.m-mvi-loop__ring {
+	--r: calc(var(--h) * 0.36);
+
+	position: relative;
+	width: calc(var(--r) * 2);
+	height: calc(var(--r) * 2);
+	color: #f5efe4;
+}
+
+.m-mvi-loop__track {
+	position: absolute;
+	inset: 0;
+	border: 0.3cqh dashed rgb(255 255 255 / 0.18);
+	border-radius: 50%;
+}
+
+// A dot on an arm the length of the radius, so rotating the arm moves it round.
+.m-mvi-loop__spark {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: var(--r);
+	height: 0;
+	transform-origin: 0 0;
+	animation: mvi-loop-spark #{$loop}s linear infinite;
+
+	&::after {
+		content: '';
+		position: absolute;
+		right: -1cqh;
+		top: -1cqh;
+		width: 2cqh;
+		height: 2cqh;
+		border-radius: 50%;
+		background: $accent;
+		box-shadow: 0 0 2.4cqh $accent;
+	}
+}
+
+.m-mvi-loop__node {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-width: 12cqh;
+	padding: 1cqh 1.4cqh;
+	border: 0.25cqh solid rgb(255 255 255 / 0.14);
+	border-radius: 1.2cqh;
+	background: rgb(30 27 22 / 0.94);
+	white-space: nowrap;
+
+	b {
+		font-size: 1.7cqh;
+	}
+
+	small {
+		color: rgb(245 239 228 / 0.6);
+		font: 1.2cqh $mono;
+	}
+}
+
+// Five stations round the ring, starting at the top and going clockwise.
+@for $k from 1 through $nodes {
+	$a: -90deg + 360deg * math.div($k - 1, $nodes);
+
+	.m-mvi-loop__node--#{$k} {
+		transform: translate(calc(-50% + var(--r) * #{math.cos($a)}), calc(-50% + var(--r) * #{math.sin($a)}));
+		animation: mvi-loop-node-#{$k} #{$loop}s ease-out infinite;
+	}
+}
+
+.m-mvi-loop__core {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin: 0;
+	color: $accent;
+	font: 600 1.5cqh/1.4 $mono;
+	text-align: center;
+	transform: translate(-50%, -50%);
+
+	small {
+		color: rgb(245 239 228 / 0.55);
+		font-size: 1.2cqh;
+	}
+}
+
+.m-mvi-loop__effect {
+	position: absolute;
+	right: 0;
+	bottom: calc(var(--h) * -0.1);
+	display: flex;
+	flex-direction: column;
+	padding: 1cqh 1.4cqh;
+	border-radius: 1.2cqh;
+	background: #7c2d12;
+	opacity: 0;
+	animation: mvi-loop-effect #{$loop}s cubic-bezier(0.3, 1.5, 0.5, 1) infinite;
+
+	b {
+		font-size: 1.6cqh;
+	}
+
+	small {
+		font: 1.2cqh $mono;
+		opacity: 0.8;
+	}
+}
+
+.m-mvi-loop__device {
+	height: 100%;
+	padding: calc(var(--h) * 0.012);
+	border-radius: calc(var(--h) * 0.07);
+	background: #0d0f12;
+	box-shadow:
+		0 0 0 calc(var(--h) * 0.004) #4a505a,
+		0 calc(var(--h) * 0.04) calc(var(--h) * 0.12) rgb(0 0 0 / 0.6);
+}
+
+.m-mvi-loop__screen {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 1.4cqh;
+	height: 100%;
+	aspect-ratio: 1179 / 2556;
+	overflow: hidden;
+	padding: 2cqh 1.8cqh;
+	border-radius: calc(var(--h) * 0.06);
+	background: #fbf8f2;
+	color: #1f1a12;
+
+	> p {
+		margin: 0;
+	}
+}
+
+.m-mvi-loop__status {
+	display: flex;
+	justify-content: space-between;
+	font-size: 1.4cqh;
+	font-weight: 600;
+
+	i {
+		width: 3cqh;
+		height: 1.3cqh;
+		border-radius: 0.4cqh;
+		background: #1f1a12;
+	}
+}
+
+.m-mvi-loop__heading {
+	font-size: 2.6cqh;
+	font-weight: 800;
+}
+
+.m-mvi-loop__search {
+	display: flex;
+	align-items: center;
+	padding: 1.2cqh 1.4cqh;
+	border-radius: 1.2cqh;
+	background: #efe9dd;
+	font-size: 1.6cqh;
+}
+
+.m-mvi-loop__typed {
+	white-space: nowrap;
+	animation: mvi-loop-type #{$loop}s steps(4, end) infinite;
+}
+
+.m-mvi-loop__caret {
+	width: 0.2cqh;
+	height: 2cqh;
+	margin-left: 0.2cqh;
+	background: $accent;
+	animation: mvi-loop-blink 1s steps(1, end) infinite;
+}
+
+.m-mvi-loop__spinner {
+	align-self: center;
+	width: 3.4cqh;
+	height: 3.4cqh;
+	margin-top: 4cqh;
+	border: 0.4cqh solid #efe9dd;
+	border-top-color: $accent;
+	border-radius: 50%;
+	opacity: 0;
+	animation:
+		mvi-loop-spinner #{$loop}s ease-out infinite,
+		mvi-loop-spin 0.8s linear infinite;
+}
+
+// The results replace the spinner in the same slot.
+.m-mvi-loop__results {
+	position: absolute;
+	left: 1.8cqh;
+	right: 1.8cqh;
+	top: 18cqh;
+	display: flex;
+	flex-direction: column;
+	gap: 1cqh;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	li {
+		display: flex;
+		align-items: center;
+		gap: 1.2cqh;
+		padding: 1cqh;
+		border-radius: 1.2cqh;
+		background: #fff;
+		box-shadow: 0 0.4cqh 1.2cqh rgb(0 0 0 / 0.06);
+		opacity: 0;
+
+		@for $k from 1 through 4 {
+			&:nth-child(#{$k}) {
+				animation: mvi-loop-user-#{$k} #{$loop}s ease-out infinite;
+			}
+		}
+	}
+
+	i {
+		display: grid;
+		place-items: center;
+		width: 4cqh;
+		height: 4cqh;
+		border-radius: 50%;
+		background: hsl(var(--hue) 55% 50%);
+		color: #fff;
+		font-size: 1.6cqh;
+		font-style: normal;
+		font-weight: 700;
+	}
+
+	b {
+		display: block;
+		font-size: 1.5cqh;
+	}
+
+	small {
+		color: #7a705f;
+		font-size: 1.2cqh;
+	}
+}
+
+.m-mvi-loop__toast {
+	position: absolute;
+	left: 1.8cqh;
+	right: 1.8cqh;
+	bottom: 3cqh;
+	padding: 1.2cqh;
+	border-radius: 1.2cqh;
+	background: #1f1a12;
+	color: #fff;
+	font-size: 1.4cqh;
+	text-align: center;
+	opacity: 0;
+	animation: mvi-loop-toast #{$loop}s ease-out infinite;
+}
+
+// Portrait parents: only the phone.
+@container mvi-loop (aspect-ratio < 1) {
+	.m-mvi-loop__ring {
+		display: none;
+	}
+}
+
+// Reduced motion: the loop and the results, still.
+@media (prefers-reduced-motion: reduce) {
+	.m-mvi-loop * {
+		/* stylelint-disable-next-line declaration-no-important -- overrides every generated story animation */
+		animation: none !important;
+	}
+
+	.m-mvi-loop__results li {
+		opacity: 1;
+	}
+}

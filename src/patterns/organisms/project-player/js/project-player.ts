@@ -1,5 +1,13 @@
 const players = document.querySelectorAll<HTMLElement>('.js-project-player');
 
+// On arrival the first project's details open for a moment, so visitors learn
+// that the title reveals more.
+const showHint = (player: HTMLElement, reducedMotion: boolean) => {
+  if (reducedMotion) return;
+  player.dataset.hint = 'true';
+  window.setTimeout(() => { player.dataset.hint = 'false'; }, 3400);
+};
+
 players.forEach((player) => {
   const slides = Array.from(player.querySelectorAll<HTMLElement>('[data-project-slide]'));
   const previous = player.querySelector<HTMLButtonElement>('[data-project-prev]');
@@ -18,6 +26,8 @@ players.forEach((player) => {
   // carry on where they stopped the next time their slide comes round.
   const getInterval = () => Math.min(readInterval(slides[active].dataset.duration, defaultInterval), defaultInterval);
   let paused = reducedMotion.matches;
+  // Held while a visitor reads a project's details; the slide waits, then carries on.
+  let held = false;
   let started = performance.now();
   let frame = 0;
   let cleanupTimer: number | undefined;
@@ -53,6 +63,7 @@ players.forEach((player) => {
   prepareScene(slides[0]);
   player.dataset.enhanced = 'true';
   player.dataset.paused = String(paused);
+  showHint(player, reducedMotion.matches);
 
   const show = (index: number) => {
     const target = (index + slides.length) % slides.length;
@@ -104,8 +115,9 @@ players.forEach((player) => {
     started = performance.now();
   };
 
+  const running = () => !paused && !held && !document.hidden;
   const tick = (now: number) => {
-    if (!paused && !document.hidden) {
+    if (running()) {
       const elapsed = now - started;
       if (elapsed >= getInterval()) show(active + 1);
       else if (progress) progress.style.setProperty('--project-progress', `${Math.min(100, elapsed / getInterval() * 100)}%`);
@@ -116,7 +128,15 @@ players.forEach((player) => {
   previous.addEventListener('click', () => { show(active - 1); setPaused(true); });
   next.addEventListener('click', () => { show(active + 1); setPaused(true); });
   toggle.addEventListener('click', () => setPaused(!paused));
-  player.addEventListener('focusin', () => setPaused(true));
+  slides.forEach((slide) => {
+    const content = slide.querySelector<HTMLElement>('.o-project-player__content');
+    if (!content) return;
+    const hold = (value: boolean) => () => { held = value; };
+    content.addEventListener('mouseenter', hold(true));
+    content.addEventListener('mouseleave', hold(false));
+    content.addEventListener('focusin', hold(true));
+    content.addEventListener('focusout', hold(false));
+  });
   reducedMotion.addEventListener('change', () => setPaused(reducedMotion.matches));
   setPaused(paused);
   frame = requestAnimationFrame(tick);

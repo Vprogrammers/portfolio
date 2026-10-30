@@ -61,14 +61,17 @@
             <img class="o-project-player__background" src="{{ project.image }}" alt="" {% if loop.first %}fetchpriority="high"{% endif %} loading="eager" decoding="async">
           </picture>
         {% endif %}
-        <div class="o-project-player__content">
+        {# Only the title (and the employer) show; the details open above it on hover, focus or tap. #}
+        <div class="o-project-player__content" tabindex="0">
+          <div class="o-project-player__details">
+            <p class="o-project-player__eyebrow">{{ project.category }}</p>
+            <p class="o-project-player__description">{{ project.summary }}</p>
+            {% if project.url %}
+              <a class="o-project-player__link" href="{{ project.url }}">Explore {{ project.title }}</a>
+            {% endif %}
+          </div>
           {% if project.employer %}{% pattern name='employer' data=employers[project.employer] %}{% endif %}
-          <p class="o-project-player__eyebrow">{{ project.category }}</p>
-          <h2 class="o-project-player__title">{{ project.title }}</h2>
-          <p class="o-project-player__description">{{ project.summary }}</p>
-          {% if project.url %}
-            <a class="o-project-player__link" href="{{ project.url }}">Explore {{ project.title }}</a>
-          {% endif %}
+          <h2 class="o-project-player__title">{{ project.title }}<span class="o-project-player__more" aria-hidden="true"></span></h2>
         </div>
       </article>
     {% endfor %}

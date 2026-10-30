@@ -372,6 +372,96 @@
 			}
 		},
 		{
+			"category": "KMP · SwiftUI · Compose · Firebase",
+			"title": "BezBrige!",
+			"summary": "A sales app for insurance agents: the admin assigns contacts, agents call them and offer insurance, credit or a fund, and every client moves through call statuses and awareness levels up to a signed contract.",
+			"tone": "red",
+			"variant": "leads",
+			"duration": 18000,
+			"leads": {
+				"logo": "/assets/img/projects/bezbrige-logo.png",
+				"push": {
+					"title": "Novi kontakt",
+					"body": "Admin ti je dodelio novi kontakt: Milan Petrović"
+				},
+				"agent": {
+					"initials": "MJ",
+					"name": "Marija Jovanović",
+					"level": "Nivo 3",
+					"stats": [
+						{
+							"label": "Broj kontakata",
+							"before": "47",
+							"after": "48"
+						},
+						{
+							"label": "Broj ugovora",
+							"before": "12",
+							"after": "13"
+						},
+						{
+							"label": "Provizija",
+							"before": "1.180 €",
+							"after": "1.257 €"
+						}
+					]
+				},
+				"client": {
+					"name": "Milan Petrović",
+					"age": 34,
+					"phone": "064 123 4567",
+					"product": "Osiguranje",
+					"duration": "20 godina",
+					"amount": "50 € mesečno"
+				},
+				"contacts": [
+					{
+						"name": "Jovana Marković",
+						"age": 29,
+						"product": "Fond",
+						"status": "Razmišlja",
+						"color": "#2323ff"
+					},
+					{
+						"name": "Stefan Ristić",
+						"age": 41,
+						"product": "Kredit",
+						"status": "Poslao/la ponudu",
+						"color": "#9a6f01"
+					},
+					{
+						"name": "Ana Kostić",
+						"age": 52,
+						"product": "Osiguranje",
+						"status": "Potpisan ugovor",
+						"color": "#656244"
+					}
+				],
+				"statuses": [
+					"Klijent nije pozvan",
+					"Klijent se nije javio",
+					"Nezainteresovan/a",
+					"Zainteresovan/a",
+					"Poslao/la ponudu",
+					"Razmišlja",
+					"Potpisan ugovor",
+					"Odustao"
+				],
+				"awareness": [
+					"Nisam čuo — NE",
+					"Čuo sam — ZNAM",
+					"Treba mi — ali mogu",
+					"Želim — Hoću",
+					"Potpisano — PLAĆAM"
+				],
+				"reminder": {
+					"when": "Petak, 14:00",
+					"text": "Poslati ponudu za osiguranje"
+				},
+				"contract": "Ugovor · Osiguranje · 20 god."
+			}
+		},
+		{
 			"category": "Open source · Accessibility",
 			"title": "a11yOtp",
 			"summary": "Accessible native one-time-code input for Android and iOS.",

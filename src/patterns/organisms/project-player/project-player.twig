@@ -17,6 +17,8 @@
           {% pattern name='device-scene' data=project|merge({ priority: loop.first }) %}
         {% elseif project.web %}
           {% pattern name='web-wrap' data=project.web %}
+        {% elseif project.leads %}
+          {% pattern name='lead-flow' data=project.leads %}
         {% elseif project.crew %}
           {% pattern name='crew-call' data=project.crew %}
         {% elseif project.radio %}

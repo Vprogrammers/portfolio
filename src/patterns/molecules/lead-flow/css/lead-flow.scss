@@ -1,0 +1,866 @@
+/* stylelint-disable plugin/stylelint-bem-namics -- generated keyframe offsets and nth-child loops */
+@use 'sass:list';
+@use 'sass:math';
+
+// The whole story runs on one timeline; times below are seconds into it.
+// Colours are the app's AppPalette.
+$loop: 18;
+$red: #d31620;
+$paper: #f6f6f6;
+$item: #f3ece5;
+$purple: #3a1772;
+$subtitle: #5c5c5c;
+
+$push: 1;
+$new-row: 2.2;
+$open: 3.2;
+$detail: 3.4;
+$call-press: 4.4;
+$call: (4.6, 6.4);
+$status-press: 6.8;
+$dialog: (7, 8.6);
+$pick: 7.8;
+$save: 8.3;
+// Call status badges and awareness values, each shown from its time on.
+$badge-times: ($detail, 8.6, 11, 12.4);
+$awareness-times: ($detail, 9, 12.4);
+$reminder-press: 9.6;
+$reminder: 9.9;
+$contract: 12.6;
+$profile: 13.8;
+$count: 14.6;
+// When the ladder reaches each level, top (4) to bottom (0).
+$ladder-times: (12.4, 9, 9, $detail, 0);
+$end: 17.4;
+
+// The time the next state takes over, or the end of the detail scene.
+@function next-time($times, $k) {
+	@if $k < list.length($times) {
+		@return list.nth($times, $k + 1) - 0.2;
+	}
+
+	@return $profile - 0.1;
+}
+
+@function at($s) {
+	@return math.percentage(math.div($s, $loop));
+}
+
+// Hidden until $start, eased in over $in, kept until $end, then faded out.
+@mixin appear($name, $start, $end: $end, $from: translateY(2cqw), $in: 0.35) {
+	@keyframes #{$name} {
+		0%,
+		#{at($start)} {
+			opacity: 0;
+			transform: $from;
+		}
+
+		#{at($start + $in)},
+		#{at($end)} {
+			opacity: 1;
+			transform: none;
+		}
+
+		#{at(math.min($end + 0.25, $loop))},
+		100% {
+			opacity: 0;
+			transform: none;
+		}
+	}
+}
+
+@mixin press($name, $t) {
+	@keyframes #{$name} {
+		0%,
+		#{at($t)},
+		#{at($t + 0.35)},
+		100% {
+			scale: 1;
+		}
+
+		#{at($t + 0.12)} {
+			scale: 0.9;
+		}
+	}
+}
+
+@keyframes lead-flow-home {
+	0%,
+	#{at($detail)} {
+		opacity: 1;
+	}
+
+	#{at($detail + 0.3)},
+	#{at($end)} {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@include appear(lead-flow-new-row, $new-row, $end, translateX(-100%), 0.45);
+@include press(lead-flow-open, $open);
+@include appear(lead-flow-detail, $detail, $profile - 0.1, translateX(12cqw));
+@include appear(lead-flow-call, list.nth($call, 1), list.nth($call, 2), scale(1.06), 0.3);
+@include appear(lead-flow-dialog, list.nth($dialog, 1), list.nth($dialog, 2), none, 0.25);
+@include appear(lead-flow-profile, $profile, $end, translateX(12cqw));
+@include appear(lead-flow-reminder, $reminder, $profile - 0.1, scale(0.8));
+@include appear(lead-flow-contract, $contract, $profile - 0.1, scale(0.8));
+@include press(lead-flow-call-button, $call-press);
+@include press(lead-flow-status-button, $status-press);
+@include press(lead-flow-reminder-button, $reminder-press);
+@include press(lead-flow-save, $save);
+
+@keyframes lead-flow-push {
+	0%,
+	#{at($push)} {
+		opacity: 0;
+		transform: translateY(-140%);
+	}
+
+	#{at($push + 0.4)},
+	#{at($new-row + 0.2)} {
+		opacity: 1;
+		transform: none;
+	}
+
+	#{at($new-row + 0.6)},
+	100% {
+		opacity: 0;
+		transform: translateY(-140%);
+	}
+}
+
+// Each badge and awareness value holds until the next one takes over.
+@for $k from 1 through list.length($badge-times) {
+	@include appear(lead-flow-badge-#{$k}, list.nth($badge-times, $k), next-time($badge-times, $k), scale(0.7), 0.2);
+}
+
+@for $k from 1 through list.length($awareness-times) {
+	@include appear(lead-flow-awareness-#{$k}, list.nth($awareness-times, $k), next-time($awareness-times, $k), translateY(2cqw), 0.2);
+}
+
+// The radio moves from the first status to "Zainteresovan/a".
+@keyframes lead-flow-radio-first {
+	0%,
+	#{at($pick)} {
+		box-shadow: inset 0 0 0 1.2cqw #000;
+	}
+
+	#{at($pick + 0.1)},
+	100% {
+		box-shadow: inset 0 0 0 0.4cqw #000;
+	}
+}
+
+@keyframes lead-flow-radio-pick {
+	0%,
+	#{at($pick)} {
+		box-shadow: inset 0 0 0 0.4cqw #000;
+	}
+
+	#{at($pick + 0.1)},
+	100% {
+		box-shadow: inset 0 0 0 1.2cqw #000;
+	}
+}
+
+@keyframes lead-flow-count-old {
+	0%,
+	#{at($count)} {
+		opacity: 1;
+		transform: none;
+	}
+
+	#{at($count + 0.3)},
+	100% {
+		opacity: 0;
+		transform: translateY(-100%);
+	}
+}
+
+@keyframes lead-flow-count-new {
+	0%,
+	#{at($count)} {
+		opacity: 0;
+		transform: translateY(100%);
+	}
+
+	#{at($count + 0.3)},
+	100% {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@for $k from 1 through list.length($ladder-times) {
+	$t: list.nth($ladder-times, $k);
+
+	@keyframes lead-flow-rung-#{$k} {
+		0%,
+		#{at($t)} {
+			background: rgb(255 255 255 / 0.08);
+			color: rgb(255 255 255 / 0.55);
+		}
+
+		#{at($t + 0.3)},
+		#{at($end)} {
+			background: $red;
+			color: #fff;
+		}
+
+		100% {
+			background: rgb(255 255 255 / 0.08);
+			color: rgb(255 255 255 / 0.55);
+		}
+	}
+}
+
+@keyframes lead-flow-pulse {
+	50% {
+		transform: scale(1.18);
+		opacity: 0.6;
+	}
+}
+
+// The root fills its positioned parent; the parent sets --phone-h/-x/-y.
+.m-lead-flow {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	container: lead-flow / size;
+	pointer-events: none;
+	background:
+		radial-gradient(ellipse 55% 65% at 62% 45%, rgb(211 22 32 / 0.35), transparent 70%),
+		linear-gradient(160deg, #1d1112, #0c0909);
+}
+
+.m-lead-flow__stage {
+	--h: var(--phone-h, 76cqh);
+
+	position: absolute;
+	left: var(--phone-x, 50%);
+	top: var(--phone-y, 50%);
+	display: flex;
+	align-items: center;
+	gap: calc(var(--h) * 0.08);
+	height: var(--h);
+	transform: translate(-50%, -50%);
+}
+
+.m-lead-flow__device {
+	height: 100%;
+	padding: calc(var(--h) * 0.012);
+	border-radius: calc(var(--h) * 0.07);
+	background: #0d0f12;
+	box-shadow:
+		0 0 0 calc(var(--h) * 0.004) #4a505a,
+		0 calc(var(--h) * 0.04) calc(var(--h) * 0.12) rgb(0 0 0 / 0.6);
+}
+
+.m-lead-flow__screen {
+	position: relative;
+	height: 100%;
+	aspect-ratio: 1179 / 2556;
+	overflow: hidden;
+	border-radius: calc(var(--h) * 0.06);
+	background: $paper;
+	container-type: inline-size;
+	color: #000;
+	font-family: Gabarito, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.m-lead-flow__header {
+	position: absolute;
+	inset: 0 0 auto;
+	z-index: 4;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 30cqw;
+	padding: 11cqw 5cqw 0;
+	border-radius: 0 0 6cqw 6cqw;
+	background: $red;
+	color: #fff;
+}
+
+.m-lead-flow__status {
+	position: absolute;
+	inset: 0 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 11cqw;
+	padding: 0 10cqw;
+	font-size: 3.6cqw;
+	font-weight: 600;
+}
+
+.m-lead-flow__island {
+	position: absolute;
+	left: 50%;
+	top: 2.4cqw;
+	width: 26cqw;
+	height: 7cqw;
+	border-radius: 4cqw;
+	background: #000;
+	transform: translateX(-50%);
+}
+
+.m-lead-flow__bars {
+	width: 9cqw;
+	height: 3.6cqw;
+	border-radius: 0.8cqw;
+	background: linear-gradient(90deg, #fff 70%, rgb(255 255 255 / 0.4) 70%);
+}
+
+.m-lead-flow__avatar,
+.m-lead-flow__me,
+.m-lead-flow__caller {
+	display: grid;
+	place-items: center;
+	width: 11cqw;
+	height: 11cqw;
+	border: 0.5cqw solid #fff;
+	border-radius: 50%;
+	background: #8e0e15;
+	color: #fff;
+	font-size: 3.8cqw;
+	font-weight: 700;
+}
+
+.m-lead-flow__logo {
+	width: 30cqw;
+}
+
+.m-lead-flow__search {
+	position: relative;
+	width: 5.4cqw;
+	height: 5.4cqw;
+	margin-right: 2cqw;
+	border: 0.7cqw solid #fff;
+	border-radius: 50%;
+
+	&::after {
+		content: '';
+		position: absolute;
+		right: -2.4cqw;
+		bottom: -2cqw;
+		width: 2.8cqw;
+		height: 0.7cqw;
+		background: #fff;
+		transform: rotate(45deg);
+	}
+}
+
+.m-lead-flow__scene {
+	position: absolute;
+	inset: 30cqw 0 0;
+	display: flex;
+	flex-direction: column;
+	gap: 2.6cqw;
+	padding: 5cqw;
+	background: $paper;
+
+	> * {
+		margin: 0;
+	}
+}
+
+.m-lead-flow__scene--home {
+	animation: lead-flow-home #{$loop}s linear infinite;
+}
+
+.m-lead-flow__section {
+	margin-top: 2cqw;
+	font-size: 4.6cqw;
+	font-weight: 700;
+}
+
+.m-lead-flow__row {
+	display: flex;
+	align-items: center;
+	gap: 3cqw;
+	overflow: hidden;
+	padding-right: 3cqw;
+	border-radius: 3cqw;
+	background: #fff;
+	box-shadow: 0 0.6cqw 2cqw rgb(0 0 0 / 0.06);
+
+	&::before {
+		content: '';
+		align-self: stretch;
+		width: 3.4cqw;
+		background: var(--accent);
+	}
+
+	> span {
+		flex: 1;
+		padding: 3.2cqw 0;
+	}
+
+	b {
+		display: block;
+		font-size: 4cqw;
+	}
+
+	small {
+		color: $subtitle;
+		font-size: 3cqw;
+	}
+}
+
+.m-lead-flow__row--new {
+	opacity: 0;
+	animation:
+		lead-flow-new-row #{$loop}s cubic-bezier(0.2, 0.8, 0.2, 1) infinite,
+		lead-flow-open #{$loop}s ease-out infinite;
+}
+
+.m-lead-flow__call {
+	position: relative;
+	flex: none;
+	width: 8cqw;
+	height: 8cqw;
+	border-radius: 50%;
+	background: #656244;
+
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 2.4cqw;
+		border: 0.6cqw solid #fff;
+		border-radius: 0 0 0 2cqw;
+		border-width: 0 0 0.6cqw 0.6cqw;
+	}
+}
+
+.m-lead-flow__scene--detail {
+	z-index: 1;
+	opacity: 0;
+	animation: lead-flow-detail #{$loop}s ease-out infinite;
+}
+
+.m-lead-flow__name {
+	font-size: 6cqw;
+	font-weight: 700;
+	text-align: center;
+}
+
+.m-lead-flow__badge {
+	display: grid;
+	justify-items: center;
+
+	em {
+		grid-area: 1 / 1;
+		padding: 1.6cqw 2.4cqw;
+		border-radius: 2.2cqw;
+		background: var(--badge);
+		color: #fff;
+		font-size: 3cqw;
+		font-style: normal;
+		font-weight: 500;
+		opacity: 0;
+
+		@for $k from 1 through list.length($badge-times) {
+			&:nth-child(#{$k}) {
+				animation: lead-flow-badge-#{$k} #{$loop}s ease-out infinite;
+			}
+		}
+	}
+}
+
+.m-lead-flow__facts {
+	display: flex;
+	flex-direction: column;
+	gap: 1.6cqw;
+	margin: 1cqw 0 0;
+
+	> div {
+		display: flex;
+		justify-content: space-between;
+		padding: 2.6cqw 3.4cqw;
+		border-radius: 2.4cqw;
+		background: $item;
+		font-size: 3.3cqw;
+	}
+
+	dt {
+		color: $subtitle;
+	}
+
+	dd {
+		margin: 0;
+		font-weight: 600;
+	}
+}
+
+.m-lead-flow__awareness dd {
+	display: grid;
+	justify-items: end;
+
+	span {
+		grid-area: 1 / 1;
+		opacity: 0;
+
+		@for $k from 1 through list.length($awareness-times) {
+			&:nth-child(#{$k}) {
+				animation: lead-flow-awareness-#{$k} #{$loop}s ease-out infinite;
+			}
+		}
+	}
+}
+
+.m-lead-flow__reminder {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 2.4cqw 4cqw;
+	border-radius: 5cqw;
+	background: $purple;
+	color: #fff;
+	font-size: 3.4cqw;
+	opacity: 0;
+	animation: lead-flow-reminder #{$loop}s ease-out infinite;
+
+	small {
+		display: block;
+		font-size: 2.8cqw;
+		opacity: 0.8;
+	}
+
+	i {
+		width: 3cqw;
+		height: 3cqw;
+		background:
+			linear-gradient(45deg, transparent 44%, #fff 44% 56%, transparent 56%),
+			linear-gradient(-45deg, transparent 44%, #fff 44% 56%, transparent 56%);
+	}
+}
+
+.m-lead-flow__contract {
+	align-self: center;
+	padding: 1.6cqw 3cqw;
+	border-radius: 1.4cqw;
+	background: #656244;
+	color: #fff;
+	font-size: 3.2cqw;
+	font-weight: 700;
+	opacity: 0;
+	animation: lead-flow-contract #{$loop}s ease-out infinite;
+}
+
+.m-lead-flow__actions {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 2.4cqw;
+	margin-top: auto;
+	margin-bottom: 4cqw;
+
+	span {
+		display: grid;
+		place-items: end center;
+		aspect-ratio: 1;
+		padding-bottom: 2.4cqw;
+		border-radius: 3cqw;
+		background: var(--button);
+		color: #fff;
+		font-size: 2.6cqw;
+		font-weight: 600;
+
+		&:nth-child(2) {
+			animation: lead-flow-status-button #{$loop}s ease-out infinite;
+		}
+
+		&:nth-child(3) {
+			animation: lead-flow-reminder-button #{$loop}s ease-out infinite;
+		}
+
+		&:nth-child(4) {
+			animation: lead-flow-call-button #{$loop}s ease-out infinite;
+		}
+	}
+}
+
+.m-lead-flow__scene--call {
+	z-index: 5;
+	inset: 0;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(180deg, #2b2b30, #0f0f12);
+	color: #fff;
+	opacity: 0;
+	animation: lead-flow-call #{$loop}s ease-out infinite;
+}
+
+.m-lead-flow__caller {
+	width: 26cqw;
+	height: 26cqw;
+	margin-bottom: 4cqw;
+	background: #656244;
+	font-size: 10cqw;
+	animation: lead-flow-pulse 1.4s ease-in-out infinite;
+}
+
+.m-lead-flow__calling {
+	font-size: 3.6cqw;
+	opacity: 0.75;
+}
+
+.m-lead-flow__hangup {
+	width: 16cqw;
+	height: 16cqw;
+	margin-top: 24cqw;
+	border-radius: 50%;
+	background: #e5352b;
+}
+
+.m-lead-flow__dialog {
+	position: absolute;
+	inset: 0;
+	z-index: 5;
+	display: flex;
+	align-items: center;
+	padding: 0 5cqw;
+	background: rgb(0 0 0 / 0.4);
+	opacity: 0;
+	animation: lead-flow-dialog #{$loop}s ease-out infinite;
+}
+
+.m-lead-flow__sheet {
+	width: 100%;
+	padding: 3cqw 5cqw 5cqw;
+	border-radius: 5cqw;
+	background: #fff;
+
+	p {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin: 0;
+		padding: 2.2cqw 0;
+		border-bottom: 0.3cqw solid #eee;
+		font-size: 3.6cqw;
+		font-weight: 500;
+	}
+
+	i {
+		width: 4.4cqw;
+		height: 4.4cqw;
+		border-radius: 50%;
+		box-shadow: inset 0 0 0 0.4cqw #000;
+	}
+
+	p:first-child i {
+		animation: lead-flow-radio-first #{$loop}s linear infinite;
+	}
+
+	p:nth-child(4) i {
+		animation: lead-flow-radio-pick #{$loop}s linear infinite;
+	}
+}
+
+.m-lead-flow__save {
+	display: block;
+	margin-top: 4cqw;
+	padding: 3cqw 0;
+	border-radius: 3cqw;
+	background: $red;
+	color: #fff;
+	font-size: 3.8cqw;
+	font-weight: 600;
+	text-align: center;
+	animation: lead-flow-save #{$loop}s ease-out infinite;
+}
+
+.m-lead-flow__scene--profile {
+	z-index: 2;
+	align-items: center;
+	padding-top: 8cqw;
+	opacity: 0;
+	animation: lead-flow-profile #{$loop}s ease-out infinite;
+}
+
+.m-lead-flow__me {
+	width: 22cqw;
+	height: 22cqw;
+	border-color: $red;
+	background: $red;
+	font-size: 8cqw;
+}
+
+.m-lead-flow__level {
+	padding: 0.8cqw 2.4cqw;
+	border-radius: 1.4cqw;
+	background: #656244;
+	color: #fff;
+	font-size: 4cqw;
+	font-weight: 700;
+}
+
+.m-lead-flow__stats {
+	align-self: stretch;
+	display: flex;
+	flex-direction: column;
+	margin: 4cqw 0 0;
+	padding: 2cqw 5cqw;
+	border-radius: 3.4cqw;
+	background: #fff;
+	box-shadow: 0 0.6cqw 2cqw rgb(0 0 0 / 0.06);
+
+	> div {
+		display: flex;
+		justify-content: space-between;
+		padding: 3.4cqw 0;
+		border-bottom: 0.3cqw solid #eee;
+		font-size: 3.8cqw;
+
+		&:last-child {
+			border: 0;
+		}
+	}
+
+	dt {
+		color: $subtitle;
+	}
+
+	dd {
+		display: grid;
+		overflow: hidden;
+		margin: 0;
+		font-weight: 700;
+	}
+
+	span {
+		grid-area: 1 / 1;
+		justify-self: end;
+		animation: lead-flow-count-old #{$loop}s ease-out infinite;
+
+		&:last-child {
+			color: $red;
+			animation-name: lead-flow-count-new;
+		}
+	}
+}
+
+.m-lead-flow__push {
+	position: absolute;
+	left: 3cqw;
+	right: 3cqw;
+	top: 12cqw;
+	z-index: 6;
+	display: flex;
+	gap: 3cqw;
+	padding: 3.4cqw;
+	border-radius: 5cqw;
+	background: rgb(246 246 246 / 0.97);
+	color: #1b1b1b;
+	font-size: 3.2cqw;
+	line-height: 1.35;
+	box-shadow: 0 2cqw 6cqw rgb(0 0 0 / 0.35);
+	opacity: 0;
+	animation: lead-flow-push #{$loop}s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+
+	small {
+		display: block;
+		color: #666;
+		font-size: 2.7cqw;
+	}
+
+	b {
+		display: block;
+		margin: 0.6cqw 0 0.4cqw;
+		font-size: 3.6cqw;
+	}
+}
+
+.m-lead-flow__app-icon {
+	flex: none;
+	display: grid;
+	place-items: center;
+	width: 9cqw;
+	height: 9cqw;
+	border-radius: 2.4cqw;
+	background: $red;
+
+	img {
+		width: 86%;
+	}
+}
+
+// Awareness ladder beside the phone.
+.m-lead-flow__ladder {
+	display: flex;
+	flex-direction: column;
+	gap: 1.2cqh;
+	width: calc(var(--h) * 0.42);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-family: Gabarito, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+
+	li {
+		display: flex;
+		align-items: center;
+		gap: 1.4cqh;
+		padding: 1.2cqh 1.6cqh;
+		border-radius: 1.4cqh;
+		background: rgb(255 255 255 / 0.08);
+		color: rgb(255 255 255 / 0.55);
+		font-size: 1.6cqh;
+		line-height: 1.3;
+
+		@for $k from 1 through list.length($ladder-times) {
+			&:nth-child(#{$k}) {
+				animation: lead-flow-rung-#{$k} #{$loop}s ease-out infinite;
+			}
+		}
+	}
+
+	b {
+		flex: none;
+		display: grid;
+		place-items: center;
+		width: 3.4cqh;
+		height: 3.4cqh;
+		border-radius: 50%;
+		background: rgb(0 0 0 / 0.25);
+		font-size: 1.8cqh;
+	}
+}
+
+// Portrait parents have text above and below the phone; drop the ladder.
+@container lead-flow (aspect-ratio < 1) {
+	.m-lead-flow__ladder {
+		display: none;
+	}
+}
+
+// Reduced motion: the contact's detail, signed, with a full ladder.
+@media (prefers-reduced-motion: reduce) {
+	.m-lead-flow *,
+	.m-lead-flow *::after {
+		/* stylelint-disable-next-line declaration-no-important -- overrides every generated story animation */
+		animation: none !important;
+	}
+
+	.m-lead-flow__scene--home,
+	.m-lead-flow__push {
+		display: none;
+	}
+
+	.m-lead-flow__scene--detail,
+	.m-lead-flow__badge em:last-child,
+	.m-lead-flow__awareness span:last-child,
+	.m-lead-flow__reminder,
+	.m-lead-flow__contract {
+		opacity: 1;
+	}
+
+	.m-lead-flow__ladder li {
+		background: $red;
+		color: #fff;
+	}
+}

@@ -34,6 +34,7 @@ import './patterns/molecules/crew-call';
 import './patterns/molecules/device-scene';
 import './patterns/molecules/example';
 import './patterns/molecules/laptop-scroll';
+import './patterns/molecules/lead-flow';
 import './patterns/molecules/live-room';
 import './patterns/molecules/on-air';
 import './patterns/molecules/phone-scroll';

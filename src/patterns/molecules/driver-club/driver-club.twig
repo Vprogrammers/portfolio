@@ -1,0 +1,30 @@
+{# A members' club for taxi drivers: Face ID signs in, the driving licence is captured front and back with crop handles, the member badge is issued, then partner offers slide in. Fills its positioned parent. #}
+<div class="m-driver-club" aria-hidden="true">
+	{# The app's own photo of London black cabs, dimmed behind the story. #}
+	<img class="m-driver-club__photo-bg" src="{{ photo }}" alt="" loading="lazy" decoding="async">
+	<i class="m-driver-club__checker"></i>
+	<div class="m-driver-club__stage">
+		{# 1. Face ID. #}
+		<div class="m-driver-club__faceid"><i></i><small>{{ faceid }}</small></div>
+
+		{# 2. The licence under the camera, front then back. #}
+		<div class="m-driver-club__scan">
+			<p class="m-driver-club__hint"><em>{{ licence.front }}</em><em>{{ licence.back }}</em></p>
+			<div class="m-driver-club__licence">
+				<span class="m-driver-club__side m-driver-club__side--front"><b>{{ licence.title }}</b><i class="m-driver-club__photo"></i><span class="m-driver-club__lines"><i></i><i></i><i></i><i></i></span><em>B</em></span>
+				<span class="m-driver-club__side m-driver-club__side--back"><span class="m-driver-club__grid">{% for c in ['AM', 'A', 'B', 'BE', 'C', 'D'] %}<i>{{ c }}</i>{% endfor %}</span></span>
+				<i class="m-driver-club__crop"></i>
+			</div>
+		</div>
+
+		{# 3. The member badge and the partner offers. #}
+		<div class="m-driver-club__badge">
+			<p class="m-driver-club__brand">{{ brand }}</p>
+			<p class="m-driver-club__member"><b>{{ member.name }}</b><small>{{ member.id }}</small></p>
+			<p class="m-driver-club__level">{{ member.level }}</p>
+		</div>
+		<div class="m-driver-club__offers">
+			{% for offer in offers %}<p class="m-driver-club__offer" style="--hue: {{ offer.hue }}"><b>{{ offer.deal }}</b><span>{{ offer.partner }}</span></p>{% endfor %}
+		</div>
+	</div>
+</div>

@@ -1654,6 +1654,46 @@
 			}
 		},
 		{
+			"category": "iOS · Swift · UIKit",
+			"title": "ConnectClub",
+			"summary": "A members' club app for taxi drivers: sign in with Face ID, verify a driving licence by photographing both sides, carry a member badge and unlock offers from partner companies.",
+			"tone": "orange",
+			"variant": "club2",
+			"duration": 16000,
+			"club2": {
+				"photo": "/assets/img/projects/connectclub-taxi.jpg",
+				"faceid": "Face ID",
+				"licence": {
+					"title": "DRIVING LICENCE",
+					"front": "Front of your driver licence",
+					"back": "Back of your driver licence"
+				},
+				"brand": "Connect Club",
+				"member": {
+					"name": "Luka Marić",
+					"id": "BADGE · CC-08417",
+					"level": "VERIFIED DRIVER"
+				},
+				"offers": [
+					{
+						"deal": "−10%",
+						"partner": "Fuel partner",
+						"hue": 45
+					},
+					{
+						"deal": "−25%",
+						"partner": "Car wash",
+						"hue": 200
+					},
+					{
+						"deal": "Free",
+						"partner": "Tyre check",
+						"hue": 140
+					}
+				]
+			}
+		},
+		{
 			"category": "Open source · Accessibility",
 			"title": "a11yOtp",
 			"summary": "An open-source, accessible one-time-code input for Android and iOS, built natively on each platform.",

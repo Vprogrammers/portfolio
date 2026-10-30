@@ -1,0 +1,260 @@
+{
+	"_nitro": {
+		"pageTitle": "Bucherer — case study · Viktor Nešić"
+	},
+	"meta": {
+		"description": "A quick iOS proof of concept for a luxury watch retailer: can the existing online shop, partly built on Salesforce, run inside a native app, keep customers signed in and complete a purchase?",
+		"path": "/work-bucherer"
+	},
+	"intro": {
+		"name": "Viktor Nešić",
+		"role": "Mobile & Frontend Developer"
+	},
+	"links": [
+		{
+			"label": "GitHub",
+			"icon": "github",
+			"url": "https://github.com/Vprogrammers"
+		},
+		{
+			"label": "LinkedIn",
+			"icon": "linkedin",
+			"url": "https://www.linkedin.com/in/viktor-nesic"
+		},
+		{
+			"label": "v.nesic.developer@gmail.com",
+			"icon": "mail",
+			"url": "/about#contact-form"
+		}
+	],
+	"employers": {
+		"merkle": {
+			"label": "Delivered at",
+			"name": "Merkle",
+			"note": "Enterprise mobile & digital engineering"
+		}
+	},
+	"caseStudy": {
+		"kicker": "Case study · iOS · Feasibility PoC",
+		"title": "Bucherer",
+		"lead": "A quick iOS proof of concept for a luxury watch retailer: can the existing online shop, partly built on Salesforce, run inside a native app, keep customers signed in and complete a purchase?",
+		"employer": "merkle",
+		"sceneType": "web",
+		"scene": {
+			"brand": "BUCHERER",
+			"since": "SINCE 1888",
+			"login": {
+				"email": "poc.tester@example.com"
+			},
+			"product": {
+				"collection": "Automatic",
+				"name": "Classic Automatic 41 mm",
+				"price": "CHF 7,450"
+			},
+			"checkout": {
+				"address": "Bahnhofstrasse 50, 8001 Zürich",
+				"card": "Visa •••• 4242",
+				"order": "#BU-10482"
+			},
+			"console": {
+				"title": "Bucherer — Debug console",
+				"lines": [
+					{
+						"text": "➡️ URL: /ch/en/login"
+					},
+					{
+						"text": "➡️ URL: /ch/en/account"
+					},
+					{
+						"text": "🍪 Session cookie stored · 24 h",
+						"kind": "ok"
+					},
+					{
+						"text": "➡️ URL: /ch/en/watches/classic-41"
+					},
+					{
+						"text": "⚠️ AVIF image reloads while loading",
+						"kind": "warn"
+					},
+					{
+						"text": "➡️ URL: /ch/en/cart"
+					},
+					{
+						"text": "↪️ Platform switch: /checkout"
+					},
+					{
+						"text": "🍪 Session kept across platforms",
+						"kind": "ok"
+					},
+					{
+						"text": "➡️ URL: /checkout/confirmation"
+					},
+					{
+						"text": "✅ Purchase works in WKWebView",
+						"kind": "ok"
+					}
+				]
+			}
+		},
+		"facts": [
+			{
+				"label": "Client",
+				"value": "Bucherer, luxury watch and jewellery retailer"
+			},
+			{
+				"label": "My role",
+				"value": "Sole mobile engineer"
+			},
+			{
+				"label": "Period",
+				"value": "Mar – Apr 2026"
+			},
+			{
+				"label": "Platform",
+				"value": "iOS · SwiftUI · WKWebView"
+			}
+		],
+		"brief": {
+			"title": "The brief",
+			"text": [
+				"Before committing to an app, the retailer wanted to know how far the existing web shop could carry it. Some of the shop runs on Salesforce and some does not, so the flows had to be checked across both, from sign-in to checkout.",
+				"I worked with the agency managers and two web developers, and the result had to be an honest answer plus an estimate for iOS and Android."
+			]
+		},
+		"contributions": {
+			"title": "What I did",
+			"items": [
+				"Built a SwiftUI prototype with a WKWebView wrapped in UIViewRepresentable.",
+				"Kept sessions across launches with persistent cookies in the default website data store.",
+				"Logged every navigation to trace how sign-in, cart and checkout move between the Salesforce and non-Salesforce parts.",
+				"Tried routing cart, checkout and payment pages to Safari as a fallback option.",
+				"Documented the issues found and wrote the delivery estimate for iOS and Android."
+			]
+		},
+		"findings": {
+			"title": "What the PoC found",
+			"text": "The shop works inside the app, with a list of issues to fix on the web side and a few risks to plan for.",
+			"items": [
+				{
+					"tag": "Risk",
+					"title": "AVIF images blink while loading",
+					"text": "Visible flicker inside the WebView, serious enough to risk an App Store rejection."
+				},
+				{
+					"tag": "Issue",
+					"title": "Session ends after 24 hours",
+					"text": "Customers would be signed out daily unless the session handling changes."
+				},
+				{
+					"tag": "Issue",
+					"title": "Layout details in the WebView",
+					"text": "Accessibility button position, cut images, back-to-top button and footer position."
+				},
+				{
+					"tag": "Issue",
+					"title": "Account flows on test systems",
+					"text": "Password recovery on DEV, no registration mail on staging, tab selection in My Account."
+				},
+				{
+					"tag": "Risk",
+					"title": "Store payment rules",
+					"text": "External payment is allowed for physical goods, which watches are, but it has to be planned with store review in mind."
+				},
+				{
+					"tag": "Risk",
+					"title": "Dependence on the web platform",
+					"text": "An app built on the shop depends on the shop staying stable and on WebView limits."
+				}
+			]
+		},
+		"architecture": {
+			"title": "The estimate",
+			"text": "Days per platform, iOS / Android, for the full app that would follow the PoC.",
+			"layers": [
+				{
+					"name": "Setup & CI",
+					"items": [
+						"2–3 days each"
+					]
+				},
+				{
+					"name": "WebView app",
+					"items": [
+						"Splash, onboarding, navigation",
+						"5 days each"
+					]
+				},
+				{
+					"name": "Cookies & session",
+					"items": [
+						"3 days each"
+					]
+				},
+				{
+					"name": "Camera",
+					"items": [
+						"iOS 2–3",
+						"Android 3–4"
+					]
+				},
+				{
+					"name": "Push & deep links",
+					"items": [
+						"APNs / FCM",
+						"iOS 4–5",
+						"Android 5–6"
+					]
+				},
+				{
+					"name": "Multiple WebViews with tabs",
+					"items": [
+						"10–12 days"
+					]
+				},
+				{
+					"name": "Buffer & store release",
+					"items": [
+						"2–4 days buffer",
+						"store deployment"
+					]
+				}
+			]
+		},
+		"stack": {
+			"title": "Stack",
+			"items": [
+				"Swift",
+				"SwiftUI",
+				"WKWebView",
+				"WKNavigationDelegate",
+				"Salesforce",
+				"Xcode"
+			]
+		},
+		"team": {
+			"title": "Team",
+			"text": "The only mobile engineer on the engagement, in contact with the agency managers and two web developers."
+		},
+		"outcome": {
+			"title": "The result",
+			"text": "A clear answer on what the web shop can and cannot do inside a native app, the issues to fix before launch, and an estimate the client could plan the full app with."
+		},
+		"back": {
+			"label": "All works",
+			"url": "/#works"
+		},
+		"cta": {
+			"title": "Have a project like this?",
+			"text": "I build and rescue native iOS, Android and Kotlin Multiplatform apps, and I'm happy to look at yours.",
+			"label": "Get in touch",
+			"url": "/about#contact-form"
+		},
+		"next": {
+			"title": "CGIAR",
+			"url": "/work-cgiar"
+		}
+	},
+	"analytics": {
+		"gaMeasurementId": "G-ZM0VPP0G2C"
+	}
+}

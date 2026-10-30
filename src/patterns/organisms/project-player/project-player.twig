@@ -35,6 +35,8 @@
           {% pattern name='kids-tv' data=project.kids %}
         {% elseif project.tokens %}
           {% pattern name='token-flow' data=project.tokens %}
+        {% elseif project.sdui %}
+          {% pattern name='sdui-live' data=project.sdui %}
         {% elseif project.crew %}
           {% pattern name='crew-call' data=project.crew %}
         {% elseif project.radio %}

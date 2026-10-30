@@ -989,6 +989,32 @@
 			}
 		},
 		{
+			"category": "Kotlin Multiplatform · Compose · Ktor · Internal",
+			"title": "Anubis",
+			"summary": "A server-driven UI framework for Kotlin Multiplatform: a JSON layout from a Ktor server becomes a native Compose screen, so the app's UI can change without a release.",
+			"tone": "violet",
+			"variant": "sdui",
+			"duration": 16000,
+			"sdui": {
+				"file": "home.json",
+				"server": "GET /screens/home · Ktor",
+				"title": "Discover",
+				"cards": [
+					{
+						"heading": "DevOps",
+						"subheading": "The Cycle of DevOps",
+						"hue": 250
+					},
+					{
+						"heading": "Anubis",
+						"subheading": "The best way to build mobile apps",
+						"hue": 300
+					}
+				],
+				"button": "See all"
+			}
+		},
+		{
 			"category": "Open source · Accessibility",
 			"title": "a11yOtp",
 			"summary": "Accessible native one-time-code input for Android and iOS.",

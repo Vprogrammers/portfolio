@@ -1,0 +1,396 @@
+/* stylelint-disable plugin/stylelint-bem-namics -- generated keyframe offsets and nth-child loops */
+@use 'sass:list';
+@use 'sass:math';
+
+// The whole story runs on one timeline; times below are seconds into it.
+$loop: 16;
+$mono: 'SF Mono', menlo, consolas, monospace;
+// When each JSON object is typed and when its component lands on the phone.
+$block-times: (0.6, 2.2, 5.2, 10.6);
+$land-delay: 0.9;
+$edit: 8.2;
+$reset: 15;
+
+@function at($s) {
+	@return math.percentage(math.div($s, $loop));
+}
+
+// Typed in from the left; flashes, then stays until the reset.
+@for $k from 1 through list.length($block-times) {
+	$t: list.nth($block-times, $k);
+	$l: $t + $land-delay;
+
+	@keyframes sdui-live-type-#{$k} {
+		0%,
+		#{at($t)} {
+			clip-path: inset(0 100% 0 0);
+			background: transparent;
+		}
+
+		#{at($t + 0.6)} {
+			clip-path: inset(0);
+			background: rgb(167 139 250 / 0.22);
+		}
+
+		#{at($t + 1.6)},
+		#{at($reset)} {
+			clip-path: inset(0);
+			background: transparent;
+		}
+
+		#{at($reset + 0.3)},
+		100% {
+			clip-path: inset(0 100% 0 0);
+		}
+	}
+
+	@keyframes sdui-live-land-#{$k} {
+		0%,
+		#{at($l)} {
+			max-height: 0;
+			opacity: 0;
+			transform: translateX(14cqh) scale(0.9);
+		}
+
+		#{at($l + 0.45)},
+		#{at($reset)} {
+			max-height: 40cqh;
+			opacity: 1;
+			transform: none;
+		}
+
+		#{at($reset + 0.4)},
+		100% {
+			max-height: 0;
+			opacity: 0;
+		}
+	}
+}
+
+// Four packets share one wire, so chain them in one animation.
+@keyframes sdui-live-packets {
+	0% {
+		left: 0;
+		opacity: 0;
+	}
+
+	@each $t in list.join($block-times, ($edit)) {
+		#{at($t + 0.4)} {
+			left: 0;
+			opacity: 0;
+		}
+
+		#{at($t + 0.45)} {
+			left: 0;
+			opacity: 1;
+		}
+
+		#{at($t + $land-delay)} {
+			left: 100%;
+			opacity: 1;
+		}
+
+		#{at($t + $land-delay + 0.05)} {
+			left: 100%;
+			opacity: 0;
+		}
+	}
+
+	100% {
+		left: 100%;
+		opacity: 0;
+	}
+}
+
+@keyframes sdui-live-old {
+	0%,
+	#{at($edit)},
+	#{at($reset + 0.4)},
+	100% {
+		opacity: 1;
+	}
+
+	#{at($edit + 0.15)},
+	#{at($reset)} {
+		opacity: 0;
+	}
+}
+
+@keyframes sdui-live-new {
+	0%,
+	#{at($edit)},
+	#{at($reset + 0.4)},
+	100% {
+		opacity: 0;
+	}
+
+	#{at($edit + 0.15)},
+	#{at($reset)} {
+		opacity: 1;
+	}
+}
+
+// The edited card moves its caption to the top right.
+@keyframes sdui-live-caption {
+	0%,
+	#{at($edit + $land-delay)},
+	#{at($reset)},
+	100% {
+		inset: auto auto 1.4cqh 1.4cqh;
+		text-align: left;
+	}
+
+	#{at($edit + $land-delay + 0.35)},
+	#{at($reset - 0.01)} {
+		inset: 1.4cqh 1.4cqh auto auto;
+		text-align: right;
+	}
+}
+
+// The root fills its positioned parent; the parent sets --live-h/-x/-y.
+.m-sdui-live {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	container: sdui-live / size;
+	pointer-events: none;
+	background:
+		radial-gradient(ellipse 55% 60% at 66% 50%, rgb(124 58 237 / 0.25), transparent 70%),
+		linear-gradient(160deg, #15111f, #0b0910);
+	font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.m-sdui-live__stage {
+	--h: var(--live-h, 66cqh);
+
+	position: absolute;
+	left: var(--live-x, 50%);
+	top: var(--live-y, 50%);
+	display: flex;
+	align-items: center;
+	gap: calc(var(--h) * 0.04);
+	height: var(--h);
+	transform: translate(-50%, -50%);
+}
+
+.m-sdui-live__editor {
+	width: calc(var(--h) * 0.82);
+	overflow: hidden;
+	border-radius: 1.4cqh;
+	background: #1a1724;
+	box-shadow: 0 2cqh 6cqh rgb(0 0 0 / 0.5);
+}
+
+.m-sdui-live__file {
+	display: flex;
+	align-items: center;
+	gap: 0.8cqh;
+	margin: 0;
+	padding: 1.2cqh 1.6cqh;
+	background: rgb(255 255 255 / 0.05);
+	color: rgb(255 255 255 / 0.6);
+	font: 1.3cqh $mono;
+
+	i {
+		width: 1.1cqh;
+		height: 1.1cqh;
+		border-radius: 50%;
+		background: #ff5f57;
+
+		&:nth-child(2) {
+			background: #febc2e;
+		}
+
+		&:nth-child(3) {
+			margin-right: 1cqh;
+			background: #28c840;
+		}
+	}
+}
+
+.m-sdui-live__json {
+	margin: 0;
+	padding: 1.6cqh;
+	color: #a9a3c2;
+	font: 1.4cqh/1.7 $mono;
+	white-space: pre;
+}
+
+.m-sdui-live__block {
+	display: inline-block;
+	border-radius: 0.4cqh;
+	color: #e9e4ff;
+	clip-path: inset(0 100% 0 0);
+}
+
+// The edited value: the old word gives way to the new one in place.
+.m-sdui-live__swap {
+	display: inline-grid;
+
+	em {
+		grid-area: 1 / 1;
+		color: #fca5a5;
+		font-style: normal;
+		animation: sdui-live-old #{$loop}s linear infinite;
+
+		&:last-child {
+			color: #86efac;
+			animation: sdui-live-new #{$loop}s linear infinite;
+		}
+	}
+}
+
+.m-sdui-live__server {
+	margin: 0;
+	padding: 1cqh 1.6cqh 1.4cqh;
+	color: #a78bfa;
+	font: 1.2cqh $mono;
+}
+
+.m-sdui-live__wire {
+	position: relative;
+	width: calc(var(--h) * 0.12);
+	height: 0.25cqh;
+	background: rgb(255 255 255 / 0.15);
+
+	b {
+		position: absolute;
+		top: 50%;
+		width: 1.4cqh;
+		height: 1.4cqh;
+		margin: -0.7cqh 0 0 -0.7cqh;
+		border-radius: 50%;
+		background: #a78bfa;
+		box-shadow: 0 0 1.6cqh #a78bfa;
+		opacity: 0;
+		animation: sdui-live-packets #{$loop}s ease-in-out infinite;
+	}
+}
+
+.m-sdui-live__device {
+	height: 100%;
+	padding: calc(var(--h) * 0.012);
+	border-radius: calc(var(--h) * 0.07);
+	background: #0d0f12;
+	box-shadow:
+		0 0 0 calc(var(--h) * 0.004) #4a505a,
+		0 calc(var(--h) * 0.04) calc(var(--h) * 0.12) rgb(0 0 0 / 0.6);
+}
+
+.m-sdui-live__screen {
+	display: flex;
+	flex-direction: column;
+	gap: 1.6cqh;
+	height: 100%;
+	aspect-ratio: 1179 / 2556;
+	overflow: hidden;
+	padding: 2cqh 1.8cqh;
+	border-radius: calc(var(--h) * 0.06);
+	background: #f6f4fb;
+	color: #1d1830;
+}
+
+.m-sdui-live__status {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0 0 1cqh;
+	font-size: 1.4cqh;
+	font-weight: 600;
+
+	i {
+		width: 3cqh;
+		height: 1.3cqh;
+		border-radius: 0.4cqh;
+		background: #1d1830;
+	}
+}
+
+.m-sdui-live__part {
+	flex: none;
+	max-height: 0;
+	opacity: 0;
+}
+
+// Each JSON object and the component it becomes share a number.
+@for $k from 1 through list.length($block-times) {
+	.m-sdui-live__block--#{$k} {
+		animation: sdui-live-type-#{$k} #{$loop}s steps(18, end) infinite;
+	}
+
+	.m-sdui-live__part--#{$k} {
+		animation: sdui-live-land-#{$k} #{$loop}s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+	}
+}
+
+.m-sdui-live__title {
+	margin: 0;
+	font-size: 2.8cqh;
+	font-weight: 800;
+}
+
+.m-sdui-live__card {
+	--hue: 260;
+
+	position: relative;
+	height: 15cqh;
+	border-radius: 1.6cqh;
+	background:
+		radial-gradient(circle at 78% 28%, hsl(calc(var(--hue) + 40) 90% 70% / 0.9), transparent 45%),
+		linear-gradient(135deg, hsl(var(--hue) 70% 45%), hsl(calc(var(--hue) + 60) 70% 30%));
+	color: #fff;
+}
+
+.m-sdui-live__caption {
+	position: absolute;
+	inset: auto auto 1.4cqh 1.4cqh;
+
+	b {
+		display: block;
+		font-size: 1.9cqh;
+	}
+
+	small {
+		font-size: 1.3cqh;
+		opacity: 0.85;
+	}
+}
+
+.m-sdui-live__part--2 .m-sdui-live__caption {
+	animation: sdui-live-caption #{$loop}s cubic-bezier(0.5, 0, 0.2, 1) infinite;
+}
+
+.m-sdui-live__button {
+	padding: 1.4cqh 0;
+	border-radius: 1.2cqh;
+	background: #7c3aed;
+	color: #fff;
+	font-size: 1.6cqh;
+	font-weight: 700;
+	text-align: center;
+}
+
+// Portrait parents: only the phone, the JSON drops out.
+@container sdui-live (aspect-ratio < 1) {
+	.m-sdui-live__editor,
+	.m-sdui-live__wire {
+		display: none;
+	}
+}
+
+// Reduced motion: the finished JSON and the finished screen.
+@media (prefers-reduced-motion: reduce) {
+	.m-sdui-live * {
+		/* stylelint-disable-next-line declaration-no-important -- overrides every generated story animation */
+		animation: none !important;
+	}
+
+	.m-sdui-live__block {
+		clip-path: none;
+	}
+
+	.m-sdui-live__part {
+		max-height: none;
+		opacity: 1;
+	}
+}

@@ -1017,6 +1017,7 @@
 		{
 			"category": "Kotlin Multiplatform · Compose · Ktor · Internal",
 			"title": "Anubis",
+			"url": "/work-anubis",
 			"summary": "A server-driven UI framework for Kotlin Multiplatform: screens are described as JSON on a Ktor server and rendered natively with Compose, so layouts can change without an app release.",
 			"tone": "violet",
 			"variant": "sdui",

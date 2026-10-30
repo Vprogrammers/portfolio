@@ -36,3 +36,13 @@ test('About links back home, and the back-to-top button appears past the first r
   await button.click();
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
 });
+
+test('the progress line between the hero and the works sticks to the top and fills with the scroll', async ({ page }) => {
+  await page.goto('/');
+  const line = page.locator('.js-scroll-progress');
+  const progress = () => line.evaluate((el) => Number(getComputedStyle(el).getPropertyValue('--progress')));
+  expect(await progress()).toBe(0);
+  await page.evaluate(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' as ScrollBehavior }));
+  await expect.poll(progress).toBe(1);
+  await expect.poll(() => line.evaluate((el) => Math.round(el.getBoundingClientRect().top))).toBe(0);
+});

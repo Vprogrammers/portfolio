@@ -619,6 +619,8 @@
 	}
 }
 
+// The controls stay out of sight and appear when the pointer reaches them or a
+// keyboard user tabs into them, so the pause control is always within reach.
 .o-project-player__controls {
 	position: absolute;
 	z-index: 3; // Above the active slide (z-index: 2).
@@ -628,6 +630,13 @@
 	align-items: center;
 	flex-wrap: wrap;
 	gap: 0.6rem;
+	opacity: 0;
+	transition: opacity 250ms ease;
+
+	&:hover,
+	&:has(:focus-visible) {
+		opacity: 1;
+	}
 
 	button {
 		padding: 0.55rem 1rem;
@@ -873,5 +882,10 @@
 		.o-project-player__content {
 			animation: none;
 		}
+	}
+
+	// Nothing rotates on its own here, so the controls are the only way through.
+	.o-project-player__controls {
+		opacity: 1;
 	}
 }

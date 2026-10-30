@@ -1077,6 +1077,79 @@
 			}
 		},
 		{
+			"category": "Kotlin Multiplatform · Compose · SwiftUI · Internal",
+			"title": "KMP Template",
+			"summary": "A starter template for Kotlin Multiplatform apps: multi-module clean architecture with YAMVIP and Anubis built in, Koin, SQLDelight and Moko resources, a Compose and a SwiftUI app generated with Tuist, and CI from day one.",
+			"tone": "violet",
+			"variant": "kit",
+			"duration": 16000,
+			"kit": {
+				"command": "mise install && ./gradlew build",
+				"layers": [
+					{
+						"label": "apps",
+						"hue": 150,
+						"blocks": [
+							{
+								"name": "androidApp",
+								"note": "Compose · NavHost"
+							},
+							{
+								"name": "iosApp",
+								"note": "SwiftUI · Tuist"
+							}
+						]
+					},
+					{
+						"label": "shared",
+						"hue": 265,
+						"blocks": [
+							{
+								"name": "features",
+								"note": "presenters"
+							},
+							{
+								"name": "domain",
+								"note": "use cases"
+							},
+							{
+								"name": "data",
+								"note": "repositories"
+							}
+						]
+					},
+					{
+						"label": "core & libraries",
+						"hue": 215,
+						"blocks": [
+							{
+								"name": "YAMVIP",
+								"note": "MVI"
+							},
+							{
+								"name": "Anubis",
+								"note": "SDUI"
+							},
+							{
+								"name": "Koin · SQLDelight",
+								"note": "DI · DB"
+							},
+							{
+								"name": "Moko",
+								"note": "resources"
+							}
+						]
+					}
+				],
+				"ci": [
+					"android build",
+					"ios build",
+					"unit tests",
+					"version bump"
+				]
+			}
+		},
+		{
 			"category": "Open source · Accessibility",
 			"title": "a11yOtp",
 			"summary": "Accessible native one-time-code input for Android and iOS.",

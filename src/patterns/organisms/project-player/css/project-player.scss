@@ -149,6 +149,7 @@
 .o-project-player__slide[data-scene='pageant']::before,
 .o-project-player__slide[data-scene='kids']::before,
 .o-project-player__slide[data-scene='tokens']::before,
+.o-project-player__slide[data-scene='kit']::before,
 .o-project-player__slide[data-scene='mvi']::before,
 .o-project-player__slide[data-scene='sdui']::before,
 .o-project-player__slide[data-scene='live']::before {
@@ -167,6 +168,7 @@
 .o-project-player__slide[data-scene='fantasy']::after,
 .o-project-player__slide[data-scene='pageant']::after,
 .o-project-player__slide[data-scene='tokens']::after,
+.o-project-player__slide[data-scene='kit']::after,
 .o-project-player__slide[data-scene='mvi']::after,
 .o-project-player__slide[data-scene='sdui']::after,
 .o-project-player__slide[data-scene='live']::after {
@@ -359,6 +361,15 @@
 	z-index: -2;
 }
 
+// KMP template stack right of the caption.
+.o-project-player__slide .m-kmp-stack {
+	--kit-w: 50cqw;
+	--kit-x: 69%;
+	--kit-y: 58%;
+
+	z-index: -2;
+}
+
 // PhotoStory crew call: the two phones right of the caption, with room for the chip beside them.
 .o-project-player__slide .m-crew-call {
 	--phone-h: 62cqh;
@@ -390,6 +401,7 @@
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-pageant-stage *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-kids-tv *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-token-flow *,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-kmp-stack *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-mvi-loop *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-sdui-live *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-live-room * {
@@ -408,6 +420,7 @@
 .o-project-player[data-paused='true'] .m-pageant-stage *,
 .o-project-player[data-paused='true'] .m-kids-tv *,
 .o-project-player[data-paused='true'] .m-token-flow *,
+.o-project-player[data-paused='true'] .m-kmp-stack *,
 .o-project-player[data-paused='true'] .m-mvi-loop *,
 .o-project-player[data-paused='true'] .m-sdui-live *,
 .o-project-player[data-paused='true'] .m-live-room * {
@@ -706,6 +719,12 @@
 		--loop-h: 40cqh;
 		--loop-x: 50%;
 		--loop-y: 44%;
+	}
+
+	.o-project-player__slide .m-kmp-stack {
+		--kit-w: 92cqw;
+		--kit-x: 50%;
+		--kit-y: 40%;
 	}
 
 	.o-project-player__slide .m-crew-call {

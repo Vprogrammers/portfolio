@@ -1,0 +1,15 @@
+{# A KMP starter kit assembling itself: module blocks drop and stack into the architecture (core and libraries, shared, then the Android and iOS apps), then the CI lane below turns green step by step. Fills its positioned parent. #}
+<div class="m-kmp-stack" aria-hidden="true">
+	<div class="m-kmp-stack__stage">
+		<p class="m-kmp-stack__command"><span>$</span> <b>{{ command }}</b><i></i></p>
+		<div class="m-kmp-stack__layers">
+			{% for layer in layers %}
+				<div class="m-kmp-stack__layer m-kmp-stack__layer--{{ loop.index }}">
+					<small>{{ layer.label }}</small>
+					<p>{% for block in layer.blocks %}<span class="m-kmp-stack__block" style="--hue: {{ layer.hue }}"><b>{{ block.name }}</b>{% if block.note %}<em>{{ block.note }}</em>{% endif %}</span>{% endfor %}</p>
+				</div>
+			{% endfor %}
+		</div>
+		<p class="m-kmp-stack__ci">{% for step in ci %}<span>{{ step }}</span>{% endfor %}</p>
+	</div>
+</div>

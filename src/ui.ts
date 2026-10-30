@@ -36,6 +36,7 @@ import './patterns/molecules/device-scene';
 import './patterns/molecules/example';
 import './patterns/molecules/fantasy-pitch';
 import './patterns/molecules/kids-tv';
+import './patterns/molecules/kmp-stack';
 import './patterns/molecules/laptop-scroll';
 import './patterns/molecules/lead-flow';
 import './patterns/molecules/live-room';

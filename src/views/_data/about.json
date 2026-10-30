@@ -1,0 +1,193 @@
+{
+	"_nitro": {
+		"pageTitle": "About — Viktor Nešić, Senior Mobile Engineer"
+	},
+	"intro": {
+		"name": "Viktor Nešić",
+		"role": "Mobile & Frontend Developer"
+	},
+	"links": [
+		{
+			"label": "GitHub",
+			"icon": "github",
+			"url": "https://github.com/Vprogrammers"
+		},
+		{
+			"label": "LinkedIn",
+			"icon": "linkedin",
+			"url": "https://www.linkedin.com/in/viktor-nesic"
+		},
+		{
+			"label": "v.nesic.developer@gmail.com",
+			"icon": "mail",
+			"url": "mailto:v.nesic.developer@gmail.com"
+		}
+	],
+	"about": {
+		"kicker": "About",
+		"headline": "Mobile apps that ship, and keep working long after they do.",
+		"lead": "I'm Viktor, a senior mobile engineer with more than ten years in software and over twenty apps delivered across iOS, Android and Kotlin Multiplatform, from enterprise products for international brands to MVPs built from a blank page.",
+		"stats": [
+			{
+				"value": "10+",
+				"label": "years in software"
+			},
+			{
+				"value": "20+",
+				"label": "mobile apps delivered"
+			},
+			{
+				"value": "5½",
+				"label": "years at Merkle (dentsu)"
+			},
+			{
+				"value": "3",
+				"label": "platforms: iOS, Android, KMP"
+			}
+		],
+		"benefitsTitle": "What you get when you bring me in",
+		"benefits": [
+			{
+				"title": "Native quality on both platforms",
+				"text": "Swift, SwiftUI and UIKit on iOS, Kotlin and Jetpack Compose on Android. Business logic shared through Kotlin Multiplatform where it pays off, native where users can feel the difference."
+			},
+			{
+				"title": "A safe pair of hands for existing code",
+				"text": "I have audited and maintained inherited apps, from legacy Objective-C to modern SwiftUI, and turned them into clear risk reports, maintenance plans and estimates before any work starts."
+			},
+			{
+				"title": "Data that works offline and integrations that hold",
+				"text": "GraphQL and REST, OAuth and OIDC sign-in, Firebase, push notifications, and offline catalogues synchronised with SQLDelight for teams working in the field."
+			},
+			{
+				"title": "Releases taken care of",
+				"text": "TestFlight builds for QA, App Store and Google Play releases, dependency and OS updates: the unglamorous work that keeps a production app healthy."
+			},
+			{
+				"title": "Accessibility built in, not bolted on",
+				"text": "Screen-reader semantics from the first component. I maintain an open-source accessible OTP library and have reviewed accessibility across enterprise design systems."
+			},
+			{
+				"title": "Clear communication with your team",
+				"text": "Years of working alongside designers, QA, product owners and clients across Europe. I review code, mentor juniors and have run senior mobile interviews."
+			}
+		],
+		"processTitle": "How I work",
+		"process": [
+			{
+				"step": "Assess",
+				"text": "Understand the product, the users and the existing code before writing any."
+			},
+			{
+				"step": "Build",
+				"text": "Native interfaces on a clean, testable architecture, shared where it makes sense."
+			},
+			{
+				"step": "Ship",
+				"text": "Builds in QA's hands early and releases prepared with care."
+			},
+			{
+				"step": "Maintain",
+				"text": "Updates, fixes and improvements that keep the app reliable."
+			}
+		],
+		"brandsTitle": "Trusted by teams at",
+		"brands": [
+			"Hansgrohe",
+			"Migros",
+			"CGIAR",
+			"Bucherer",
+			"KOCH",
+			"PMI",
+			"A European bank (NDA)"
+		],
+		"toolsTitle": "Toolbox",
+		"tools": [
+			{
+				"group": "iOS",
+				"items": [
+					"Swift",
+					"SwiftUI",
+					"UIKit",
+					"Combine",
+					"WKWebView",
+					"ARKit",
+					"AVFoundation",
+					"Vision & Core ML",
+					"AppAuth",
+					"TestFlight"
+				]
+			},
+			{
+				"group": "Android",
+				"items": [
+					"Kotlin",
+					"Java",
+					"Jetpack Compose",
+					"Android Views",
+					"Coroutines & Flow",
+					"Gradle"
+				]
+			},
+			{
+				"group": "Cross-platform & architecture",
+				"items": [
+					"Kotlin Multiplatform",
+					"SQLDelight",
+					"Koin",
+					"MVVM & MVI",
+					"Modular design",
+					"Server-driven UI",
+					"GraphQL",
+					"REST"
+				]
+			},
+			{
+				"group": "Backend & delivery",
+				"items": [
+					"Firebase",
+					"OAuth & OIDC",
+					"Push notifications",
+					"CI/CD",
+					"Unit & UI testing",
+					"Accessibility",
+					"Style Dictionary"
+				]
+			}
+		],
+		"ctaTitle": "Have an app to build, rescue or scale?",
+		"ctaText": "Tell me about it. I usually reply within a day.",
+		"email": "v.nesic.developer@gmail.com",
+		"linkedin": "https://www.linkedin.com/in/viktor-nesic",
+		"projects": [
+			"Hansgrohe ProApp",
+			"Migros iMpuls",
+			"Bucherer",
+			"MuMe",
+			"CGIAR",
+			"Hanze3",
+			"PhotoStory",
+			"BezBrige!",
+			"Sliike",
+			"KOCH Scan App",
+			"PMI Market(i)",
+			"Swipe XYZ",
+			"Goaleadors",
+			"Bikini",
+			"ÇocukFlix",
+			"Design Token Pipeline",
+			"Anubis",
+			"YAMVIP",
+			"KMP Template",
+			"Masse",
+			"AppleDetect",
+			"Cryptocent",
+			"Feniks",
+			"DigitalPass",
+			"ConnectClub",
+			"Yaaxa",
+			"MyPH",
+			"a11yOtp"
+		]
+	}
+}

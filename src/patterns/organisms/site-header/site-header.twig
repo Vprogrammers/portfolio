@@ -1,10 +1,12 @@
-{# Overlays the top of the page; scrolls away with the hero. #}
+{# Overlays the top of the page; scrolls away with the hero. `base` is "/" on pages other than home, so the in-page links lead back there. #}
 <header class="o-site-header">
 	<nav class="o-site-header__nav" aria-label="Main">
-		<a class="o-site-header__nav-link" href="#works">Works</a>
+		{% if base %}<a class="o-site-header__nav-link" href="/">Home</a>{% endif %}
+		<a class="o-site-header__nav-link" href="{{ base }}#works">Works</a>
+		<a class="o-site-header__nav-link" href="/about">About</a>
 		<a class="o-site-header__nav-link" href="#contact">Contact</a>
 	</nav>
-	<a class="o-site-header__mark" href="#top" aria-label="{{ intro.name }}, back to top">
+	<a class="o-site-header__mark" href="{{ base ? '/' : '#top' }}" aria-label="{{ intro.name }}, {{ base ? 'home' : 'back to top' }}">
 		<span aria-hidden="true">{% for part in intro.name|split(' ') %}{{ part|slice(0, 1) }}{% endfor %}</span>
 	</a>
 	<ul class="o-site-header__links">
@@ -13,6 +15,10 @@
 				<a class="o-site-header__icon-link" href="{{ link.url }}" aria-label="{{ link.label }}">
 					{% if link.icon == 'github' %}
 						<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+					{% elseif link.icon == 'linkedin' %}
+						<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.6 0H2.4A2.4 2.4 0 0 0 0 2.4v11.2A2.4 2.4 0 0 0 2.4 16h11.2a2.4 2.4 0 0 0 2.4-2.4V2.4A2.4 2.4 0 0 0 13.6 0ZM4.9 13.4H2.6V6h2.3v7.4ZM3.7 5a1.3 1.3 0 1 1 0-2.7 1.3 1.3 0 0 1 0 2.7Zm9.7 8.4h-2.3V9.8c0-.9 0-2-1.2-2s-1.4.9-1.4 1.9v3.7H6.2V6h2.2v1h.1c.3-.6 1.1-1.2 2.2-1.2 2.4 0 2.8 1.6 2.8 3.6v4Z"/></svg>
+					{% elseif link.icon == 'mail' %}
+						<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" d="M1.5 3.5h13v9h-13zM1.8 3.8 8 9l6.2-5.2"/></svg>
 					{% else %}
 						<span>{{ link.label }}</span>
 					{% endif %}

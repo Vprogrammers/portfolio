@@ -59,6 +59,20 @@
 	text-transform: uppercase;
 }
 
+// The name opens the About page; the underline grows in on hover.
+.o-project-player__name-link {
+	color: inherit;
+	pointer-events: auto;
+	text-decoration: none;
+	background: linear-gradient(currentColor, currentColor) 0 100% / 0 0.06em no-repeat;
+	transition: background-size 350ms ease;
+
+	&:hover,
+	&:focus-visible {
+		background-size: 100% 0.06em;
+	}
+}
+
 .o-project-player__role {
 	margin: 1rem 0 0;
 	font-size: clamp(0.7rem, 0.95vw, 0.95rem);

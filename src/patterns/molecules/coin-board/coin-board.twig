@@ -1,0 +1,32 @@
+{# A crypto market board: live rows with sparklines drawing in and prices ticking, one coin opens into a large chart with a crosshair marker, all fed by a market data API. Figures are illustrative. Fills its positioned parent. #}
+<div class="m-coin-board" aria-hidden="true">
+	<div class="m-coin-board__stage">
+		<div class="m-coin-board__list">
+			<p class="m-coin-board__head"><b>{{ brand }}</b><span class="m-coin-board__api"><i></i>{{ api }}</span></p>
+			{% for coin in coins %}
+				<div class="m-coin-board__row" style="--hue: {{ coin.hue }}">
+					<i class="m-coin-board__icon">{{ coin.symbol|slice(0, 1) }}</i>
+					<span class="m-coin-board__name"><b>{{ coin.symbol }}</b><small>{{ coin.name }}</small></span>
+					<svg class="m-coin-board__spark m-coin-board__spark--{{ coin.change starts with '-' ? 'down' : 'up' }}" viewBox="0 0 100 30" preserveAspectRatio="none"><polyline points="{{ coin.spark }}"/></svg>
+					<span class="m-coin-board__price"><b>{% for price in coin.prices %}<em>{{ price }}</em>{% endfor %}</b><small class="{{ coin.change starts with '-' ? 'is-down' : 'is-up' }}">{{ coin.change }}</small></span>
+				</div>
+			{% endfor %}
+			<p class="m-coin-board__tabs">{% for tab in tabs %}<span>{{ tab }}</span>{% endfor %}</p>
+		</div>
+
+		<div class="m-coin-board__detail">
+			<p class="m-coin-board__title"><b>{{ detail.name }}</b><span>{{ detail.price }}</span><small>{{ detail.change }}</small></p>
+			<p class="m-coin-board__ranges">{% for range in detail.ranges %}<span>{{ range }}</span>{% endfor %}</p>
+			<div class="m-coin-board__chart">
+				<svg viewBox="0 0 300 120" preserveAspectRatio="none">
+					<defs><linearGradient id="coin-board-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7b500" stop-opacity=".45"/><stop offset="1" stop-color="#f7b500" stop-opacity="0"/></linearGradient></defs>
+					<polygon class="m-coin-board__area" points="{{ detail.line }} 300,120 0,120"/>
+					<polyline class="m-coin-board__line" points="{{ detail.line }}"/>
+				</svg>
+				<i class="m-coin-board__cross"></i>
+				<span class="m-coin-board__marker"><b>{{ detail.marker.value }}</b><small>{{ detail.marker.date }}</small></span>
+			</div>
+			<p class="m-coin-board__stats">{% for stat in detail.stats %}<span><small>{{ stat.label }}</small><b>{{ stat.value }}</b></span>{% endfor %}</p>
+		</div>
+	</div>
+</div>

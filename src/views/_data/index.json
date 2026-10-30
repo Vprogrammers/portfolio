@@ -1405,6 +1405,117 @@
 			}
 		},
 		{
+			"category": "Android · Java · CoinGecko API · MVP",
+			"title": "Cryptocent",
+			"summary": "A cryptocurrency market app for Android: live prices, sparklines and detailed charts from the CoinGecko API, with onboarding, sign-in and sections for trading, a portfolio and a wallet, delivered as an MVP.",
+			"tone": "orange",
+			"variant": "coins",
+			"duration": 16000,
+			"coins": {
+				"brand": "Cryptocent",
+				"api": "CoinGecko · live",
+				"tabs": [
+					"Crypto",
+					"Trade",
+					"Portfolio",
+					"Wallet",
+					"Locker"
+				],
+				"coins": [
+					{
+						"symbol": "BTC",
+						"name": "Bitcoin",
+						"hue": 35,
+						"spark": "0,13 10,13 20,15 30,13 40,12 50,12 60,8 70,7 80,7 90,8 100,3",
+						"prices": [
+							"$67,412",
+							"$67,580",
+							"$67,733"
+						],
+						"change": "+2.41%"
+					},
+					{
+						"symbol": "ETH",
+						"name": "Ethereum",
+						"hue": 230,
+						"spark": "0,12 10,8 20,9 30,9 40,5 50,7 60,10 70,10 80,9 90,6 100,3",
+						"prices": [
+							"$3,248",
+							"$3,261",
+							"$3,255"
+						],
+						"change": "+1.12%"
+					},
+					{
+						"symbol": "SOL",
+						"name": "Solana",
+						"hue": 280,
+						"spark": "0,16 10,14 20,13 30,12 40,9 50,10 60,11 70,15 80,16 90,19 100,20",
+						"prices": [
+							"$148.20",
+							"$147.65",
+							"$146.90"
+						],
+						"change": "-0.84%"
+					},
+					{
+						"symbol": "ADA",
+						"name": "Cardano",
+						"hue": 210,
+						"spark": "0,15 10,14 20,11 30,13 40,16 50,18 60,18 70,15 80,12 90,9 100,5",
+						"prices": [
+							"$0.452",
+							"$0.455",
+							"$0.458"
+						],
+						"change": "+0.67%"
+					},
+					{
+						"symbol": "XRP",
+						"name": "XRP",
+						"hue": 195,
+						"spark": "0,18 10,19 20,23 30,23 40,27 50,27 60,24 70,23 80,27 90,27 100,27",
+						"prices": [
+							"$0.612",
+							"$0.609",
+							"$0.604"
+						],
+						"change": "-1.35%"
+					}
+				],
+				"detail": {
+					"name": "Bitcoin",
+					"price": "$67,733",
+					"change": "+2.41%",
+					"ranges": [
+						"1D",
+						"7D",
+						"1M",
+						"1Y"
+					],
+					"line": "0,78 10,70 20,71 30,75 40,70 50,63 60,59 70,66 80,70 90,63 100,58 110,50 120,42 130,47 140,41 150,41 160,39 170,33 180,36 190,30 200,31 210,24 220,22 230,17 240,12 250,19 260,23 270,19 280,25 290,19 300,17",
+					"marker": {
+						"value": "$66,980",
+						"date": "Oct 27, 14:00"
+					},
+					"stats": [
+						{
+							"label": "Market cap",
+							"value": "$1.33T"
+						},
+						{
+							"label": "24h volume",
+							"value": "$28.4B"
+						},
+						{
+							"label": "24h high",
+							"value": "$68,102"
+						}
+					]
+				}
+			}
+		},
+		{
 			"category": "Open source · Accessibility",
 			"title": "a11yOtp",
 			"summary": "An open-source, accessible one-time-code input for Android and iOS, built natively on each platform.",

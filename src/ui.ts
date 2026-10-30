@@ -34,6 +34,7 @@ import './patterns/atoms/stage';
 import './patterns/molecules/apple-sort';
 import './patterns/molecules/club-floor';
 import './patterns/molecules/code-review';
+import './patterns/molecules/coin-board';
 import './patterns/molecules/crew-call';
 import './patterns/molecules/device-scene';
 import './patterns/molecules/example';

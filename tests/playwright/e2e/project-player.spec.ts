@@ -11,7 +11,15 @@ test('homepage displays uploaded project images and supports manual navigation',
 
   await expect.poll(async () => firstImage.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
 
-  await page.getByRole('button', { name: 'Next project' }).click();
+  // The controls stay invisible until a keyboard user reaches them.
+  const controls = player.locator('.o-project-player__controls');
+  await expect(controls).toHaveCSS('opacity', '0');
+  await page.getByRole('button', { name: 'Previous project' }).focus();
+  await page.keyboard.press('Tab');
+  await page.keyboard.press('Tab');
+  await expect(page.getByRole('button', { name: 'Next project' })).toBeFocused();
+  await expect(controls).toHaveCSS('opacity', '1');
+  await page.keyboard.press('Enter');
   await expect(slides.nth(1)).toBeVisible();
   await expect(slides.nth(0)).toBeHidden();
   await expect(page.getByRole('button', { name: 'Resume automatic project changes' })).toBeVisible();

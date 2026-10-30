@@ -1,0 +1,26 @@
+{# An ice cream showcase on a shop tablet: two display cases of tubs whose levels run down through the day. When one gets low it flashes and the kitchen gets a push to make that flavour; the fresh tub then slides in. Fills its positioned parent. #}
+<div class="m-freezer-case" aria-hidden="true">
+	<div class="m-freezer-case__stage">
+		<div class="m-freezer-case__tablet">
+			<div class="m-freezer-case__screen">
+				<p class="m-freezer-case__bar"><b>{{ brand }}</b>{% for case in cases %}<span>{{ case.name }}</span>{% endfor %}<em>+ {{ add }}</em></p>
+				<div class="m-freezer-case__cases">
+					{% for case in cases %}
+						<div class="m-freezer-case__case">
+							{% for tub in case.tubs %}
+								<span class="m-freezer-case__tub{{ tub.low ? ' m-freezer-case__tub--low' : '' }}" style="--c: {{ tub.color }}; --level: {{ tub.level }}%">
+									<i class="m-freezer-case__cream"></i>
+									<small>{{ tub.name }}</small>
+								</span>
+							{% endfor %}
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+		<div class="m-freezer-case__push">
+			<span class="m-freezer-case__icon">F</span>
+			<span><small>{{ push.app }} · now</small><b>{{ push.title }}</b>{{ push.body }}</span>
+		</div>
+	</div>
+</div>

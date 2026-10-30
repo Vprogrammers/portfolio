@@ -151,6 +151,7 @@
 .o-project-player__slide[data-scene='tokens']::before,
 .o-project-player__slide[data-scene='club']::before,
 .o-project-player__slide[data-scene='coins']::before,
+.o-project-player__slide[data-scene='feniks']::before,
 .o-project-player__slide[data-scene='apples']::before,
 .o-project-player__slide[data-scene='kit']::before,
 .o-project-player__slide[data-scene='mvi']::before,
@@ -173,6 +174,7 @@
 .o-project-player__slide[data-scene='tokens']::after,
 .o-project-player__slide[data-scene='club']::after,
 .o-project-player__slide[data-scene='coins']::after,
+.o-project-player__slide[data-scene='feniks']::after,
 .o-project-player__slide[data-scene='apples']::after,
 .o-project-player__slide[data-scene='kit']::after,
 .o-project-player__slide[data-scene='mvi']::after,
@@ -403,6 +405,15 @@
 	z-index: -2;
 }
 
+// Further project scenes right of the caption.
+.o-project-player__slide .m-freezer-case {
+	--case-h: 56cqh;
+	--case-x: 68%;
+	--case-y: 54%;
+
+	z-index: -2;
+}
+
 // PhotoStory crew call: the two phones right of the caption, with room for the chip beside them.
 .o-project-player__slide .m-crew-call {
 	--phone-h: 62cqh;
@@ -461,12 +472,15 @@
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-token-flow *::after,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-club-floor *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-coin-board *,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-freezer-case *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-apple-sort *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-club-floor *::before,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-coin-board *::before,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-freezer-case *::before,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-apple-sort *::before,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-club-floor *::after,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-coin-board *::after,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-freezer-case *::after,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-apple-sort *::after,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-kmp-stack *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-kmp-stack *::before,
@@ -521,12 +535,15 @@
 .o-project-player[data-paused='true'] .m-token-flow *::after,
 .o-project-player[data-paused='true'] .m-club-floor *,
 .o-project-player[data-paused='true'] .m-coin-board *,
+.o-project-player[data-paused='true'] .m-freezer-case *,
 .o-project-player[data-paused='true'] .m-apple-sort *,
 .o-project-player[data-paused='true'] .m-club-floor *::before,
 .o-project-player[data-paused='true'] .m-coin-board *::before,
+.o-project-player[data-paused='true'] .m-freezer-case *::before,
 .o-project-player[data-paused='true'] .m-apple-sort *::before,
 .o-project-player[data-paused='true'] .m-club-floor *::after,
 .o-project-player[data-paused='true'] .m-coin-board *::after,
+.o-project-player[data-paused='true'] .m-freezer-case *::after,
 .o-project-player[data-paused='true'] .m-apple-sort *::after,
 .o-project-player[data-paused='true'] .m-kmp-stack *,
 .o-project-player[data-paused='true'] .m-kmp-stack *::before,
@@ -964,6 +981,11 @@
 		--board-h: 56cqh;
 		--board-x: 50%;
 		--board-y: 50%;
+	}
+
+	.o-project-player__slide .m-freezer-case {
+		--case-x: 50%;
+		--case-y: 42%;
 	}
 
 	.o-project-player__slide .m-crew-call {

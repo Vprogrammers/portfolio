@@ -1516,6 +1516,112 @@
 			}
 		},
 		{
+			"category": "Android tablet · Java · Firebase",
+			"title": "Feniks",
+			"summary": "An Android tablet app for an ice cream shop that tracks what is left of every flavour across two display cases and tells the kitchen which flavour to make next.",
+			"tone": "violet",
+			"variant": "feniks",
+			"duration": 16000,
+			"feniks": {
+				"brand": "Feniks sladoledi",
+				"add": "Dodaj sladoled",
+				"cases": [
+					{
+						"name": "Prva vitrina",
+						"tubs": [
+							{
+								"name": "Vanila",
+								"color": "#f6e7b8",
+								"level": 78
+							},
+							{
+								"name": "Čokolada",
+								"color": "#6b3e26",
+								"level": 64
+							},
+							{
+								"name": "Jagoda",
+								"color": "#f48fb1",
+								"level": 70
+							},
+							{
+								"name": "Pistaći",
+								"color": "#a5c96b",
+								"level": 40
+							},
+							{
+								"name": "Limun",
+								"color": "#f7e463",
+								"level": 82
+							},
+							{
+								"name": "Kokos",
+								"color": "#f4f1ea",
+								"level": 58
+							},
+							{
+								"name": "Borovnica",
+								"color": "#7e6bc4",
+								"level": 66
+							}
+						]
+					},
+					{
+						"name": "Druga vitrina",
+						"tubs": [
+							{
+								"name": "Straćatela",
+								"color": "#efe7dc",
+								"level": 72,
+								"low": false
+							},
+							{
+								"name": "Lešnik",
+								"color": "#b48a5a",
+								"level": 60,
+								"low": false
+							},
+							{
+								"name": "Malina",
+								"color": "#e2557a",
+								"level": 22,
+								"low": true
+							},
+							{
+								"name": "Karamela",
+								"color": "#d79a45",
+								"level": 76,
+								"low": false
+							},
+							{
+								"name": "Menta",
+								"color": "#9fe3c6",
+								"level": 62,
+								"low": false
+							},
+							{
+								"name": "Banana",
+								"color": "#f3dc7a",
+								"level": 54,
+								"low": false
+							},
+							{
+								"name": "Višnja",
+								"color": "#9c2b45",
+								"level": 68,
+								"low": false
+							}
+						]
+					}
+				],
+				"push": {
+					"app": "Feniks",
+					"title": "Napravi: Malina",
+					"body": "Druga vitrina, treća polica je skoro prazna."
+				}
+			}
+		},
+		{
 			"category": "Open source · Accessibility",
 			"title": "a11yOtp",
 			"summary": "An open-source, accessible one-time-code input for Android and iOS, built natively on each platform.",

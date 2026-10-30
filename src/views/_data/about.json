@@ -191,11 +191,11 @@
 			"title": "Have an app to build, rescue or scale?",
 			"text": "Tell me about it. I usually reply within a day.",
 			"email": "v.nesic.developer@gmail.com",
-			"accessKey": ""
+			"accessKey": "91d254bd-4a69-4851-b66e-a606844ced07"
 		},
-		"cv": ""
+		"cv": "/assets/files/Viktor-Nesic-CV.pdf"
 	},
 	"analytics": {
-		"cloudflareToken": ""
+		"gaMeasurementId": ""
 	}
 }

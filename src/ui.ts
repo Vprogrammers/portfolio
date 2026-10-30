@@ -20,6 +20,7 @@ import './patterns/atoms/back-to-top';
 import './patterns/atoms/box';
 import './patterns/atoms/button';
 import './patterns/atoms/checkbox';
+import './patterns/atoms/consent';
 import './patterns/atoms/cta';
 import './patterns/atoms/datepicker';
 import './patterns/atoms/employer';

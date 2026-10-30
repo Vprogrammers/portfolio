@@ -1,0 +1,205 @@
+{
+	"_nitro": {
+		"pageTitle": "YAMVIP — case study · Viktor Nešić"
+	},
+	"meta": {
+		"description": "YAMVIP (Yet Another MVI Presenter): a multiplatform MVI engine that shares presentation logic between Android and iOS, with a strict split between Model, UIState, Intent and Effect.",
+		"path": "/work-yamvip"
+	},
+	"intro": {
+		"name": "Viktor Nešić",
+		"role": "Mobile & Frontend Developer"
+	},
+	"links": [
+		{
+			"label": "GitHub",
+			"icon": "github",
+			"url": "https://github.com/Vprogrammers"
+		},
+		{
+			"label": "LinkedIn",
+			"icon": "linkedin",
+			"url": "https://www.linkedin.com/in/viktor-nesic"
+		},
+		{
+			"label": "v.nesic.developer@gmail.com",
+			"icon": "mail",
+			"url": "/about#contact-form"
+		}
+	],
+	"employers": {
+		"merkle": {
+			"label": "Delivered at",
+			"name": "Merkle",
+			"note": "Enterprise mobile & digital engineering"
+		}
+	},
+	"caseStudy": {
+		"kicker": "Case study · Kotlin Multiplatform · MVI · Internal",
+		"title": "YAMVIP",
+		"lead": "YAMVIP (Yet Another MVI Presenter): a multiplatform MVI engine that shares presentation logic between Android and iOS, with a strict split between Model, UIState, Intent and Effect.",
+		"employer": "merkle",
+		"sceneType": "mvi",
+		"scene": {
+			"presenter": {
+				"name": "YamviPresenter",
+				"generics": "<Model, UIState, Effect>"
+			},
+			"nodes": [
+				{
+					"name": "Intent",
+					"note": "Search(\"ana\")"
+				},
+				{
+					"name": "Reducer",
+					"note": "reduce()"
+				},
+				{
+					"name": "Model",
+					"note": "internal state"
+				},
+				{
+					"name": "Mapper",
+					"note": "map()"
+				},
+				{
+					"name": "UIState",
+					"note": "→ Compose · SwiftUI"
+				}
+			],
+			"effect": "ShowToast",
+			"heading": "Users",
+			"query": "ana",
+			"users": [
+				{
+					"name": "Ana Silva",
+					"city": "Lisbon",
+					"hue": 200
+				},
+				{
+					"name": "Anabel Ruiz",
+					"city": "Madrid",
+					"hue": 20
+				},
+				{
+					"name": "Anna Berg",
+					"city": "Oslo",
+					"hue": 140
+				},
+				{
+					"name": "Ananya Rao",
+					"city": "Pune",
+					"hue": 290
+				}
+			],
+			"toast": "4 users found"
+		},
+		"facts": [
+			{
+				"label": "Context",
+				"value": "Internal engineering at Merkle"
+			},
+			{
+				"label": "My role",
+				"value": "Contributor: implementation and design"
+			},
+			{
+				"label": "Period",
+				"value": "Sep 2023 – Oct 2024 (approx.)"
+			},
+			{
+				"label": "Platform",
+				"value": "Kotlin Multiplatform · StateFlow"
+			}
+		],
+		"brief": {
+			"title": "The idea",
+			"text": [
+				"Sharing business logic in Kotlin is common; sharing presentation logic is harder. YAMVIP gives both apps the same presenters, so screens behave the same on Android and iOS and can be unit-tested once.",
+				"It favours convention over configuration and a good developer experience."
+			]
+		},
+		"contributions": {
+			"title": "What I did",
+			"items": [
+				"Worked on the presenter pattern: presenters extend YamviPresenter<Model, UIState, Effect>.",
+				"Separated the internal Model from the UIState that the UI renders, joined by a mapper.",
+				"Handled intents with a reducer that produces the next Model, exposed as StateFlow.",
+				"Kept Effects for one-shot events only, as a last resort.",
+				"Wrote examples and discussed the patterns with the team."
+			]
+		},
+		"architecture": {
+			"title": "The loop",
+			"layers": [
+				{
+					"name": "Intent",
+					"items": [
+						"What the user did"
+					]
+				},
+				{
+					"name": "Reducer",
+					"items": [
+						"Intent → new Model"
+					]
+				},
+				{
+					"name": "Model",
+					"items": [
+						"Internal state"
+					]
+				},
+				{
+					"name": "Mapper",
+					"items": [
+						"Model → UIState"
+					]
+				},
+				{
+					"name": "UIState & Effect",
+					"items": [
+						"Rendered by Compose and SwiftUI",
+						"One-shot events"
+					]
+				}
+			]
+		},
+		"stack": {
+			"title": "Stack",
+			"items": [
+				"Kotlin Multiplatform",
+				"Coroutines",
+				"StateFlow",
+				"Compose",
+				"SwiftUI",
+				"Unit tests"
+			]
+		},
+		"team": {
+			"title": "Team",
+			"text": "An internal engineering group of five to nine people, depending on client assignments. I contributed implementation and shared in the technical decisions. This is internal reference work, not production software adopted by a client."
+		},
+		"outcome": {
+			"title": "The result",
+			"text": "A shared presentation layer the team used as a reference, later part of the KMP Template."
+		},
+		"back": {
+			"label": "All works",
+			"url": "/#works"
+		},
+		"cta": {
+			"title": "Have a project like this?",
+			"text": "I build and rescue native iOS, Android and Kotlin Multiplatform apps, and I'm happy to look at yours.",
+			"label": "Get in touch",
+			"url": "/about#contact-form"
+		},
+		"next": {
+			"title": "KMP Template",
+			"url": "/work-kmp-template"
+		}
+	},
+	"analytics": {
+		"gaMeasurementId": "G-ZM0VPP0G2C"
+	}
+}

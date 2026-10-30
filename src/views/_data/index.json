@@ -1045,6 +1045,7 @@
 		{
 			"category": "Kotlin Multiplatform · MVI · Internal",
 			"title": "YAMVIP",
+			"url": "/work-yamvip",
 			"summary": "A multiplatform MVI engine that shares presentation logic between Android and iOS, with a strict split between Model, UIState, Intent and Effect, designed for testability and convention over configuration.",
 			"tone": "orange",
 			"variant": "mvi",

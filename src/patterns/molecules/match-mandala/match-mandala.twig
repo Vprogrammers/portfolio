@@ -1,0 +1,18 @@
+{# A matrimony match: two profile cards in festive colours compare their details one by one, a compatibility meter fills, and the cards meet under a turning mandala as marigold petals fall. People are drawn as initials, never photos. Fills its positioned parent. #}
+<div class="m-match-mandala" aria-hidden="true">
+	<i class="m-match-mandala__mandala"></i>
+	{% for i in 1..10 %}<i class="m-match-mandala__petal m-match-mandala__petal--{{ i }}"></i>{% endfor %}
+	<div class="m-match-mandala__stage">
+		{% for person in people %}
+			<div class="m-match-mandala__card m-match-mandala__card--{{ loop.index }}">
+				<span class="m-match-mandala__avatar">{{ person.initial }}</span>
+				<b>{{ person.name }}</b>
+				<ul>
+					{% for field in fields %}<li class="m-match-mandala__field m-match-mandala__field--{{ loop.index }}"><span>{{ field }}</span>{{ person.values[loop.index0] }}</li>{% endfor %}
+				</ul>
+			</div>
+		{% endfor %}
+		<div class="m-match-mandala__meter"><i class="m-match-mandala__fill"></i><span>{{ score }}</span></div>
+		<p class="m-match-mandala__banner">{{ banner }}</p>
+	</div>
+</div>

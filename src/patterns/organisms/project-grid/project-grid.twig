@@ -68,6 +68,8 @@
 							{# Grid-only scenes name their pattern; Nitro needs each name written out. #}
 							{% elseif project.scene.pattern == 'wipe-clean' %}
 								{% pattern name='wipe-clean' data=project.scene %}
+							{% elseif project.scene.pattern == 'match-mandala' %}
+								{% pattern name='match-mandala' data=project.scene %}
 							{% elseif project.image %}
 								<img class="o-project-grid__image" src="{{ project.image }}" alt="" loading="lazy" decoding="async">
 							{% endif %}

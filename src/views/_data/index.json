@@ -1945,6 +1945,49 @@
 			}
 		},
 		{
+			"category": "Mobile · Matchmaking",
+			"title": "PerfectMatrimony",
+			"summary": "A matchmaking app for an Indian client: members fill in a detailed profile, and the app searches the database and suggests partners whose details match, with the community and family preferences that matter in Indian marriages.",
+			"tone": "red",
+			"hero": false,
+			"scene": {
+				"pattern": "match-mandala",
+				"fields": [
+					"Age",
+					"Community",
+					"Language",
+					"City",
+					"Family"
+				],
+				"people": [
+					{
+						"initial": "A",
+						"name": "Arjun",
+						"values": [
+							"29",
+							"Matches",
+							"Hindi",
+							"Pune",
+							"Joint"
+						]
+					},
+					{
+						"initial": "P",
+						"name": "Priya",
+						"values": [
+							"27",
+							"Matches",
+							"Hindi",
+							"Mumbai",
+							"Joint"
+						]
+					}
+				],
+				"score": "94% match",
+				"banner": "It's a match!"
+			}
+		},
+		{
 			"category": "Open source · Accessibility",
 			"title": "a11yOtp",
 			"summary": "An open-source, accessible one-time-code input for Android and iOS, built natively on each platform.",

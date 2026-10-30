@@ -1,0 +1,326 @@
+/* stylelint-disable plugin/stylelint-bem-namics -- generated keyframe offsets and nth-child loops */
+@use 'sass:list';
+@use 'sass:math';
+
+// One timeline; times below are seconds into it.
+$loop: 14;
+$fields: 5;
+$compare: 1.4;
+$step: 0.9;
+$meet: $compare + $fields * $step + 0.4;
+$reset: 12.6;
+$saffron: #ff9933;
+$magenta: #d6246e;
+$gold: #ffd166;
+
+@function at($s) {
+	@return math.percentage(math.div($s, $loop));
+}
+
+// Each matching field lights up in turn on both cards.
+@for $f from 1 through $fields {
+	$t: $compare + ($f - 1) * $step;
+
+	@keyframes match-mandala-field-#{$f} {
+		0%,
+		#{at($t)},
+		#{at($reset)},
+		100% {
+			background: rgb(255 255 255 / 0.04);
+			color: rgb(255 255 255 / 0.55);
+		}
+
+		#{at($t + 0.25)},
+		#{at($reset - 0.2)} {
+			background: rgb(255 209 102 / 0.18);
+			color: #fff;
+		}
+	}
+}
+
+@keyframes match-mandala-fill {
+	0%,
+	#{at($compare)} {
+		width: 0;
+	}
+
+	#{at($meet)},
+	#{at($reset)} {
+		width: 94%;
+	}
+
+	#{at($reset + 0.4)},
+	100% {
+		width: 0;
+	}
+}
+
+@keyframes match-mandala-left {
+	0%,
+	#{at($meet)},
+	#{at($reset)},
+	100% {
+		transform: translateX(0) rotate(-3deg);
+	}
+
+	#{at($meet + 0.6)},
+	#{at($reset - 0.3)} {
+		transform: translateX(14%) rotate(0);
+	}
+}
+
+@keyframes match-mandala-right {
+	0%,
+	#{at($meet)},
+	#{at($reset)},
+	100% {
+		transform: translateX(0) rotate(3deg);
+	}
+
+	#{at($meet + 0.6)},
+	#{at($reset - 0.3)} {
+		transform: translateX(-14%) rotate(0);
+	}
+}
+
+@keyframes match-mandala-banner {
+	0%,
+	#{at($meet + 0.5)},
+	#{at($reset)},
+	100% {
+		opacity: 0;
+		transform: translate(-50%, 1.5cqh) scale(0.9);
+	}
+
+	#{at($meet + 1)},
+	#{at($reset - 0.3)} {
+		opacity: 1;
+		transform: translate(-50%, 0) scale(1);
+	}
+}
+
+@keyframes match-mandala-turn {
+	to {
+		transform: translate(-50%, -50%) rotate(360deg);
+	}
+}
+
+@keyframes match-mandala-petal {
+	0% {
+		opacity: 0;
+		transform: translateY(-10cqh) rotate(0);
+	}
+
+	10%,
+	80% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		transform: translateY(115cqh) rotate(540deg);
+	}
+}
+
+.m-match-mandala {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	container: match-mandala / size;
+	pointer-events: none;
+	background:
+		radial-gradient(ellipse 60% 70% at 50% 45%, rgb(214 36 110 / 0.45), transparent 70%),
+		linear-gradient(150deg, #5c0f2e, #2a0a1c 55%, #3b1606);
+	font-family: Poppins, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+}
+
+// A ring of petals drawn with gradients, turning slowly behind the cards.
+.m-match-mandala__mandala {
+	position: absolute;
+	left: var(--match-x, 50%);
+	top: 48%;
+	width: 90cqh;
+	height: 90cqh;
+	border-radius: 50%;
+	background:
+		repeating-conic-gradient(from 0deg, rgb(255 209 102 / 0.09) 0 4deg, transparent 6deg 13deg, rgb(255 209 102 / 0.09) 15deg),
+		radial-gradient(circle, transparent 30%, rgb(255 153 51 / 0.2) 31% 33%, transparent 34% 52%, rgb(255 209 102 / 0.18) 53% 54%, transparent 55%);
+	mask: radial-gradient(circle, #000 60%, transparent 71%);
+	animation: match-mandala-turn 60s linear infinite;
+}
+
+.m-match-mandala__petal {
+	position: absolute;
+	top: 0;
+	width: 2cqh;
+	height: 1.3cqh;
+	border-radius: 50% 0;
+	background: $saffron;
+	opacity: 0;
+	animation: match-mandala-petal 7s linear infinite;
+}
+
+@for $i from 1 through 10 {
+	.m-match-mandala__petal--#{$i} {
+		left: math.percentage(math.div(8 + ($i * 37) % 86, 100));
+		background: list.nth(($gold, $saffron, $magenta), $i % 3 + 1);
+		animation-duration: #{6 + ($i % 4)}s;
+		animation-delay: -#{$i * 0.7}s;
+	}
+}
+
+.m-match-mandala__stage {
+	position: absolute;
+	left: var(--match-x, 50%);
+	top: 50%;
+	display: flex;
+	gap: 6cqh;
+	align-items: center;
+	transform: translate(-50%, -50%);
+	color: #fff;
+}
+
+.m-match-mandala__card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1cqh;
+	width: 30cqh;
+	padding: 2.4cqh 2cqh;
+	border: 0.25cqh solid rgb(255 209 102 / 0.55);
+	border-radius: 2.4cqh;
+	background: linear-gradient(170deg, rgb(255 255 255 / 0.14), rgb(255 255 255 / 0.05));
+	box-shadow: 0 2cqh 5cqh rgb(0 0 0 / 0.35);
+	backdrop-filter: blur(6px);
+
+	b {
+		font-size: 2.2cqh;
+	}
+
+	ul {
+		display: grid;
+		gap: 0.6cqh;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+}
+
+.m-match-mandala__card--1 {
+	animation: match-mandala-left #{$loop}s ease-in-out infinite;
+}
+
+.m-match-mandala__card--2 {
+	animation: match-mandala-right #{$loop}s ease-in-out infinite;
+
+	.m-match-mandala__avatar {
+		background: linear-gradient(135deg, $magenta, #8a1550);
+	}
+}
+
+.m-match-mandala__avatar {
+	display: grid;
+	place-items: center;
+	width: 8cqh;
+	height: 8cqh;
+	border: 0.4cqh solid $gold;
+	border-radius: 50%;
+	background: linear-gradient(135deg, $saffron, #c45f00);
+	font-size: 3.4cqh;
+	font-weight: 700;
+}
+
+.m-match-mandala__field {
+	display: flex;
+	justify-content: space-between;
+	gap: 1cqh;
+	padding: 0.7cqh 1.2cqh;
+	border-radius: 1cqh;
+	font-size: 1.4cqh;
+
+	span {
+		color: $gold;
+		font-weight: 600;
+	}
+}
+
+@for $f from 1 through $fields {
+	.m-match-mandala__field--#{$f} {
+		animation: match-mandala-field-#{$f} #{$loop}s ease-out infinite;
+	}
+}
+
+// The compatibility meter sits between the cards.
+.m-match-mandala__meter {
+	position: absolute;
+	left: 50%;
+	bottom: -6cqh;
+	width: 40cqh;
+	height: 2.6cqh;
+	overflow: hidden;
+	border-radius: 1.3cqh;
+	background: rgb(255 255 255 / 0.12);
+	transform: translateX(-50%);
+
+	span {
+		position: absolute;
+		inset: 0;
+		display: grid;
+		place-items: center;
+		font-size: 1.4cqh;
+		font-weight: 700;
+	}
+}
+
+.m-match-mandala__fill {
+	position: absolute;
+	inset: 0 auto 0 0;
+	width: 0;
+	background: linear-gradient(90deg, $saffron, $magenta);
+	animation: match-mandala-fill #{$loop}s ease-in-out infinite;
+}
+
+.m-match-mandala__banner {
+	position: absolute;
+	left: 50%;
+	top: -9cqh;
+	margin: 0;
+	padding: 1cqh 3cqh;
+	border-radius: 3cqh;
+	background: linear-gradient(90deg, $saffron, $magenta);
+	box-shadow: 0 0 4cqh rgb(255 153 51 / 0.5);
+	font-size: 2.2cqh;
+	font-weight: 700;
+	white-space: nowrap;
+	opacity: 0;
+	animation: match-mandala-banner #{$loop}s ease-out infinite;
+}
+
+// Portrait parents: scale the pair down to fit.
+@container match-mandala (aspect-ratio < 1) {
+	.m-match-mandala__stage {
+		transform: translate(-50%, -50%) scale(0.62);
+	}
+}
+
+// Reduced motion: the matched pair, still.
+@media (prefers-reduced-motion: reduce) {
+	.m-match-mandala * {
+		/* stylelint-disable-next-line declaration-no-important -- overrides every generated story animation */
+		animation: none !important;
+	}
+
+	.m-match-mandala__petal {
+		display: none;
+	}
+
+	.m-match-mandala__fill {
+		width: 94%;
+	}
+
+	.m-match-mandala__banner {
+		opacity: 1;
+		transform: translateX(-50%);
+	}
+}

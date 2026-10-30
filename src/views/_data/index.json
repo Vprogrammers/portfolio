@@ -535,6 +535,7 @@
 		{
 			"category": "iOS · Swift · UIKit · Code review",
 			"title": "KOCH Scan App",
+			"url": "/work-koch",
 			"summary": "A B2B scanning app for a Swiss building supplier that lets tradespeople scan labels, collect articles by commission and order on site. I audited the Swift codebase in preparation for taking over its maintenance.",
 			"tone": "blue",
 			"variant": "scan",

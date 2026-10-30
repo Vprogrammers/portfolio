@@ -11,6 +11,16 @@
 			"label": "GitHub",
 			"icon": "github",
 			"url": "https://github.com/Vprogrammers"
+		},
+		{
+			"label": "LinkedIn",
+			"icon": "linkedin",
+			"url": "https://www.linkedin.com/in/viktor-nesic"
+		},
+		{
+			"label": "v.nesic.developer@gmail.com",
+			"icon": "mail",
+			"url": "mailto:v.nesic.developer@gmail.com"
 		}
 	],
 	"projects": [

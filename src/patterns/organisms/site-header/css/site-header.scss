@@ -57,7 +57,7 @@
 .o-site-header__links {
 	display: flex;
 	justify-content: flex-end;
-	gap: 1rem;
+	gap: 1.25rem;
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -85,5 +85,33 @@
 	&:focus-visible {
 		outline: 3px solid #fff;
 		outline-offset: 4px;
+	}
+}
+
+// On phones the three links and the mark fill the row; the profile links live
+// in the contact section below, so the icons step aside.
+@media (width <= 600px) {
+	.o-site-header__nav {
+		gap: 0.9rem;
+	}
+
+	// Four links (with Home on inner pages) and the mark must fit 320px.
+	.o-site-header__nav-link {
+		font-size: 0.7rem;
+		letter-spacing: 0.08em;
+	}
+
+	.o-site-header__links {
+		display: none;
+	}
+
+	.o-site-header {
+		grid-template-columns: 1fr auto;
+	}
+}
+
+@media (width <= 360px) {
+	.o-site-header__nav {
+		gap: 0.65rem;
 	}
 }

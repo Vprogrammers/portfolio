@@ -9,8 +9,8 @@ test('the name in the hero opens the About page', async ({ page }) => {
 
 test('the About page offers email and LinkedIn contact', async ({ page }) => {
   await page.goto('/about');
-  await expect(page.locator('.o-about__cta a[href="mailto:v.nesic.developer@gmail.com"]')).toBeVisible();
-  await expect(page.locator('.o-about__cta a[href="https://www.linkedin.com/in/viktor-nesic"]')).toBeVisible();
+  await expect(page.locator('.m-contact-form a[href="mailto:v.nesic.developer@gmail.com"]')).toBeVisible();
+  await expect(page.locator('.o-about__elsewhere a[href="https://www.linkedin.com/in/viktor-nesic"]')).toBeVisible();
   await expect(page.locator('.o-site-header__nav a[href="/#works"]')).toBeVisible();
 });
 
@@ -45,4 +45,39 @@ test('the progress line between the hero and the works sticks to the top and fil
   await page.evaluate(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' as ScrollBehavior }));
   await expect.poll(progress).toBe(1);
   await expect.poll(() => line.evaluate((el) => Math.round(el.getBoundingClientRect().top))).toBe(0);
+});
+
+test('the contact form validates, then sends to Web3Forms and thanks the visitor', async ({ page }) => {
+  // Never send real mail from tests: answer the request here and inspect what was posted.
+  let posted: string | null = null;
+  await page.route('https://api.web3forms.com/submit', async (route) => {
+    posted = route.request().postData();
+    await route.fulfill({ status: 200, contentType: 'application/json', body: '{"success":true}' });
+  });
+
+  await page.goto('/about#contact-form');
+  const form = page.locator('#contact-form');
+  await form.getByRole('button', { name: 'Send message' }).click();
+  await expect(form.locator('.m-contact-form__status')).toHaveText('');
+  expect(posted).toBeNull();
+
+  await form.getByLabel('Name').fill('Ana Test');
+  await form.getByLabel('Email').fill('ana@example.com');
+  await form.getByLabel('What can I help with?').fill('An iOS app for our shop.');
+  await form.getByRole('button', { name: 'Send message' }).click();
+  await expect(form.locator('.m-contact-form__status')).toContainText('Thank you');
+  expect(posted).toContain('An iOS app for our shop.');
+  expect(posted).toContain('access_key');
+  await expect(form.getByLabel('Name')).toHaveValue('');
+});
+
+test('the contact form points to the address when sending fails', async ({ page }) => {
+  await page.route('https://api.web3forms.com/submit', (route) => route.fulfill({ status: 500, body: '{}' }));
+  await page.goto('/about#contact-form');
+  const form = page.locator('#contact-form');
+  await form.getByLabel('Name').fill('Ana Test');
+  await form.getByLabel('Email').fill('ana@example.com');
+  await form.getByLabel('What can I help with?').fill('Hello');
+  await form.getByRole('button', { name: 'Send message' }).click();
+  await expect(form.locator('.m-contact-form__status')).toContainText('v.nesic.developer@gmail.com');
 });

@@ -1,0 +1,8 @@
+{# A small banner asking to allow anonymous statistics. Shown once, until the visitor answers; the answer is kept in localStorage. #}
+<div class="a-consent js-consent" role="region" aria-label="Statistics consent" hidden>
+	<p class="a-consent__text">{{ text|default('May I count your visit with anonymous statistics? No ads, no tracking across sites.') }}</p>
+	<p class="a-consent__actions">
+		<button class="a-consent__button a-consent__button--primary" type="button" data-consent="granted">Allow</button>
+		<button class="a-consent__button" type="button" data-consent="denied">No thanks</button>
+	</p>
+</div>

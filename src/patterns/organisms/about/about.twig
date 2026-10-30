@@ -15,6 +15,7 @@
 			<p class="o-about__kicker">{{ kicker }}</p>
 			<h1 class="o-about__headline" id="about-title">{{ headline }}</h1>
 			<p class="o-about__lead">{{ lead }}</p>
+			{% if cv %}<p class="o-about__intro-actions"><a class="o-about__button o-about__button--primary" href="{{ cv }}" download>Download CV</a><a class="o-about__button" href="#contact-form">Get in touch</a></p>{% endif %}
 		</header>
 
 		<ul class="o-about__stats">
@@ -49,13 +50,10 @@
 			</div>
 		</section>
 
-		<section class="o-about__cta">
-			<h2 class="o-about__cta-title">{{ ctaTitle }}</h2>
-			<p class="o-about__cta-text">{{ ctaText }}</p>
-			<p class="o-about__cta-links">
-				<a class="o-about__button o-about__button--primary" href="mailto:{{ email }}">{{ email }}</a>
-				<a class="o-about__button" href="{{ linkedin }}">LinkedIn</a>
-			</p>
-		</section>
+		{% pattern name='contact-form' data=form %}
+		<p class="o-about__elsewhere">
+			<a class="o-about__button" href="{{ linkedin }}">LinkedIn</a>
+			{% if cv %}<a class="o-about__button" href="{{ cv }}" download>Download CV (PDF)</a>{% endif %}
+		</p>
 	</div>
 </section>

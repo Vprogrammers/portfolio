@@ -15,6 +15,10 @@ const config = {
 				src: 'src/shared/assets/img/projects/**/*',
 				dest: 'public/assets/img/projects',
 			},
+			{
+				src: 'src/shared/assets/files/**/*',
+				dest: 'public/assets/files',
+			},
 		],
 		minifyImages: [
 			// copies and minifies all source images to dest folder; project images are

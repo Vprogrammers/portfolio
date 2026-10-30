@@ -20,7 +20,7 @@
 		{
 			"label": "v.nesic.developer@gmail.com",
 			"icon": "mail",
-			"url": "mailto:v.nesic.developer@gmail.com"
+			"url": "/about#contact-form"
 		}
 	],
 	"about": {
@@ -155,8 +155,6 @@
 				]
 			}
 		],
-		"ctaTitle": "Have an app to build, rescue or scale?",
-		"ctaText": "Tell me about it. I usually reply within a day.",
 		"email": "v.nesic.developer@gmail.com",
 		"linkedin": "https://www.linkedin.com/in/viktor-nesic",
 		"projects": [
@@ -188,6 +186,16 @@
 			"Yaaxa",
 			"MyPH",
 			"a11yOtp"
-		]
+		],
+		"form": {
+			"title": "Have an app to build, rescue or scale?",
+			"text": "Tell me about it. I usually reply within a day.",
+			"email": "v.nesic.developer@gmail.com",
+			"accessKey": "91d254bd-4a69-4851-b66e-a606844ced07"
+		},
+		"cv": "/assets/files/Viktor-Nesic-CV.pdf"
+	},
+	"analytics": {
+		"gaMeasurementId": "G-ZM0VPP0G2C"
 	}
 }

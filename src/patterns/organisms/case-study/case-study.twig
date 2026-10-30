@@ -1,0 +1,99 @@
+{# A project case study: hero (an animated device scene or an image) with key facts, the brief, contributions, a screen gallery, a layered architecture, stack, team, result and a closing call to action. Data per project lives in src/views/_data/work/<project>.json. #}
+<article class="o-case-study" id="top">
+	<header class="o-case-study__hero">
+		{# The project's animated scene from the home page when there is one, otherwise a still image. #}
+		{% if scene %}
+			<div class="o-case-study__hero-scene">{% pattern name='device-scene' data=scene|merge({ priority: true }) %}</div>
+		{% else %}
+			<img class="o-case-study__hero-image" src="{{ hero }}" alt="" fetchpriority="high" decoding="async">
+		{% endif %}
+		<div class="o-case-study__hero-content">
+			<a class="o-case-study__back" href="{{ back.url }}"><span aria-hidden="true">←</span> {{ back.label }}</a>
+			<p class="o-case-study__kicker">{{ kicker }}</p>
+			<h1 class="o-case-study__title">{{ title }}</h1>
+			<p class="o-case-study__lead">{{ lead }}</p>
+			{% if employer %}{% pattern name='employer' data=employers[employer] %}{% endif %}
+		</div>
+	</header>
+
+	<div class="o-case-study__body">
+		<dl class="o-case-study__facts">
+			{% for fact in facts %}
+				<div class="o-case-study__fact"><dt>{{ fact.label }}</dt><dd>{{ fact.value }}</dd></div>
+			{% endfor %}
+		</dl>
+
+		<section class="o-case-study__split" aria-labelledby="case-brief">
+			<div>
+				<h2 class="o-case-study__heading" id="case-brief">{{ brief.title }}</h2>
+				{% for paragraph in brief.text %}<p class="o-case-study__text">{{ paragraph }}</p>{% endfor %}
+			</div>
+			<div>
+				<h2 class="o-case-study__heading">{{ contributions.title }}</h2>
+				<ul class="o-case-study__list">
+					{% for item in contributions.items %}<li>{{ item }}</li>{% endfor %}
+				</ul>
+			</div>
+		</section>
+	</div>
+
+	<section class="o-case-study__screens" aria-labelledby="case-screens">
+		<h2 class="o-case-study__heading o-case-study__heading--inset" id="case-screens">{{ screens.title }}</h2>
+		{# Scrolls sideways; focusable so keyboard users can scroll it with the arrow keys. #}
+		<ul class="o-case-study__gallery" tabindex="0" aria-label="{{ screens.title }}, scrolls sideways">
+			{% for screen in screens.items %}
+				<li class="o-case-study__screen">
+					<figure>
+						<div class="o-case-study__device"><img src="{{ screen.src }}" alt="{{ screen.caption }}" loading="lazy" decoding="async"></div>
+						<figcaption>{{ screen.caption }}</figcaption>
+					</figure>
+				</li>
+			{% endfor %}
+		</ul>
+	</section>
+
+	<div class="o-case-study__body">
+		<section aria-labelledby="case-architecture">
+			<h2 class="o-case-study__heading" id="case-architecture">{{ architecture.title }}</h2>
+			<p class="o-case-study__text o-case-study__text--narrow">{{ architecture.text }}</p>
+			<ol class="o-case-study__layers">
+				{% for layer in architecture.layers %}
+					<li class="o-case-study__layer o-case-study__layer--{{ loop.index }}">
+						<h3>{{ layer.name }}</h3>
+						<ul>{% for item in layer.items %}<li>{{ item }}</li>{% endfor %}</ul>
+					</li>
+				{% endfor %}
+			</ol>
+		</section>
+
+		<section class="o-case-study__split" aria-labelledby="case-team">
+			<div>
+				<h2 class="o-case-study__heading">{{ stack.title }}</h2>
+				<ul class="o-case-study__chips">
+					{% for item in stack.items %}<li>{{ item }}</li>{% endfor %}
+				</ul>
+			</div>
+			<div>
+				<h2 class="o-case-study__heading" id="case-team">{{ team.title }}</h2>
+				<p class="o-case-study__text">{{ team.text }}</p>
+				<dl class="o-case-study__numbers">
+					{% for item in team.items %}<div><dt>{{ item[1] }}</dt><dd>{{ item[0] }}</dd></div>{% endfor %}
+				</dl>
+			</div>
+		</section>
+
+		<section aria-labelledby="case-outcome">
+			<h2 class="o-case-study__heading" id="case-outcome">{{ outcome.title }}</h2>
+			<p class="o-case-study__text o-case-study__text--large">{{ outcome.text }}</p>
+		</section>
+
+		<aside class="o-case-study__cta">
+			<h2 class="o-case-study__cta-title">{{ cta.title }}</h2>
+			<p class="o-case-study__text">{{ cta.text }}</p>
+			<p class="o-case-study__actions">
+				<a class="o-case-study__button" href="{{ cta.url }}">{{ cta.label }}</a>
+				<a class="o-case-study__button o-case-study__button--ghost" href="{{ back.url }}">{{ back.label }}</a>
+			</p>
+		</aside>
+	</div>
+</article>

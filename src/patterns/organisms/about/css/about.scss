@@ -1,0 +1,418 @@
+/* stylelint-disable plugin/stylelint-bem-namics -- generated nth-child loops */
+@use 'sass:list';
+
+// Lanes of project names scrolling behind the copy: speed in seconds, direction, size.
+$lanes: ((90s, 1, 9vw), (120s, -1, 5vw), (75s, 1, 12vw), (140s, -1, 4vw), (100s, 1, 7vw), (130s, -1, 10vw));
+$accent: #5eead4;
+
+@keyframes about-lane {
+	from {
+		transform: translateX(0);
+	}
+
+	to {
+		transform: translateX(-50%);
+	}
+}
+
+// Single names that fly across the page on a slow diagonal, fading in and out.
+@keyframes about-fly {
+	0% {
+		opacity: 0;
+		transform: translate(-20vw, 30vh) rotate(-8deg) scale(0.8);
+	}
+
+	15%,
+	75% {
+		opacity: 0.9;
+	}
+
+	100% {
+		opacity: 0;
+		transform: translate(110vw, -40vh) rotate(6deg) scale(1.15);
+	}
+}
+
+@keyframes about-rise {
+	from {
+		opacity: 0;
+		transform: translateY(1.5rem);
+	}
+
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+.o-about {
+	position: relative;
+	isolation: isolate;
+	min-height: 100vh;
+	overflow: hidden;
+	padding: clamp(8rem, 18vh, 12rem) clamp(1.25rem, 4vw, 3.5rem) clamp(4rem, 10vh, 7rem);
+	background:
+		radial-gradient(ellipse 60% 50% at 80% 10%, rgb(94 234 212 / 0.12), transparent 70%),
+		radial-gradient(ellipse 60% 50% at 10% 90%, rgb(129 140 248 / 0.12), transparent 70%),
+		#0b0f17;
+	color: #fff;
+}
+
+.o-about__sky {
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	overflow: hidden;
+	pointer-events: none;
+	// Fade the edges so the lanes appear out of the dark.
+	mask: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+
+.o-about__lane {
+	display: flex;
+	width: max-content;
+	margin: 0;
+	font-family: var(--font-display);
+	font-weight: 600;
+	line-height: 1;
+	white-space: nowrap;
+
+	span {
+		padding: 0 0.5em;
+		color: transparent;
+		-webkit-text-stroke: 1px rgb(255 255 255 / 0.12);
+
+		// Every few names one is filled, so the lanes are not uniform.
+		&:nth-child(4n + 2) {
+			color: rgb(255 255 255 / 0.05);
+			-webkit-text-stroke: 0;
+		}
+
+		&:nth-child(7n + 3) {
+			-webkit-text-stroke-color: rgb(94 234 212 / 0.28);
+		}
+	}
+}
+
+@for $k from 1 through list.length($lanes) {
+	$lane: list.nth($lanes, $k);
+	$dir: list.nth($lane, 2);
+
+	.o-about__lane--#{$k} {
+		font-size: list.nth($lane, 3);
+		animation: about-lane list.nth($lane, 1) linear infinite;
+
+		@if $dir == -1 {
+			animation-direction: reverse;
+		}
+	}
+}
+
+.o-about__flyer {
+	position: absolute;
+	left: 0;
+	color: $accent;
+	font-family: var(--font-display);
+	font-size: clamp(1rem, 1.8vw, 1.6rem);
+	font-weight: 600;
+	white-space: nowrap;
+	text-shadow: 0 0 1.5rem rgb(94 234 212 / 0.6);
+	opacity: 0;
+	animation: about-fly 18s ease-in-out infinite;
+
+}
+
+@for $i from 1 through 8 {
+	.o-about__flyer--#{$i} {
+		top: #{8 + ($i * 37 % 80)}%;
+		animation-delay: #{($i - 1) * 2.25}s;
+		animation-duration: #{16 + ($i % 3) * 3}s;
+	}
+}
+
+.o-about__body {
+	display: flex;
+	flex-direction: column;
+	gap: clamp(3.5rem, 8vh, 6rem);
+	max-width: 68rem;
+	margin: 0 auto;
+}
+
+.o-about__intro {
+	max-width: 52rem;
+	animation: about-rise 800ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.o-about__kicker,
+.o-about__group {
+	margin: 0;
+	color: $accent;
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.35em;
+	text-transform: uppercase;
+}
+
+.o-about__headline {
+	margin: 1rem 0 1.5rem;
+	font-family: var(--font-display);
+	font-size: clamp(2.1rem, 5vw, 4.4rem);
+	font-weight: 600;
+	line-height: 1.04;
+	letter-spacing: -0.01em;
+}
+
+.o-about__lead {
+	max-width: 44rem;
+	margin: 0;
+	color: rgb(255 255 255 / 0.82);
+	font-size: clamp(1.05rem, 1.4vw, 1.3rem);
+	line-height: 1.6;
+}
+
+.o-about__stats {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	animation: about-rise 800ms 150ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+
+	li {
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+		padding: 1.4rem 1.2rem;
+		border-top: 1px solid rgb(255 255 255 / 0.18);
+	}
+
+	b {
+		font-family: var(--font-display);
+		font-size: clamp(2rem, 4vw, 3.2rem);
+		line-height: 1;
+	}
+
+	span {
+		color: rgb(255 255 255 / 0.65);
+		font-size: 0.9rem;
+	}
+}
+
+.o-about__title {
+	margin: 0 0 1.75rem;
+	font-family: var(--font-display);
+	font-size: clamp(1.4rem, 2.4vw, 2.1rem);
+	font-weight: 600;
+}
+
+.o-about__benefits {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	counter-reset: benefit;
+
+	li {
+		position: relative;
+		padding: 1.6rem 1.6rem 1.6rem 4.2rem;
+		border: 1px solid rgb(255 255 255 / 0.1);
+		border-radius: 1rem;
+		background: rgb(11 15 23 / 0.72);
+		backdrop-filter: blur(6px);
+		counter-increment: benefit;
+		transition: border-color 250ms ease, transform 250ms ease;
+
+		&::before {
+			content: counter(benefit, decimal-leading-zero);
+			position: absolute;
+			left: 1.5rem;
+			top: 1.7rem;
+			color: $accent;
+			font-size: 0.85rem;
+			font-weight: 700;
+			letter-spacing: 0.1em;
+		}
+
+		&:hover {
+			border-color: rgb(94 234 212 / 0.45);
+			transform: translateY(-2px);
+		}
+	}
+
+	h3 {
+		margin: 0 0 0.5rem;
+		font-size: 1.1rem;
+	}
+
+	p {
+		margin: 0;
+		color: rgb(255 255 255 / 0.72);
+		line-height: 1.55;
+	}
+}
+
+.o-about__process {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	li {
+		position: relative;
+		padding-top: 1.4rem;
+		border-top: 2px solid rgb(255 255 255 / 0.15);
+
+		// The line lights up step by step.
+		&::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: -2px;
+			width: 2.5rem;
+			height: 2px;
+			background: $accent;
+		}
+	}
+
+	b {
+		font-family: var(--font-display);
+		font-size: 1.3rem;
+	}
+
+	p {
+		margin: 0.5rem 0 0;
+		color: rgb(255 255 255 / 0.7);
+		line-height: 1.5;
+	}
+}
+
+.o-about__block--split {
+	display: grid;
+	grid-template-columns: 1fr 1.4fr;
+	gap: clamp(2rem, 5vw, 4rem);
+}
+
+.o-about__brands {
+	display: flex;
+	flex-direction: column;
+	gap: 0.2rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	li {
+		padding: 0.6rem 0;
+		border-bottom: 1px solid rgb(255 255 255 / 0.1);
+		font-family: var(--font-display);
+		font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+	}
+}
+
+.o-about__group {
+	margin: 1.25rem 0 0.6rem;
+
+	&:first-of-type {
+		margin-top: 0;
+	}
+}
+
+.o-about__chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	li {
+		padding: 0.4rem 0.9rem;
+		border: 1px solid rgb(255 255 255 / 0.16);
+		border-radius: 99px;
+		color: rgb(255 255 255 / 0.85);
+		font-size: 0.85rem;
+	}
+}
+
+.o-about__cta {
+	padding: clamp(2rem, 5vw, 3.5rem);
+	border: 1px solid rgb(94 234 212 / 0.3);
+	border-radius: 1.5rem;
+	background: linear-gradient(135deg, rgb(94 234 212 / 0.12), rgb(129 140 248 / 0.08));
+	text-align: center;
+}
+
+.o-about__cta-title {
+	margin: 0;
+	font-family: var(--font-display);
+	font-size: clamp(1.6rem, 3.4vw, 2.8rem);
+	font-weight: 600;
+}
+
+.o-about__cta-text {
+	margin: 0.8rem 0 1.8rem;
+	color: rgb(255 255 255 / 0.75);
+}
+
+.o-about__cta-links {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.8rem;
+	margin: 0;
+}
+
+.o-about__button {
+	display: inline-block;
+	padding: 0.85rem 1.6rem;
+	border: 1px solid rgb(255 255 255 / 0.6);
+	border-radius: 99px;
+	color: inherit;
+	font-weight: 600;
+	text-decoration: none;
+	transition: background-color 200ms ease, color 200ms ease;
+
+	&:hover,
+	&:focus-visible {
+		background: #fff;
+		color: #0b0f17;
+	}
+}
+
+.o-about__button--primary {
+	border-color: $accent;
+	background: $accent;
+	color: #0b0f17;
+}
+
+@media (width <= 900px) {
+	.o-about__stats,
+	.o-about__process {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.o-about__benefits,
+	.o-about__block--split {
+		grid-template-columns: 1fr;
+	}
+}
+
+// Reduced motion: the names stay as a still texture.
+@media (prefers-reduced-motion: reduce) {
+	.o-about__lane,
+	.o-about__intro,
+	.o-about__stats {
+		animation: none;
+	}
+
+	.o-about__flyer {
+		display: none;
+	}
+}

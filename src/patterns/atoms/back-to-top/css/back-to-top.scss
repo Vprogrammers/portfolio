@@ -1,0 +1,54 @@
+// A round button in the bottom-right corner that fades in once it is useful.
+.a-back-to-top {
+	position: fixed;
+	right: clamp(1rem, 3vw, 2rem);
+	bottom: clamp(1rem, 3vw, 2rem);
+	z-index: 20;
+	display: grid;
+	place-items: center;
+	width: 3.25rem;
+	height: 3.25rem;
+	border: 1px solid rgb(255 255 255 / 0.5);
+	border-radius: 50%;
+	background: rgb(11 15 23 / 0.75);
+	backdrop-filter: blur(8px);
+	color: #fff;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(1rem);
+	transition:
+		opacity 250ms ease,
+		transform 250ms ease,
+		visibility 0s 250ms,
+		background-color 200ms ease,
+		color 200ms ease;
+
+	svg {
+		width: 1.25rem;
+		height: 1.25rem;
+	}
+
+	&:hover,
+	&:focus-visible {
+		background: #fff;
+		color: #0b0f17;
+	}
+
+	&:focus-visible {
+		outline: 3px solid #fff;
+		outline-offset: 3px;
+	}
+}
+
+.state-a-back-to-top--visible {
+	opacity: 1;
+	visibility: visible;
+	transform: none;
+	transition-delay: 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.a-back-to-top {
+		transition: none;
+	}
+}

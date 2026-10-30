@@ -1,0 +1,61 @@
+{# About page body: the names of every project drift past in the background while the copy explains what a client gets. #}
+<section class="o-about" aria-labelledby="about-title">
+	<div class="o-about__sky" aria-hidden="true">
+		{# Each lane starts at a different project and repeats twice, so it can scroll seamlessly. #}
+		{% for row in 1..6 %}
+			{% set offset = (row * 5) % projects|length %}
+			{% set lane = projects|slice(offset)|merge(projects|slice(0, offset)) %}
+			<p class="o-about__lane o-about__lane--{{ row }}">{% for pass in 1..2 %}{% for name in lane %}<span>{{ name }}</span>{% endfor %}{% endfor %}</p>
+		{% endfor %}
+		{% for name in projects|slice(0, 8) %}<span class="o-about__flyer o-about__flyer--{{ loop.index }}">{{ name }}</span>{% endfor %}
+	</div>
+
+	<div class="o-about__body">
+		<header class="o-about__intro">
+			<p class="o-about__kicker">{{ kicker }}</p>
+			<h1 class="o-about__headline" id="about-title">{{ headline }}</h1>
+			<p class="o-about__lead">{{ lead }}</p>
+		</header>
+
+		<ul class="o-about__stats">
+			{% for stat in stats %}<li><b>{{ stat.value }}</b><span>{{ stat.label }}</span></li>{% endfor %}
+		</ul>
+
+		<section class="o-about__block">
+			<h2 class="o-about__title">{{ benefitsTitle }}</h2>
+			<ol class="o-about__benefits">
+				{% for item in benefits %}<li><h3>{{ item.title }}</h3><p>{{ item.text }}</p></li>{% endfor %}
+			</ol>
+		</section>
+
+		<section class="o-about__block">
+			<h2 class="o-about__title">{{ processTitle }}</h2>
+			<ol class="o-about__process">
+				{% for item in process %}<li><b>{{ item.step }}</b><p>{{ item.text }}</p></li>{% endfor %}
+			</ol>
+		</section>
+
+		<section class="o-about__block o-about__block--split">
+			<div>
+				<h2 class="o-about__title">{{ brandsTitle }}</h2>
+				<ul class="o-about__brands">{% for brand in brands %}<li>{{ brand }}</li>{% endfor %}</ul>
+			</div>
+			<div>
+				<h2 class="o-about__title">{{ toolsTitle }}</h2>
+				{% for group in tools %}
+					<p class="o-about__group">{{ group.group }}</p>
+					<ul class="o-about__chips">{% for item in group.items %}<li>{{ item }}</li>{% endfor %}</ul>
+				{% endfor %}
+			</div>
+		</section>
+
+		<section class="o-about__cta">
+			<h2 class="o-about__cta-title">{{ ctaTitle }}</h2>
+			<p class="o-about__cta-text">{{ ctaText }}</p>
+			<p class="o-about__cta-links">
+				<a class="o-about__button o-about__button--primary" href="mailto:{{ email }}">{{ email }}</a>
+				<a class="o-about__button" href="{{ linkedin }}">LinkedIn</a>
+			</p>
+		</section>
+	</div>
+</section>

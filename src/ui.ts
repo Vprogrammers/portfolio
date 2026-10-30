@@ -16,6 +16,7 @@ import './shared/base/webfonts/css/webfont-unbounded.scss';
 import './shared/base/webfonts/css/webfont-manrope.scss';
 import './shared/base/print/css/print.scss';
 
+import './patterns/atoms/back-to-top';
 import './patterns/atoms/box';
 import './patterns/atoms/button';
 import './patterns/atoms/checkbox';
@@ -59,6 +60,7 @@ import './patterns/molecules/sdui-live';
 import './patterns/molecules/swipe-deck';
 import './patterns/molecules/token-flow';
 import './patterns/molecules/web-wrap';
+import './patterns/organisms/about';
 import './patterns/organisms/project-grid';
 import './patterns/organisms/project-player';
 import './patterns/organisms/site-footer';

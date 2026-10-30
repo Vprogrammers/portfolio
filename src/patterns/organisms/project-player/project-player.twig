@@ -6,7 +6,7 @@
 <section class="o-project-player js-project-player" aria-label="Featured projects" data-interval="7000">
   {% if intro %}
     <div class="o-project-player__intro">
-      <h1 class="o-project-player__name">{{ intro.name }}</h1>
+      <h1 class="o-project-player__name"><a class="o-project-player__name-link" href="/about">{{ intro.name }}</a></h1>
       <p class="o-project-player__role">{{ intro.role }}</p>
     </div>
   {% endif %}

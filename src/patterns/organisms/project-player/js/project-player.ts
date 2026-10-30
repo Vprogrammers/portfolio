@@ -1,5 +1,14 @@
 const players = document.querySelectorAll<HTMLElement>('.js-project-player');
 
+// Reports whether the element is on screen and mirrors it in data-in-view.
+const watchInView = (element: HTMLElement, onChange: (inView: boolean) => void) => {
+  if (!('IntersectionObserver' in window)) return;
+  new IntersectionObserver(([entry]) => {
+    element.dataset.inView = String(entry.isIntersecting);
+    onChange(entry.isIntersecting);
+  }).observe(element);
+};
+
 // On arrival the first project's details open for a moment, so visitors learn
 // that the title reveals more.
 const showHint = (player: HTMLElement, reducedMotion: boolean) => {
@@ -117,7 +126,11 @@ players.forEach((player) => {
     started = performance.now();
   };
 
-  const running = () => !paused && !hovered && !focused && !document.hidden;
+  // The player rests while it is scrolled out of view: no slide changes, no scene animation.
+  let inView = true;
+  watchInView(player, (value) => { inView = value; });
+
+  const running = () => !paused && !hovered && !focused && inView && !document.hidden;
   const tick = (now: number) => {
     if (running()) {
       const elapsed = now - started;

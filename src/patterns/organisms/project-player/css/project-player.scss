@@ -1149,3 +1149,13 @@
 		opacity: 1;
 	}
 }
+
+// Scrolled out of view, the hero's scenes hold still (see js/project-player.ts).
+.o-project-player[data-in-view='false'] .o-project-player__slide {
+	*,
+	*::before,
+	*::after {
+		/* stylelint-disable-next-line declaration-no-important -- scene rules set animation shorthands, which reset the play state */
+		animation-play-state: paused !important;
+	}
+}

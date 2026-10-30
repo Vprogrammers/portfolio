@@ -1,8 +1,8 @@
 // Shows the button once the threshold element (e.g. the works grid's first row)
 // has scrolled out above the viewport, or after one and a half screens.
 
-// Starts at once and settles gently at the top.
-const easeOutCubic = (t: number) => 1 - (1 - t) ** 3;
+// Eases in and out softly with a steady middle, like a hand scrolling the page.
+const easeInOutSine = (t: number) => -(Math.cos(Math.PI * t) - 1) / 2;
 
 // Browsers' own smooth scrolling differs a lot (near-instant in Safari, stuttering
 // in Chrome on this animated page), so the button glides with its own easing.
@@ -11,13 +11,14 @@ const easeOutCubic = (t: number) => 1 - (1 - t) ** 3;
 const glideToTop = (done: () => void) => {
   const root = document.documentElement;
   const start = window.scrollY;
-  const duration = Math.min(1100, Math.max(600, start / 5));
+  // About 2.4 px per millisecond, between 1.2 and 2.8 seconds.
+  const duration = Math.min(2800, Math.max(1200, start / 2.4));
   const begin = performance.now();
   root.style.scrollBehavior = 'auto';
   root.classList.add('state-a-back-to-top--gliding');
   const step = (now: number) => {
     const progress = Math.min(1, (now - begin) / duration);
-    window.scrollTo(0, Math.round(start * (1 - easeOutCubic(progress))));
+    window.scrollTo(0, Math.round(start * (1 - easeInOutSine(progress))));
     if (progress < 1) {
       requestAnimationFrame(step);
       return;

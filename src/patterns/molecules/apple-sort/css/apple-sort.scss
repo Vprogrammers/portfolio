@@ -1,0 +1,396 @@
+/* stylelint-disable plugin/stylelint-bem-namics -- generated keyframe offsets and nth-child loops */
+@use 'sass:list';
+@use 'sass:math';
+
+// The whole story runs on one timeline; times below are seconds into it.
+$loop: 16;
+$mono: 'SF Mono', menlo, consolas, monospace;
+$apples: 14;
+$scan: (0.4, 2.4);
+$detect-start: 1;
+$detect-step: 0.16;
+$hud: 3.4;
+$sort-start: 6.4;
+$sort-step: 0.38;
+$reset: 15;
+// Class colours: the box and the bin share them.
+$class-colors: (#3ddc84, #b5e550, #ffb020, #ff5a4f);
+
+@function at($s) {
+	@return math.percentage(math.div($s, $loop));
+}
+
+// Hidden until $start, eased in over $in, kept until $end, then faded out.
+@mixin appear($name, $start, $end: $reset, $from: scale(0.6), $in: 0.25) {
+	@keyframes #{$name} {
+		0%,
+		#{at($start)} {
+			opacity: 0;
+			transform: $from;
+		}
+
+		#{at($start + $in)},
+		#{at($end)} {
+			opacity: 1;
+			transform: none;
+		}
+
+		#{at(math.min($end + 0.3, $loop))},
+		100% {
+			opacity: 0;
+			transform: $from;
+		}
+	}
+}
+
+@keyframes apple-sort-scan {
+	0%,
+	#{at(list.nth($scan, 1))} {
+		opacity: 0;
+		top: 0;
+	}
+
+	#{at(list.nth($scan, 1) + 0.1)} {
+		opacity: 1;
+	}
+
+	#{at(list.nth($scan, 2))} {
+		opacity: 1;
+		top: 100%;
+	}
+
+	#{at(list.nth($scan, 2) + 0.1)},
+	100% {
+		opacity: 0;
+		top: 100%;
+	}
+}
+
+// Each apple gets its box in turn, then later flies to the bin of its class.
+@for $k from 1 through $apples {
+	$d: $detect-start + ($k - 1) * $detect-step;
+	$s: $sort-start + ($k - 1) * $sort-step;
+
+	@include appear(apple-sort-box-#{$k}, $d, $s + 0.1, scale(1.4), 0.2);
+
+	@keyframes apple-sort-fly-#{$k} {
+		0%,
+		#{at($s)} {
+			opacity: 1;
+			translate: 0 0;
+			scale: 1;
+		}
+
+		#{at($s + 0.2)} {
+			translate: 0 -3cqh;
+			scale: 1.15;
+		}
+
+		#{at($s + 0.7)},
+		#{at($reset)} {
+			opacity: 0;
+			translate: var(--to-x) var(--to-y);
+			scale: 0.6;
+		}
+
+		#{at($reset + 0.3)},
+		100% {
+			opacity: 1;
+			translate: 0 0;
+			scale: 1;
+		}
+	}
+}
+
+@include appear(apple-sort-hud, $hud, $reset, translateY(1cqh), 0.3);
+
+// Bins fill as their class's apples land.
+@for $c from 1 through 4 {
+	@keyframes apple-sort-pile-#{$c} {
+		0%,
+		#{at($sort-start + 0.5)} {
+			height: 0;
+		}
+
+		#{at($sort-start + $apples * $sort-step + 0.6)},
+		#{at($reset)} {
+			height: #{list.nth((70%, 56%, 42%, 30%), $c)};
+		}
+
+		#{at($reset + 0.3)},
+		100% {
+			height: 0;
+		}
+	}
+}
+
+// The root fills its positioned parent; the parent sets --sort-h/-x/-y.
+.m-apple-sort {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	container: apple-sort / size;
+	pointer-events: none;
+	background:
+		radial-gradient(ellipse 55% 60% at 64% 46%, rgb(61 220 132 / 0.18), transparent 70%),
+		linear-gradient(160deg, #10170f, #090b08);
+	font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.m-apple-sort__stage {
+	--h: var(--sort-h, 66cqh);
+	// Crate and bin geometry, shared by the layout and the apples' flight.
+	--crate-w: calc(var(--h) * 0.95 - 2.8cqh);
+	--crate-h: calc(var(--h) * 0.62 - 2.8cqh);
+	--slot: calc(var(--h) * 0.22 + 1.6cqh);
+
+	position: absolute;
+	left: var(--sort-x, 50%);
+	top: var(--sort-y, 50%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 3cqh;
+	height: var(--h);
+	transform: translate(-50%, -50%);
+}
+
+// The camera frame: rounded like an iPad screen, with viewfinder corners.
+.m-apple-sort__camera {
+	position: relative;
+	width: calc(var(--h) * 0.95);
+	height: calc(var(--h) * 0.62);
+	padding: 1.4cqh;
+	border-radius: 2cqh;
+	background: #0d0f12;
+	box-shadow: 0 0 0 0.3cqh #3a3f47, 0 3cqh 6cqh rgb(0 0 0 / 0.55);
+}
+
+// The crate from above: wooden slats with apples on them.
+.m-apple-sort__crate {
+	position: relative;
+	height: 100%;
+	border-radius: 1.2cqh;
+	background:
+		repeating-linear-gradient(90deg, rgb(0 0 0 / 0.25) 0 0.4cqh, transparent 0.4cqh 10cqh),
+		linear-gradient(160deg, #a77a4c, #7a5530);
+}
+
+// Each apple flies from its spot to the centre of its class's bin below the camera.
+.m-apple-sort__apple {
+	--bin: 0;
+	--to-x: calc(var(--crate-w) * (0.5 - var(--xf)) + var(--slot) * (var(--bin) - 1.5));
+	--to-y: calc(var(--crate-h) * (1 - var(--yf)) + 4.4cqh + var(--h) * 0.13);
+
+	position: absolute;
+	left: var(--x);
+	top: var(--y);
+	width: 7.5cqh;
+	height: 7.5cqh;
+	margin: -3.75cqh;
+}
+
+// Every apple is drawn: a red-to-yellow skin with a highlight; worse classes get blemishes.
+.m-apple-sort__fruit {
+	position: absolute;
+	inset: 0;
+	border-radius: 48% 52% 46% 54%;
+	background:
+		radial-gradient(circle at 34% 30%, rgb(255 255 255 / 0.55) 0 8%, transparent 20%),
+		radial-gradient(circle at 60% 65%, #9e1b1b, transparent 70%),
+		radial-gradient(circle at 40% 40%, #e8443a, #b81f22 70%);
+	box-shadow: inset -0.6cqh -0.8cqh 1.2cqh rgb(0 0 0 / 0.35), 0 0.6cqh 1cqh rgb(0 0 0 / 0.35);
+
+	// The stalk.
+	&::after {
+		content: '';
+		position: absolute;
+		left: 48%;
+		top: -6%;
+		width: 0.5cqh;
+		height: 1.6cqh;
+		border-radius: 0.3cqh;
+		background: #4a3020;
+		transform: rotate(14deg);
+	}
+}
+
+.m-apple-sort__apple--c2 .m-apple-sort__fruit {
+	background:
+		radial-gradient(circle at 34% 30%, rgb(255 255 255 / 0.5) 0 8%, transparent 20%),
+		radial-gradient(circle at 66% 62%, #6b4a1e 0 7%, transparent 9%),
+		radial-gradient(circle at 40% 40%, #e6553a, #b33a1f 70%);
+}
+
+.m-apple-sort__apple--c3 .m-apple-sort__fruit {
+	background:
+		radial-gradient(circle at 34% 30%, rgb(255 255 255 / 0.45) 0 8%, transparent 20%),
+		radial-gradient(circle at 62% 58%, #5a3b15 0 12%, transparent 15%),
+		radial-gradient(circle at 30% 70%, #5a3b15 0 7%, transparent 9%),
+		radial-gradient(circle at 40% 40%, #e08a3a, #a8541c 70%);
+}
+
+.m-apple-sort__apple--c4 .m-apple-sort__fruit {
+	background:
+		radial-gradient(circle at 55% 55%, #3a2410 0 26%, transparent 32%),
+		radial-gradient(circle at 30% 30%, #4a2e12 0 10%, transparent 13%),
+		radial-gradient(circle at 40% 40%, #a8642a, #6e3a14 70%);
+}
+
+// The detection box with its label, in the class colour.
+.m-apple-sort__box {
+	--c: #3ddc84;
+
+	position: absolute;
+	inset: -0.6cqh;
+	border: 0.3cqh solid var(--c);
+	border-radius: 0.6cqh;
+	opacity: 0;
+
+	em {
+		position: absolute;
+		left: -0.3cqh;
+		bottom: 100%;
+		padding: 0.2cqh 0.6cqh;
+		border-radius: 0.4cqh 0.4cqh 0.4cqh 0;
+		background: var(--c);
+		color: #0b0d0a;
+		font: 700 1.1cqh/1.3 $mono;
+		font-style: normal;
+		white-space: nowrap;
+	}
+}
+
+@for $c from 1 through 4 {
+	.m-apple-sort__apple--c#{$c} {
+		--bin: #{$c - 1};
+
+		.m-apple-sort__box {
+			--c: #{list.nth($class-colors, $c)};
+		}
+	}
+
+	.m-apple-sort__bin--c#{$c} {
+		--c: #{list.nth($class-colors, $c)};
+
+		.m-apple-sort__pile {
+			animation: apple-sort-pile-#{$c} #{$loop}s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+		}
+	}
+}
+
+@for $k from 1 through $apples {
+	.m-apple-sort__apple:nth-child(#{$k}) {
+		animation: apple-sort-fly-#{$k} #{$loop}s cubic-bezier(0.4, 0, 0.3, 1) infinite;
+
+		.m-apple-sort__box {
+			animation: apple-sort-box-#{$k} #{$loop}s cubic-bezier(0.3, 1.4, 0.5, 1) infinite;
+		}
+	}
+}
+
+.m-apple-sort__scan {
+	position: absolute;
+	left: 1.4cqh;
+	right: 1.4cqh;
+	top: 0;
+	height: 0.4cqh;
+	background: #3ddc84;
+	box-shadow: 0 0 2cqh #3ddc84;
+	opacity: 0;
+	animation: apple-sort-scan #{$loop}s ease-in-out infinite;
+}
+
+.m-apple-sort__hud {
+	position: absolute;
+	left: 2.4cqh;
+	right: 2.4cqh;
+	top: 2.4cqh;
+	display: flex;
+	justify-content: space-between;
+	gap: 1cqh;
+	margin: 0;
+	opacity: 0;
+	animation: apple-sort-hud #{$loop}s ease-out infinite;
+
+	span {
+		padding: 0.5cqh 1cqh;
+		border-radius: 0.6cqh;
+		background: rgb(0 0 0 / 0.65);
+		color: #d7ffe6;
+		font: 1.25cqh $mono;
+		white-space: nowrap;
+	}
+
+	b {
+		color: #3ddc84;
+	}
+}
+
+.m-apple-sort__bins {
+	display: flex;
+	gap: 1.6cqh;
+}
+
+.m-apple-sort__bin {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	width: calc(var(--h) * 0.22);
+	height: calc(var(--h) * 0.26);
+	overflow: hidden;
+	padding: 1.2cqh;
+	border-top: 0.5cqh solid var(--c);
+	border-radius: 0.8cqh;
+	background: linear-gradient(160deg, #8a6038, #5e3f22);
+	color: #fff;
+	box-shadow: 0 1.6cqh 3cqh rgb(0 0 0 / 0.45);
+
+	b {
+		position: relative;
+		z-index: 1;
+		font-size: 1.6cqh;
+	}
+
+	small {
+		position: relative;
+		z-index: 1;
+		color: rgb(255 255 255 / 0.75);
+		font-size: 1.15cqh;
+	}
+}
+
+// A heap of apples rising from the bottom of the bin.
+.m-apple-sort__pile {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 0;
+	background:
+		radial-gradient(circle at 20% 30%, #d8402f 0 18%, transparent 19%) 0 0 / 4cqh 4cqh,
+		radial-gradient(circle at 70% 70%, #b92e22 0 18%, transparent 19%) 0 0 / 4cqh 4cqh,
+		linear-gradient(0deg, rgb(0 0 0 / 0.3), transparent);
+}
+
+// Portrait parents: the camera alone.
+@container apple-sort (aspect-ratio < 1) {
+	.m-apple-sort__stage {
+		width: 190cqw;
+		transform: translate(-50%, -50%) scale(0.47);
+	}
+}
+
+// Reduced motion: the detected crate with its boxes.
+@media (prefers-reduced-motion: reduce) {
+	.m-apple-sort * {
+		/* stylelint-disable-next-line declaration-no-important -- overrides every generated story animation */
+		animation: none !important;
+	}
+
+	.m-apple-sort__box,
+	.m-apple-sort__hud {
+		opacity: 1;
+	}
+}

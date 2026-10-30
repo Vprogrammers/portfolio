@@ -1,0 +1,27 @@
+{# On-device apple grading: a camera looks down into a crate, detection boxes lock onto every apple with its class and confidence, a HUD counts them and shows inference time, then the apples fly into four crates by class. Apples are drawn, not photographed. Fills its positioned parent. #}
+<div class="m-apple-sort" aria-hidden="true">
+	<div class="m-apple-sort__stage">
+		<div class="m-apple-sort__camera">
+			<div class="m-apple-sort__crate">
+				{% for apple in apples %}
+					<span class="m-apple-sort__apple m-apple-sort__apple--c{{ apple.class }}" style="--x: {{ apple.x }}%; --y: {{ apple.y }}%; --xf: {{ apple.x / 100 }}; --yf: {{ apple.y / 100 }}">
+						<i class="m-apple-sort__fruit"></i>
+						<b class="m-apple-sort__box"><em>{{ classes[apple.class - 1].short }} · 0.{{ apple.confidence }}</em></b>
+					</span>
+				{% endfor %}
+			</div>
+			<p class="m-apple-sort__hud">
+				<span>{{ hud.count }} <b>{{ apples|length }}</b></span>
+				<span>{{ hud.inference }}</span>
+				<span>{{ hud.model }}</span>
+			</p>
+			<i class="m-apple-sort__scan"></i>
+		</div>
+
+		<div class="m-apple-sort__bins">
+			{% for item in classes %}
+				<div class="m-apple-sort__bin m-apple-sort__bin--c{{ loop.index }}"><b>{{ item.name }}</b><small>{{ item.note }}</small><i class="m-apple-sort__pile"></i></div>
+			{% endfor %}
+		</div>
+	</div>
+</div>

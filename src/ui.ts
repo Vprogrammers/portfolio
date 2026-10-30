@@ -31,6 +31,7 @@ import './patterns/atoms/loader';
 import './patterns/atoms/lottie';
 import './patterns/atoms/quote';
 import './patterns/atoms/stage';
+import './patterns/molecules/apple-sort';
 import './patterns/molecules/club-floor';
 import './patterns/molecules/code-review';
 import './patterns/molecules/crew-call';

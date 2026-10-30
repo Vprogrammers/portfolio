@@ -150,6 +150,7 @@
 .o-project-player__slide[data-scene='kids']::before,
 .o-project-player__slide[data-scene='tokens']::before,
 .o-project-player__slide[data-scene='club']::before,
+.o-project-player__slide[data-scene='apples']::before,
 .o-project-player__slide[data-scene='kit']::before,
 .o-project-player__slide[data-scene='mvi']::before,
 .o-project-player__slide[data-scene='sdui']::before,
@@ -170,6 +171,7 @@
 .o-project-player__slide[data-scene='pageant']::after,
 .o-project-player__slide[data-scene='tokens']::after,
 .o-project-player__slide[data-scene='club']::after,
+.o-project-player__slide[data-scene='apples']::after,
 .o-project-player__slide[data-scene='kit']::after,
 .o-project-player__slide[data-scene='mvi']::after,
 .o-project-player__slide[data-scene='sdui']::after,
@@ -381,6 +383,15 @@
 	z-index: -2;
 }
 
+// AppleDetect camera and bins right of the caption.
+.o-project-player__slide .m-apple-sort {
+	--sort-h: 70cqh;
+	--sort-x: 68%;
+	--sort-y: 52%;
+
+	z-index: -2;
+}
+
 // PhotoStory crew call: the two phones right of the caption, with room for the chip beside them.
 .o-project-player__slide .m-crew-call {
 	--phone-h: 62cqh;
@@ -438,8 +449,11 @@
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-token-flow *::before,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-token-flow *::after,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-club-floor *,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-apple-sort *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-club-floor *::before,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-apple-sort *::before,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-club-floor *::after,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-apple-sort *::after,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-kmp-stack *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-kmp-stack *::before,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-kmp-stack *::after,
@@ -492,8 +506,11 @@
 .o-project-player[data-paused='true'] .m-token-flow *::before,
 .o-project-player[data-paused='true'] .m-token-flow *::after,
 .o-project-player[data-paused='true'] .m-club-floor *,
+.o-project-player[data-paused='true'] .m-apple-sort *,
 .o-project-player[data-paused='true'] .m-club-floor *::before,
+.o-project-player[data-paused='true'] .m-apple-sort *::before,
 .o-project-player[data-paused='true'] .m-club-floor *::after,
+.o-project-player[data-paused='true'] .m-apple-sort *::after,
 .o-project-player[data-paused='true'] .m-kmp-stack *,
 .o-project-player[data-paused='true'] .m-kmp-stack *::before,
 .o-project-player[data-paused='true'] .m-kmp-stack *::after,
@@ -913,6 +930,11 @@
 	.o-project-player__slide .m-club-floor {
 		--club-x: 50%;
 		--club-y: 40%;
+	}
+
+	.o-project-player__slide .m-apple-sort {
+		--sort-x: 50%;
+		--sort-y: 38%;
 	}
 
 	.o-project-player__slide .m-crew-call {

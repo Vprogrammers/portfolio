@@ -1,0 +1,173 @@
+{
+	"_nitro": {
+		"pageTitle": "CGIAR — case study · Viktor Nešić"
+	},
+	"meta": {
+		"description": "A responsive, component-driven frontend for CGIAR, the global agricultural research partnership: reusable components that the client's editors assemble into pages in Drupal.",
+		"path": "/work-cgiar"
+	},
+	"intro": {
+		"name": "Viktor Nešić",
+		"role": "Mobile & Frontend Developer"
+	},
+	"links": [
+		{
+			"label": "GitHub",
+			"icon": "github",
+			"url": "https://github.com/Vprogrammers"
+		},
+		{
+			"label": "LinkedIn",
+			"icon": "linkedin",
+			"url": "https://www.linkedin.com/in/viktor-nesic"
+		},
+		{
+			"label": "v.nesic.developer@gmail.com",
+			"icon": "mail",
+			"url": "/about#contact-form"
+		}
+	],
+	"employers": {
+		"merkle": {
+			"label": "Delivered at",
+			"name": "Merkle",
+			"note": "Enterprise mobile & digital engineering"
+		}
+	},
+	"caseStudy": {
+		"kicker": "Case study · Frontend · Component library",
+		"title": "CGIAR",
+		"lead": "A responsive, component-driven frontend for CGIAR, the global agricultural research partnership: reusable components that the client's editors assemble into pages in Drupal.",
+		"employer": "merkle",
+		"sceneType": "laptop",
+		"scene": {
+			"url": "cgiar.org",
+			"header": "/assets/img/projects/cgiar-screen-header.jpg",
+			"feed": "/assets/img/projects/cgiar-screen-feed.jpg",
+			"hover": "/assets/img/projects/cgiar-cards-hover.jpg",
+			"backdrop": "/assets/img/projects/cgiar-backdrop.jpg"
+		},
+		"facts": [
+			{
+				"label": "Client",
+				"value": "CGIAR, international agricultural research"
+			},
+			{
+				"label": "My role",
+				"value": "Frontend engineer"
+			},
+			{
+				"label": "Period",
+				"value": "Oct 2024 – Nov 2025"
+			},
+			{
+				"label": "Platform",
+				"value": "Web · Twig · SCSS · TypeScript"
+			}
+		],
+		"brief": {
+			"title": "The brief",
+			"text": [
+				"CGIAR publishes research, news and programmes from many centres around the world. Its editors needed a library of components they can combine into pages themselves, without a developer for every new page.",
+				"Every component had to be responsive, accessible and robust with real content, and fit cleanly into Drupal."
+			]
+		},
+		"contributions": {
+			"title": "What I did",
+			"items": [
+				"Built reusable, responsive components in Twig, SCSS and TypeScript.",
+				"Showed every component and its variants in Nitro previews for design and QA review.",
+				"Integrated the components into Drupal-managed pages together with the backend developers.",
+				"Worked with designers, Drupal developers, the project manager and QA through review and testing."
+			]
+		},
+		"architecture": {
+			"title": "How pages get built",
+			"layers": [
+				{
+					"name": "Design",
+					"items": [
+						"Figma designs and variants"
+					]
+				},
+				{
+					"name": "Component library",
+					"items": [
+						"Twig templates",
+						"SCSS",
+						"TypeScript",
+						"Nitro previews"
+					]
+				},
+				{
+					"name": "Drupal integration",
+					"items": [
+						"Components mapped to Drupal",
+						"Real content"
+					]
+				},
+				{
+					"name": "Editors",
+					"items": [
+						"Pages assembled from components"
+					]
+				}
+			]
+		},
+		"stack": {
+			"title": "Stack",
+			"items": [
+				"Twig",
+				"SCSS",
+				"TypeScript",
+				"Nitro",
+				"Drupal",
+				"Responsive design",
+				"Accessibility"
+			]
+		},
+		"team": {
+			"title": "Team",
+			"text": "Four frontend developers, three Drupal backend developers, three designers, a project manager and QA.",
+			"items": [
+				[
+					"4",
+					"frontend developers"
+				],
+				[
+					"3",
+					"Drupal developers"
+				],
+				[
+					"3",
+					"designers"
+				],
+				[
+					"1",
+					"QA"
+				]
+			]
+		},
+		"outcome": {
+			"title": "The result",
+			"text": "A component library the client's editors use to build and change pages on their own, on every screen size."
+		},
+		"back": {
+			"label": "All works",
+			"url": "/#works"
+		},
+		"cta": {
+			"title": "Have a project like this?",
+			"text": "I build and rescue native iOS, Android and Kotlin Multiplatform apps, and I'm happy to look at yours.",
+			"label": "Get in touch",
+			"url": "/about#contact-form"
+		},
+		"next": {
+			"title": "KOCH Scan App",
+			"url": "/work-koch"
+		}
+	},
+	"analytics": {
+		"gaMeasurementId": "G-ZM0VPP0G2C"
+	}
+}

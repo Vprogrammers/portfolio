@@ -223,6 +223,7 @@
 		{
 			"category": "Frontend · Twig",
 			"title": "CGIAR",
+			"url": "/work-cgiar",
 			"summary": "A responsive, component-driven frontend for CGIAR, the global agricultural research partnership, built from reusable Twig components.",
 			"tone": "green",
 			"variant": "laptop",

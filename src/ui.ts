@@ -55,6 +55,7 @@ import './patterns/molecules/live-room';
 import './patterns/molecules/match-mandala';
 import './patterns/molecules/mvi-loop';
 import './patterns/molecules/on-air';
+import './patterns/molecules/otp-sms';
 import './patterns/molecules/pageant-stage';
 import './patterns/molecules/pass-card';
 import './patterns/molecules/phone-scroll';

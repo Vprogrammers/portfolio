@@ -1990,10 +1990,29 @@
 		{
 			"category": "Open source · Accessibility",
 			"title": "a11yOtp",
-			"summary": "An open-source, accessible one-time-code input for Android and iOS, built natively on each platform.",
+			"summary": "An open-source, accessible one-time-code input for Android and iOS: one real text field drawn as boxes, so screen readers, SMS autofill and paste treat it as a single field.",
 			"tone": "blue",
 			"url": "https://github.com/Vprogrammers/a11yOtp",
-			"hero": false
+			"hero": false,
+			"scene": {
+				"pattern": "otp-sms",
+				"sms": {
+					"app": "Messages · now",
+					"from": "Bank",
+					"text": "Your sign-in code is 482913. Do not share it."
+				},
+				"title": "Enter the code",
+				"hint": "We sent a 6-digit code to your phone.",
+				"code": "482913",
+				"chip": "From Messages  482 913",
+				"verify": "Verify",
+				"verified": "Verified ✓",
+				"reader": [
+					"Verification code, text field, 6 digits",
+					"Code entered, 6 of 6 digits",
+					"Verify, button. Code verified"
+				]
+			}
 		}
 	],
 	"employers": {

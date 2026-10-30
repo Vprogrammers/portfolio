@@ -70,6 +70,8 @@
 								{% pattern name='wipe-clean' data=project.scene %}
 							{% elseif project.scene.pattern == 'match-mandala' %}
 								{% pattern name='match-mandala' data=project.scene %}
+							{% elseif project.scene.pattern == 'otp-sms' %}
+								{% pattern name='otp-sms' data=project.scene %}
 							{% elseif project.image %}
 								<img class="o-project-grid__image" src="{{ project.image }}" alt="" loading="lazy" decoding="async">
 							{% endif %}

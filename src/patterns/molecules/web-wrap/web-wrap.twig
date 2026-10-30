@@ -1,0 +1,94 @@
+{# An iPhone wrapper app running a luxury shop in a WebView, next to the Xcode console logging every URL: sign in, a product, the bag, the hop to the other platform for checkout, and a placed order. Fills its positioned parent. #}
+<div class="m-web-wrap" aria-hidden="true">
+	<div class="m-web-wrap__stage">
+		<div class="m-web-wrap__device">
+			<div class="m-web-wrap__screen">
+				<div class="m-web-wrap__status"><span>9:41</span><i class="m-web-wrap__island"></i><span class="m-web-wrap__bars"></span></div>
+				<i class="m-web-wrap__progress"></i>
+
+				{# 1. The wrapper's splash. #}
+				<div class="m-web-wrap__page m-web-wrap__page--splash">
+					<p class="m-web-wrap__brand">{{ brand }}</p>
+					<p class="m-web-wrap__since">{{ since }}</p>
+					<i class="m-web-wrap__spinner"></i>
+				</div>
+
+				{# 2.-5. The website inside the WebView, under its own header. #}
+				<div class="m-web-wrap__site">
+					<div class="m-web-wrap__header">
+						<i class="m-web-wrap__menu"></i>
+						<span class="m-web-wrap__wordmark">{{ brand }}</span>
+						<span class="m-web-wrap__bag"><b>1</b></span>
+					</div>
+
+					<div class="m-web-wrap__page m-web-wrap__page--login">
+						<p class="m-web-wrap__heading">Sign in</p>
+						<p class="m-web-wrap__lead">Welcome back. Sign in to your account.</p>
+						<p class="m-web-wrap__input"><small>Email</small><span class="m-web-wrap__typed">{{ login.email }}</span></p>
+						<p class="m-web-wrap__input"><small>Password</small><span class="m-web-wrap__typed">••••••••••</span></p>
+						<span class="m-web-wrap__button m-web-wrap__button--login">Sign in</span>
+						<p class="m-web-wrap__lead">New here? <u>Create an account</u></p>
+					</div>
+
+					<div class="m-web-wrap__page m-web-wrap__page--product">
+						<p class="m-web-wrap__crumb">Watches / {{ product.collection }}</p>
+						<svg class="m-web-wrap__watch" viewBox="0 0 200 250">
+							<defs>
+								<radialGradient id="web-wrap-dial" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#2f6b55"/><stop offset="1" stop-color="#0d2b22"/></radialGradient>
+								<linearGradient id="web-wrap-steel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4f4f2"/><stop offset=".5" stop-color="#a9abad"/><stop offset="1" stop-color="#e2e3e4"/></linearGradient>
+							</defs>
+							<g fill="url(#web-wrap-steel)" stroke="#8d9093" stroke-width=".8">
+								{% for y in [6, 26, 46] %}<rect x="72" y="{{ y }}" width="56" height="18" rx="3"/>{% endfor %}
+								{% for y in [186, 206, 226] %}<rect x="72" y="{{ y }}" width="56" height="18" rx="3"/>{% endfor %}
+								<rect x="174" y="116" width="10" height="18" rx="3"/>
+								<circle cx="100" cy="125" r="76"/>
+							</g>
+							<circle cx="100" cy="125" r="66" fill="#c9cbcc" stroke="#7f8285"/>
+							<circle cx="100" cy="125" r="60" fill="url(#web-wrap-dial)"/>
+							<g stroke="#e9e3d2" stroke-width="3" stroke-linecap="round">
+								{% for i in 0..11 %}<line x1="100" y1="{{ i % 3 == 0 ? 70 : 72 }}" x2="100" y2="80" transform="rotate({{ i * 30 }} 100 125)"/>{% endfor %}
+							</g>
+							<text x="100" y="100" fill="#e9e3d2" font-family="Georgia, serif" font-size="7" letter-spacing="1.5" text-anchor="middle">{{ brand }}</text>
+							<text x="100" y="158" fill="#e9e3d2" font-family="Georgia, serif" font-size="5" letter-spacing="1" text-anchor="middle" opacity=".8">AUTOMATIC</text>
+							<g stroke-linecap="round">
+								<line x1="100" y1="125" x2="100" y2="88" stroke="#f3eee0" stroke-width="3.6" transform="rotate(305 100 125)"/>
+								<line x1="100" y1="125" x2="100" y2="76" stroke="#f3eee0" stroke-width="2.6" transform="rotate(50 100 125)"/>
+								<line x1="100" y1="135" x2="100" y2="72" stroke="#c8a96a" stroke-width="1.2" class="m-web-wrap__seconds"/>
+							</g>
+							<circle cx="100" cy="125" r="3.4" fill="#c8a96a"/>
+						</svg>
+						<p class="m-web-wrap__name">{{ product.name }}</p>
+						<p class="m-web-wrap__price">{{ product.price }}</p>
+						<span class="m-web-wrap__button m-web-wrap__button--add">Add to bag</span>
+						<p class="m-web-wrap__note">Complimentary delivery and returns</p>
+					</div>
+
+					<div class="m-web-wrap__page m-web-wrap__page--checkout">
+						<p class="m-web-wrap__heading">Checkout</p>
+						<p class="m-web-wrap__steps"><span>Bag</span><span>Delivery</span><span>Payment</span></p>
+						<div class="m-web-wrap__line"><i class="m-web-wrap__thumb"></i><span>{{ product.name }}<small>Qty 1</small></span><b>{{ product.price }}</b></div>
+						<p class="m-web-wrap__block"><small>Delivery</small>{{ checkout.address }}</p>
+						<p class="m-web-wrap__block m-web-wrap__block--card"><small>Payment</small>{{ checkout.card }}</p>
+						<p class="m-web-wrap__total"><span>Total</span><b>{{ product.price }}</b></p>
+						<span class="m-web-wrap__button m-web-wrap__button--order">Place order</span>
+					</div>
+
+					<div class="m-web-wrap__page m-web-wrap__page--done">
+						<svg class="m-web-wrap__check" viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="M15 27l7 7 15-16"/></svg>
+						<p class="m-web-wrap__heading">Thank you</p>
+						<p class="m-web-wrap__lead">Order {{ checkout.order }} is confirmed.<br>A confirmation is on its way.</p>
+						<span class="m-web-wrap__button m-web-wrap__button--ghost">Continue shopping</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		{# Xcode's console, logging every URL the WebView loads. #}
+		<div class="m-web-wrap__console">
+			<p class="m-web-wrap__console-bar"><i></i><i></i><i></i><span>{{ console.title }}</span></p>
+			<ol class="m-web-wrap__log">
+				{% for line in console.lines %}<li class="m-web-wrap__log-line m-web-wrap__log-line--{{ line.kind|default('url') }}">{{ line.text }}</li>{% endfor %}
+			</ol>
+		</div>
+	</div>
+</div>

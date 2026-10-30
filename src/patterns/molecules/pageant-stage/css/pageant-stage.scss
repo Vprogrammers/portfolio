@@ -1,0 +1,492 @@
+/* stylelint-disable plugin/stylelint-bem-namics -- generated keyframe offsets and nth-child loops */
+@use 'sass:list';
+@use 'sass:math';
+
+// The whole story runs on one timeline; times below are seconds into it.
+$loop: 16;
+$brand: #17a9e5;
+$gold: #f4c95d;
+$splash: (0.8, 2);
+$votes: (2.2, 8.4);
+$judge-times: (8.8, 9.4, 10);
+$winner: 10.8;
+$crown: 11;
+$end: 15.4;
+
+@function at($s) {
+	@return math.percentage(math.div($s, $loop));
+}
+
+// Hidden until $start, eased in over $in, kept until $end, then faded out.
+@mixin appear($name, $start, $end: $end, $from: translateY(2cqh), $in: 0.3) {
+	@keyframes #{$name} {
+		0%,
+		#{at($start)} {
+			opacity: 0;
+			transform: $from;
+		}
+
+		#{at($start + $in)},
+		#{at($end)} {
+			opacity: 1;
+			transform: none;
+		}
+
+		#{at(math.min($end + 0.3, $loop))},
+		100% {
+			opacity: 0;
+			transform: $from;
+		}
+	}
+}
+
+// The logo, cut out of the brand colour, grows until the scene shows through.
+@keyframes pageant-stage-hole {
+	0%,
+	#{at(list.nth($splash, 1))} {
+		opacity: 1;
+		mask-size: 24cqh, 100% 100%;
+	}
+
+	#{at(list.nth($splash, 2))} {
+		opacity: 1;
+		mask-size: 900cqh, 100% 100%;
+	}
+
+	#{at(list.nth($splash, 2) + 0.05)},
+	#{at($end + 0.2)} {
+		opacity: 0;
+		mask-size: 900cqh, 100% 100%;
+	}
+
+	#{at($end + 0.25)} {
+		opacity: 0;
+		mask-size: 24cqh, 100% 100%;
+	}
+
+	100% {
+		opacity: 1;
+		mask-size: 24cqh, 100% 100%;
+	}
+}
+
+// Before the reveal the hole is filled white, like the app's icon.
+@keyframes pageant-stage-icon {
+	0%,
+	#{at(list.nth($splash, 1) - 0.1)},
+	100% {
+		opacity: 1;
+	}
+
+	#{at(list.nth($splash, 1) + 0.1)},
+	#{at($end + 0.3)} {
+		opacity: 0;
+	}
+}
+
+@keyframes pageant-stage-fill {
+	0%,
+	#{at(list.nth($votes, 1))} {
+		height: 0;
+	}
+
+	#{at(list.nth($votes, 2))},
+	#{at($end)} {
+		height: var(--votes);
+	}
+
+	#{at($end + 0.3)},
+	100% {
+		height: 0;
+	}
+}
+
+@include appear(pageant-stage-votes, list.nth($votes, 2) - 0.4, $end, translateY(1cqh));
+
+@for $k from 1 through list.length($judge-times) {
+	@include appear(pageant-stage-judge-#{$k}, list.nth($judge-times, $k), $end, scale(0.4), 0.25);
+}
+
+@keyframes pageant-stage-winner {
+	0%,
+	#{at($winner)},
+	#{at($end + 0.2)},
+	100% {
+		box-shadow: 0 2cqh 4cqh rgb(0 0 0 / 0.4);
+		transform: none;
+	}
+
+	#{at($winner + 0.4)},
+	#{at($end)} {
+		box-shadow: 0 0 0 0.4cqh $gold, 0 0 6cqh rgb(244 201 93 / 0.6);
+		transform: translateY(-3cqh) scale(1.06);
+	}
+}
+
+@keyframes pageant-stage-crown {
+	0%,
+	#{at($crown)} {
+		opacity: 0;
+		transform: translate(-50%, -12cqh) rotate(-20deg);
+	}
+
+	#{at($crown + 0.45)} {
+		opacity: 1;
+		transform: translate(-50%, 0.6cqh) rotate(4deg);
+	}
+
+	#{at($crown + 0.65)},
+	#{at($end)} {
+		opacity: 1;
+		transform: translate(-50%, 0) rotate(0);
+	}
+
+	#{at($end + 0.3)},
+	100% {
+		opacity: 0;
+		transform: translate(-50%, 0);
+	}
+}
+
+@keyframes pageant-stage-confetti {
+	0%,
+	#{at($crown)} {
+		opacity: 0;
+		transform: translate(0, 0) rotate(0);
+	}
+
+	#{at($crown + 0.1)} {
+		opacity: 1;
+	}
+
+	#{at($crown + 3.6)},
+	100% {
+		opacity: 0;
+		transform: translate(var(--dx), 46cqh) rotate(540deg);
+	}
+}
+
+@keyframes pageant-stage-sweep {
+	0%,
+	100% {
+		transform: rotate(var(--from));
+	}
+
+	50% {
+		transform: rotate(var(--to));
+	}
+}
+
+@keyframes pageant-stage-blink {
+	50% {
+		opacity: 0.35;
+	}
+}
+
+@keyframes pageant-stage-pulse {
+	0%,
+	100% {
+		scale: 1;
+	}
+
+	50% {
+		scale: 1.06;
+	}
+}
+
+// The root fills its positioned parent; the parent sets --stage-h/-x/-y.
+.m-pageant-stage {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	container: pageant-stage / size;
+	pointer-events: none;
+	background: radial-gradient(ellipse 70% 60% at 66% 30%, #2a1f5c, #0d0a22 70%);
+	font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+}
+
+// Spotlights sweeping from the rig above the stage.
+.m-pageant-stage__lights i {
+	--from: -18deg;
+	--to: 14deg;
+
+	position: absolute;
+	top: -10cqh;
+	width: 22cqw;
+	height: 110cqh;
+	background: linear-gradient(180deg, rgb(255 240 210 / 0.35), rgb(255 240 210 / 0));
+	clip-path: polygon(46% 0, 54% 0, 100% 100%, 0 100%);
+	transform-origin: 50% 0;
+	mix-blend-mode: screen;
+	animation: pageant-stage-sweep 7s ease-in-out infinite;
+
+	@for $i from 1 through 4 {
+		&:nth-child(#{$i}) {
+			left: #{38 + $i * 12}cqw;
+			animation-delay: -#{$i * 1.7}s;
+		}
+	}
+
+	&:nth-child(even) {
+		--from: 16deg;
+		--to: -12deg;
+
+		background: linear-gradient(180deg, rgb(23 169 229 / 0.35), rgb(23 169 229 / 0));
+	}
+}
+
+.m-pageant-stage__floor {
+	position: absolute;
+	left: 40cqw;
+	right: -10cqw;
+	bottom: -22cqh;
+	height: 44cqh;
+	border-radius: 50%;
+	background: radial-gradient(ellipse at 50% 30%, rgb(244 201 93 / 0.25), rgb(20 14 50 / 0.9) 60%);
+}
+
+.m-pageant-stage__stage {
+	--h: var(--stage-h, 70cqh);
+
+	position: absolute;
+	left: var(--stage-x, 50%);
+	top: var(--stage-y, 50%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: calc(var(--h) * 0.04);
+	width: calc(var(--h) * 0.92);
+	transform: translate(-50%, -50%);
+}
+
+.m-pageant-stage__live {
+	display: flex;
+	align-items: center;
+	gap: calc(var(--h) * 0.016);
+	margin: 0;
+	color: #fff;
+	font-size: calc(var(--h) * 0.03);
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+
+	b {
+		padding: calc(var(--h) * 0.006) calc(var(--h) * 0.014);
+		border-radius: calc(var(--h) * 0.01);
+		background: #e5484d;
+		font-size: calc(var(--h) * 0.022);
+		animation: pageant-stage-blink 1.2s steps(1, end) infinite;
+	}
+}
+
+.m-pageant-stage__judges {
+	display: flex;
+	gap: calc(var(--h) * 0.02);
+
+	span {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: calc(var(--h) * 0.012) calc(var(--h) * 0.024);
+		border-radius: calc(var(--h) * 0.02);
+		background: rgb(255 255 255 / 0.1);
+		color: #fff;
+		opacity: 0;
+
+		@for $k from 1 through list.length($judge-times) {
+			&:nth-child(#{$k}) {
+				animation: pageant-stage-judge-#{$k} #{$loop}s cubic-bezier(0.3, 1.5, 0.5, 1) infinite;
+			}
+		}
+	}
+
+	small {
+		color: rgb(255 255 255 / 0.6);
+		font-size: calc(var(--h) * 0.018);
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+
+	b {
+		color: $gold;
+		font-size: calc(var(--h) * 0.044);
+	}
+}
+
+.m-pageant-stage__cards {
+	display: flex;
+	gap: calc(var(--h) * 0.03);
+	margin-top: calc(var(--h) * 0.1);
+}
+
+// A contestant's number card; its vote bar fills from the bottom.
+.m-pageant-stage__card {
+	--hue: 200;
+
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+	width: calc(var(--h) * 0.19);
+	height: calc(var(--h) * 0.4);
+	overflow: visible;
+	padding-bottom: calc(var(--h) * 0.03);
+	border-radius: calc(var(--h) * 0.03);
+	background: linear-gradient(160deg, hsl(var(--hue) 45% 26%), hsl(var(--hue) 50% 14%));
+	color: #fff;
+	box-shadow: 0 2cqh 4cqh rgb(0 0 0 / 0.4);
+
+	small {
+		position: relative;
+		color: rgb(255 255 255 / 0.75);
+		font-size: calc(var(--h) * 0.02);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+}
+
+.m-pageant-stage__card--winner {
+	animation: pageant-stage-winner #{$loop}s cubic-bezier(0.3, 1.4, 0.5, 1) infinite;
+}
+
+.m-pageant-stage__fill {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 0;
+	border-radius: 0 0 calc(var(--h) * 0.03) calc(var(--h) * 0.03);
+	background: linear-gradient(0deg, rgb(23 169 229 / 0.85), rgb(23 169 229 / 0.25));
+	animation: pageant-stage-fill #{$loop}s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.m-pageant-stage__number {
+	position: relative;
+	font-size: calc(var(--h) * 0.07);
+	line-height: 1;
+}
+
+.m-pageant-stage__votes {
+	position: absolute;
+	top: calc(var(--h) * 0.02);
+	color: #fff;
+	font-size: calc(var(--h) * 0.026);
+	font-style: normal;
+	font-weight: 700;
+	opacity: 0;
+	animation: pageant-stage-votes #{$loop}s ease-out infinite;
+}
+
+.m-pageant-stage__crown {
+	position: absolute;
+	left: 50%;
+	top: calc(var(--h) * -0.08);
+	display: none;
+	color: $gold;
+	font-size: calc(var(--h) * 0.08);
+	line-height: 1;
+	text-shadow: 0 0 2cqh rgb(244 201 93 / 0.8);
+	opacity: 0;
+	animation: pageant-stage-crown #{$loop}s cubic-bezier(0.3, 1.2, 0.5, 1) infinite;
+}
+
+.m-pageant-stage__card--winner .m-pageant-stage__crown {
+	display: block;
+}
+
+.m-pageant-stage__vote {
+	padding: calc(var(--h) * 0.016) calc(var(--h) * 0.06);
+	border-radius: calc(var(--h) * 0.04);
+	background: $brand;
+	color: #fff;
+	font-size: calc(var(--h) * 0.026);
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	animation: pageant-stage-pulse 1.4s ease-in-out infinite;
+}
+
+.m-pageant-stage__confetti {
+	position: absolute;
+	left: 50%;
+	top: 0;
+
+	i {
+		--dx: 0;
+
+		position: absolute;
+		width: 0.8cqh;
+		height: 1.4cqh;
+		background: $gold;
+		opacity: 0;
+		animation: pageant-stage-confetti #{$loop}s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
+
+		@for $i from 1 through 18 {
+			&:nth-child(#{$i}) {
+				--dx: #{($i * 37 % 60) - 30}cqh;
+
+				left: #{($i * 23 % 40) - 20}cqh;
+				animation-delay: #{($i % 6) * 0.08}s;
+			}
+		}
+
+		&:nth-child(3n) {
+			background: $brand;
+		}
+
+		&:nth-child(3n + 1) {
+			background: #ff7eb6;
+		}
+	}
+}
+
+.m-pageant-stage__splash {
+	position: absolute;
+	inset: 0;
+	z-index: 3;
+	background: $brand;
+	mask: var(--logo) center / 24cqh no-repeat, linear-gradient(#000, #000);
+	mask-composite: exclude;
+	animation: pageant-stage-hole #{$loop}s cubic-bezier(0.7, 0, 0.3, 1) infinite;
+}
+
+// The white icon fills the hole until the reveal starts.
+.m-pageant-stage__icon {
+	position: absolute;
+	inset: 0;
+	z-index: 3;
+	background: var(--logo) center / 24cqh no-repeat;
+	animation: pageant-stage-icon #{$loop}s linear infinite;
+}
+
+// Portrait parents: the stage centres and the lights stay behind it.
+@container pageant-stage (aspect-ratio < 1) {
+	.m-pageant-stage__floor {
+		left: -20cqw;
+	}
+}
+
+// Reduced motion: the result, without the splash.
+@media (prefers-reduced-motion: reduce) {
+	.m-pageant-stage *,
+	.m-pageant-stage *::before {
+		/* stylelint-disable-next-line declaration-no-important -- overrides every generated story animation */
+		animation: none !important;
+	}
+
+	.m-pageant-stage__splash,
+	.m-pageant-stage__icon {
+		display: none;
+	}
+
+	.m-pageant-stage__fill {
+		height: var(--votes);
+	}
+
+	.m-pageant-stage__votes,
+	.m-pageant-stage__judges span,
+	.m-pageant-stage__crown {
+		opacity: 1;
+	}
+}

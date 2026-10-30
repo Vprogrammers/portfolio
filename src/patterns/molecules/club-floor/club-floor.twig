@@ -1,0 +1,46 @@
+{# A billiard club from above: six pool tables and four dartboards. A booking card for one table picks a free slot and drops onto it, its balls break; a dart lands on a board; then the admin panel lists the night's bookings and deletes one, freeing its table. Fills its positioned parent. #}
+<div class="m-club-floor" aria-hidden="true">
+	<div class="m-club-floor__stage">
+		<div class="m-club-floor__floor">
+			<img class="m-club-floor__logo" src="{{ logo }}" alt="" loading="lazy" decoding="async">
+			<div class="m-club-floor__tables">
+				{% for table in tables %}
+					<div class="m-club-floor__table m-club-floor__table--{{ loop.index }}">
+						<span class="m-club-floor__felt">
+							{% for i in 1..6 %}<i class="m-club-floor__pocket"></i>{% endfor %}
+							{% for ball in balls %}<i class="m-club-floor__ball" style="--c: {{ ball }}"></i>{% endfor %}
+						</span>
+						<small>{{ table.name }}</small>
+						{% if table.tag %}<em class="m-club-floor__tag">{{ table.tag }}</em>{% endif %}
+					</div>
+				{% endfor %}
+			</div>
+			<div class="m-club-floor__darts">
+				{% for board in boards %}
+					<div class="m-club-floor__board m-club-floor__board--{{ loop.index }}">
+						<span class="m-club-floor__target"><i class="m-club-floor__dart"></i></span>
+						<small>{{ board.name }}</small>
+						{% if board.tag %}<em class="m-club-floor__tag">{{ board.tag }}</em>{% endif %}
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+
+		{# The booking, as in the app: name, date and the evening's slots. #}
+		<div class="m-club-floor__booking">
+			<p class="m-club-floor__booking-title">{{ booking.title }}</p>
+			<p class="m-club-floor__field"><span>{{ booking.name }}</span></p>
+			<p class="m-club-floor__field m-club-floor__field--date">{{ booking.date }}</p>
+			<p class="m-club-floor__slots">{% for slot in booking.slots %}<span class="{{ slot.busy ? 'is-busy' : '' }}{{ slot.pick ? ' is-pick' : '' }}">{{ slot.time }}</span>{% endfor %}</p>
+			<span class="m-club-floor__confirm">{{ booking.confirm }}</span>
+		</div>
+
+		{# The admin panel. #}
+		<div class="m-club-floor__admin">
+			<p class="m-club-floor__admin-title"><span>{{ admin.title }}</span><small>{{ admin.date }}</small></p>
+			{% for row in admin.rows %}
+				<p class="m-club-floor__row{{ row.remove ? ' m-club-floor__row--remove' : '' }}"><b>{{ row.time }}</b><span>{{ row.place }}</span><span>{{ row.name }}</span><i class="m-club-floor__trash"></i></p>
+			{% endfor %}
+		</div>
+	</div>
+</div>

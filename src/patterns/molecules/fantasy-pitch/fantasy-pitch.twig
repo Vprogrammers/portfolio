@@ -1,0 +1,35 @@
+{# Goaleadors fantasy soccer: a pitch in perspective where a drafted squad drops into a 4-3-3 as the budget runs down, a matchday scores points over the players, then the league pyramid lifts the team up a level. Generic kits, no real players or clubs. Fills its positioned parent. #}
+<div class="m-fantasy-pitch" aria-hidden="true">
+	<div class="m-fantasy-pitch__stage">
+		<div class="m-fantasy-pitch__pitch">
+			<i class="m-fantasy-pitch__lines"></i>
+			{% for player in players %}
+				<span class="m-fantasy-pitch__player" style="left: {{ player.x }}%; top: {{ player.y }}%">
+					<span class="m-fantasy-pitch__token">
+						<b class="m-fantasy-pitch__points">+{{ player.points }}</b>
+						<i class="m-fantasy-pitch__kit{{ player.keeper ? ' m-fantasy-pitch__kit--keeper' : '' }}">{{ player.number }}</i>
+						{% if player.captain %}<em class="m-fantasy-pitch__captain">C</em>{% endif %}
+						<small>{{ player.name }}</small>
+					</span>
+				</span>
+			{% endfor %}
+		</div>
+
+		<div class="m-fantasy-pitch__panel">
+			<img class="m-fantasy-pitch__logo" src="{{ logo }}" alt="" loading="lazy" decoding="async">
+			<p class="m-fantasy-pitch__label">{{ draft }}</p>
+			<p class="m-fantasy-pitch__budget"><span>Budget</span><b>{% for step in budget %}<em>{{ step }}</em>{% endfor %}</b></p>
+			<i class="m-fantasy-pitch__bar"></i>
+			<p class="m-fantasy-pitch__gameweek"><span>{{ gameweek }}</span><b>{% for total in totals %}<em>{{ total }} pts</em>{% endfor %}</b></p>
+		</div>
+
+		{# The league pyramid from the business plan; the team climbs from the base. #}
+		<div class="m-fantasy-pitch__pyramid">
+			<p class="m-fantasy-pitch__prize">{{ prize }}</p>
+			{% for row in pyramid %}
+				<p class="m-fantasy-pitch__tier">{% for i in 1..row.count %}<span>{{ row.label }}</span>{% endfor %}</p>
+			{% endfor %}
+			<span class="m-fantasy-pitch__team">{{ team }}</span>
+		</div>
+	</div>
+</div>

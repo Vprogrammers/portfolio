@@ -1,0 +1,25 @@
+{# The MVI loop of a shared presenter: a ring of Intent → reducer → Model → mapper → UIState → UI with a signal circling it, beside a search screen that reacts to each turn (typing, loading, results) and a one-shot Effect toast. Fills its positioned parent. #}
+<div class="m-mvi-loop" aria-hidden="true">
+	<div class="m-mvi-loop__stage">
+		<div class="m-mvi-loop__ring">
+			<i class="m-mvi-loop__track"></i>
+			<i class="m-mvi-loop__spark"></i>
+			{% for node in nodes %}<span class="m-mvi-loop__node m-mvi-loop__node--{{ loop.index }}"><b>{{ node.name }}</b><small>{{ node.note }}</small></span>{% endfor %}
+			<p class="m-mvi-loop__core">{{ presenter.name|e }}<br><small>{{ presenter.generics|e }}</small></p>
+			<span class="m-mvi-loop__effect"><b>Effect</b><small>{{ effect }}</small></span>
+		</div>
+
+		<div class="m-mvi-loop__device">
+			<div class="m-mvi-loop__screen">
+				<p class="m-mvi-loop__status"><span>9:41</span><i></i></p>
+				<p class="m-mvi-loop__heading">{{ heading }}</p>
+				<p class="m-mvi-loop__search"><span class="m-mvi-loop__typed">{{ query }}</span><i class="m-mvi-loop__caret"></i></p>
+				<span class="m-mvi-loop__spinner"></span>
+				<ul class="m-mvi-loop__results">
+					{% for user in users %}<li style="--hue: {{ user.hue }}"><i>{{ user.name|slice(0, 1) }}</i><span><b>{{ user.name }}</b><small>{{ user.city }}</small></span></li>{% endfor %}
+				</ul>
+				<p class="m-mvi-loop__toast">{{ toast }}</p>
+			</div>
+		</div>
+	</div>
+</div>

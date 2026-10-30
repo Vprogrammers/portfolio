@@ -1,0 +1,36 @@
+{# Server-driven UI: a JSON layout is typed on the left and the phone on the right builds itself from it, live. Each object lights up as its component appears; one edit moves a card's caption, the last object adds a button. Fills its positioned parent. #}
+<div class="m-sdui-live" aria-hidden="true">
+	<div class="m-sdui-live__stage">
+		<div class="m-sdui-live__editor">
+			<p class="m-sdui-live__file"><i></i><i></i><i></i><span>{{ file }}</span></p>
+			<pre class="m-sdui-live__json">{
+  "objects": [
+<span class="m-sdui-live__block m-sdui-live__block--1">    { "type": "Text", "text": "{{ title }}" },</span>
+<span class="m-sdui-live__block m-sdui-live__block--2">    { "type": "CardImage",
+      "heading": "{{ cards[0].heading }}",
+      "textPosition": "<span class="m-sdui-live__swap"><em>BottomLeft</em><em>TopRight</em></span>" },</span>
+<span class="m-sdui-live__block m-sdui-live__block--3">    { "type": "CardImage",
+      "heading": "{{ cards[1].heading }}",
+      "subheading": "{{ cards[1].subheading }}" },</span>
+<span class="m-sdui-live__block m-sdui-live__block--4">    { "type": "TextButton", "text": "{{ button }}" }</span>
+  ]
+}</pre>
+			<p class="m-sdui-live__server">{{ server }}</p>
+		</div>
+
+		<i class="m-sdui-live__wire"><b></b></i>
+
+		<div class="m-sdui-live__device">
+			<div class="m-sdui-live__screen">
+				<p class="m-sdui-live__status"><span>9:41</span><i></i></p>
+				<p class="m-sdui-live__part m-sdui-live__part--1 m-sdui-live__title">{{ title }}</p>
+				{% for card in cards %}
+					<div class="m-sdui-live__part m-sdui-live__part--{{ loop.index + 1 }} m-sdui-live__card" style="--hue: {{ card.hue }}">
+						<span class="m-sdui-live__caption"><b>{{ card.heading }}</b><small>{{ card.subheading }}</small></span>
+					</div>
+				{% endfor %}
+				<span class="m-sdui-live__part m-sdui-live__part--4 m-sdui-live__button">{{ button }}</span>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,645 @@
+/* stylelint-disable plugin/stylelint-bem-namics -- generated keyframe offsets and nth-child loops */
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:math';
+
+// The whole story runs on one timeline; times below are seconds into it.
+$loop: 16;
+$blue: #00356e;
+$red: #d51030;
+$green: #36d17c;
+
+// Per scanned article: laser start, lock, sheet in, amount steps, press, sheet out.
+$scans: (
+	(laser: 0.4, lock: 2.2, sheet: 2.6, steps: (2.6, 3.4, 3.9), press: 4.7, out: 5.2),
+	(laser: 6.9, lock: 8.4, sheet: 8.8, steps: (8.8, 9.5), press: 10.1, out: 10.6)
+);
+$pan: (5.6, 6.6);
+$pan-back: (15.2, 16);
+$list: (11, 15);
+$order: 13.2;
+$sent: 13.5;
+$badge-times: (5.3, 10.7);
+
+// The next amount step, or a beat after the sheet leaves.
+@function step-end($steps, $s, $out) {
+	@if $s < list.length($steps) {
+		@return list.nth($steps, $s + 1);
+	}
+
+	@return $out + 0.3;
+}
+
+@function at($s) {
+	@return math.percentage(math.div($s, $loop));
+}
+
+// Hidden until $start, eased in over $in, kept until $end, then faded out.
+@mixin appear($name, $start, $end, $from: translateY(4cqh), $in: 0.35) {
+	@keyframes #{$name} {
+		0%,
+		#{at($start)} {
+			opacity: 0;
+			transform: $from;
+		}
+
+		#{at($start + $in)},
+		#{at($end)} {
+			opacity: 1;
+			transform: none;
+		}
+
+		#{at(math.min($end + 0.3, $loop))},
+		100% {
+			opacity: 0;
+			transform: $from;
+		}
+	}
+}
+
+@mixin press($name, $t) {
+	@keyframes #{$name} {
+		0%,
+		#{at($t)},
+		#{at($t + 0.35)},
+		100% {
+			scale: 1;
+		}
+
+		#{at($t + 0.12)} {
+			scale: 0.95;
+		}
+	}
+}
+
+@keyframes scan-view-pan {
+	0%,
+	#{at(list.nth($pan, 1))},
+	100% {
+		transform: none;
+	}
+
+	#{at(list.nth($pan, 2))},
+	#{at(list.nth($pan-back, 1))} {
+		transform: translateX(-36cqw);
+	}
+}
+
+// The laser sweeps while the scanner looks for a code, for each scan.
+@keyframes scan-view-laser {
+	0% {
+		opacity: 0;
+	}
+
+	@each $scan in $scans {
+		$a: map.get($scan, laser);
+		$b: map.get($scan, lock);
+
+		#{at($a)} {
+			opacity: 1;
+			top: 8%;
+		}
+
+		#{at($a + ($b - $a) * 0.5)} {
+			top: 88%;
+		}
+
+		#{at($b - 0.05)} {
+			opacity: 1;
+			top: 50%;
+		}
+
+		#{at($b)} {
+			opacity: 0;
+		}
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+// The corners lock onto the label, as the app's CornerBoundingLayer does.
+@keyframes scan-view-lock {
+	0% {
+		opacity: 0;
+		inset: 0;
+	}
+
+	@each $scan in $scans {
+		$b: map.get($scan, lock);
+		$o: map.get($scan, out);
+
+		#{at($b)} {
+			opacity: 1;
+			inset: 0;
+		}
+
+		#{at($b + 0.25)},
+		#{at($o)} {
+			opacity: 1;
+			inset: 16% 12%;
+		}
+
+		#{at($o + 0.3)} {
+			opacity: 0;
+			inset: 16% 12%;
+		}
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes scan-view-flash {
+	0% {
+		opacity: 0;
+	}
+
+	@each $scan in $scans {
+		$b: map.get($scan, lock);
+
+		#{at($b)} {
+			opacity: 0;
+		}
+
+		#{at($b + 0.08)} {
+			opacity: 0.7;
+		}
+
+		#{at($b + 0.4)} {
+			opacity: 0;
+		}
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+@for $k from 1 through list.length($scans) {
+	$scan: list.nth($scans, $k);
+	$steps: map.get($scan, steps);
+
+	@include appear(scan-view-sheet-#{$k}, map.get($scan, sheet), map.get($scan, out), translateY(110%), 0.45);
+	@include press(scan-view-press-#{$k}, map.get($scan, press));
+
+	@for $s from 1 through list.length($steps) {
+		$from: list.nth($steps, $s);
+		$to: step-end($steps, $s, map.get($scan, out));
+
+		@include appear(scan-view-amount-#{$k}-#{$s}, $from, $to - 0.15, translateY(100%), 0.15);
+	}
+}
+
+@include appear(scan-view-list, list.nth($list, 1), list.nth($list, 2), translateY(110%), 0.45);
+@include press(scan-view-order, $order);
+@include appear(scan-view-sent, $sent, list.nth($list, 2), scale(0.8), 0.3);
+@include appear(scan-view-badge-1, list.nth($badge-times, 1), list.nth($badge-times, 2) - 0.2, scale(0.3), 0.25);
+@include appear(scan-view-badge-2, list.nth($badge-times, 2), list.nth($pan-back, 1), scale(0.3), 0.25);
+
+// The root fills its positioned parent; the parent may move the viewfinder with --vx/--vy.
+.m-scan-view {
+	--vx: 68cqw;
+	--vy: 46cqh;
+
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	container: scan-view / size;
+	pointer-events: none;
+	background: linear-gradient(180deg, #3b3632, #24201d);
+	font-family: Inter, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.m-scan-view__shelf {
+	position: absolute;
+	inset: 0 auto 0 0;
+	width: 200cqw;
+	animation: scan-view-pan #{$loop}s cubic-bezier(0.6, 0, 0.3, 1) infinite;
+}
+
+.m-scan-view__plank {
+	position: absolute;
+	left: 0;
+	right: 0;
+	height: 2.4cqh;
+	background: linear-gradient(#8b7f73, #5e554d);
+	box-shadow: 0 1.4cqh 2cqh rgb(0 0 0 / 0.4);
+}
+
+// Cardboard boxes with a printed label.
+.m-scan-view__box {
+	position: absolute;
+	border-radius: 0.4cqh;
+	background: linear-gradient(160deg, #c9a37a, #9c7a55);
+	box-shadow: inset 0 -1cqh 0 rgb(0 0 0 / 0.08);
+}
+
+.m-scan-view__label {
+	position: absolute;
+	left: 18%;
+	top: 30%;
+	width: 50%;
+	height: 32%;
+	border-radius: 0.3cqh;
+	background:
+		repeating-linear-gradient(90deg, #222 0 0.25cqw, transparent 0.25cqw 0.5cqw) 15% 70% / 70% 30% no-repeat,
+		#f4f1ec;
+}
+
+// The two articles that get scanned, centred on the viewfinder in turn.
+.m-scan-view__box--target {
+	left: calc(var(--vx) - 10cqw + var(--at));
+	top: 26cqh;
+	width: 20cqw;
+	height: 44cqh;
+}
+
+.m-scan-view__tag {
+	position: absolute;
+	left: 50%;
+	top: calc(var(--vy) - 26cqh);
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 0.6cqh 0.8cqw;
+	align-items: center;
+	width: 13cqw;
+	padding: 1cqh 1cqw;
+	border-radius: 0.6cqh;
+	background: #fbfaf7;
+	color: #111;
+	box-shadow: 0 0.4cqh 1cqh rgb(0 0 0 / 0.25);
+	transform: translate(-50%, -50%);
+
+	img {
+		width: 2.6cqw;
+		border-radius: 0.3cqh;
+	}
+
+	b {
+		font-size: 1.4cqh;
+		letter-spacing: 0.05em;
+	}
+
+	small {
+		grid-column: 1 / -1;
+		font-size: 1cqh;
+		letter-spacing: 0.15em;
+		text-align: center;
+	}
+}
+
+.m-scan-view__barcode {
+	grid-column: 1 / -1;
+	height: 3.4cqh;
+	background: repeating-linear-gradient(90deg, #111 0 0.18cqw, transparent 0.18cqw 0.32cqw, #111 0.32cqw 0.62cqw, transparent 0.62cqw 0.78cqw);
+}
+
+// The viewfinder darkens everything around it.
+.m-scan-view__finder {
+	position: absolute;
+	left: var(--vx);
+	top: var(--vy);
+	width: 17cqw;
+	height: 14cqh;
+	border-radius: 1.6cqh;
+	box-shadow: 0 0 0 200vmax rgb(10 12 18 / 0.55);
+	transform: translate(-50%, -50%);
+
+	// The four corner brackets.
+	&::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		background:
+			linear-gradient(#fff, #fff) 0 0 / 2.4cqw 0.5cqh,
+			linear-gradient(#fff, #fff) 0 0 / 0.5cqh 3cqh,
+			linear-gradient(#fff, #fff) 100% 0 / 2.4cqw 0.5cqh,
+			linear-gradient(#fff, #fff) 100% 0 / 0.5cqh 3cqh,
+			linear-gradient(#fff, #fff) 0 100% / 2.4cqw 0.5cqh,
+			linear-gradient(#fff, #fff) 0 100% / 0.5cqh 3cqh,
+			linear-gradient(#fff, #fff) 100% 100% / 2.4cqw 0.5cqh,
+			linear-gradient(#fff, #fff) 100% 100% / 0.5cqh 3cqh;
+		background-repeat: no-repeat;
+	}
+}
+
+.m-scan-view__laser {
+	position: absolute;
+	left: 6%;
+	right: 6%;
+	top: 50%;
+	height: 0.3cqh;
+	background: $red;
+	box-shadow: 0 0 1.4cqh 0.4cqh rgb(213 16 48 / 0.7);
+	opacity: 0;
+	animation: scan-view-laser #{$loop}s linear infinite;
+}
+
+.m-scan-view__lock {
+	position: absolute;
+	inset: 0;
+	border: 0.4cqh solid $green;
+	border-radius: 0.8cqh;
+	box-shadow: 0 0 2cqh rgb(54 209 124 / 0.5);
+	opacity: 0;
+	animation: scan-view-lock #{$loop}s cubic-bezier(0.3, 1.4, 0.5, 1) infinite;
+}
+
+.m-scan-view__flash {
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	background: #fff;
+	opacity: 0;
+	animation: scan-view-flash #{$loop}s ease-out infinite;
+}
+
+.m-scan-view__hint {
+	position: absolute;
+	left: var(--vx);
+	top: calc(var(--vy) + 10cqh);
+	margin: 0;
+	color: rgb(255 255 255 / 0.8);
+	font-size: 1.5cqh;
+	white-space: nowrap;
+	transform: translateX(-50%);
+}
+
+.m-scan-view__bar {
+	position: absolute;
+	right: 4cqw;
+	top: 17cqh;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 2cqw;
+
+	p {
+		display: flex;
+		margin: 0;
+		padding: 0.5cqh;
+		border-radius: 3cqh;
+		background: rgb(255 255 255 / 0.14);
+		backdrop-filter: blur(8px);
+		color: #fff;
+		font-size: 1.4cqh;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+	}
+
+	span {
+		position: relative;
+		padding: 0.9cqh 1.4cqh;
+		border-radius: 3cqh;
+	}
+}
+
+.m-scan-view__toggle span:first-child,
+.m-scan-view__tabs span:first-child {
+	background: #fff;
+	color: $blue;
+}
+
+.m-scan-view__badge {
+	position: absolute;
+	right: -0.4cqh;
+	top: -0.8cqh;
+	display: grid;
+	width: 2.2cqh;
+	height: 2.2cqh;
+	font-size: 1.2cqh;
+	place-items: center;
+
+	// Each count carries its own dot, so nothing shows before the first scan.
+	em {
+		display: grid;
+		grid-area: 1 / 1;
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+		background: $red;
+		font-style: normal;
+		place-items: center;
+		opacity: 0;
+		animation: scan-view-badge-1 #{$loop}s ease-out infinite;
+
+		&:last-child {
+			animation: scan-view-badge-2 #{$loop}s ease-out infinite;
+		}
+	}
+}
+
+// Sheets slide up from the bottom right, like the app's swipe sheet.
+.m-scan-view__sheet {
+	position: absolute;
+	left: calc(var(--vx) - 15cqw);
+	width: 30cqw;
+	bottom: 4cqh;
+	display: flex;
+	flex-direction: column;
+	gap: 1.2cqh;
+	padding: 2.4cqh 2cqw;
+	border-radius: 2.4cqh;
+	background: #fff;
+	color: #111;
+	box-shadow: 0 2cqh 6cqh rgb(0 0 0 / 0.45);
+	opacity: 0;
+
+	> p {
+		margin: 0;
+	}
+}
+
+.m-scan-view__kicker {
+	color: #777;
+	font-size: 1.3cqh;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+}
+
+.m-scan-view__name {
+	font-size: 2.3cqh;
+	font-weight: 700;
+}
+
+.m-scan-view__meta {
+	color: #666;
+	font-size: 1.4cqh;
+}
+
+.m-scan-view__row {
+	display: flex;
+	gap: 2cqw;
+}
+
+.m-scan-view__field {
+	display: flex;
+	flex-direction: column;
+	gap: 0.6cqh;
+
+	small {
+		color: #777;
+		font-size: 1.2cqh;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+	}
+}
+
+.m-scan-view__stepper {
+	display: flex;
+	align-items: center;
+	gap: 1.2cqh;
+	font-size: 2cqh;
+	font-weight: 700;
+
+	i {
+		display: grid;
+		place-items: center;
+		width: 3.4cqh;
+		height: 3.4cqh;
+		border: 0.2cqh solid #ccc;
+		border-radius: 50%;
+		font-style: normal;
+	}
+
+	b {
+		display: grid;
+		overflow: hidden;
+		min-width: 2.4cqh;
+		text-align: center;
+	}
+
+	em {
+		grid-area: 1 / 1;
+		font-style: normal;
+		opacity: 0;
+	}
+}
+
+@for $k from 1 through list.length($scans) {
+	.m-scan-view__sheet--#{$k} {
+		animation: scan-view-sheet-#{$k} #{$loop}s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+
+		.m-scan-view__button {
+			animation: scan-view-press-#{$k} #{$loop}s ease-out infinite;
+		}
+	}
+
+	@for $s from 1 through list.length(map.get(list.nth($scans, $k), steps)) {
+		.m-scan-view__sheet--#{$k} .m-scan-view__stepper em:nth-child(#{$s}) {
+			animation: scan-view-amount-#{$k}-#{$s} #{$loop}s ease-out infinite;
+		}
+	}
+}
+
+.m-scan-view__chip {
+	padding: 0.8cqh 1.4cqh;
+	border-radius: 2cqh;
+	background: #eef2f8;
+	color: $blue;
+	font-size: 1.6cqh;
+	font-weight: 600;
+}
+
+.m-scan-view__button {
+	margin-top: 0.6cqh;
+	padding: 1.6cqh 0;
+	border-radius: 1.2cqh;
+	background: $blue;
+	color: #fff;
+	font-size: 1.7cqh;
+	font-weight: 700;
+	text-align: center;
+}
+
+.m-scan-view__sheet--list {
+	animation: scan-view-list #{$loop}s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+
+	.m-scan-view__button {
+		animation: scan-view-order #{$loop}s ease-out infinite;
+	}
+}
+
+.m-scan-view__line {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-bottom: 1cqh;
+	border-bottom: 0.15cqh solid #eee;
+	font-size: 1.7cqh;
+	font-weight: 600;
+
+	small {
+		display: block;
+		color: #777;
+		font-size: 1.3cqh;
+		font-weight: 400;
+	}
+}
+
+.m-scan-view__sent {
+	align-self: center;
+	color: #1f8f4e;
+	font-size: 1.7cqh;
+	font-weight: 700;
+	opacity: 0;
+	animation: scan-view-sent #{$loop}s ease-out infinite;
+}
+
+// Portrait parents have text below; keep the camera and drop the sheets and bar.
+@container scan-view (aspect-ratio < 1) {
+	.m-scan-view__shelf,
+	.m-scan-view__finder,
+	.m-scan-view__hint {
+		--vx: 50cqw;
+		--vy: 40cqh;
+	}
+
+	.m-scan-view__sheet,
+	.m-scan-view__bar {
+		display: none;
+	}
+
+	// Narrow frames need a wider finder and labels to stay readable.
+	.m-scan-view__finder {
+		width: 34cqw;
+	}
+
+	.m-scan-view__box--target {
+		left: calc(var(--vx) - 15cqw + var(--at));
+		width: 30cqw;
+	}
+
+	.m-scan-view__tag {
+		width: 26cqw;
+
+		img {
+			width: 5cqw;
+		}
+	}
+}
+
+// Reduced motion: a locked scan with its sheet.
+@media (prefers-reduced-motion: reduce) {
+	.m-scan-view *,
+	.m-scan-view *::before {
+		/* stylelint-disable-next-line declaration-no-important -- overrides every generated story animation */
+		animation: none !important;
+	}
+
+	.m-scan-view__lock,
+	.m-scan-view__sheet--1,
+	.m-scan-view__sheet--1 .m-scan-view__stepper em:first-child {
+		opacity: 1;
+	}
+
+	.m-scan-view__lock {
+		inset: 16% 12%;
+	}
+}

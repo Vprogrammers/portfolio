@@ -16,7 +16,7 @@
 	"projects": [
 		{
 			"category": "Mobile · Kotlin Multiplatform",
-			"title": "Hansgrohe ProApp — In use",
+			"title": "Hansgrohe ProApp",
 			"summary": "Enterprise product presentations and offline content for field teams.",
 			"tone": "teal",
 			"image": "/assets/img/projects/hansgrohe-background-04.png",
@@ -29,23 +29,22 @@
 					"/assets/img/projects/proapp-discover-axor.jpg",
 					"/assets/img/projects/proapp-axor-finish.jpg",
 					"/assets/img/projects/proapp-discover-pro.jpg",
-					"/assets/img/projects/proapp-sustainability-people.jpg"
+					"/assets/img/projects/proapp-axor-bathtub.jpg"
 				],
 				[
 					"/assets/img/projects/proapp-presentations.jpg",
 					"/assets/img/projects/proapp-ecostat.jpg",
 					"/assets/img/projects/proapp-vernis.jpg",
-					"/assets/img/projects/proapp-axor-citterio.jpg",
 					"/assets/img/projects/proapp-sustainability.jpg"
 				]
 			],
 			"variant": "handheld",
-			"grid": false
+			"grid": false,
+			"employer": "merkle"
 		},
 		{
 			"category": "Mobile · Kotlin Multiplatform",
-			"title": "Hansgrohe ProApp — Concept",
-			"gridTitle": "Hansgrohe ProApp",
+			"title": "Hansgrohe ProApp",
 			"summary": "Enterprise product presentations and offline content for field teams.",
 			"tone": "teal",
 			"image": "/assets/img/projects/hansgrohe-background-02.png",
@@ -57,18 +56,18 @@
 					"/assets/img/projects/proapp-discover-axor.jpg",
 					"/assets/img/projects/proapp-axor-finish.jpg",
 					"/assets/img/projects/proapp-discover-pro.jpg",
-					"/assets/img/projects/proapp-sustainability-people.jpg"
+					"/assets/img/projects/proapp-axor-bathtub.jpg"
 				],
 				[
 					"/assets/img/projects/proapp-presentations.jpg",
 					"/assets/img/projects/proapp-ecostat.jpg",
 					"/assets/img/projects/proapp-vernis.jpg",
-					"/assets/img/projects/proapp-axor-citterio.jpg",
 					"/assets/img/projects/proapp-sustainability.jpg"
 				]
 			],
 			"variant": "concept",
-			"hero": false
+			"hero": false,
+			"employer": "merkle"
 		},
 		{
 			"category": "iOS · Swift",
@@ -81,7 +80,73 @@
 				"header": "/assets/img/projects/migros-screen-header.jpg",
 				"feed": "/assets/img/projects/migros-screen-feed.jpg",
 				"backdrop": "/assets/img/projects/migros-backdrop.jpg"
-			}
+			},
+			"employer": "merkle"
+		},
+		{
+			"category": "iOS · SwiftUI · WKWebView · PoC",
+			"title": "Bucherer",
+			"summary": "An iOS proof of concept for a luxury retailer: can a WebView wrapper sign in, keep the session and complete a purchase on a site that is part Salesforce, part not? The findings became the estimate for the app.",
+			"tone": "gold",
+			"variant": "web",
+			"duration": 18000,
+			"web": {
+				"brand": "BUCHERER",
+				"since": "SINCE 1888",
+				"login": {
+					"email": "poc.tester@example.com"
+				},
+				"product": {
+					"collection": "Automatic",
+					"name": "Classic Automatic 41 mm",
+					"price": "CHF 7,450"
+				},
+				"checkout": {
+					"address": "Bahnhofstrasse 50, 8001 Zürich",
+					"card": "Visa •••• 4242",
+					"order": "#BU-10482"
+				},
+				"console": {
+					"title": "Bucherer — Debug console",
+					"lines": [
+						{
+							"text": "➡️ URL: /ch/en/login"
+						},
+						{
+							"text": "➡️ URL: /ch/en/account"
+						},
+						{
+							"text": "🍪 Session cookie stored · 24 h",
+							"kind": "ok"
+						},
+						{
+							"text": "➡️ URL: /ch/en/watches/classic-41"
+						},
+						{
+							"text": "⚠️ AVIF image reloads while loading",
+							"kind": "warn"
+						},
+						{
+							"text": "➡️ URL: /ch/en/cart"
+						},
+						{
+							"text": "↪️ Platform switch: /checkout"
+						},
+						{
+							"text": "🍪 Session kept across platforms",
+							"kind": "ok"
+						},
+						{
+							"text": "➡️ URL: /checkout/confirmation"
+						},
+						{
+							"text": "✅ Purchase works in WKWebView",
+							"kind": "ok"
+						}
+					]
+				}
+			},
+			"employer": "merkle"
 		},
 		{
 			"category": "Android · Real-time video",
@@ -154,7 +219,8 @@
 				"feed": "/assets/img/projects/cgiar-screen-feed.jpg",
 				"hover": "/assets/img/projects/cgiar-cards-hover.jpg",
 				"backdrop": "/assets/img/projects/cgiar-backdrop.jpg"
-			}
+			},
+			"employer": "merkle"
 		},
 		{
 			"category": "Android · Java · Firebase",
@@ -217,6 +283,1005 @@
 			}
 		},
 		{
+			"category": "KMP · SwiftUI · Compose · Firebase",
+			"title": "PhotoStory",
+			"summary": "Crew booking for a photo studio: the admin books an event and picks the crew, everyone gets a push to accept or decline, and a declined offer moves on to the next person.",
+			"tone": "red",
+			"variant": "crew",
+			"duration": 18000,
+			"crew": {
+				"background": "/assets/img/projects/photostory-start.jpg",
+				"logo": "/assets/img/projects/photostory-logo.png",
+				"month": "Novembar 2026",
+				"offset": 6,
+				"days": 30,
+				"busy": [
+					1,
+					6,
+					7,
+					8,
+					13,
+					14,
+					15,
+					22,
+					27,
+					28,
+					29
+				],
+				"pick": 21,
+				"date": "Subota, 21. Novembar 2026.",
+				"fields": [
+					{
+						"hint": "Početak i trajanje",
+						"value": "16:00 · 8 sati"
+					},
+					{
+						"hint": "Mesto održavanja",
+						"value": "Sala Panorama, Užice"
+					},
+					{
+						"hint": "Izaberi tip proslave",
+						"value": "Venčanje",
+						"select": true
+					},
+					{
+						"hint": "Ime i prezime slavljenika",
+						"value": "Ana i Luka"
+					}
+				],
+				"crew": [
+					{
+						"role": "Fotograf",
+						"name": "Marko",
+						"hue": 210
+					},
+					{
+						"role": "Snimatelj",
+						"name": "Jelena",
+						"hue": 330
+					},
+					{
+						"role": "Dron",
+						"name": "Nikola",
+						"hue": 150,
+						"backup": {
+							"name": "Stefan",
+							"hue": 30
+						}
+					},
+					{
+						"role": "Pomoćno osoblje",
+						"name": "Ivana",
+						"hue": 270
+					}
+				],
+				"type": "Venčanje",
+				"summary": "Subota 21.11. · 16:00 · Sala Panorama",
+				"today": "Petak, 30. oktobar",
+				"push": {
+					"title": "Nova proslava",
+					"body": "Zakazana je nova proslava za 21.11.2026. 16:00 u Sala Panorama"
+				},
+				"offer": {
+					"role": "Snimanje dronom",
+					"forwarded": "Ponuda je prosleđena dalje",
+					"next": {
+						"name": "Stefan",
+						"hue": 30,
+						"text": "Ponuda poslata: Stefan"
+					}
+				}
+			}
+		},
+		{
+			"category": "KMP · SwiftUI · Compose · Firebase",
+			"title": "BezBrige!",
+			"summary": "A sales app for insurance agents: the admin assigns contacts, agents call them and offer insurance, credit or a fund, and every client moves through call statuses and awareness levels up to a signed contract.",
+			"tone": "red",
+			"variant": "leads",
+			"duration": 18000,
+			"leads": {
+				"logo": "/assets/img/projects/bezbrige-logo.png",
+				"push": {
+					"title": "Novi kontakt",
+					"body": "Admin ti je dodelio novi kontakt: Milan Petrović"
+				},
+				"agent": {
+					"initials": "MJ",
+					"name": "Marija Jovanović",
+					"level": "Nivo 3",
+					"stats": [
+						{
+							"label": "Broj kontakata",
+							"before": "47",
+							"after": "48"
+						},
+						{
+							"label": "Broj ugovora",
+							"before": "12",
+							"after": "13"
+						},
+						{
+							"label": "Provizija",
+							"before": "1.180 €",
+							"after": "1.257 €"
+						}
+					]
+				},
+				"client": {
+					"name": "Milan Petrović",
+					"age": 34,
+					"phone": "064 123 4567",
+					"product": "Osiguranje",
+					"duration": "20 godina",
+					"amount": "50 € mesečno"
+				},
+				"contacts": [
+					{
+						"name": "Jovana Marković",
+						"age": 29,
+						"product": "Fond",
+						"status": "Razmišlja",
+						"color": "#2323ff"
+					},
+					{
+						"name": "Stefan Ristić",
+						"age": 41,
+						"product": "Kredit",
+						"status": "Poslao/la ponudu",
+						"color": "#9a6f01"
+					},
+					{
+						"name": "Ana Kostić",
+						"age": 52,
+						"product": "Osiguranje",
+						"status": "Potpisan ugovor",
+						"color": "#656244"
+					}
+				],
+				"statuses": [
+					"Klijent nije pozvan",
+					"Klijent se nije javio",
+					"Nezainteresovan/a",
+					"Zainteresovan/a",
+					"Poslao/la ponudu",
+					"Razmišlja",
+					"Potpisan ugovor",
+					"Odustao"
+				],
+				"awareness": [
+					"Nisam čuo — NE",
+					"Čuo sam — ZNAM",
+					"Treba mi — ali mogu",
+					"Želim — Hoću",
+					"Potpisano — PLAĆAM"
+				],
+				"reminder": {
+					"when": "Petak, 14:00",
+					"text": "Poslati ponudu za osiguranje"
+				},
+				"contract": "Ugovor · Osiguranje · 20 god."
+			}
+		},
+		{
+			"category": "iOS · Swift · UIKit",
+			"title": "Sliike",
+			"summary": "Beauty booking for Afro-American women in Canada: find a salon or stylist, pick a service, a day and a time, and get reminded. I built the native iOS app in Swift and UIKit.",
+			"tone": "orange",
+			"variant": "salon",
+			"duration": 18000,
+			"salon": {
+				"tagline": "Find your beautiful",
+				"search": "Search braids, locs, salons…",
+				"categories": [
+					{
+						"name": "Braids",
+						"hue": 20
+					},
+					{
+						"name": "Locs",
+						"hue": 35
+					},
+					{
+						"name": "Twists",
+						"hue": 340
+					},
+					{
+						"name": "Natural",
+						"hue": 150
+					},
+					{
+						"name": "Nails",
+						"hue": 280
+					}
+				],
+				"salons": [
+					{
+						"name": "Crown & Coils Studio",
+						"rating": "4.9",
+						"meta": "1.2 km · Toronto",
+						"hue": 22
+					},
+					{
+						"name": "Halo Braid Bar",
+						"rating": "4.8",
+						"meta": "2.4 km · Toronto",
+						"hue": 330
+					},
+					{
+						"name": "Nubian Glow",
+						"rating": "4.7",
+						"meta": "3.1 km · Toronto",
+						"hue": 160
+					}
+				]
+			}
+		},
+		{
+			"category": "iOS · Swift · UIKit · Code review",
+			"title": "KOCH Scan App",
+			"summary": "A B2B scanner app for a Swiss building supplier: tradespeople scan the barcode on KOCH labels, add articles to a list under a commission and order them. I reviewed the codebase ahead of taking over its maintenance.",
+			"tone": "blue",
+			"variant": "scan",
+			"duration": 16000,
+			"scan": {
+				"logo": "/assets/img/projects/koch-logo.png",
+				"hint": "EAN-Strichcode scannen",
+				"tabs": [
+					"SCANNEN",
+					"LISTE",
+					"BESTELLEN",
+					"STANDORTE",
+					"NEWS"
+				],
+				"commission": "Baustelle Zürich-West",
+				"items": [
+					{
+						"name": "Möbelgriff Edelstahl 128 mm",
+						"number": "KOCH 470.128",
+						"ean": "7640123456789",
+						"amounts": [
+							1,
+							2,
+							3
+						]
+					},
+					{
+						"name": "Topfband 110° mit Dämpfung",
+						"number": "KOCH 312.110",
+						"ean": "7640987654321",
+						"amounts": [
+							1,
+							2
+						]
+					}
+				]
+			},
+			"employer": "merkle"
+		},
+		{
+			"category": "iOS · Objective-C · Code review",
+			"title": "PMI Market(i)",
+			"summary": "An internal iPad and iPhone app for Philip Morris field teams in the Nordics: shelf photos with tags, a store map, share of market and sync. I reviewed the legacy Objective-C codebase ahead of taking over its maintenance.",
+			"tone": "violet",
+			"variant": "review",
+			"duration": 16000,
+			"review": {
+				"file": "AppDelegate.m",
+				"reviewer": "VN",
+				"findings": [
+					{
+						"severity": "Critical",
+						"title": "AFNetworking pinned below 1.9",
+						"body": "AFHTTPRequestOperation in 19 files, on a library that has had no support for years. Move networking to URLSession."
+					},
+					{
+						"severity": "Major",
+						"title": "ReactiveCocoa 2.5",
+						"body": "The Objective-C version of RAC is unmaintained. Replace its signals with Combine or async/await step by step."
+					},
+					{
+						"severity": "Major",
+						"title": "Fabric is shut down",
+						"body": "Crash reports still go through Fabric with CrashlyticsKit. Switch to Firebase Crashlytics."
+					},
+					{
+						"severity": "Minor",
+						"title": "Debug tools in release builds",
+						"body": "PonyDebugger and the Reveal SDK are linked for every configuration. Limit them to Debug."
+					},
+					{
+						"severity": "Minor",
+						"title": "UIAlertView in 17 files",
+						"body": "Deprecated since iOS 9. Replace with UIAlertController."
+					},
+					{
+						"severity": "Info",
+						"title": "No unit tests",
+						"body": "There is no test target yet. Start with the sync and the data mapping before changing them."
+					}
+				],
+				"summary": "Review done: a maintenance plan from the riskiest dependencies down."
+			},
+			"employer": "merkle"
+		},
+		{
+			"category": "iOS · Swift · UIKit",
+			"title": "Swipe XYZ",
+			"summary": "A shoe and fashion shopping app for a client in the Arab world: categories, filters, product pages and a swipe view to like products straight into the bag, then orders, bills and a profile. I built the native iOS app in UIKit.",
+			"tone": "green",
+			"variant": "deck",
+			"duration": 16000,
+			"deck": {
+				"bag": "Bag",
+				"products": [
+					{
+						"name": "Runner Knit",
+						"price": "€89",
+						"shape": "sneaker",
+						"hue": 160,
+						"sizes": [
+							"40",
+							"41",
+							"42",
+							"43"
+						],
+						"like": true
+					},
+					{
+						"name": "Chelsea Boot",
+						"price": "€129",
+						"shape": "boot",
+						"hue": 30,
+						"sizes": [
+							"39",
+							"40",
+							"41",
+							"42"
+						],
+						"like": false
+					},
+					{
+						"name": "Satin Pump",
+						"price": "€109",
+						"shape": "heel",
+						"hue": 340,
+						"sizes": [
+							"37",
+							"38",
+							"39",
+							"40"
+						],
+						"like": true
+					},
+					{
+						"name": "Mini Tote",
+						"price": "€74",
+						"shape": "bag",
+						"hue": 210,
+						"sizes": [
+							"S",
+							"M",
+							"L"
+						],
+						"like": true
+					}
+				],
+				"bill": {
+					"title": "Your order",
+					"total": "€272"
+				}
+			}
+		},
+		{
+			"category": "Android · iOS · Fantasy soccer · MVP",
+			"title": "Goaleadors",
+			"summary": "A fantasy soccer game across the top five European leagues: draft a squad on a budget, score points every matchday and climb a league pyramid, free-to-play or premium. The MVP was built; the client has paused it.",
+			"tone": "blue",
+			"variant": "fantasy",
+			"duration": 16000,
+			"fantasy": {
+				"logo": "/assets/img/projects/goleadors-logo.png",
+				"draft": "Draft your team",
+				"budget": [
+					"€100.0M",
+					"€71.5M",
+					"€38.0M",
+					"€3.5M"
+				],
+				"gameweek": "Gameweek 12",
+				"totals": [
+					"0",
+					"21",
+					"43",
+					"50"
+				],
+				"players": [
+					{
+						"x": 50,
+						"y": 90,
+						"number": 1,
+						"name": "Kovač",
+						"points": 6,
+						"keeper": true,
+						"captain": false
+					},
+					{
+						"x": 14,
+						"y": 70,
+						"number": 2,
+						"name": "Ilić",
+						"points": 2,
+						"keeper": false,
+						"captain": false
+					},
+					{
+						"x": 38,
+						"y": 74,
+						"number": 4,
+						"name": "Ramos",
+						"points": 6,
+						"keeper": false,
+						"captain": false
+					},
+					{
+						"x": 62,
+						"y": 74,
+						"number": 5,
+						"name": "Berg",
+						"points": 1,
+						"keeper": false,
+						"captain": false
+					},
+					{
+						"x": 86,
+						"y": 70,
+						"number": 3,
+						"name": "Silva",
+						"points": 2,
+						"keeper": false,
+						"captain": false
+					},
+					{
+						"x": 24,
+						"y": 48,
+						"number": 8,
+						"name": "Novak",
+						"points": 3,
+						"keeper": false,
+						"captain": false
+					},
+					{
+						"x": 50,
+						"y": 52,
+						"number": 6,
+						"name": "Duarte",
+						"points": 2,
+						"keeper": false,
+						"captain": false
+					},
+					{
+						"x": 76,
+						"y": 48,
+						"number": 10,
+						"name": "Moretti",
+						"points": 9,
+						"keeper": false,
+						"captain": true
+					},
+					{
+						"x": 20,
+						"y": 24,
+						"number": 7,
+						"name": "Lindqvist",
+						"points": 5,
+						"keeper": false,
+						"captain": false
+					},
+					{
+						"x": 50,
+						"y": 18,
+						"number": 9,
+						"name": "Okafor",
+						"points": 12,
+						"keeper": false,
+						"captain": false
+					},
+					{
+						"x": 80,
+						"y": 24,
+						"number": 11,
+						"name": "Petit",
+						"points": 2,
+						"keeper": false,
+						"captain": false
+					}
+				],
+				"prize": "Pro League · €320,000 prize pool",
+				"pyramid": [
+					{
+						"label": "1. Liga",
+						"count": 1
+					},
+					{
+						"label": "2. Liga",
+						"count": 2
+					},
+					{
+						"label": "3. Liga",
+						"count": 4
+					},
+					{
+						"label": "4. L.",
+						"count": 8
+					},
+					{
+						"label": "Osnovno takmičenje",
+						"count": 1
+					}
+				],
+				"team": "Your team"
+			}
+		},
+		{
+			"category": "Android · iOS · Competition",
+			"title": "Bikini",
+			"summary": "Android and iOS apps for a beauty competition in Asia: contestants, live audience voting, the judges' scores and the winner on the night.",
+			"tone": "violet",
+			"variant": "pageant",
+			"duration": 16000,
+			"pageant": {
+				"logo": "/assets/img/projects/bikini-logo.png",
+				"title": "Final night",
+				"vote": "Vote",
+				"judges": [
+					"9.6",
+					"9.4",
+					"9.8"
+				],
+				"contestants": [
+					{
+						"number": "03",
+						"city": "Seoul",
+						"votes": 46,
+						"hue": 250
+					},
+					{
+						"number": "07",
+						"city": "Manila",
+						"votes": 88,
+						"hue": 200,
+						"winner": true
+					},
+					{
+						"number": "11",
+						"city": "Bangkok",
+						"votes": 61,
+						"hue": 290
+					},
+					{
+						"number": "14",
+						"city": "Hanoi",
+						"votes": 34,
+						"hue": 220
+					}
+				]
+			}
+		},
+		{
+			"category": "iOS · Swift · Kids",
+			"title": "ÇocukFlix",
+			"summary": "A cartoon app for Turkish children: curated YouTube cartoons in Turkish, favourites, push notifications and a parental gate that keeps settings for grown-ups.",
+			"tone": "cyan",
+			"variant": "kids",
+			"duration": 16000,
+			"kids": {
+				"brand": "ÇocukFlix",
+				"tabs": [
+					"Çizgi Filmler",
+					"Şarkılar",
+					"Eğitici",
+					"Favoriler"
+				],
+				"videos": [
+					{
+						"title": "Uzay Macerası",
+						"hue": 200
+					},
+					{
+						"title": "Renkleri Öğrenelim",
+						"hue": 330
+					},
+					{
+						"title": "Dinozor Dostlar",
+						"hue": 110
+					},
+					{
+						"title": "Sayılar Şarkısı",
+						"hue": 40
+					},
+					{
+						"title": "Deniz Altında",
+						"hue": 180
+					},
+					{
+						"title": "Orman Gezisi",
+						"hue": 80
+					}
+				],
+				"saved": "Favorilere eklendi",
+				"gate": {
+					"title": "Ebeveyn kontrolü",
+					"sum": "3 + 4",
+					"answer": "7",
+					"keys": [
+						"5",
+						"6",
+						"7",
+						"8"
+					]
+				},
+				"settings": {
+					"title": "Ayarlar",
+					"rows": [
+						{
+							"label": "Günlük süre",
+							"value": "30 dk"
+						},
+						{
+							"label": "Bildirimler",
+							"value": "Açık"
+						},
+						{
+							"label": "Dil",
+							"value": "Türkçe"
+						}
+					]
+				}
+			}
+		},
+		{
+			"category": "Design system · Tokens · iOS · Android · Web",
+			"title": "Design Token Pipeline",
+			"summary": "An assessment of an enterprise design system that app teams in many countries build on. I analysed the iOS and Android libraries and proposed one automated token flow from Figma to Web, iOS and Android through Style Dictionary and CI, with accessibility keys and a safe path for renaming tokens.",
+			"tone": "green",
+			"variant": "tokens",
+			"duration": 16000,
+			"tokens": {
+				"source": {
+					"label": "Figma · Tokens Studio"
+				},
+				"token": {
+					"name": "Brand / Primary",
+					"path": "color.brand.primary",
+					"from": "#2457D6",
+					"to": "#0FA37F"
+				},
+				"checks": [
+					"schema",
+					"naming",
+					"duplicates"
+				],
+				"engine": "Style Dictionary",
+				"outputs": [
+					{
+						"platform": "Web",
+						"file": "tokens.css",
+						"before": "--brand-primary: ",
+						"from": "#2457d6",
+						"to": "#0fa37f",
+						"after": ";",
+						"button": "Continue"
+					},
+					{
+						"platform": "iOS",
+						"file": "Colors.swift",
+						"before": "Color(hex: ",
+						"from": "0x2457D6",
+						"to": "0x0FA37F",
+						"after": ")",
+						"button": "Continue"
+					},
+					{
+						"platform": "Android",
+						"file": "Color.kt",
+						"before": "Color(",
+						"from": "0xFF2457D6",
+						"to": "0xFF0FA37F",
+						"after": ")",
+						"button": "Continue"
+					}
+				],
+				"prs": "PRs opened → web/* · ios/* · android/*"
+			},
+			"employer": "merkle"
+		},
+		{
+			"category": "Kotlin Multiplatform · Compose · Ktor · Internal",
+			"title": "Anubis",
+			"summary": "A server-driven UI framework for Kotlin Multiplatform: a JSON layout from a Ktor server becomes a native Compose screen, so the app's UI can change without a release.",
+			"tone": "violet",
+			"variant": "sdui",
+			"duration": 16000,
+			"sdui": {
+				"file": "home.json",
+				"server": "GET /screens/home · Ktor",
+				"title": "Discover",
+				"cards": [
+					{
+						"heading": "DevOps",
+						"subheading": "The Cycle of DevOps",
+						"hue": 250
+					},
+					{
+						"heading": "Anubis",
+						"subheading": "The best way to build mobile apps",
+						"hue": 300
+					}
+				],
+				"button": "See all"
+			},
+			"employer": "merkle"
+		},
+		{
+			"category": "Kotlin Multiplatform · MVI · Internal",
+			"title": "YAMVIP",
+			"summary": "Yet Another MVI Presenter: a multiplatform MVI engine that shares presentation logic between Android and iOS, with a clear Model, UIState, Intent and Effect split, built for unit testing and convention over configuration.",
+			"tone": "orange",
+			"variant": "mvi",
+			"duration": 16000,
+			"mvi": {
+				"presenter": {
+					"name": "YamviPresenter",
+					"generics": "<Model, UIState, Effect>"
+				},
+				"nodes": [
+					{
+						"name": "Intent",
+						"note": "Search(\"ana\")"
+					},
+					{
+						"name": "Reducer",
+						"note": "reduce()"
+					},
+					{
+						"name": "Model",
+						"note": "internal state"
+					},
+					{
+						"name": "Mapper",
+						"note": "map()"
+					},
+					{
+						"name": "UIState",
+						"note": "→ Compose · SwiftUI"
+					}
+				],
+				"effect": "ShowToast",
+				"heading": "Users",
+				"query": "ana",
+				"users": [
+					{
+						"name": "Ana Silva",
+						"city": "Lisbon",
+						"hue": 200
+					},
+					{
+						"name": "Anabel Ruiz",
+						"city": "Madrid",
+						"hue": 20
+					},
+					{
+						"name": "Anna Berg",
+						"city": "Oslo",
+						"hue": 140
+					},
+					{
+						"name": "Ananya Rao",
+						"city": "Pune",
+						"hue": 290
+					}
+				],
+				"toast": "4 users found"
+			},
+			"employer": "merkle"
+		},
+		{
+			"category": "Kotlin Multiplatform · Compose · SwiftUI · Internal",
+			"title": "KMP Template",
+			"summary": "A starter template for Kotlin Multiplatform apps: multi-module clean architecture with YAMVIP and Anubis built in, Koin, SQLDelight and Moko resources, a Compose and a SwiftUI app generated with Tuist, and CI from day one.",
+			"tone": "violet",
+			"variant": "kit",
+			"duration": 16000,
+			"kit": {
+				"command": "mise install && ./gradlew build",
+				"layers": [
+					{
+						"label": "apps",
+						"hue": 150,
+						"blocks": [
+							{
+								"name": "androidApp",
+								"note": "Compose · NavHost"
+							},
+							{
+								"name": "iosApp",
+								"note": "SwiftUI · Tuist"
+							}
+						]
+					},
+					{
+						"label": "shared",
+						"hue": 265,
+						"blocks": [
+							{
+								"name": "features",
+								"note": "presenters"
+							},
+							{
+								"name": "domain",
+								"note": "use cases"
+							},
+							{
+								"name": "data",
+								"note": "repositories"
+							}
+						]
+					},
+					{
+						"label": "core & libraries",
+						"hue": 215,
+						"blocks": [
+							{
+								"name": "YAMVIP",
+								"note": "MVI"
+							},
+							{
+								"name": "Anubis",
+								"note": "SDUI"
+							},
+							{
+								"name": "Koin · SQLDelight",
+								"note": "DI · DB"
+							},
+							{
+								"name": "Moko",
+								"note": "resources"
+							}
+						]
+					}
+				],
+				"ci": [
+					"android build",
+					"ios build",
+					"unit tests",
+					"version bump"
+				]
+			},
+			"employer": "merkle"
+		},
+		{
+			"category": "Android · Java · Firebase",
+			"title": "Masse",
+			"summary": "Online booking for a billiard club: pick a pool table or a dartboard, a date and a free slot. An admin panel keeps the data under control, shows the night's reservations and deletes them.",
+			"tone": "cyan",
+			"variant": "club",
+			"duration": 16000,
+			"club": {
+				"logo": "/assets/img/projects/masse-logo.png",
+				"balls": [
+					"#f5c518",
+					"#1f4fd1",
+					"#d6262e",
+					"#5b2d8f",
+					"#f07a1a",
+					"#1f8f4e"
+				],
+				"tables": [
+					{
+						"name": "Sto No.1",
+						"tag": "19:00"
+					},
+					{
+						"name": "Sto No.2"
+					},
+					{
+						"name": "Sto No.3",
+						"tag": "21:00"
+					},
+					{
+						"name": "Sto No.4",
+						"tag": "20:00"
+					},
+					{
+						"name": "Sto No.5",
+						"tag": "18:00"
+					},
+					{
+						"name": "Sto No.6"
+					}
+				],
+				"boards": [
+					{
+						"name": "Pikado 1"
+					},
+					{
+						"name": "Pikado 2",
+						"tag": "22:00"
+					},
+					{
+						"name": "Pikado 3"
+					},
+					{
+						"name": "Pikado 4",
+						"tag": "20:00"
+					}
+				],
+				"booking": {
+					"title": "Sto No.3",
+					"name": "Marko Petrović",
+					"date": "Datum: 31.10.2026.",
+					"confirm": "Potvrdite rezervaciju",
+					"slots": [
+						{
+							"time": "17h",
+							"busy": true
+						},
+						{
+							"time": "18h",
+							"busy": true
+						},
+						{
+							"time": "19h"
+						},
+						{
+							"time": "20h"
+						},
+						{
+							"time": "21h",
+							"pick": true
+						},
+						{
+							"time": "22h"
+						},
+						{
+							"time": "23h"
+						},
+						{
+							"time": "00h"
+						}
+					]
+				},
+				"admin": {
+					"title": "Rezervacije",
+					"date": "31.10.2026.",
+					"rows": [
+						{
+							"time": "18:00",
+							"place": "Sto No.5",
+							"name": "Jovan M.",
+							"remove": true
+						},
+						{
+							"time": "20:00",
+							"place": "Sto No.4",
+							"name": "Ana K."
+						},
+						{
+							"time": "21:00",
+							"place": "Sto No.3",
+							"name": "Marko P."
+						},
+						{
+							"time": "22:00",
+							"place": "Pikado 2",
+							"name": "Luka S."
+						}
+					]
+				}
+			}
+		},
+		{
 			"category": "Open source · Accessibility",
 			"title": "a11yOtp",
 			"summary": "Accessible native one-time-code input for Android and iOS.",
@@ -224,5 +1289,12 @@
 			"url": "https://github.com/Vprogrammers/a11yOtp",
 			"hero": false
 		}
-	]
+	],
+	"employers": {
+		"merkle": {
+			"label": "Delivered at",
+			"name": "Merkle",
+			"note": "Enterprise mobile & digital engineering"
+		}
+	}
 }

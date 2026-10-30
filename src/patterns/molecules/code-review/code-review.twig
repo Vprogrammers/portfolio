@@ -1,0 +1,52 @@
+{# A code review in progress: an Objective-C editor on the right of the slide, lines lighting up as review comments pop in beside them with their severity, ending in a summary. The code is an illustration written in the project's style, not client source. Fills its positioned parent. #}
+{% set code = [
+	['<i>#import</i> <s>&lt;AFNetworking/AFHTTPRequestOperation.h&gt;</s>', 1],
+	['<i>#import</i> <s>&lt;ReactiveCocoa/ReactiveCocoa.h&gt;</s>', 2],
+	['<i>#import</i> <s>&lt;Fabric/Fabric.h&gt;</s>', 3],
+	['<i>#import</i> <s>&lt;Crashlytics/Crashlytics.h&gt;</s>', 0],
+	['<i>#import</i> <s>&lt;PonyDebugger/PDDebugger.h&gt;</s>', 4],
+	['', 0],
+	['<b>@implementation</b> <u>AppDelegate</u>', 0],
+	['', 0],
+	['- (<u>BOOL</u>)application:(<u>UIApplication</u> *)app didFinishLaunchingWithOptions:(<u>NSDictionary</u> *)options {', 0],
+	['    [<u>Fabric</u> with:@[<u>CrashlyticsKit</u>]];', 3],
+	['    [[<u>PDDebugger</u> defaultInstance] enableNetworkTrafficDebugging];', 4],
+	['    [<i>self</i>.syncService.syncSignal subscribeError:^(<u>NSError</u> *error) {', 2],
+	['        [[[<u>UIAlertView</u> alloc] initWithTitle:<s>@"Sync failed"</s>', 5],
+	['                                    message:error.localizedDescription', 0],
+	['                                   delegate:<b>nil</b>', 0],
+	['                          cancelButtonTitle:<s>@"OK"</s>', 0],
+	['                          otherButtonTitles:<b>nil</b>] show];', 0],
+	['    }];', 0],
+	['    <b>return</b> <b>YES</b>;', 0],
+	['}', 0],
+	['', 0],
+	['- (<b>void</b>)syncStores {', 0],
+	['    <u>AFHTTPRequestOperation</u> *op = [[<u>AFHTTPRequestOperation</u> alloc] initWithRequest:<i>self</i>.storesRequest];', 1],
+	['    [op setCompletionBlockWithSuccess:^(<u>AFHTTPRequestOperation</u> *o, <b>id</b> json) {', 0],
+	['        [<i>self</i>.mapper importStores:json];', 0],
+	['    } failure:<b>nil</b>];', 0],
+	['    [op start];', 0],
+	['}', 0],
+	['', 0],
+	['<b>@end</b>', 0]
+] %}
+<div class="m-code-review" aria-hidden="true">
+	<div class="m-code-review__editor">
+		<p class="m-code-review__tabs"><span>{{ file }}</span><span>Podfile</span></p>
+		<ol class="m-code-review__code">
+			{# Each line carries the number of the finding that points at it (0 for none). #}
+			{% for line in code %}<li class="m-code-review__line{{ line[1] ? ' m-code-review__line--' ~ line[1] : '' }}">{{ line[0]|raw }}</li>{% endfor %}
+		</ol>
+	</div>
+
+	<div class="m-code-review__thread">
+		{% for finding in findings %}
+			<div class="m-code-review__comment m-code-review__comment--{{ finding.severity|lower }}">
+				<p class="m-code-review__head"><span class="m-code-review__avatar">{{ reviewer }}</span><em>{{ finding.severity }}</em><b>{{ finding.title }}</b></p>
+				<p class="m-code-review__body">{{ finding.body }}</p>
+			</div>
+		{% endfor %}
+		<p class="m-code-review__summary">{{ summary }}</p>
+	</div>
+</div>

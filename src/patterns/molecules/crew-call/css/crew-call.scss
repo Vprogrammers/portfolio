@@ -1,0 +1,1144 @@
+/* stylelint-disable plugin/stylelint-bem-namics -- generated keyframe offsets, nth-child loops and state classes */
+@use 'sass:list';
+@use 'sass:math';
+
+// The whole story runs on one timeline; times below are seconds into it.
+$loop: 18;
+$brand: #7a0000;
+$busy: rgb(214 48 49 / 0.82);
+$free: rgb(46 160 67 / 0.9);
+$green: #2e9e4f;
+
+$tab: 1;
+$calendar: 1.4;
+$pick: 2.6;
+$form: 3.2;
+$field-times: (3.8, 4.5, 5.2, 5.9);
+$chip-times: (6.5, 6.7, 6.9, 7.1);
+$person-times: (7.3, 7.5, 7.7, 7.9);
+$book: 8.3;
+$event: 8.7;
+$send: 8.8;
+$push: 9.4;
+$open: 10.4;
+$decline: 11.3;
+$forward: 11.8;
+// When each crew member says yes; the 3rd declines first and the offer moves on.
+$accept-times: (10, 10.7, 13.6, 12.4);
+$declined: 11.6;
+$swap: 12.3;
+$complete: 14.4;
+$end: 17.4;
+
+@function at($s) {
+	@return math.percentage(math.div($s, $loop));
+}
+
+// Hidden until $start, eased in over $in, kept until $end, then faded out.
+@mixin appear($name, $start, $end: $end, $from: translateY(2cqw), $in: 0.35) {
+	@keyframes #{$name} {
+		0%,
+		#{at($start)} {
+			opacity: 0;
+			transform: $from;
+		}
+
+		#{at($start + $in)},
+		#{at($end)} {
+			opacity: 1;
+			transform: none;
+		}
+
+		#{at(math.min($end + 0.3, $loop))},
+		100% {
+			opacity: 0;
+			transform: none;
+		}
+	}
+}
+
+// A quick press: shrink and spring back at $t.
+@mixin press($name, $t) {
+	@keyframes #{$name} {
+		0%,
+		#{at($t)},
+		#{at($t + 0.35)},
+		100% {
+			transform: none;
+		}
+
+		#{at($t + 0.12)} {
+			transform: scale(0.9);
+		}
+	}
+}
+
+@keyframes crew-call-home {
+	0%,
+	#{at($form)} {
+		opacity: 1;
+	}
+
+	#{at($form + 0.3)},
+	#{at($end)} {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes crew-call-tab {
+	0%,
+	#{at($tab)} {
+		transform: none;
+	}
+
+	#{at($tab + 0.3)},
+	#{at($end)} {
+		transform: translateX(26cqw);
+	}
+
+	100% {
+		transform: none;
+	}
+}
+
+@include appear(crew-call-calendar, $calendar, $form, translateY(3cqw));
+@include appear(crew-call-form, $form, $event - 0.1, translateY(100%), 0.45);
+@include appear(crew-call-event, $event, $end, translateX(10cqw));
+@include press(crew-call-pick, $pick);
+@include press(crew-call-book, $book);
+
+@keyframes crew-call-pick-ring {
+	0%,
+	#{at($pick)} {
+		box-shadow: 0 0 0 0 rgb(255 255 255 / 0);
+	}
+
+	#{at($pick + 0.2)},
+	#{at($form)} {
+		box-shadow: 0 0 0 0.8cqw #fff;
+	}
+
+	#{at($form + 0.3)},
+	100% {
+		box-shadow: 0 0 0 0 rgb(255 255 255 / 0);
+	}
+}
+
+@for $k from 1 through list.length($field-times) {
+	$t: list.nth($field-times, $k);
+
+	// The value is typed in from the left; the hint goes as it starts.
+	@keyframes crew-call-type-#{$k} {
+		0%,
+		#{at($t)} {
+			clip-path: inset(0 100% 0 0);
+		}
+
+		#{at($t + 0.55)},
+		100% {
+			clip-path: inset(0);
+		}
+	}
+
+	@keyframes crew-call-hint-#{$k} {
+		0%,
+		#{at($t)} {
+			opacity: 1;
+		}
+
+		#{at($t + 0.05)},
+		100% {
+			opacity: 0;
+		}
+	}
+}
+
+@for $k from 1 through list.length($chip-times) {
+	@keyframes crew-call-chip-#{$k} {
+		0%,
+		#{at(list.nth($chip-times, $k))} {
+			border-color: rgb(255 255 255 / 0.55);
+			background: transparent;
+		}
+
+		#{at(list.nth($chip-times, $k) + 0.15)},
+		100% {
+			border-color: $brand;
+			background: $brand;
+		}
+	}
+
+	@keyframes crew-call-person-#{$k} {
+		0%,
+		#{at(list.nth($person-times, $k))} {
+			box-shadow: 0 0 0 0 #fff;
+		}
+
+		#{at(list.nth($person-times, $k) + 0.15)},
+		100% {
+			box-shadow: 0 0 0 0.7cqw #fff;
+		}
+	}
+
+	@include appear(crew-call-tick-#{$k}, list.nth($person-times, $k), $event, scale(0.2), 0.2);
+
+	// Crew status: sent, then accepted (or declined, sent again, accepted).
+	@include appear(crew-call-sent-#{$k}, $send + $k * 0.1, list.nth($accept-times, $k) - 0.3, scale(0.8), 0.2);
+	@include appear(crew-call-accepted-#{$k}, list.nth($accept-times, $k), $end, scale(0.6), 0.25);
+}
+
+@include appear(crew-call-first-sent, $send + 0.3, $declined - 0.3, scale(0.8), 0.2);
+@include appear(crew-call-declined, $declined, $swap - 0.3, scale(0.6), 0.2);
+@include appear(crew-call-sent-again, $swap, list.nth($accept-times, 3) - 0.3, scale(0.8), 0.2);
+@include appear(crew-call-backup, $swap, $end, translateX(4cqw), 0.3);
+
+@keyframes crew-call-first-name {
+	0%,
+	#{at($swap)} {
+		opacity: 1;
+		transform: none;
+	}
+
+	#{at($swap + 0.3)},
+	#{at($end)} {
+		opacity: 0;
+		transform: translateX(-4cqw);
+	}
+
+	100% {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@include appear(crew-call-done, $complete, $end, translateY(4cqw));
+
+// The pushes leave the admin's phone on an arc.
+@keyframes crew-call-signal {
+	0%,
+	#{at($send)} {
+		left: 0%;
+		opacity: 0;
+		transform: translateY(0);
+	}
+
+	#{at($send + 0.1)} {
+		opacity: 1;
+	}
+
+	#{at($send + 0.35)} {
+		transform: translateY(-6cqh);
+	}
+
+	#{at($send + 0.7)} {
+		left: 100%;
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	#{at($send + 0.8)},
+	100% {
+		left: 100%;
+		opacity: 0;
+	}
+}
+
+@keyframes crew-call-push {
+	0%,
+	#{at($push)} {
+		opacity: 0;
+		transform: translateY(-140%);
+	}
+
+	#{at($push + 0.4)},
+	#{at($open)} {
+		opacity: 1;
+		transform: none;
+	}
+
+	#{at($open + 0.12)} {
+		opacity: 1;
+		transform: scale(0.96);
+	}
+
+	#{at($open + 0.35)},
+	100% {
+		opacity: 0;
+		transform: scale(1.05);
+	}
+}
+
+@keyframes crew-call-offer {
+	0%,
+	#{at($open + 0.2)} {
+		opacity: 0;
+		transform: scale(0.9);
+	}
+
+	#{at($open + 0.5)},
+	#{at($decline + 0.3)} {
+		opacity: 1;
+		transform: none;
+	}
+
+	#{at($decline + 0.6)},
+	100% {
+		opacity: 0;
+		transform: translateX(60%) rotate(8deg);
+	}
+}
+
+@include press(crew-call-no, $decline);
+@include appear(crew-call-toast, $forward, $forward + 2.8, translateY(4cqw));
+
+@keyframes crew-call-lock {
+	0%,
+	#{at($open)} {
+		opacity: 1;
+	}
+
+	#{at($open + 0.3)},
+	#{at($decline + 0.4)} {
+		opacity: 0.15;
+	}
+
+	#{at($decline + 0.8)},
+	100% {
+		opacity: 1;
+	}
+}
+
+// The offer drifts on to the next person, beside the phone.
+@keyframes crew-call-float {
+	0%,
+	#{at($forward + 0.2)} {
+		opacity: 0;
+		transform: translate(-6cqh, 2cqh) scale(0.9);
+	}
+
+	#{at($forward + 0.6)},
+	#{at($forward + 2.4)} {
+		opacity: 1;
+		transform: none;
+	}
+
+	#{at($forward + 3)},
+	100% {
+		opacity: 0;
+		transform: translate(4cqh, -3cqh);
+	}
+}
+
+@keyframes crew-call-drift {
+	from {
+		transform: scale(1.1) translate3d(-1.5%, 0, 0);
+	}
+
+	to {
+		transform: scale(1.2) translate3d(1.5%, -1.5%, 0);
+	}
+}
+
+// The root fills its positioned parent; the parent sets --phone-h/-x/-y.
+.m-crew-call {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	container: crew-call / size;
+	pointer-events: none;
+	background: #0d0b0b;
+}
+
+.m-crew-call__backdrop {
+	position: absolute;
+	inset: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	filter: blur(8px) brightness(0.36) saturate(0.6);
+	animation: crew-call-drift 24s ease-in-out infinite alternate;
+}
+
+.m-crew-call__stage {
+	--h: var(--phone-h, 76cqh);
+
+	position: absolute;
+	left: var(--phone-x, 50%);
+	top: var(--phone-y, 50%);
+	display: flex;
+	align-items: center;
+	height: var(--h);
+	transform: translate(-50%, -50%);
+}
+
+.m-crew-call__device {
+	height: 100%;
+	padding: calc(var(--h) * 0.012);
+	border-radius: calc(var(--h) * 0.07);
+	background: #0d0f12;
+	box-shadow:
+		0 0 0 calc(var(--h) * 0.004) #4a505a,
+		0 calc(var(--h) * 0.04) calc(var(--h) * 0.12) rgb(0 0 0 / 0.6);
+}
+
+.m-crew-call__device--android {
+	height: 92%;
+	margin-top: 6%;
+	border-radius: calc(var(--h) * 0.045);
+}
+
+.m-crew-call__screen {
+	position: relative;
+	height: 100%;
+	aspect-ratio: 1179 / 2556;
+	overflow: hidden;
+	border-radius: calc(var(--h) * 0.06);
+	background: #111 var(--bg) center / cover;
+	container-type: inline-size;
+	font-family: -apple-system, 'SF Pro Text', Roboto, Arial, sans-serif;
+	color: #fff;
+
+	// The app dims its photo background.
+	&::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: rgb(0 0 0 / 0.55);
+	}
+}
+
+.m-crew-call__device--android .m-crew-call__screen {
+	aspect-ratio: 1080 / 2400;
+	border-radius: calc(var(--h) * 0.035);
+	font-family: Roboto, 'Segoe UI', Arial, sans-serif;
+}
+
+.m-crew-call__status {
+	position: absolute;
+	inset: 0 0 auto;
+	z-index: 5;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 11cqw;
+	padding: 0 10cqw;
+	font-size: 3.6cqw;
+	font-weight: 600;
+}
+
+.m-crew-call__island {
+	position: absolute;
+	left: 50%;
+	top: 2.4cqw;
+	width: 26cqw;
+	height: 7cqw;
+	border-radius: 4cqw;
+	background: #000;
+	transform: translateX(-50%);
+}
+
+.m-crew-call__status--android {
+	height: 9cqw;
+	padding: 0 5cqw;
+	font-weight: 400;
+}
+
+.m-crew-call__camera {
+	position: absolute;
+	left: 50%;
+	top: 2.4cqw;
+	width: 4cqw;
+	height: 4cqw;
+	border-radius: 50%;
+	background: #000;
+	box-shadow: 0 0 0 0.5cqw #1c1c1c;
+	transform: translateX(-50%);
+}
+
+.m-crew-call__bars {
+	width: 9cqw;
+	height: 3.6cqw;
+	border-radius: 0.8cqw;
+	background: linear-gradient(90deg, #fff 70%, rgb(255 255 255 / 0.4) 70%);
+}
+
+.m-crew-call__scene {
+	position: absolute;
+	inset: 0;
+	padding: 13cqw 5cqw 6cqw;
+}
+
+.m-crew-call__scene--home {
+	animation: crew-call-home #{$loop}s linear infinite;
+}
+
+.m-crew-call__tabs {
+	position: relative;
+	display: flex;
+	width: 88cqw;
+	margin: 0 auto;
+	padding: 1cqw;
+	border-radius: 6cqw;
+	background: rgb(235 235 240 / 0.9);
+	color: #222;
+	font-size: 3.2cqw;
+	white-space: nowrap;
+
+	span {
+		position: relative;
+		z-index: 1;
+		width: 26cqw;
+		padding: 2cqw 0;
+		text-align: center;
+
+		&:last-of-type {
+			width: 34cqw;
+		}
+
+		&:first-child,
+		&:nth-child(2) {
+			color: $brand;
+			font-weight: 600;
+		}
+	}
+}
+
+.m-crew-call__tab-pill {
+	position: absolute;
+	left: 1cqw;
+	top: 1cqw;
+	bottom: 1cqw;
+	width: 26cqw;
+	border-radius: 5cqw;
+	background: #fff;
+	box-shadow: 0 0.4cqw 1cqw rgb(0 0 0 / 0.15);
+	animation: crew-call-tab #{$loop}s ease-in-out infinite;
+}
+
+.m-crew-call__calendar {
+	margin-top: 5cqw;
+	opacity: 0;
+	animation: crew-call-calendar #{$loop}s ease-out infinite;
+}
+
+.m-crew-call__month {
+	display: flex;
+	justify-content: space-between;
+	margin: 0 0 3cqw;
+	font-size: 3.8cqw;
+	font-weight: 600;
+
+	span {
+		font-weight: 400;
+		opacity: 0.85;
+	}
+}
+
+.m-crew-call__days {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	gap: 1cqw;
+
+	b {
+		padding-bottom: 1cqw;
+		font-size: 3.2cqw;
+		font-weight: 500;
+		text-align: center;
+	}
+
+	span {
+		aspect-ratio: 0.78;
+		padding: 0.8cqw 1.2cqw;
+		border-radius: 1.4cqw;
+		background: $free;
+		font-size: 2.6cqw;
+		text-align: right;
+	}
+
+	.is-busy {
+		background: $busy;
+	}
+
+	.is-pick {
+		animation:
+			crew-call-pick #{$loop}s ease-out infinite,
+			crew-call-pick-ring #{$loop}s ease-out infinite;
+	}
+}
+
+.m-crew-call__scene--form {
+	z-index: 2;
+	display: flex;
+	flex-direction: column;
+	gap: 1.6cqw;
+	background: rgb(16 16 16 / 0.78);
+	opacity: 0;
+	animation: crew-call-form #{$loop}s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+
+.m-crew-call__title {
+	margin: 2cqw 0 0;
+	font-size: 6cqw;
+	font-weight: 700;
+	text-align: center;
+}
+
+.m-crew-call__label {
+	margin: 1.4cqw 0 0;
+	font-size: 2.8cqw;
+	font-weight: 600;
+	text-align: center;
+}
+
+.m-crew-call__field {
+	position: relative;
+	display: flex;
+	align-items: center;
+	height: 8.4cqw;
+	margin: 0;
+	padding: 0 3.4cqw;
+	border-radius: 2.2cqw;
+	background: #fff;
+	color: #1b1b1b;
+	font-size: 3.3cqw;
+	white-space: nowrap;
+}
+
+// The first three p's of the form are the title, a label and the set date.
+@for $k from 1 through list.length($field-times) {
+	.m-crew-call__field:nth-of-type(#{$k + 3}) {
+		.m-crew-call__value {
+			animation: crew-call-type-#{$k} #{$loop}s steps(14, end) infinite;
+		}
+
+		.m-crew-call__hint {
+			animation: crew-call-hint-#{$k} #{$loop}s linear infinite;
+		}
+	}
+}
+
+// Select fields carry the app's dark-red chevron.
+.m-crew-call__field--select::after {
+	content: '';
+	position: absolute;
+	right: 4cqw;
+	top: 2.6cqw;
+	width: 1.8cqw;
+	height: 1.8cqw;
+	border: solid $brand;
+	border-width: 0 0.5cqw 0.5cqw 0;
+	transform: rotate(45deg);
+}
+
+.m-crew-call__hint {
+	position: absolute;
+	color: #a5a5a5;
+}
+
+.m-crew-call__value {
+	clip-path: inset(0 100% 0 0);
+}
+
+.m-crew-call__chips {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1.6cqw;
+
+	span {
+		padding: 1.8cqw 0;
+		border: 0.4cqw solid rgb(255 255 255 / 0.55);
+		border-radius: 5cqw;
+		font-size: 3cqw;
+		text-align: center;
+
+		@for $k from 1 through list.length($chip-times) {
+			&:nth-child(#{$k}) {
+				animation: crew-call-chip-#{$k} #{$loop}s ease-out infinite;
+			}
+		}
+	}
+}
+
+.m-crew-call__people {
+	display: flex;
+	justify-content: space-between;
+	padding: 1cqw 2cqw 0;
+
+	> span {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1cqw;
+		font-size: 2.6cqw;
+	}
+
+	i {
+		position: relative;
+
+		// The check badge on a picked person.
+		&::after {
+			content: '✓';
+			position: absolute;
+			right: -1.2cqw;
+			bottom: -0.8cqw;
+			display: grid;
+			place-items: center;
+			width: 4.4cqw;
+			height: 4.4cqw;
+			border-radius: 50%;
+			background: $green;
+			font-size: 2.6cqw;
+			font-style: normal;
+			opacity: 0;
+		}
+	}
+}
+
+@for $k from 1 through list.length($person-times) {
+	.m-crew-call__people > span:nth-child(#{$k}) i {
+		animation: crew-call-person-#{$k} #{$loop}s ease-out infinite;
+
+		&::after {
+			animation: crew-call-tick-#{$k} #{$loop}s ease-out infinite;
+		}
+	}
+}
+
+// Initials avatars, tinted per person.
+.m-crew-call__people i,
+.m-crew-call__who i,
+.m-crew-call__float i {
+	display: grid;
+	place-items: center;
+	width: 10cqw;
+	height: 10cqw;
+	border-radius: 50%;
+	background: hsl(var(--hue) 45% 42%);
+	color: #fff;
+	font-size: 4cqw;
+	font-style: normal;
+	font-weight: 600;
+}
+
+.m-crew-call__book {
+	margin-top: auto;
+	padding: 2.6cqw 0;
+	border-radius: 2cqw;
+	background: $brand;
+	font-size: 3.6cqw;
+	text-align: center;
+	animation: crew-call-book #{$loop}s ease-out infinite;
+}
+
+.m-crew-call__scene--event {
+	z-index: 3;
+	display: flex;
+	flex-direction: column;
+	gap: 2cqw;
+	background: rgb(16 16 16 / 0.82);
+	opacity: 0;
+	animation: crew-call-event #{$loop}s ease-out infinite;
+}
+
+.m-crew-call__meta {
+	margin: 0 0 2cqw;
+	font-size: 3.1cqw;
+	text-align: center;
+	opacity: 0.8;
+}
+
+.m-crew-call__crew {
+	display: flex;
+	flex-direction: column;
+	gap: 2cqw;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.m-crew-call__member {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	align-items: center;
+	padding: 2.6cqw 3cqw;
+	border-radius: 3cqw;
+	background: rgb(255 255 255 / 0.08);
+
+	small {
+		grid-row: 2;
+		margin: 1cqw 0 0 12.4cqw;
+		font-size: 2.7cqw;
+		opacity: 0.7;
+	}
+}
+
+@for $k from 1 through list.length($accept-times) {
+	.m-crew-call__member:nth-child(#{$k}) {
+		.is-sent {
+			animation: crew-call-sent-#{$k} #{$loop}s ease-out infinite;
+		}
+
+		.is-accepted {
+			animation: crew-call-accepted-#{$k} #{$loop}s ease-out infinite;
+		}
+	}
+}
+
+.m-crew-call__who {
+	display: grid;
+
+	> span {
+		grid-area: 1 / 1;
+		display: flex;
+		align-items: center;
+		gap: 2.4cqw;
+	}
+
+	i {
+		width: 9cqw;
+		height: 9cqw;
+		font-size: 3.6cqw;
+	}
+
+	b {
+		font-size: 3.6cqw;
+		font-weight: 600;
+	}
+}
+
+.m-crew-call__state {
+	display: grid;
+	grid-row: 1 / 3;
+	grid-column: 2;
+
+	em {
+		grid-area: 1 / 1;
+		justify-self: end;
+		padding: 1.2cqw 2.4cqw;
+		border-radius: 3cqw;
+		background: rgb(255 255 255 / 0.18);
+		font-size: 2.7cqw;
+		font-style: normal;
+		white-space: nowrap;
+		opacity: 0;
+	}
+
+	.is-accepted {
+		background: $green;
+	}
+
+	.is-declined {
+		background: #c62828;
+	}
+}
+
+// The member who declines: their name gives way to the next person.
+.m-crew-call__member--declines {
+	.m-crew-call__who > span:first-child {
+		animation: crew-call-first-name #{$loop}s ease-in-out infinite;
+	}
+
+	.m-crew-call__who > span:last-child {
+		opacity: 0;
+		animation: crew-call-backup #{$loop}s ease-out infinite;
+	}
+
+	.m-crew-call__state .is-sent:first-child {
+		animation: crew-call-first-sent #{$loop}s ease-out infinite;
+	}
+
+	.m-crew-call__state .is-declined {
+		animation: crew-call-declined #{$loop}s ease-out infinite;
+	}
+
+	.m-crew-call__state .is-declined + .is-sent {
+		animation: crew-call-sent-again #{$loop}s ease-out infinite;
+	}
+}
+
+.m-crew-call__done {
+	margin: auto 0 4cqw;
+	padding: 3cqw 0;
+	border-radius: 3cqw;
+	background: $green;
+	font-size: 3.6cqw;
+	font-weight: 600;
+	text-align: center;
+	opacity: 0;
+	animation: crew-call-done #{$loop}s ease-out infinite;
+}
+
+// Pushes in flight between the phones.
+.m-crew-call__link {
+	position: relative;
+	align-self: stretch;
+	width: calc(var(--h) * 0.14);
+
+	i {
+		position: absolute;
+		top: 34%;
+		width: calc(var(--h) * 0.022);
+		aspect-ratio: 1;
+		margin-left: calc(var(--h) * -0.011);
+		border-radius: 50%;
+		background: #ff5252;
+		box-shadow: 0 0 calc(var(--h) * 0.03) #ff5252;
+		opacity: 0;
+		animation: crew-call-signal #{$loop}s ease-in-out infinite;
+
+		&:nth-child(2) {
+			top: 40%;
+			animation-delay: 0.14s;
+		}
+
+		&:nth-child(3) {
+			top: 46%;
+			animation-delay: 0.28s;
+		}
+	}
+}
+
+.m-crew-call__lock {
+	position: absolute;
+	inset: 26cqw 0 auto;
+	text-align: center;
+	animation: crew-call-lock #{$loop}s ease-in-out infinite;
+}
+
+.m-crew-call__clock {
+	margin: 0;
+	font-size: 22cqw;
+	font-weight: 300;
+	line-height: 1;
+}
+
+.m-crew-call__date {
+	margin: 2cqw 0 0;
+	font-size: 4cqw;
+	opacity: 0.85;
+}
+
+.m-crew-call__push {
+	position: absolute;
+	left: 3cqw;
+	right: 3cqw;
+	top: 12cqw;
+	z-index: 4;
+	display: flex;
+	gap: 3cqw;
+	padding: 3.4cqw;
+	border-radius: 5cqw;
+	background: rgb(246 246 246 / 0.97);
+	color: #1b1b1b;
+	font-size: 3.2cqw;
+	line-height: 1.35;
+	box-shadow: 0 2cqw 6cqw rgb(0 0 0 / 0.4);
+	opacity: 0;
+	animation: crew-call-push #{$loop}s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+
+	small {
+		display: block;
+		color: #666;
+		font-size: 2.7cqw;
+	}
+
+	b {
+		display: block;
+		margin: 0.6cqw 0 0.4cqw;
+		font-size: 3.6cqw;
+	}
+}
+
+.m-crew-call__app-icon {
+	flex: none;
+	display: grid;
+	place-items: center;
+	width: 9cqw;
+	height: 9cqw;
+	border-radius: 2.4cqw;
+	background: $brand;
+
+	img {
+		width: 86%;
+	}
+}
+
+.m-crew-call__offer {
+	position: absolute;
+	left: 5cqw;
+	right: 5cqw;
+	top: 34cqw;
+	z-index: 3;
+	display: flex;
+	flex-direction: column;
+	gap: 2cqw;
+	padding: 6cqw;
+	border-radius: 5cqw;
+	background: rgb(20 20 20 / 0.92);
+	box-shadow: 0 3cqw 8cqw rgb(0 0 0 / 0.5);
+	opacity: 0;
+	animation: crew-call-offer #{$loop}s cubic-bezier(0.3, 0.7, 0.3, 1) infinite;
+
+	> * {
+		margin: 0;
+	}
+}
+
+.m-crew-call__offer-label {
+	color: #ff6b6b;
+	font-size: 2.8cqw;
+	font-weight: 600;
+	letter-spacing: 0.3cqw;
+	text-transform: uppercase;
+}
+
+.m-crew-call__offer-type {
+	font-size: 7cqw;
+	font-weight: 700;
+}
+
+.m-crew-call__offer-meta {
+	font-size: 3.2cqw;
+	line-height: 1.4;
+	opacity: 0.85;
+}
+
+.m-crew-call__offer-role {
+	align-self: flex-start;
+	margin: 1cqw 0 3cqw;
+	padding: 1.4cqw 3cqw;
+	border: 0.4cqw solid rgb(255 255 255 / 0.5);
+	border-radius: 4cqw;
+	font-size: 3cqw;
+}
+
+.m-crew-call__answer {
+	padding: 3cqw 0;
+	border-radius: 2cqw;
+	font-size: 3.6cqw;
+	text-align: center;
+}
+
+.m-crew-call__answer--yes {
+	background: $brand;
+}
+
+.m-crew-call__answer--no {
+	background: #555;
+	animation: crew-call-no #{$loop}s ease-out infinite;
+}
+
+.m-crew-call__toast {
+	position: absolute;
+	left: 8cqw;
+	right: 8cqw;
+	bottom: 22cqw;
+	z-index: 4;
+	margin: 0;
+	padding: 3cqw;
+	border-radius: 4cqw;
+	background: $brand;
+	font-size: 3.2cqw;
+	text-align: center;
+	opacity: 0;
+	animation: crew-call-toast #{$loop}s ease-out infinite;
+}
+
+// Android's three-button navigation.
+.m-crew-call__nav {
+	position: absolute;
+	inset: auto 0 0;
+	z-index: 5;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	height: 11cqw;
+	padding: 0 14cqw;
+	background: rgb(0 0 0 / 0.6);
+
+	i {
+		width: 3.4cqw;
+		height: 3.4cqw;
+		border: 0.5cqw solid #ddd;
+
+		&:first-child {
+			width: 3cqw;
+			border-width: 0 0.5cqw;
+		}
+
+		&:nth-child(2) {
+			border-radius: 50%;
+		}
+
+		&:last-child {
+			border-width: 0 0 0.5cqw 0.5cqw;
+			transform: rotate(45deg);
+		}
+	}
+}
+
+// Above the crew phone, drifting away from it.
+.m-crew-call__float {
+	position: absolute;
+	right: -2cqh;
+	top: 0;
+	display: flex;
+	align-items: center;
+	gap: 1.2cqh;
+	margin: 0;
+	padding: 1cqh 2cqh 1cqh 1cqh;
+	border-radius: 4cqh;
+	background: rgb(255 255 255 / 0.95);
+	color: #151515;
+	font: 600 1.8cqh/1.3 Roboto, Arial, sans-serif;
+	white-space: nowrap;
+	box-shadow: 0 1cqh 3cqh rgb(0 0 0 / 0.35);
+	opacity: 0;
+	animation: crew-call-float #{$loop}s ease-out infinite;
+
+	i {
+		width: 3.6cqh;
+		height: 3.6cqh;
+		font-size: 1.6cqh;
+	}
+}
+
+// Portrait parents have text above and below the phones; keep the scene inside them.
+@container crew-call (aspect-ratio < 1) {
+	.m-crew-call__float {
+		display: none;
+	}
+}
+
+// Reduced motion: the booked event with its full crew, and the offer on the crew phone.
+@media (prefers-reduced-motion: reduce) {
+	.m-crew-call *,
+	.m-crew-call *::after {
+		/* stylelint-disable-next-line declaration-no-important -- overrides every generated story animation */
+		animation: none !important;
+	}
+
+	.m-crew-call__scene--home,
+	.m-crew-call__float,
+	.m-crew-call__link,
+	.m-crew-call__lock {
+		display: none;
+	}
+
+	.m-crew-call__scene--event,
+	.m-crew-call__offer,
+	.m-crew-call__done,
+	.m-crew-call__state .is-accepted,
+	.m-crew-call__member--declines .m-crew-call__who > span:last-child {
+		opacity: 1;
+	}
+
+	.m-crew-call__member--declines .m-crew-call__who > span:first-child {
+		opacity: 0;
+	}
+}

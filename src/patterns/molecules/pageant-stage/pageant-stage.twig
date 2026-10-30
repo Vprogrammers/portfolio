@@ -1,0 +1,32 @@
+{# A competition night: the app's splash reveal (the logo becomes a hole that grows over the scene, as the Android SplashView did), then a lit stage with contestant number cards, live votes climbing, the judges' scores and a crown for the winner. No people. Fills its positioned parent. #}
+<div class="m-pageant-stage" aria-hidden="true" style="--logo: url('{{ logo }}')">
+	<div class="m-pageant-stage__lights">{% for i in 1..4 %}<i></i>{% endfor %}</div>
+	<i class="m-pageant-stage__floor"></i>
+
+	<div class="m-pageant-stage__stage">
+		<p class="m-pageant-stage__live"><b>LIVE</b>{{ title }}</p>
+
+		<div class="m-pageant-stage__judges">
+			{% for score in judges %}<span><small>Judge {{ loop.index }}</small><b>{{ score }}</b></span>{% endfor %}
+		</div>
+
+		<div class="m-pageant-stage__cards">
+			{% for contestant in contestants %}
+				<div class="m-pageant-stage__card{{ contestant.winner ? ' m-pageant-stage__card--winner' : '' }}" style="--hue: {{ contestant.hue }}; --votes: {{ contestant.votes }}%">
+					<span class="m-pageant-stage__crown">♛</span>
+					<i class="m-pageant-stage__fill"></i>
+					<b class="m-pageant-stage__number">{{ contestant.number }}</b>
+					<small>{{ contestant.city }}</small>
+					<em class="m-pageant-stage__votes">{{ contestant.votes }}%</em>
+				</div>
+			{% endfor %}
+		</div>
+
+		<span class="m-pageant-stage__vote">{{ vote }}</span>
+		<div class="m-pageant-stage__confetti">{% for i in 1..18 %}<i></i>{% endfor %}</div>
+	</div>
+
+	{# The splash: brand colour with the logo cut out, growing until the scene shows through. #}
+	<div class="m-pageant-stage__splash"></div>
+	<i class="m-pageant-stage__icon"></i>
+</div>

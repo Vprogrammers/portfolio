@@ -1,0 +1,727 @@
+/* stylelint-disable plugin/stylelint-bem-namics -- generated keyframe offsets and nth-child loops */
+@use 'sass:list';
+@use 'sass:math';
+
+// The whole story runs on one timeline; times below are seconds into it.
+$loop: 18;
+$ink: #141414;
+$gold: #c8a96a;
+$serif: georgia, 'Times New Roman', serif;
+$mono: 'SF Mono', menlo, consolas, monospace;
+
+$splash: 1.5;
+$pages: ((1.6, 4.8), (4.9, 8.6), (8.7, 13.6), (13.7, 17.4));
+$type-times: (2.2, 3.2);
+$sign-in: 4.3;
+$blink: 5.1;
+$add: 7.6;
+$step-times: (9.2, 10.4, 11.6);
+$order: 13;
+$check: 14;
+// The WebView's loading bar runs on every navigation.
+$nav-times: (1.5, 4.6, 8.4, 13.4);
+$log-times: (1.8, 4.8, 5.1, 5.4, 6, 8.6, 10.2, 10.8, 13.9, 14.6);
+$end: 17.4;
+
+@function at($s) {
+	@return math.percentage(math.div($s, $loop));
+}
+
+// Hidden until $start, eased in over $in, kept until $end, then faded out.
+@mixin appear($name, $start, $end: $end, $from: translateX(8cqw), $in: 0.35) {
+	@keyframes #{$name} {
+		0%,
+		#{at($start)} {
+			opacity: 0;
+			transform: $from;
+		}
+
+		#{at($start + $in)},
+		#{at($end)} {
+			opacity: 1;
+			transform: none;
+		}
+
+		#{at(math.min($end + 0.25, $loop))},
+		100% {
+			opacity: 0;
+			transform: none;
+		}
+	}
+}
+
+@mixin press($name, $t) {
+	@keyframes #{$name} {
+		0%,
+		#{at($t)},
+		#{at($t + 0.35)},
+		100% {
+			transform: none;
+		}
+
+		#{at($t + 0.12)} {
+			transform: scale(0.94);
+		}
+	}
+}
+
+@keyframes web-wrap-splash {
+	0%,
+	#{at($splash)} {
+		opacity: 1;
+	}
+
+	#{at($splash + 0.3)},
+	#{at($end + 0.2)} {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@for $k from 1 through list.length($pages) {
+	$page: list.nth($pages, $k);
+
+	@include appear(web-wrap-page-#{$k}, list.nth($page, 1), list.nth($page, 2));
+}
+
+@for $k from 1 through list.length($type-times) {
+	@keyframes web-wrap-type-#{$k} {
+		0%,
+		#{at(list.nth($type-times, $k))} {
+			clip-path: inset(0 100% 0 0);
+		}
+
+		#{at(list.nth($type-times, $k) + 0.7)},
+		100% {
+			clip-path: inset(0);
+		}
+	}
+}
+
+@include press(web-wrap-sign-in, $sign-in);
+@include press(web-wrap-add, $add);
+@include press(web-wrap-order, $order);
+
+// The product image fades in once it has loaded.
+@keyframes web-wrap-reveal {
+	0%,
+	#{at($blink)} {
+		opacity: 0;
+		transform: scale(0.96);
+	}
+
+	#{at($blink + 0.6)},
+	100% {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@keyframes web-wrap-badge {
+	0%,
+	#{at($add + 0.2)} {
+		transform: scale(0);
+	}
+
+	#{at($add + 0.4)} {
+		transform: scale(1.4);
+	}
+
+	#{at($add + 0.6)},
+	#{at($end)} {
+		transform: scale(1);
+	}
+
+	100% {
+		transform: scale(0);
+	}
+}
+
+@for $k from 1 through list.length($step-times) {
+	@keyframes web-wrap-step-#{$k} {
+		0%,
+		#{at(list.nth($step-times, $k))} {
+			color: #9a9a9a;
+			border-color: #ddd;
+		}
+
+		#{at(list.nth($step-times, $k) + 0.2)},
+		100% {
+			color: $ink;
+			border-color: $ink;
+		}
+	}
+}
+
+@keyframes web-wrap-card {
+	0%,
+	#{at(list.nth($step-times, 3) + 0.2)} {
+		box-shadow: inset 0 0 0 0.3cqw #ddd;
+	}
+
+	#{at(list.nth($step-times, 3) + 0.4)},
+	100% {
+		box-shadow: inset 0 0 0 0.6cqw $ink;
+	}
+}
+
+@keyframes web-wrap-check {
+	0%,
+	#{at($check)} {
+		stroke-dashoffset: 160;
+	}
+
+	#{at($check + 0.8)},
+	100% {
+		stroke-dashoffset: 0;
+	}
+}
+
+@keyframes web-wrap-progress {
+	@each $t in $nav-times {
+		#{at($t)} {
+			opacity: 1;
+			transform: scaleX(0);
+		}
+
+		#{at($t + 0.25)} {
+			opacity: 1;
+			transform: scaleX(0.7);
+		}
+
+		#{at($t + 0.5)} {
+			opacity: 1;
+			transform: scaleX(1);
+		}
+
+		#{at($t + 0.7)} {
+			opacity: 0;
+			transform: scaleX(1);
+		}
+	}
+}
+
+@for $k from 1 through list.length($log-times) {
+	@include appear(web-wrap-log-#{$k}, list.nth($log-times, $k), $end, translateX(-1.5cqh), 0.25);
+}
+
+@keyframes web-wrap-tick {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes web-wrap-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+// The root fills its positioned parent; the parent sets --phone-h/-x/-y.
+.m-web-wrap {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	container: web-wrap / size;
+	pointer-events: none;
+	background:
+		radial-gradient(ellipse 60% 70% at 62% 45%, rgb(200 169 106 / 0.28), transparent 70%),
+		linear-gradient(160deg, #1b1a17, #0b0b0a);
+}
+
+.m-web-wrap__stage {
+	--h: var(--phone-h, 76cqh);
+
+	position: absolute;
+	left: var(--phone-x, 50%);
+	top: var(--phone-y, 50%);
+	display: flex;
+	align-items: center;
+	gap: calc(var(--h) * 0.08);
+	height: var(--h);
+	transform: translate(-50%, -50%);
+}
+
+.m-web-wrap__device {
+	height: 100%;
+	padding: calc(var(--h) * 0.012);
+	border-radius: calc(var(--h) * 0.07);
+	background: #0d0f12;
+	box-shadow:
+		0 0 0 calc(var(--h) * 0.004) #4a505a,
+		0 calc(var(--h) * 0.04) calc(var(--h) * 0.12) rgb(0 0 0 / 0.6);
+}
+
+.m-web-wrap__screen {
+	position: relative;
+	height: 100%;
+	aspect-ratio: 1179 / 2556;
+	overflow: hidden;
+	border-radius: calc(var(--h) * 0.06);
+	background: #fff;
+	container-type: inline-size;
+	color: $ink;
+	font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.m-web-wrap__status {
+	position: absolute;
+	inset: 0 0 auto;
+	z-index: 6;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 11cqw;
+	padding: 0 10cqw;
+	background: #fff;
+	font-size: 3.6cqw;
+	font-weight: 600;
+}
+
+.m-web-wrap__island {
+	position: absolute;
+	left: 50%;
+	top: 2.4cqw;
+	width: 26cqw;
+	height: 7cqw;
+	border-radius: 4cqw;
+	background: #000;
+	transform: translateX(-50%);
+}
+
+.m-web-wrap__bars {
+	width: 9cqw;
+	height: 3.6cqw;
+	border-radius: 0.8cqw;
+	background: linear-gradient(90deg, $ink 70%, rgb(0 0 0 / 0.25) 70%);
+}
+
+.m-web-wrap__progress {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 23cqw;
+	z-index: 6;
+	height: 0.8cqw;
+	background: $gold;
+	opacity: 0;
+	transform-origin: 0 50%;
+	animation: web-wrap-progress #{$loop}s linear infinite;
+}
+
+.m-web-wrap__page {
+	position: absolute;
+	inset: 23cqw 0 0;
+	display: flex;
+	flex-direction: column;
+	gap: 3cqw;
+	padding: 8cqw 7cqw;
+	background: #fff;
+	opacity: 0;
+
+	> * {
+		margin: 0;
+	}
+}
+
+$page-names: (login, product, checkout, done);
+
+@for $k from 1 through list.length($page-names) {
+	.m-web-wrap__page--#{list.nth($page-names, $k)} {
+		animation: web-wrap-page-#{$k} #{$loop}s ease-out infinite;
+	}
+}
+
+.m-web-wrap__page--splash {
+	inset: 0;
+	z-index: 7;
+	align-items: center;
+	justify-content: center;
+	background: $ink;
+	color: #fff;
+	opacity: 1;
+	animation: web-wrap-splash #{$loop}s linear infinite;
+}
+
+.m-web-wrap__brand {
+	font: 400 8cqw/1 $serif;
+	letter-spacing: 1.6cqw;
+}
+
+.m-web-wrap__since {
+	color: $gold;
+	font: 3cqw/1 $serif;
+	letter-spacing: 1cqw;
+}
+
+.m-web-wrap__spinner {
+	width: 6cqw;
+	height: 6cqw;
+	margin-top: 10cqw;
+	border: 0.6cqw solid rgb(255 255 255 / 0.2);
+	border-top-color: $gold;
+	border-radius: 50%;
+	animation: web-wrap-spin 0.9s linear infinite;
+}
+
+.m-web-wrap__site {
+	position: absolute;
+	inset: 0;
+}
+
+.m-web-wrap__header {
+	position: absolute;
+	inset: 11cqw 0 auto;
+	z-index: 5;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 12cqw;
+	padding: 0 6cqw;
+	border-bottom: 0.3cqw solid #eee;
+	background: #fff;
+}
+
+.m-web-wrap__menu {
+	width: 5cqw;
+	height: 3cqw;
+	border-block: 0.5cqw solid $ink;
+	background: linear-gradient($ink, $ink) center / 100% 0.5cqw no-repeat;
+}
+
+.m-web-wrap__wordmark {
+	font: 5cqw/1 $serif;
+	letter-spacing: 1cqw;
+}
+
+.m-web-wrap__bag {
+	position: relative;
+	width: 5cqw;
+	height: 5.4cqw;
+	border: 0.5cqw solid $ink;
+	border-radius: 0.6cqw 0.6cqw 1cqw 1cqw;
+
+	b {
+		position: absolute;
+		right: -2.4cqw;
+		top: -2.4cqw;
+		display: grid;
+		place-items: center;
+		width: 4cqw;
+		height: 4cqw;
+		border-radius: 50%;
+		background: $gold;
+		color: #fff;
+		font-size: 2.6cqw;
+		transform: scale(0);
+		animation: web-wrap-badge #{$loop}s ease-out infinite;
+	}
+}
+
+.m-web-wrap__heading {
+	font: 7cqw/1.2 $serif;
+}
+
+.m-web-wrap__lead {
+	color: #666;
+	font-size: 3.3cqw;
+	line-height: 1.5;
+}
+
+.m-web-wrap__input {
+	display: flex;
+	flex-direction: column;
+	gap: 1.4cqw;
+	margin-top: 2cqw;
+	padding-bottom: 2cqw;
+	border-bottom: 0.3cqw solid #cfcfcf;
+	font-size: 3.6cqw;
+
+	small {
+		color: #8a8a8a;
+		font-size: 2.8cqw;
+		letter-spacing: 0.3cqw;
+		text-transform: uppercase;
+	}
+}
+
+.m-web-wrap__typed {
+	min-height: 1.3em;
+	white-space: nowrap;
+	clip-path: inset(0 100% 0 0);
+}
+
+@for $k from 1 through list.length($type-times) {
+	.m-web-wrap__input:nth-of-type(#{$k + 2}) .m-web-wrap__typed {
+		animation: web-wrap-type-#{$k} #{$loop}s steps(16, end) infinite;
+	}
+}
+
+.m-web-wrap__button {
+	margin-top: 3cqw;
+	padding: 3.6cqw 0;
+	background: $ink;
+	color: #fff;
+	font-size: 3.2cqw;
+	letter-spacing: 0.6cqw;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.m-web-wrap__button--login {
+	animation: web-wrap-sign-in #{$loop}s ease-out infinite;
+}
+
+.m-web-wrap__button--add {
+	animation: web-wrap-add #{$loop}s ease-out infinite;
+}
+
+.m-web-wrap__button--order {
+	margin-top: auto;
+	animation: web-wrap-order #{$loop}s ease-out infinite;
+}
+
+.m-web-wrap__button--ghost {
+	border: 0.4cqw solid $ink;
+	background: transparent;
+	color: $ink;
+}
+
+.m-web-wrap__page--product {
+	align-items: center;
+	background: #f5f3ef;
+}
+
+.m-web-wrap__crumb {
+	align-self: flex-start;
+	color: #888;
+	font-size: 2.8cqw;
+	letter-spacing: 0.2cqw;
+}
+
+.m-web-wrap__watch {
+	width: 66cqw;
+	margin: 2cqw 0;
+	filter: drop-shadow(0 3cqw 4cqw rgb(0 0 0 / 0.25));
+	animation: web-wrap-reveal #{$loop}s ease-out infinite;
+}
+
+.m-web-wrap__seconds {
+	transform-origin: 100px 125px;
+	animation: web-wrap-tick 60s steps(60) infinite;
+}
+
+.m-web-wrap__name {
+	font: 5cqw/1.2 $serif;
+	text-align: center;
+}
+
+.m-web-wrap__price {
+	font-size: 3.8cqw;
+	letter-spacing: 0.3cqw;
+}
+
+.m-web-wrap__page--product .m-web-wrap__button {
+	align-self: stretch;
+}
+
+.m-web-wrap__note {
+	color: #888;
+	font-size: 2.8cqw;
+}
+
+.m-web-wrap__steps {
+	display: flex;
+	gap: 2cqw;
+
+	span {
+		flex: 1;
+		padding-top: 1.6cqw;
+		border-top: 0.6cqw solid #ddd;
+		color: #9a9a9a;
+		font-size: 2.8cqw;
+		letter-spacing: 0.2cqw;
+		text-transform: uppercase;
+
+		@for $k from 1 through list.length($step-times) {
+			&:nth-child(#{$k}) {
+				animation: web-wrap-step-#{$k} #{$loop}s ease-out infinite;
+			}
+		}
+	}
+}
+
+.m-web-wrap__line {
+	display: flex;
+	align-items: center;
+	gap: 3cqw;
+	padding: 3cqw 0;
+	border-bottom: 0.3cqw solid #eee;
+	font: 3.4cqw/1.3 $serif;
+
+	small {
+		display: block;
+		color: #888;
+		font: 2.8cqw/1.4 -apple-system, Arial, sans-serif;
+	}
+
+	b {
+		margin-left: auto;
+		font: 600 3.2cqw/1 -apple-system, Arial, sans-serif;
+	}
+}
+
+.m-web-wrap__thumb {
+	flex: none;
+	width: 12cqw;
+	height: 12cqw;
+	border-radius: 50%;
+	background: radial-gradient(circle, #2f6b55 0 45%, #b9bbbd 47% 60%, #f5f3ef 62%);
+}
+
+.m-web-wrap__block {
+	display: flex;
+	flex-direction: column;
+	gap: 1cqw;
+	padding: 3cqw;
+	background: #f6f6f6;
+	font-size: 3.2cqw;
+	line-height: 1.4;
+
+	small {
+		color: #888;
+		font-size: 2.6cqw;
+		letter-spacing: 0.3cqw;
+		text-transform: uppercase;
+	}
+}
+
+.m-web-wrap__block--card {
+	animation: web-wrap-card #{$loop}s ease-out infinite;
+}
+
+.m-web-wrap__total {
+	display: flex;
+	justify-content: space-between;
+	padding-top: 2cqw;
+	font-size: 3.6cqw;
+}
+
+.m-web-wrap__page--done {
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+
+	.m-web-wrap__button {
+		align-self: stretch;
+	}
+}
+
+.m-web-wrap__check {
+	width: 22cqw;
+	fill: none;
+	stroke: $gold;
+	stroke-width: 2.4;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-dasharray: 160;
+	animation: web-wrap-check #{$loop}s ease-out infinite;
+}
+
+// Xcode's debug console beside the phone.
+.m-web-wrap__console {
+	align-self: center;
+	width: calc(var(--h) * 0.62);
+	overflow: hidden;
+	border-radius: 1.4cqh;
+	background: rgb(28 28 30 / 0.92);
+	box-shadow: 0 2cqh 6cqh rgb(0 0 0 / 0.5);
+	font-family: $mono;
+}
+
+.m-web-wrap__console-bar {
+	display: flex;
+	align-items: center;
+	gap: 0.8cqh;
+	margin: 0;
+	padding: 1.2cqh 1.6cqh;
+	background: rgb(255 255 255 / 0.06);
+	color: rgb(255 255 255 / 0.6);
+	font-size: 1.4cqh;
+
+	i {
+		width: 1.2cqh;
+		height: 1.2cqh;
+		border-radius: 50%;
+		background: #ff5f57;
+
+		&:nth-child(2) {
+			background: #febc2e;
+		}
+
+		&:nth-child(3) {
+			margin-right: 1cqh;
+			background: #28c840;
+		}
+	}
+}
+
+.m-web-wrap__log {
+	display: flex;
+	flex-direction: column;
+	gap: 0.9cqh;
+	min-height: calc(var(--h) * 0.5);
+	margin: 0;
+	padding: 1.8cqh;
+	list-style: none;
+}
+
+.m-web-wrap__log-line {
+	color: #d4d4d4;
+	font-size: 1.5cqh;
+	line-height: 1.4;
+	opacity: 0;
+
+	@for $k from 1 through list.length($log-times) {
+		&:nth-child(#{$k}) {
+			animation: web-wrap-log-#{$k} #{$loop}s ease-out infinite;
+		}
+	}
+}
+
+.m-web-wrap__log-line--ok {
+	color: #7ee2a8;
+}
+
+.m-web-wrap__log-line--warn {
+	color: #ffd479;
+}
+
+// Portrait parents have text above and below the phone; drop the console.
+@container web-wrap (aspect-ratio < 1) {
+	.m-web-wrap__console {
+		display: none;
+	}
+}
+
+// Reduced motion: the product page and the full console.
+@media (prefers-reduced-motion: reduce) {
+	.m-web-wrap *,
+	.m-web-wrap *::after {
+		/* stylelint-disable-next-line declaration-no-important -- overrides every generated story animation */
+		animation: none !important;
+	}
+
+	.m-web-wrap__page--splash,
+	.m-web-wrap__progress {
+		display: none;
+	}
+
+	.m-web-wrap__page--product,
+	.m-web-wrap__log-line {
+		opacity: 1;
+	}
+}

@@ -1,0 +1,442 @@
+/* stylelint-disable plugin/stylelint-bem-namics -- generated keyframe offsets and nth-child loops */
+@use 'sass:list';
+@use 'sass:math';
+
+// The whole story runs on one timeline; times below are seconds into it.
+$loop: 16;
+$mint: #2fd3a4;
+$ink: #17201d;
+// When each card (top first) leaves, and which way: 1 is LIKE, -1 is NOPE.
+$swipes: ((2.2, 1), (4.8, -1), (7.4, 1), (10, 1));
+$bag-times: (2.6, 7.8, 10.4);
+$bill: (11.2, 15.2);
+$reset: 15.2;
+
+@function at($s) {
+	@return math.percentage(math.div($s, $loop));
+}
+
+// A card's place in the pile, 0 on top.
+@function depth($d) {
+	@return translateY($d * 2.4cqh) scale(1 - $d * 0.06);
+}
+
+// Hidden until $start, eased in over $in, kept until $end, then faded out.
+@mixin appear($name, $start, $end, $from: translateY(4cqh), $in: 0.35) {
+	@keyframes #{$name} {
+		0%,
+		#{at($start)} {
+			opacity: 0;
+			transform: $from;
+		}
+
+		#{at($start + $in)},
+		#{at($end)} {
+			opacity: 1;
+			transform: none;
+		}
+
+		#{at(math.min($end + 0.3, $loop))},
+		100% {
+			opacity: 0;
+			transform: $from;
+		}
+	}
+}
+
+@for $k from 1 through list.length($swipes) {
+	$t: list.nth(list.nth($swipes, $k), 1);
+	$dir: list.nth(list.nth($swipes, $k), 2);
+
+	// Rise one place each time a card above leaves, then get dragged off.
+	@keyframes swipe-deck-card-#{$k} {
+		0% {
+			opacity: 1;
+			transform: depth($k - 1);
+		}
+
+		@for $j from 1 to $k {
+			$tj: list.nth(list.nth($swipes, $j), 1);
+
+			#{at($tj)} {
+				opacity: 1;
+				transform: depth($k - $j);
+			}
+
+			#{at($tj + 0.5)} {
+				opacity: 1;
+				transform: depth($k - $j - 1);
+			}
+		}
+
+		#{at($t - 0.7)} {
+			opacity: 1;
+			transform: none;
+		}
+
+		#{at($t - 0.15)} {
+			opacity: 1;
+			transform: translateX($dir * 5cqh) rotate($dir * 5deg);
+		}
+
+		#{at($t + 0.5)},
+		#{at($reset + 0.3)} {
+			opacity: 0;
+			transform: translateX($dir * 60cqw) rotate($dir * 28deg);
+		}
+
+		#{at($reset + 0.35)} {
+			opacity: 0;
+			transform: depth($k - 1);
+		}
+
+		100% {
+			opacity: 1;
+			transform: depth($k - 1);
+		}
+	}
+
+	@keyframes swipe-deck-stamp-#{$k} {
+		0%,
+		#{at($t - 0.6)} {
+			opacity: 0;
+			transform: rotate($dir * -14deg) scale(1.4);
+		}
+
+		#{at($t - 0.25)},
+		100% {
+			opacity: 1;
+			transform: rotate($dir * -14deg);
+		}
+	}
+}
+
+// The buttons below the deck answer each swipe.
+@mixin presses($name, $dir) {
+	@keyframes #{$name} {
+		0%,
+		100% {
+			scale: 1;
+		}
+
+		@each $swipe in $swipes {
+			@if list.nth($swipe, 2) == $dir {
+				$t: list.nth($swipe, 1);
+
+				#{at($t - 0.45)},
+				#{at($t + 0.1)} {
+					scale: 1;
+				}
+
+				#{at($t - 0.25)} {
+					scale: 1.18;
+				}
+			}
+		}
+	}
+}
+
+@include presses(swipe-deck-like, 1);
+@include presses(swipe-deck-nope, -1);
+
+@for $k from 1 through list.length($bag-times) {
+	$next: $reset;
+
+	@if $k < list.length($bag-times) {
+		$next: list.nth($bag-times, $k + 1) - 0.2;
+	}
+
+	@include appear(swipe-deck-bag-#{$k}, list.nth($bag-times, $k), $next, scale(0.3), 0.25);
+}
+
+@include appear(swipe-deck-bill, list.nth($bill, 1), list.nth($bill, 2), translateY(8cqh), 0.45);
+
+// The root fills its positioned parent; the parent sets --deck-h/-x/-y.
+.m-swipe-deck {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	container: swipe-deck / size;
+	pointer-events: none;
+	background:
+		radial-gradient(ellipse 50% 60% at 64% 48%, rgb(47 211 164 / 0.28), transparent 70%),
+		linear-gradient(160deg, #10201b, #0a100e);
+	font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.m-swipe-deck__stage {
+	--h: var(--deck-h, 74cqh);
+
+	position: absolute;
+	left: var(--deck-x, 50%);
+	top: var(--deck-y, 50%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: calc(var(--h) * 0.05);
+	width: calc(var(--h) * 0.62);
+	height: var(--h);
+	transform: translate(-50%, -50%);
+}
+
+.m-swipe-deck__bag-count {
+	position: absolute;
+	right: calc(var(--h) * -0.22);
+	top: 0;
+	display: flex;
+	align-items: center;
+	gap: calc(var(--h) * 0.014);
+	margin: 0;
+	padding: calc(var(--h) * 0.012) calc(var(--h) * 0.022);
+	border-radius: 4cqh;
+	background: rgb(255 255 255 / 0.1);
+	color: #fff;
+	font-size: calc(var(--h) * 0.024);
+	font-weight: 600;
+
+	i {
+		width: calc(var(--h) * 0.024);
+		height: calc(var(--h) * 0.026);
+		border: 0.25cqh solid #fff;
+		border-radius: 0.3cqh 0.3cqh 0.6cqh 0.6cqh;
+	}
+
+	b {
+		display: grid;
+		place-items: center;
+		width: calc(var(--h) * 0.034);
+		height: calc(var(--h) * 0.034);
+	}
+
+	em {
+		display: grid;
+		grid-area: 1 / 1;
+		place-items: center;
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+		background: $mint;
+		color: $ink;
+		font-style: normal;
+		opacity: 0;
+
+		@for $k from 1 through list.length($bag-times) {
+			&:nth-child(#{$k}) {
+				animation: swipe-deck-bag-#{$k} #{$loop}s ease-out infinite;
+			}
+		}
+	}
+}
+
+.m-swipe-deck__deck {
+	position: relative;
+	width: 100%;
+	height: calc(var(--h) * 0.78);
+}
+
+.m-swipe-deck__card {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+	gap: calc(var(--h) * 0.014);
+	padding: calc(var(--h) * 0.02);
+	border-radius: calc(var(--h) * 0.04);
+	background: #fff;
+	box-shadow: 0 calc(var(--h) * 0.03) calc(var(--h) * 0.07) rgb(0 0 0 / 0.4);
+	transform-origin: 50% 110%;
+
+	> p {
+		margin: 0;
+	}
+}
+
+// Each card has its own place in the pile and stamps the way it is swiped.
+@for $k from 1 through list.length($swipes) {
+	$stamp: nope;
+
+	.m-swipe-deck__card--#{$k} {
+		animation: swipe-deck-card-#{$k} #{$loop}s cubic-bezier(0.3, 0.6, 0.3, 1) infinite;
+	}
+
+	@if list.nth(list.nth($swipes, $k), 2) == 1 {
+		$stamp: like;
+	}
+
+	.m-swipe-deck__card--#{$k} .m-swipe-deck__stamp--#{$stamp} {
+		animation: swipe-deck-stamp-#{$k} #{$loop}s ease-out infinite;
+	}
+}
+
+.m-swipe-deck__photo {
+	display: grid;
+	flex: 1;
+	place-items: center;
+	border-radius: calc(var(--h) * 0.03);
+	background:
+		radial-gradient(circle at 50% 60%, hsl(var(--hue) 60% 92%), hsl(var(--hue) 45% 78%));
+
+	svg {
+		width: 80%;
+		filter: drop-shadow(0 calc(var(--h) * 0.02) calc(var(--h) * 0.02) rgb(0 0 0 / 0.25));
+		fill: hsl(var(--hue) 35% 28%);
+	}
+}
+
+.m-swipe-deck__sole {
+	fill: #f6f3ee;
+}
+
+.m-swipe-deck__lace {
+	fill: none;
+	stroke: #f6f3ee;
+	stroke-width: 4;
+	stroke-linecap: round;
+}
+
+.m-swipe-deck__name {
+	display: flex;
+	justify-content: space-between;
+	color: $ink;
+	font-size: calc(var(--h) * 0.028);
+	font-weight: 700;
+
+	b {
+		color: #13a37b;
+	}
+}
+
+.m-swipe-deck__sizes {
+	display: flex;
+	gap: calc(var(--h) * 0.01);
+
+	span {
+		padding: calc(var(--h) * 0.006) calc(var(--h) * 0.014);
+		border: 0.2cqh solid #d9e2df;
+		border-radius: calc(var(--h) * 0.02);
+		color: #5d6b66;
+		font-size: calc(var(--h) * 0.019);
+
+		&:nth-child(2) {
+			border-color: $mint;
+			background: $mint;
+			color: $ink;
+		}
+	}
+}
+
+.m-swipe-deck__stamp {
+	position: absolute;
+	top: calc(var(--h) * 0.05);
+	padding: calc(var(--h) * 0.008) calc(var(--h) * 0.02);
+	border: 0.5cqh solid;
+	border-radius: calc(var(--h) * 0.012);
+	font-size: calc(var(--h) * 0.05);
+	font-style: normal;
+	font-weight: 800;
+	letter-spacing: 0.08em;
+	opacity: 0;
+}
+
+.m-swipe-deck__stamp--like {
+	left: calc(var(--h) * 0.04);
+	color: #13a37b;
+}
+
+.m-swipe-deck__stamp--nope {
+	right: calc(var(--h) * 0.04);
+	color: #e5484d;
+}
+
+.m-swipe-deck__actions {
+	display: flex;
+	gap: calc(var(--h) * 0.05);
+	margin: 0;
+
+	span {
+		display: grid;
+		place-items: center;
+		width: calc(var(--h) * 0.09);
+		height: calc(var(--h) * 0.09);
+		border-radius: 50%;
+		background: #fff;
+		font-size: calc(var(--h) * 0.04);
+		box-shadow: 0 calc(var(--h) * 0.015) calc(var(--h) * 0.04) rgb(0 0 0 / 0.35);
+	}
+}
+
+.m-swipe-deck__nope {
+	color: #e5484d;
+	animation: swipe-deck-nope #{$loop}s ease-out infinite;
+}
+
+.m-swipe-deck__like {
+	color: #13a37b;
+	animation: swipe-deck-like #{$loop}s ease-out infinite;
+}
+
+.m-swipe-deck__bill {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	z-index: 2;
+	display: flex;
+	flex-direction: column;
+	gap: calc(var(--h) * 0.016);
+	width: calc(var(--h) * 0.62);
+	margin: calc(var(--h) * -0.22) 0 0 calc(var(--h) * -0.31);
+	padding: calc(var(--h) * 0.03);
+	border-radius: calc(var(--h) * 0.04);
+	background: #fff;
+	color: $ink;
+	box-shadow: 0 calc(var(--h) * 0.03) calc(var(--h) * 0.08) rgb(0 0 0 / 0.45);
+	opacity: 0;
+	animation: swipe-deck-bill #{$loop}s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+
+	> * {
+		margin: 0;
+	}
+}
+
+.m-swipe-deck__bill-title {
+	font-size: calc(var(--h) * 0.032);
+	font-weight: 800;
+}
+
+.m-swipe-deck__line,
+.m-swipe-deck__total {
+	display: flex;
+	justify-content: space-between;
+	padding-bottom: calc(var(--h) * 0.012);
+	border-bottom: 0.15cqh solid #e8eeec;
+	font-size: calc(var(--h) * 0.022);
+}
+
+.m-swipe-deck__total {
+	border: 0;
+	font-size: calc(var(--h) * 0.026);
+	font-weight: 800;
+}
+
+.m-swipe-deck__checkout {
+	padding: calc(var(--h) * 0.018) 0;
+	border-radius: calc(var(--h) * 0.02);
+	background: $mint;
+	color: $ink;
+	font-size: calc(var(--h) * 0.024);
+	font-weight: 800;
+	text-align: center;
+}
+
+// Reduced motion: the top card with its LIKE stamp.
+@media (prefers-reduced-motion: reduce) {
+	.m-swipe-deck * {
+		/* stylelint-disable-next-line declaration-no-important -- overrides every generated story animation */
+		animation: none !important;
+	}
+
+	.m-swipe-deck__card--1 .m-swipe-deck__stamp--like {
+		opacity: 1;
+		transform: rotate(-14deg);
+	}
+}

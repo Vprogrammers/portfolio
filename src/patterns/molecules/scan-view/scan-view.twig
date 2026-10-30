@@ -1,0 +1,46 @@
+{# The KOCH scanner seen from inside the camera: shelves of labelled boxes, a viewfinder with a laser, corners that lock onto the barcode, a sheet to add the article to the list, then the next box and an order. Fills its positioned parent. #}
+{% set boxes = [[4, 22, 14, 18], [20, 26, 12, 14], [34, 20, 16, 20], [52, 24, 13, 16], [86, 21, 15, 19], [118, 25, 14, 15], [134, 20, 16, 20], [152, 23, 13, 17], [2, 52, 15, 18], [19, 55, 13, 15], [40, 50, 14, 20], [76, 53, 15, 17], [126, 51, 13, 19], [143, 55, 16, 15], [8, 80, 16, 16], [28, 82, 13, 14], [46, 79, 15, 17], [64, 81, 14, 15], [84, 78, 16, 18], [104, 82, 14, 14], [122, 79, 15, 17], [140, 81, 13, 15]] %}
+<div class="m-scan-view" aria-hidden="true">
+	{# The shelves the camera sees; it pans from the first target to the second. #}
+	<div class="m-scan-view__shelf">
+		{% for y in [40, 70, 98] %}<i class="m-scan-view__plank" style="top: {{ y }}cqh"></i>{% endfor %}
+		{% for box in boxes %}
+			<span class="m-scan-view__box" style="left: {{ box[0] }}cqw; top: {{ box[1] }}cqh; width: {{ box[2] }}cqw; height: {{ box[3] }}cqh"><i class="m-scan-view__label"></i></span>
+		{% endfor %}
+		{% for item in items %}
+			<span class="m-scan-view__box m-scan-view__box--target" style="--at: {{ loop.index0 * 36 }}cqw">
+				<span class="m-scan-view__tag"><img src="{{ logo }}" alt="" loading="lazy" decoding="async"><b>{{ item.number }}</b><i class="m-scan-view__barcode"></i><small>{{ item.ean }}</small></span>
+			</span>
+		{% endfor %}
+	</div>
+
+	{# Scanner chrome. #}
+	<div class="m-scan-view__finder"><i class="m-scan-view__laser"></i><i class="m-scan-view__lock"></i><i class="m-scan-view__flash"></i></div>
+	<p class="m-scan-view__hint">{{ hint }}</p>
+	<div class="m-scan-view__bar">
+		<p class="m-scan-view__toggle"><span>Auto Scan</span><span>Tap Scan</span></p>
+		<p class="m-scan-view__tabs">
+			{% for tab in tabs %}<span>{{ tab }}{% if loop.index == 2 %}<b class="m-scan-view__badge"><em>1</em><em>2</em></b>{% endif %}</span>{% endfor %}
+		</p>
+	</div>
+
+	{# One sheet per scanned article, then the list ready to order. #}
+	{% for item in items %}
+		<div class="m-scan-view__sheet m-scan-view__sheet--{{ loop.index }}">
+			<p class="m-scan-view__kicker">Gescannter Artikel</p>
+			<p class="m-scan-view__name">{{ item.name }}</p>
+			<p class="m-scan-view__meta">{{ item.number }} · EAN {{ item.ean }}</p>
+			<div class="m-scan-view__row">
+				<span class="m-scan-view__field"><small>Menge</small><span class="m-scan-view__stepper"><i>−</i><b>{% for n in item.amounts %}<em>{{ n }}</em>{% endfor %}</b><i>+</i></span></span>
+				<span class="m-scan-view__field"><small>Kommission</small><span class="m-scan-view__chip">{{ commission }}</span></span>
+			</div>
+			<span class="m-scan-view__button">Zur Liste hinzufügen</span>
+		</div>
+	{% endfor %}
+	<div class="m-scan-view__sheet m-scan-view__sheet--list">
+		<p class="m-scan-view__kicker">Liste · {{ commission }}</p>
+		{% for item in items %}<p class="m-scan-view__line"><span>{{ item.name }}<small>{{ item.number }}</small></span><b>{{ item.amounts|last }} Stk.</b></p>{% endfor %}
+		<span class="m-scan-view__button">Bestellen</span>
+		<p class="m-scan-view__sent">Bestellung gesendet ✓</p>
+	</div>
+</div>

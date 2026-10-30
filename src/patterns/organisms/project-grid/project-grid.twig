@@ -4,7 +4,7 @@
 	<ul class="o-project-grid__list">
 		{% for project in projects %}
 			{% if project.grid is not same as(false) %}
-				<li class="o-project-grid__item" data-tone="{{ project.tone|default('teal') }}" {% if not project.frameSets and not project.frames and not project.radio and not project.live and not project.laptop and not project.phone and not project.image %}data-media="none"{% endif %}>
+				<li class="o-project-grid__item" data-tone="{{ project.tone|default('teal') }}" {% if not project.frameSets and not project.frames and not project.radio and not project.crew and not project.web and not project.leads and not project.salon and not project.scan and not project.review and not project.deck and not project.fantasy and not project.pageant and not project.kids and not project.tokens and not project.sdui and not project.mvi and not project.kit and not project.club and not project.live and not project.laptop and not project.phone and not project.image %}data-media="none"{% endif %}>
 					{# Tiles without a link are focusable themselves, so keyboard users can reveal the caption. #}
 					<article class="o-project-grid__tile" {% if not project.url %}tabindex="0" aria-labelledby="project-{{ loop.index }}-title"{% endif %}>
 						<div class="o-project-grid__media">
@@ -13,6 +13,36 @@
 								{% set allFrames = [] %}
 								{% for set in project.frameSets|default([project.frames]) %}{% set allFrames = allFrames|merge(set) %}{% endfor %}
 								{% pattern name='device-scene' data=project|merge({ frameSets: [allFrames], priority: false }) %}
+							{% elseif project.web %}
+								{% pattern name='web-wrap' data=project.web %}
+							{% elseif project.leads %}
+								{% pattern name='lead-flow' data=project.leads %}
+							{% elseif project.salon %}
+								{% pattern name='salon-scene' data=project.salon %}
+							{% elseif project.scan %}
+								{% pattern name='scan-view' data=project.scan %}
+							{% elseif project.review %}
+								{% pattern name='code-review' data=project.review %}
+							{% elseif project.deck %}
+								{% pattern name='swipe-deck' data=project.deck %}
+							{% elseif project.fantasy %}
+								{% pattern name='fantasy-pitch' data=project.fantasy %}
+							{% elseif project.pageant %}
+								{% pattern name='pageant-stage' data=project.pageant %}
+							{% elseif project.kids %}
+								{% pattern name='kids-tv' data=project.kids %}
+							{% elseif project.tokens %}
+								{% pattern name='token-flow' data=project.tokens %}
+							{% elseif project.sdui %}
+								{% pattern name='sdui-live' data=project.sdui %}
+							{% elseif project.mvi %}
+								{% pattern name='mvi-loop' data=project.mvi %}
+							{% elseif project.kit %}
+								{% pattern name='kmp-stack' data=project.kit %}
+							{% elseif project.club %}
+								{% pattern name='club-floor' data=project.club %}
+							{% elseif project.crew %}
+								{% pattern name='crew-call' data=project.crew %}
 							{% elseif project.radio %}
 								{% pattern name='on-air' data=project.radio %}
 							{% elseif project.live %}
@@ -34,6 +64,7 @@
 								{% endif %}
 							</h3>
 							<p class="o-project-grid__category">{{ project.category }}</p>
+							{% if project.employer %}{% pattern name='employer' data=employers[project.employer] %}{% endif %}
 							<p class="o-project-grid__summary">{{ project.summary }}</p>
 						</div>
 					</article>

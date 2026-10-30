@@ -107,6 +107,10 @@
 		background: radial-gradient(circle at 70% 40%, #5a1717, #0d0b0b 72%);
 	}
 
+	&[data-tone='gold'] {
+		background: radial-gradient(circle at 68% 40%, #5c4b2c, #0d0c0a 72%);
+	}
+
 	&[data-tone='orange'] {
 		background: radial-gradient(circle at 75% 30%, #8a5038, #111822 70%);
 	}
@@ -134,12 +138,41 @@
 
 // The live room has its own ambient light.
 .o-project-player__slide[data-scene='radio']::before,
+.o-project-player__slide[data-scene='crew']::before,
+.o-project-player__slide[data-scene='web']::before,
+.o-project-player__slide[data-scene='leads']::before,
+.o-project-player__slide[data-scene='salon']::before,
+.o-project-player__slide[data-scene='scan']::before,
+.o-project-player__slide[data-scene='review']::before,
+.o-project-player__slide[data-scene='deck']::before,
+.o-project-player__slide[data-scene='fantasy']::before,
+.o-project-player__slide[data-scene='pageant']::before,
+.o-project-player__slide[data-scene='kids']::before,
+.o-project-player__slide[data-scene='tokens']::before,
+.o-project-player__slide[data-scene='club']::before,
+.o-project-player__slide[data-scene='kit']::before,
+.o-project-player__slide[data-scene='mvi']::before,
+.o-project-player__slide[data-scene='sdui']::before,
 .o-project-player__slide[data-scene='live']::before {
 	display: none;
 }
 
 // The MuMe phone stands in the lower half, so keep the shade in the caption corner.
 .o-project-player__slide[data-scene='radio']::after,
+.o-project-player__slide[data-scene='crew']::after,
+.o-project-player__slide[data-scene='web']::after,
+.o-project-player__slide[data-scene='leads']::after,
+.o-project-player__slide[data-scene='salon']::after,
+.o-project-player__slide[data-scene='scan']::after,
+.o-project-player__slide[data-scene='review']::after,
+.o-project-player__slide[data-scene='deck']::after,
+.o-project-player__slide[data-scene='fantasy']::after,
+.o-project-player__slide[data-scene='pageant']::after,
+.o-project-player__slide[data-scene='tokens']::after,
+.o-project-player__slide[data-scene='club']::after,
+.o-project-player__slide[data-scene='kit']::after,
+.o-project-player__slide[data-scene='mvi']::after,
+.o-project-player__slide[data-scene='sdui']::after,
 .o-project-player__slide[data-scene='live']::after {
 	background:
 		radial-gradient(ellipse 48% 70% at 0% 100%, rgb(7 13 23 / 0.85) 0%, rgb(7 13 23 / 0.45) 50%, transparent 100%),
@@ -232,6 +265,131 @@
 	z-index: -2;
 }
 
+// Bucherer web wrap: the phone and its console right of the caption.
+.o-project-player__slide .m-web-wrap {
+	--phone-h: 66cqh;
+	--phone-x: 70%;
+	--phone-y: 58%;
+
+	z-index: -2;
+}
+
+// BezBrige! lead flow: the phone and the awareness ladder right of the caption.
+.o-project-player__slide .m-lead-flow {
+	--phone-h: 66cqh;
+	--phone-x: 68%;
+	--phone-y: 58%;
+
+	z-index: -2;
+}
+
+// Sliike salon scene: the phone right of the caption, in front of the illustrated client.
+.o-project-player__slide .m-salon-scene {
+	--phone-h: 66cqh;
+	--phone-x: 53%;
+	--phone-y: 58%;
+
+	z-index: -2;
+}
+
+// KOCH scan view and the PMI code review fill the slide behind the caption.
+.o-project-player__slide .m-scan-view,
+.o-project-player__slide .m-code-review {
+	z-index: -2;
+}
+
+// Swipe XYZ deck: the cards right of the caption.
+.o-project-player__slide .m-swipe-deck {
+	--deck-h: 64cqh;
+	--deck-x: 66%;
+	--deck-y: 58%;
+
+	z-index: -2;
+}
+
+// Goaleadors pitch and panel right of the caption.
+.o-project-player__slide .m-fantasy-pitch {
+	--stage-w: 54cqw;
+	--stage-h: 66cqh;
+	--stage-x: 70%;
+	--stage-y: 58%;
+
+	z-index: -2;
+}
+
+// Bikini pageant stage right of the caption.
+.o-project-player__slide .m-pageant-stage {
+	--stage-h: 64cqh;
+	--stage-x: 68%;
+	--stage-y: 60%;
+
+	z-index: -2;
+}
+
+// ÇocukFlix tablet right of the caption. The sky is bright, so the caption keeps the shade below.
+.o-project-player__slide .m-kids-tv {
+	--tablet-h: 52cqh;
+	--tablet-x: 68%;
+	--tablet-y: 56%;
+
+	z-index: -2;
+}
+
+// Design token pipeline right of the caption.
+.o-project-player__slide .m-token-flow {
+	--flow-w: 56cqw;
+	--flow-h: 56cqh;
+	--flow-x: 69%;
+	--flow-y: 56%;
+
+	z-index: -2;
+}
+
+// Anubis editor and phone right of the caption.
+.o-project-player__slide .m-sdui-live {
+	--live-h: 58cqh;
+	--live-x: 71%;
+	--live-y: 58%;
+
+	z-index: -2;
+}
+
+// YAMVIP loop and phone right of the caption.
+.o-project-player__slide .m-mvi-loop {
+	--loop-h: 60cqh;
+	--loop-x: 67%;
+	--loop-y: 58%;
+
+	z-index: -2;
+}
+
+// KMP template stack right of the caption.
+.o-project-player__slide .m-kmp-stack {
+	--kit-w: 50cqw;
+	--kit-x: 69%;
+	--kit-y: 58%;
+
+	z-index: -2;
+}
+
+// Masse club floor right of the caption.
+.o-project-player__slide .m-club-floor {
+	--club-w: 50cqw;
+	--club-x: 70%;
+	--club-y: 58%;
+
+	z-index: -2;
+}
+
+// PhotoStory crew call: the two phones right of the caption, with room for the chip beside them.
+.o-project-player__slide .m-crew-call {
+	--phone-h: 62cqh;
+	--phone-x: 68%;
+	--phone-y: 57%;
+
+	z-index: -2;
+}
+
 // MuMe live room: phone to the right of the caption.
 .o-project-player__slide .m-live-room {
 	--phone-h: 80cqh;
@@ -240,14 +398,114 @@
 	z-index: -2;
 }
 
-// The live room restarts its story with the slide and freezes when paused.
+// Stories freeze while their slide is away or paused; the player script
+// resumes them where they stopped when the slide comes back. Pseudo-elements
+// are listed too, since they do not inherit animation-play-state.
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-on-air *,
-.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-live-room * {
-	animation-name: none;
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-on-air *::before,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-on-air *::after,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-crew-call *,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-crew-call *::before,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-crew-call *::after,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-web-wrap *,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-web-wrap *::before,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-web-wrap *::after,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-lead-flow *,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-lead-flow *::before,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-lead-flow *::after,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-salon-scene *,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-salon-scene *::before,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-salon-scene *::after,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-scan-view *,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-scan-view *::before,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-scan-view *::after,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-code-review *,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-code-review *::before,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-code-review *::after,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-swipe-deck *,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-swipe-deck *::before,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-swipe-deck *::after,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-fantasy-pitch *,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-fantasy-pitch *::before,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-fantasy-pitch *::after,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-pageant-stage *,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-pageant-stage *::before,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-pageant-stage *::after,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-kids-tv *,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-kids-tv *::before,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-kids-tv *::after,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-token-flow *,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-token-flow *::before,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-token-flow *::after,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-club-floor *,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-club-floor *::before,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-club-floor *::after,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-kmp-stack *,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-kmp-stack *::before,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-kmp-stack *::after,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-mvi-loop *,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-mvi-loop *::before,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-mvi-loop *::after,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-sdui-live *,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-sdui-live *::before,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-sdui-live *::after,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-live-room *,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-live-room *::before,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-live-room *::after {
+	animation-play-state: paused;
 }
 
 .o-project-player[data-paused='true'] .m-on-air *,
-.o-project-player[data-paused='true'] .m-live-room * {
+.o-project-player[data-paused='true'] .m-on-air *::before,
+.o-project-player[data-paused='true'] .m-on-air *::after,
+.o-project-player[data-paused='true'] .m-crew-call *,
+.o-project-player[data-paused='true'] .m-crew-call *::before,
+.o-project-player[data-paused='true'] .m-crew-call *::after,
+.o-project-player[data-paused='true'] .m-web-wrap *,
+.o-project-player[data-paused='true'] .m-web-wrap *::before,
+.o-project-player[data-paused='true'] .m-web-wrap *::after,
+.o-project-player[data-paused='true'] .m-lead-flow *,
+.o-project-player[data-paused='true'] .m-lead-flow *::before,
+.o-project-player[data-paused='true'] .m-lead-flow *::after,
+.o-project-player[data-paused='true'] .m-salon-scene *,
+.o-project-player[data-paused='true'] .m-salon-scene *::before,
+.o-project-player[data-paused='true'] .m-salon-scene *::after,
+.o-project-player[data-paused='true'] .m-scan-view *,
+.o-project-player[data-paused='true'] .m-scan-view *::before,
+.o-project-player[data-paused='true'] .m-scan-view *::after,
+.o-project-player[data-paused='true'] .m-code-review *,
+.o-project-player[data-paused='true'] .m-code-review *::before,
+.o-project-player[data-paused='true'] .m-code-review *::after,
+.o-project-player[data-paused='true'] .m-swipe-deck *,
+.o-project-player[data-paused='true'] .m-swipe-deck *::before,
+.o-project-player[data-paused='true'] .m-swipe-deck *::after,
+.o-project-player[data-paused='true'] .m-fantasy-pitch *,
+.o-project-player[data-paused='true'] .m-fantasy-pitch *::before,
+.o-project-player[data-paused='true'] .m-fantasy-pitch *::after,
+.o-project-player[data-paused='true'] .m-pageant-stage *,
+.o-project-player[data-paused='true'] .m-pageant-stage *::before,
+.o-project-player[data-paused='true'] .m-pageant-stage *::after,
+.o-project-player[data-paused='true'] .m-kids-tv *,
+.o-project-player[data-paused='true'] .m-kids-tv *::before,
+.o-project-player[data-paused='true'] .m-kids-tv *::after,
+.o-project-player[data-paused='true'] .m-token-flow *,
+.o-project-player[data-paused='true'] .m-token-flow *::before,
+.o-project-player[data-paused='true'] .m-token-flow *::after,
+.o-project-player[data-paused='true'] .m-club-floor *,
+.o-project-player[data-paused='true'] .m-club-floor *::before,
+.o-project-player[data-paused='true'] .m-club-floor *::after,
+.o-project-player[data-paused='true'] .m-kmp-stack *,
+.o-project-player[data-paused='true'] .m-kmp-stack *::before,
+.o-project-player[data-paused='true'] .m-kmp-stack *::after,
+.o-project-player[data-paused='true'] .m-mvi-loop *,
+.o-project-player[data-paused='true'] .m-mvi-loop *::before,
+.o-project-player[data-paused='true'] .m-mvi-loop *::after,
+.o-project-player[data-paused='true'] .m-sdui-live *,
+.o-project-player[data-paused='true'] .m-sdui-live *::before,
+.o-project-player[data-paused='true'] .m-sdui-live *::after,
+.o-project-player[data-paused='true'] .m-live-room *,
+.o-project-player[data-paused='true'] .m-live-room *::before,
+.o-project-player[data-paused='true'] .m-live-room *::after {
 	animation-play-state: paused;
 }
 
@@ -262,12 +520,12 @@
 	z-index: -2;
 }
 
-// Feeds restart from the top each time their slide comes in, and pausing freezes them.
+// Feeds freeze while their slide is away or paused, and resume where they stopped.
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) {
 	.m-phone-scroll__feed,
 	.m-laptop-scroll__page,
 	.m-laptop-scroll__hover {
-		animation: none;
+		animation-play-state: paused;
 	}
 }
 
@@ -317,6 +575,10 @@
 	text-shadow: 0 1px 24px rgb(7 13 23 / 0.45);
 }
 
+.o-project-player__content .a-employer {
+	margin-bottom: 1rem;
+}
+
 .o-project-player__eyebrow {
 	margin: 0;
 	font-size: clamp(0.65rem, 0.8vw, 0.8rem);
@@ -331,7 +593,6 @@
 	font-size: clamp(1.35rem, 2.4vw, 2.6rem);
 	font-weight: 500;
 	line-height: 1.1;
-	text-transform: uppercase;
 }
 
 .o-project-player__description {
@@ -480,6 +741,85 @@
 
 	.o-project-player__slide .m-on-air {
 		--phone-h: 48cqh;
+		--phone-x: 50%;
+		--phone-y: 47%;
+	}
+
+	.o-project-player__slide .m-web-wrap {
+		--phone-h: 40cqh;
+		--phone-x: 50%;
+		--phone-y: 44%;
+	}
+
+	.o-project-player__slide .m-lead-flow {
+		--phone-h: 40cqh;
+		--phone-x: 50%;
+		--phone-y: 44%;
+	}
+
+	.o-project-player__slide .m-salon-scene {
+		--phone-h: 40cqh;
+		--phone-x: 50%;
+		--phone-y: 44%;
+	}
+
+	.o-project-player__slide .m-swipe-deck {
+		--deck-h: 42cqh;
+		--deck-x: 50%;
+		--deck-y: 44%;
+	}
+
+	.o-project-player__slide .m-fantasy-pitch {
+		--stage-w: 92cqw;
+		--stage-h: 40cqh;
+		--stage-x: 50%;
+		--stage-y: 44%;
+	}
+
+	.o-project-player__slide .m-pageant-stage {
+		--stage-h: 44cqh;
+		--stage-x: 50%;
+		--stage-y: 42%;
+	}
+
+	.o-project-player__slide .m-kids-tv {
+		--tablet-h: 26cqh;
+		--tablet-x: 50%;
+		--tablet-y: 40%;
+	}
+
+	.o-project-player__slide .m-token-flow {
+		--flow-w: 92cqw;
+		--flow-h: 36cqh;
+		--flow-x: 50%;
+		--flow-y: 40%;
+	}
+
+	.o-project-player__slide .m-sdui-live {
+		--live-h: 40cqh;
+		--live-x: 50%;
+		--live-y: 44%;
+	}
+
+	.o-project-player__slide .m-mvi-loop {
+		--loop-h: 40cqh;
+		--loop-x: 50%;
+		--loop-y: 44%;
+	}
+
+	.o-project-player__slide .m-kmp-stack {
+		--kit-w: 92cqw;
+		--kit-x: 50%;
+		--kit-y: 40%;
+	}
+
+	.o-project-player__slide .m-club-floor {
+		--club-x: 50%;
+		--club-y: 40%;
+	}
+
+	.o-project-player__slide .m-crew-call {
+		--phone-h: 40cqh;
 		--phone-x: 50%;
 		--phone-y: 47%;
 	}

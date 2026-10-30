@@ -1,0 +1,532 @@
+/* stylelint-disable plugin/stylelint-bem-namics -- generated keyframe offsets and nth-child loops */
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:math';
+
+// The whole story runs on one timeline; times below are seconds into it.
+$loop: 16;
+$navy: #1d3461;
+$gold: #c8a24a;
+$players: 11;
+$drop-start: 0.6;
+$drop-step: 0.38;
+$budget-times: (0, 1.8, 3.4, 4.9);
+$budget-widths: (100%, 71%, 38%, 4%);
+$captain: 5.4;
+$points-start: 6.2;
+$points-step: 0.42;
+$total-times: (0, 7.4, 9, 10.6);
+$pyramid: (11.2, 15.4);
+// The team chip climbs from the base to a 4th, then a 3rd league.
+$climb: ((left: 50%, top: 86%), (left: 43.75%, top: 68%), (left: 37.5%, top: 50%));
+$climb-times: (11.6, 12.6, 13.8);
+
+@function at($s) {
+	@return math.percentage(math.div($s, $loop));
+}
+
+// Hidden until $start, eased in over $in, kept until $end, then faded out.
+@mixin appear($name, $start, $end, $from: translateY(2cqh), $in: 0.3) {
+	@keyframes #{$name} {
+		0%,
+		#{at($start)} {
+			opacity: 0;
+			transform: $from;
+		}
+
+		#{at($start + $in)},
+		#{at($end)} {
+			opacity: 1;
+			transform: none;
+		}
+
+		#{at(math.min($end + 0.3, $loop))},
+		100% {
+			opacity: 0;
+			transform: $from;
+		}
+	}
+}
+
+// Each player drops onto the pitch in turn and stays for the round.
+@for $k from 1 through $players {
+	$t: $drop-start + ($k - 1) * $drop-step;
+	$p: $points-start + ($k - 1) * $points-step;
+
+	@keyframes fantasy-pitch-drop-#{$k} {
+		0%,
+		#{at($t)} {
+			opacity: 0;
+			transform: translateY(-14cqh) scale(1.3);
+		}
+
+		#{at($t + 0.35)} {
+			opacity: 1;
+			transform: translateY(0.6cqh) scale(0.96);
+		}
+
+		#{at($t + 0.5)},
+		#{at(list.nth($pyramid, 2))} {
+			opacity: 1;
+			transform: none;
+		}
+
+		#{at(list.nth($pyramid, 2) + 0.4)},
+		100% {
+			opacity: 0;
+			transform: none;
+		}
+	}
+
+	@keyframes fantasy-pitch-points-#{$k} {
+		0%,
+		#{at($p)} {
+			opacity: 0;
+			transform: translate(-50%, 0) scale(0.6);
+		}
+
+		#{at($p + 0.2)} {
+			opacity: 1;
+			transform: translate(-50%, -2.4cqh) scale(1.15);
+		}
+
+		#{at($p + 1.1)} {
+			opacity: 1;
+			transform: translate(-50%, -3.4cqh) scale(1);
+		}
+
+		#{at($p + 1.5)},
+		100% {
+			opacity: 0;
+			transform: translate(-50%, -4.4cqh) scale(1);
+		}
+	}
+}
+
+@for $k from 1 through list.length($budget-times) {
+	$next: list.nth($pyramid, 2);
+
+	@if $k < list.length($budget-times) {
+		$next: list.nth($budget-times, $k + 1) - 0.15;
+	}
+
+	@include appear(fantasy-pitch-budget-#{$k}, list.nth($budget-times, $k), $next, translateY(1.6cqh), 0.15);
+}
+
+@keyframes fantasy-pitch-bar {
+	@for $k from 1 through list.length($budget-times) {
+		#{at(list.nth($budget-times, $k))},
+		#{at(list.nth($budget-times, $k) + 0.01)} {
+			width: list.nth($budget-widths, $k);
+		}
+	}
+
+	100% {
+		width: list.nth($budget-widths, list.length($budget-widths));
+	}
+}
+
+@for $k from 1 through list.length($total-times) {
+	$next: list.nth($pyramid, 2);
+
+	@if $k < list.length($total-times) {
+		$next: list.nth($total-times, $k + 1) - 0.15;
+	}
+
+	@include appear(fantasy-pitch-total-#{$k}, list.nth($total-times, $k), $next, translateY(1.6cqh), 0.2);
+}
+
+@include appear(fantasy-pitch-captain, $captain, list.nth($pyramid, 2), scale(0.2), 0.3);
+
+@keyframes fantasy-pitch-dim {
+	0%,
+	#{at(list.nth($pyramid, 1))},
+	100% {
+		opacity: 1;
+	}
+
+	#{at(list.nth($pyramid, 1) + 0.4)},
+	#{at(list.nth($pyramid, 2))} {
+		opacity: 0.18;
+	}
+}
+
+@include appear(fantasy-pitch-pyramid, list.nth($pyramid, 1), list.nth($pyramid, 2), scale(0.94), 0.45);
+
+@keyframes fantasy-pitch-climb {
+	0%,
+	#{at(list.nth($climb-times, 1))} {
+		left: map.get(list.nth($climb, 1), left);
+		top: map.get(list.nth($climb, 1), top);
+	}
+
+	@for $k from 2 through list.length($climb) {
+		#{at(list.nth($climb-times, $k) - 0.4)} {
+			left: map.get(list.nth($climb, $k - 1), left);
+			top: map.get(list.nth($climb, $k - 1), top);
+		}
+
+		#{at(list.nth($climb-times, $k))} {
+			left: map.get(list.nth($climb, $k), left);
+			top: map.get(list.nth($climb, $k), top);
+		}
+	}
+
+	100% {
+		left: map.get(list.nth($climb, list.length($climb)), left);
+		top: map.get(list.nth($climb, list.length($climb)), top);
+	}
+}
+
+// The root fills its positioned parent; the parent sets --stage-w/-h/-x/-y.
+.m-fantasy-pitch {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	container: fantasy-pitch / size;
+	pointer-events: none;
+	background:
+		radial-gradient(ellipse 55% 60% at 64% 50%, rgb(200 162 74 / 0.22), transparent 70%),
+		repeating-linear-gradient(135deg, rgb(255 255 255 / 0.025) 0 2cqh, transparent 2cqh 4cqh),
+		linear-gradient(160deg, #13254a, #0a1428);
+	font-family: Oswald, 'Arial Narrow', Arial, sans-serif;
+}
+
+.m-fantasy-pitch__stage {
+	--w: var(--stage-w, 62cqw);
+	--h: var(--stage-h, 70cqh);
+
+	position: absolute;
+	left: var(--stage-x, 50%);
+	top: var(--stage-y, 50%);
+	width: var(--w);
+	height: var(--h);
+	perspective: calc(var(--h) * 2.2);
+	transform: translate(-50%, -50%);
+}
+
+// Tilted back like a broadcast camera; the players stand up out of it.
+// Nothing here may fade or filter, or the players would flatten into the grass.
+.m-fantasy-pitch__pitch {
+	position: absolute;
+	left: 2%;
+	bottom: 2%;
+	width: 58%;
+	height: 92%;
+	border-radius: 1cqh;
+	background: repeating-linear-gradient(180deg, #2f8a4a 0 9%, #2a7d43 9% 18%);
+	box-shadow: 0 3cqh 6cqh rgb(0 0 0 / 0.5);
+	transform: rotateX(48deg);
+	transform-origin: 50% 100%;
+	transform-style: preserve-3d;
+}
+
+// Touchlines, halfway line, centre circle and both boxes.
+.m-fantasy-pitch__lines {
+	position: absolute;
+	inset: 4%;
+	border: 0.35cqh solid rgb(255 255 255 / 0.75);
+	background:
+		linear-gradient(rgb(255 255 255 / 0.75), rgb(255 255 255 / 0.75)) 50% 50% / 100% 0.35cqh no-repeat,
+		radial-gradient(circle at 50% 50%, transparent 11%, rgb(255 255 255 / 0.75) 11.2% 11.8%, transparent 12%);
+
+	&::before,
+	&::after {
+		content: '';
+		position: absolute;
+		left: 25%;
+		width: 50%;
+		height: 15%;
+		border: 0.35cqh solid rgb(255 255 255 / 0.75);
+	}
+
+	&::before {
+		top: -0.35cqh;
+	}
+
+	&::after {
+		bottom: -0.35cqh;
+	}
+}
+
+.m-fantasy-pitch__player {
+	position: absolute;
+	width: 0;
+	height: 0;
+	transform-style: preserve-3d;
+}
+
+// Counter-rotated so each token stands upright on the tilted pitch.
+.m-fantasy-pitch__token {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.4cqh;
+	transform: translateX(-50%) rotateX(-48deg);
+	transform-origin: 50% 100%;
+
+	small {
+		padding: 0.2cqh 0.8cqh;
+		border-radius: 0.6cqh;
+		background: rgb(10 20 40 / 0.85);
+		color: #fff;
+		font-size: 1.5cqh;
+		letter-spacing: 0.04em;
+		white-space: nowrap;
+	}
+}
+
+@for $k from 1 through $players {
+	.m-fantasy-pitch__player:nth-of-type(#{$k}) {
+		.m-fantasy-pitch__token {
+			opacity: 0;
+			animation: fantasy-pitch-drop-#{$k} #{$loop}s cubic-bezier(0.3, 0.7, 0.4, 1) infinite;
+		}
+
+		.m-fantasy-pitch__points {
+			animation: fantasy-pitch-points-#{$k} #{$loop}s ease-out infinite;
+		}
+	}
+}
+
+// A shirt cut from a square, in the app's navy and gold.
+.m-fantasy-pitch__kit {
+	display: grid;
+	place-items: center;
+	width: 5.4cqh;
+	height: 5.4cqh;
+	padding-top: 0.6cqh;
+	background: linear-gradient($navy, $navy) 50% 0 / 0.6cqh 100% no-repeat, $gold;
+	color: #fff;
+	font-size: 2cqh;
+	font-style: normal;
+	font-weight: 700;
+	text-shadow: 0 0.2cqh 0.4cqh rgb(0 0 0 / 0.5);
+	clip-path: polygon(30% 0, 70% 0, 100% 18%, 88% 40%, 80% 34%, 80% 100%, 20% 100%, 20% 34%, 12% 40%, 0 18%);
+	filter: drop-shadow(0 0.4cqh 0.4cqh rgb(0 0 0 / 0.35));
+}
+
+.m-fantasy-pitch__kit--keeper {
+	background: #3aa0c8;
+}
+
+.m-fantasy-pitch__captain {
+	position: absolute;
+	top: 0.8cqh;
+	right: -1.6cqh;
+	display: grid;
+	place-items: center;
+	width: 2.2cqh;
+	height: 2.2cqh;
+	border-radius: 50%;
+	background: #fff;
+	color: $navy;
+	font-size: 1.4cqh;
+	font-style: normal;
+	font-weight: 700;
+	opacity: 0;
+	animation: fantasy-pitch-captain #{$loop}s cubic-bezier(0.3, 1.6, 0.5, 1) infinite;
+}
+
+.m-fantasy-pitch__points {
+	position: absolute;
+	left: 50%;
+	top: -2cqh;
+	padding: 0.3cqh 0.9cqh;
+	border-radius: 1cqh;
+	background: $gold;
+	color: $navy;
+	font-size: 1.8cqh;
+	opacity: 0;
+}
+
+.m-fantasy-pitch__panel {
+	position: absolute;
+	right: 0;
+	top: 6%;
+	display: flex;
+	flex-direction: column;
+	gap: 1.2cqh;
+	width: 34%;
+	padding: 2.4cqh;
+	border-radius: 1.6cqh;
+	background: rgb(10 20 40 / 0.78);
+	color: #fff;
+	box-shadow: 0 2cqh 5cqh rgb(0 0 0 / 0.4);
+	animation: fantasy-pitch-dim #{$loop}s ease-in-out infinite;
+
+	> * {
+		margin: 0;
+	}
+}
+
+.m-fantasy-pitch__logo {
+	width: 9cqh;
+	align-self: center;
+}
+
+.m-fantasy-pitch__label {
+	color: $gold;
+	font-size: 1.8cqh;
+	letter-spacing: 0.12em;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.m-fantasy-pitch__budget,
+.m-fantasy-pitch__gameweek {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	font-size: 1.6cqh;
+
+	span {
+		color: rgb(255 255 255 / 0.7);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	b {
+		display: grid;
+		overflow: hidden;
+		font-size: 2.6cqh;
+	}
+
+	em {
+		grid-area: 1 / 1;
+		justify-self: end;
+		font-style: normal;
+		opacity: 0;
+	}
+}
+
+@for $k from 1 through list.length($budget-times) {
+	.m-fantasy-pitch__budget em:nth-child(#{$k}) {
+		animation: fantasy-pitch-budget-#{$k} #{$loop}s ease-out infinite;
+	}
+}
+
+@for $k from 1 through list.length($total-times) {
+	.m-fantasy-pitch__gameweek em:nth-child(#{$k}) {
+		animation: fantasy-pitch-total-#{$k} #{$loop}s ease-out infinite;
+	}
+}
+
+.m-fantasy-pitch__bar {
+	height: 0.8cqh;
+	border-radius: 0.4cqh;
+	background: linear-gradient(90deg, $gold, #e8cf8a);
+	animation: fantasy-pitch-bar #{$loop}s cubic-bezier(0.5, 0, 0.2, 1) infinite;
+}
+
+.m-fantasy-pitch__gameweek {
+	margin-top: 1cqh;
+	padding-top: 1.4cqh;
+	border-top: 0.15cqh solid rgb(255 255 255 / 0.15);
+}
+
+// Its own backdrop covers the pitch while the league is shown.
+.m-fantasy-pitch__pyramid {
+	position: absolute;
+	left: 0;
+	top: 2%;
+	z-index: 2;
+	width: 62%;
+	height: 98%;
+	border-radius: 1.6cqh;
+	background: rgb(10 20 40 / 0.9);
+	opacity: 0;
+	animation: fantasy-pitch-pyramid #{$loop}s ease-out infinite;
+}
+
+.m-fantasy-pitch__prize {
+	position: absolute;
+	left: 50%;
+	top: 0;
+	margin: 0;
+	padding: 0.8cqh 1.8cqh;
+	border-radius: 2cqh;
+	background: $gold;
+	color: $navy;
+	font-size: 1.8cqh;
+	letter-spacing: 0.06em;
+	white-space: nowrap;
+	transform: translateX(-50%);
+}
+
+// Five rows, top league first, like the business plan's diagram.
+.m-fantasy-pitch__tier {
+	position: absolute;
+	left: 0;
+	right: 0;
+	display: flex;
+	justify-content: space-around;
+	margin: 0;
+	transform: translateY(-50%);
+
+	@for $r from 1 through 5 {
+		&:nth-of-type(#{$r + 1}) {
+			top: #{14% + ($r - 1) * 18%};
+		}
+	}
+
+	span {
+		flex: 0 1 auto;
+		padding: 0.9cqh 1.4cqh;
+		border: 0.25cqh solid rgb(255 255 255 / 0.6);
+		border-radius: 3cqh;
+		color: #fff;
+		font-size: 1.6cqh;
+		letter-spacing: 0.06em;
+		white-space: nowrap;
+	}
+
+	&:last-of-type span {
+		flex: 1;
+		margin: 0 4%;
+		text-align: center;
+	}
+}
+
+.m-fantasy-pitch__team {
+	position: absolute;
+	padding: 0.6cqh 1.4cqh;
+	border-radius: 2cqh;
+	background: $gold;
+	color: $navy;
+	font-size: 1.6cqh;
+	white-space: nowrap;
+	box-shadow: 0 0 2cqh rgb(200 162 74 / 0.7);
+	transform: translate(-50%, -160%);
+	animation: fantasy-pitch-climb #{$loop}s cubic-bezier(0.5, 0, 0.2, 1) infinite;
+}
+
+// Portrait parents: the pitch takes the width and the side panel drops out.
+@container fantasy-pitch (aspect-ratio < 1) {
+	.m-fantasy-pitch__pitch,
+	.m-fantasy-pitch__pyramid {
+		left: 4%;
+		width: 92%;
+	}
+
+	.m-fantasy-pitch__panel {
+		display: none;
+	}
+}
+
+// Reduced motion: the drafted squad on the pitch.
+@media (prefers-reduced-motion: reduce) {
+	.m-fantasy-pitch * {
+		/* stylelint-disable-next-line declaration-no-important -- overrides every generated story animation */
+		animation: none !important;
+	}
+
+	.m-fantasy-pitch__token,
+	.m-fantasy-pitch__budget em:last-child,
+	.m-fantasy-pitch__gameweek em:last-child {
+		opacity: 1;
+	}
+}

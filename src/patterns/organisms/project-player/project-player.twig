@@ -15,6 +15,36 @@
       <article class="o-project-player__slide" data-project-slide data-tone="{{ project.tone|default('teal') }}" {% if project.variant %}data-scene="{{ project.variant }}"{% endif %} {% if project.duration %}data-duration="{{ project.duration }}"{% endif %} {% if project.staticBackground %}data-static-background="true"{% endif %} {% if not loop.first %}hidden{% endif %}>
         {% if project.frameSets or project.frames %}
           {% pattern name='device-scene' data=project|merge({ priority: loop.first }) %}
+        {% elseif project.web %}
+          {% pattern name='web-wrap' data=project.web %}
+        {% elseif project.leads %}
+          {% pattern name='lead-flow' data=project.leads %}
+        {% elseif project.salon %}
+          {% pattern name='salon-scene' data=project.salon %}
+        {% elseif project.scan %}
+          {% pattern name='scan-view' data=project.scan %}
+        {% elseif project.review %}
+          {% pattern name='code-review' data=project.review %}
+        {% elseif project.deck %}
+          {% pattern name='swipe-deck' data=project.deck %}
+        {% elseif project.fantasy %}
+          {% pattern name='fantasy-pitch' data=project.fantasy %}
+        {% elseif project.pageant %}
+          {% pattern name='pageant-stage' data=project.pageant %}
+        {% elseif project.kids %}
+          {% pattern name='kids-tv' data=project.kids %}
+        {% elseif project.tokens %}
+          {% pattern name='token-flow' data=project.tokens %}
+        {% elseif project.sdui %}
+          {% pattern name='sdui-live' data=project.sdui %}
+        {% elseif project.mvi %}
+          {% pattern name='mvi-loop' data=project.mvi %}
+        {% elseif project.kit %}
+          {% pattern name='kmp-stack' data=project.kit %}
+        {% elseif project.club %}
+          {% pattern name='club-floor' data=project.club %}
+        {% elseif project.crew %}
+          {% pattern name='crew-call' data=project.crew %}
         {% elseif project.radio %}
           {% pattern name='on-air' data=project.radio %}
         {% elseif project.live %}
@@ -32,6 +62,7 @@
           </picture>
         {% endif %}
         <div class="o-project-player__content">
+          {% if project.employer %}{% pattern name='employer' data=employers[project.employer] %}{% endif %}
           <p class="o-project-player__eyebrow">{{ project.category }}</p>
           <h2 class="o-project-player__title">{{ project.title }}</h2>
           <p class="o-project-player__description">{{ project.summary }}</p>

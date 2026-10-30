@@ -40,6 +40,10 @@
 		background: radial-gradient(circle at 70% 40%, #5a1717, #0d0b0b 72%);
 	}
 
+	&[data-tone='gold'] {
+		background: radial-gradient(circle at 68% 40%, #5c4b2c, #0d0c0a 72%);
+	}
+
 	&[data-tone='orange'] {
 		background: radial-gradient(circle at 75% 30%, #8a5038, #111822 70%);
 	}
@@ -63,6 +67,54 @@
 	.m-live-room,
 	.m-on-air {
 		--phone-h: 88cqh;
+	}
+
+	.m-crew-call {
+		--phone-h: 80cqh;
+	}
+
+	.m-fantasy-pitch {
+		--stage-w: 90cqw;
+		--stage-h: 86cqh;
+	}
+
+	.m-pageant-stage {
+		--stage-h: 84cqh;
+	}
+
+	.m-kids-tv {
+		--tablet-h: 64cqh;
+	}
+
+	.m-token-flow {
+		--flow-w: 92cqw;
+		--flow-h: 80cqh;
+	}
+
+	.m-sdui-live {
+		--live-h: 84cqh;
+	}
+
+	.m-mvi-loop {
+		--loop-h: 80cqh;
+	}
+
+	.m-kmp-stack {
+		--kit-w: 88cqw;
+	}
+
+	.m-club-floor {
+		--club-w: 80cqw;
+	}
+
+	.m-swipe-deck {
+		--deck-h: 84cqh;
+	}
+
+	.m-web-wrap,
+	.m-lead-flow,
+	.m-salon-scene {
+		--phone-h: 84cqh;
 	}
 
 	.m-laptop-scroll {
@@ -115,7 +167,6 @@
 	font-size: clamp(1.1rem, 2vw, 2rem);
 	font-weight: 600;
 	line-height: 1.15;
-	text-transform: uppercase;
 }
 
 .o-project-grid__link {
@@ -145,6 +196,10 @@
 	font-weight: 500;
 	letter-spacing: 0.35em;
 	text-transform: uppercase;
+}
+
+.o-project-grid__caption .a-employer {
+	margin-top: 0.9rem;
 }
 
 .o-project-grid__summary {

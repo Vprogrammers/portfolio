@@ -1,0 +1,95 @@
+{# PhotoStory story on two phones: the admin books an event and its crew on an iPhone, a crew member gets the push on an Android phone and declines, the offer moves on and the crew fills up. Fills its positioned parent. #}
+<div class="m-crew-call" aria-hidden="true">
+	<img class="m-crew-call__backdrop" src="{{ background }}" alt="" loading="lazy" decoding="async">
+
+	<div class="m-crew-call__stage">
+		{# Admin, iOS. #}
+		<div class="m-crew-call__device m-crew-call__device--ios">
+			<div class="m-crew-call__screen" style="--bg: url('{{ background }}')">
+				<div class="m-crew-call__status"><span>9:41</span><i class="m-crew-call__island"></i><span class="m-crew-call__bars"></span></div>
+
+				{# 1. Home with the tab switcher, then the calendar. #}
+				<div class="m-crew-call__scene m-crew-call__scene--home">
+					<div class="m-crew-call__tabs"><span>Zakazano</span><span>Kalendar</span><span>Čeka snimatelja</span><i class="m-crew-call__tab-pill"></i></div>
+					<div class="m-crew-call__calendar">
+						<p class="m-crew-call__month"><span>‹ Prošli</span>{{ month }}<span>Sledeći ›</span></p>
+						<div class="m-crew-call__days">
+							{% for day in ['P', 'U', 'S', 'Č', 'P', 'S', 'N'] %}<b>{{ day }}</b>{% endfor %}
+							{% for i in 1..offset %}<i></i>{% endfor %}
+							{% for day in 1..days %}<span class="{{ day in busy ? 'is-busy' : '' }}{{ day == pick ? ' is-pick' : '' }}">{{ day }}</span>{% endfor %}
+						</div>
+					</div>
+				</div>
+
+				{# 2. The booking form, filled in field by field. #}
+				<div class="m-crew-call__scene m-crew-call__scene--form">
+					<p class="m-crew-call__title">Upiši detalje</p>
+					<p class="m-crew-call__label">Datum događaja</p>
+					<p class="m-crew-call__field m-crew-call__field--set">{{ date }}</p>
+					{% for field in fields %}
+						<p class="m-crew-call__field{{ field.select ? ' m-crew-call__field--select' : '' }}"><span class="m-crew-call__hint">{{ field.hint }}</span><span class="m-crew-call__value">{{ field.value }}</span></p>
+					{% endfor %}
+					<p class="m-crew-call__label">Usluge</p>
+					<div class="m-crew-call__chips">{% for member in crew %}<span>{{ member.role }}</span>{% endfor %}</div>
+					<p class="m-crew-call__label">Fotografi i snimatelji</p>
+					<div class="m-crew-call__people">{% for member in crew %}<span style="--hue: {{ member.hue }}"><i>{{ member.name|slice(0, 1) }}</i>{{ member.name }}</span>{% endfor %}</div>
+					<span class="m-crew-call__book">Zakaži</span>
+				</div>
+
+				{# 3. The event with its crew, filling up as people answer. #}
+				<div class="m-crew-call__scene m-crew-call__scene--event">
+					<p class="m-crew-call__title">{{ type }}</p>
+					<p class="m-crew-call__meta">{{ summary }}</p>
+					<ul class="m-crew-call__crew">
+						{% for member in crew %}
+							<li class="m-crew-call__member{{ member.backup ? ' m-crew-call__member--declines' : '' }}">
+								<span class="m-crew-call__who">
+									<span style="--hue: {{ member.hue }}"><i>{{ member.name|slice(0, 1) }}</i><b>{{ member.name }}</b></span>
+									{% if member.backup %}<span style="--hue: {{ member.backup.hue }}"><i>{{ member.backup.name|slice(0, 1) }}</i><b>{{ member.backup.name }}</b></span>{% endif %}
+								</span>
+								<small>{{ member.role }}</small>
+								<span class="m-crew-call__state">
+									<em class="is-sent">Poslato</em>
+									{% if member.backup %}<em class="is-declined">Odbio</em><em class="is-sent">Poslato</em>{% endif %}
+									<em class="is-accepted">Prihvatio ✓</em>
+								</span>
+							</li>
+						{% endfor %}
+					</ul>
+					<p class="m-crew-call__done">Ekipa je kompletna ✓</p>
+				</div>
+			</div>
+		</div>
+
+		{# Push notifications leaving the admin's phone. #}
+		<div class="m-crew-call__link"><i></i><i></i><i></i></div>
+
+		{# Crew member, Android. #}
+		<div class="m-crew-call__device m-crew-call__device--android">
+			<div class="m-crew-call__screen" style="--bg: url('{{ background }}')">
+				<div class="m-crew-call__status m-crew-call__status--android"><span>9:41</span><i class="m-crew-call__camera"></i><span class="m-crew-call__bars"></span></div>
+				<div class="m-crew-call__lock">
+					<p class="m-crew-call__clock">9:41</p>
+					<p class="m-crew-call__date">{{ today }}</p>
+				</div>
+				<div class="m-crew-call__push">
+					<span class="m-crew-call__app-icon"><img src="{{ logo }}" alt="" loading="lazy" decoding="async"></span>
+					<span><small>PhotoStory · sada</small><b>{{ push.title }}</b>{{ push.body }}</span>
+				</div>
+				<div class="m-crew-call__offer">
+					<p class="m-crew-call__offer-label">Ponuda za posao</p>
+					<p class="m-crew-call__offer-type">{{ type }}</p>
+					<p class="m-crew-call__offer-meta">{{ summary }}</p>
+					<p class="m-crew-call__offer-role">{{ offer.role }}</p>
+					<span class="m-crew-call__answer m-crew-call__answer--yes">Prihvati</span>
+					<span class="m-crew-call__answer m-crew-call__answer--no">Odbij</span>
+				</div>
+				<p class="m-crew-call__toast">{{ offer.forwarded }}</p>
+				<div class="m-crew-call__nav"><i></i><i></i><i></i></div>
+			</div>
+		</div>
+
+		{# The declined offer moving on to the next person. #}
+		<p class="m-crew-call__float"><i style="--hue: {{ offer.next.hue }}">{{ offer.next.name|slice(0, 1) }}</i>{{ offer.next.text }}</p>
+	</div>
+</div>

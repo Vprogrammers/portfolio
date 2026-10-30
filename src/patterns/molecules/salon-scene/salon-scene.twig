@@ -1,0 +1,64 @@
+{# An illustrated salon behind a still Sliike screen: a woman in profile under the dryer, her afro curls rippling in the airflow, a bulb mirror and warm light. No faces, no photos. Fills its positioned parent. #}
+{% set curls = [[1365, 313, 32], [1362, 345, 30], [1354, 366, 38], [1336, 393, 39], [1313, 415, 38], [1278, 434, 31], [1235, 445, 31], [1206, 446, 38], [1074, 273, 30], [1083, 257, 32], [1098, 238, 32], [1131, 212, 39], [1155, 201, 43], [1203, 190, 31], [1236, 191, 40], [1258, 195, 31], [1302, 213, 31], [1329, 235, 39], [1343, 251, 40], [1361, 288, 42], [1323, 314, 39], [1312, 358, 35], [1301, 374, 42], [1276, 394, 42], [1240, 407, 39], [1201, 409, 37], [1153, 393, 41], [1116, 281, 32], [1140, 252, 36], [1151, 244, 40], [1186, 229, 38], [1236, 228, 35], [1265, 237, 35], [1299, 260, 39], [1319, 293, 31], [1277, 322, 32], [1265, 348, 38], [1240, 366, 32], [1194, 367, 38], [1162, 345, 32], [1153, 315, 38], [1164, 289, 35], [1194, 269, 37], [1229, 267, 28], [1263, 285, 32], [1215, 318, 40]] %}
+<div class="m-salon-scene" aria-hidden="true">
+	<svg class="m-salon-scene__art" viewBox="0 0 1600 900" preserveAspectRatio="xMaxYMid slice">
+		<defs>
+			<radialGradient id="salon-scene-glow" cx=".72" cy=".38" r=".6"><stop offset="0" stop-color="#7a3518"/><stop offset=".55" stop-color="#2a140b"/><stop offset="1" stop-color="#0e0806"/></radialGradient>
+			<linearGradient id="salon-scene-glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b2418"/><stop offset=".5" stop-color="#1c110c"/><stop offset="1" stop-color="#2c1a12"/></linearGradient>
+		</defs>
+		<rect width="1600" height="900" fill="url(#salon-scene-glow)"/>
+
+		{# Bulb mirror and the counter below it. #}
+		<rect class="m-salon-scene__mirror" x="1290" y="96" width="270" height="560" rx="135"/>
+		<g class="m-salon-scene__bulbs">
+			{% for i in 0..6 %}<circle cx="1272" cy="{{ 190 + i * 64 }}" r="11"/><circle cx="1578" cy="{{ 190 + i * 64 }}" r="11"/>{% endfor %}
+		</g>
+		<rect x="1200" y="676" width="400" height="24" rx="6" fill="#2b1810"/>
+		<g fill="#1a0f0a">
+			<rect x="1450" y="604" width="26" height="72" rx="8"/><rect x="1486" y="624" width="20" height="52" rx="6"/><rect x="1516" y="590" width="30" height="86" rx="10"/>
+		</g>
+
+		{# The client: cape, neck and face in profile, with the dryer. #}
+		<g transform="translate(110 20)">
+		<path class="m-salon-scene__cape" d="M1168 498 C1230 520 1300 540 1340 600 L1450 900 L960 900 L1050 600 C1080 548 1120 520 1150 504 Z"/>
+		<ellipse cx="1215" cy="318" rx="150" ry="128" fill="#120a07"/>
+		<g class="m-salon-scene__hair">
+			{% for curl in curls %}<circle cx="{{ curl[0] }}" cy="{{ curl[1] }}" r="{{ curl[2] }}"/>{% endfor %}
+		</g>
+		<path class="m-salon-scene__face" d="M1140 296 C1126 310 1118 330 1116 352 C1104 364 1094 374 1090 383 C1096 389 1104 391 1108 394 C1100 400 1100 406 1106 411 C1100 416 1100 423 1106 428 C1106 438 1110 446 1120 450 C1136 456 1150 462 1160 470 L1170 520 L1230 520 L1236 440 C1240 380 1210 320 1140 296 Z"/>
+		<path class="m-salon-scene__profile" d="M1140 296 C1126 310 1118 330 1116 352 C1104 364 1094 374 1090 383 C1096 389 1104 391 1108 394 C1100 400 1100 406 1106 411 C1100 416 1100 423 1106 428 C1106 438 1110 446 1120 450 C1136 456 1150 462 1160 470 L1166 500"/>
+		<g class="m-salon-scene__hair m-salon-scene__hair--front"><circle cx="1150" cy="292" r="30"/><circle cx="1182" cy="282" r="32"/></g>
+		<g class="m-salon-scene__loose">{% for i in 1..6 %}<circle cx="{{ 1290 + i * 14 }}" cy="{{ 210 + (i * 37) % 160 }}" r="{{ 6 + i % 3 * 3 }}"/>{% endfor %}</g>
+
+		{# The dryer, blowing over the crown. #}
+		<g class="m-salon-scene__air">
+			<path d="M1145 222 C1210 196 1280 200 1350 236"/><path d="M1150 240 C1220 222 1300 236 1380 280"/><path d="M1140 206 C1200 168 1270 160 1330 186"/>
+		</g>
+		<g class="m-salon-scene__dryer" transform="translate(958 132) rotate(22)">
+			<rect x="40" y="62" width="44" height="130" rx="18" transform="rotate(-8 62 62)"/>
+			<rect width="176" height="76" rx="38"/>
+			<rect x="168" y="14" width="44" height="48" rx="8"/>
+			<circle cx="40" cy="38" r="22" class="m-salon-scene__vent"/>
+		</g>
+		</g>
+	</svg>
+
+	{# The app, still, in front of the salon. #}
+	<div class="m-salon-scene__stage">
+		<div class="m-salon-scene__device">
+			<div class="m-salon-scene__screen">
+				<div class="m-salon-scene__nav">
+					<div class="m-salon-scene__status"><span>9:41</span><i class="m-salon-scene__island"></i><span class="m-salon-scene__bars"></span></div>
+					<p class="m-salon-scene__hello">{{ tagline }}</p>
+					<p class="m-salon-scene__search">{{ search }}</p>
+				</div>
+				<div class="m-salon-scene__chips">{% for category in categories %}<span style="--hue: {{ category.hue }}"><i></i>{{ category.name }}</span>{% endfor %}</div>
+				<p class="m-salon-scene__heading">Top salons near you</p>
+				{% for salon in salons %}
+					<div class="m-salon-scene__salon" style="--hue: {{ salon.hue }}"><i>{{ salon.name|slice(0, 1) }}</i><span><b>{{ salon.name }}</b><small>★ {{ salon.rating }} · {{ salon.meta }}</small></span><em>Book</em></div>
+				{% endfor %}
+				<div class="m-salon-scene__tabs">{% for tab in ['Home', 'Search', 'Bookings', 'Profile'] %}<span><i></i>{{ tab }}</span>{% endfor %}</div>
+			</div>
+		</div>
+	</div>
+</div>

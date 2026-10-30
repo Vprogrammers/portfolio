@@ -84,6 +84,70 @@
 			}
 		},
 		{
+			"category": "iOS · SwiftUI · WKWebView · PoC",
+			"title": "Bucherer",
+			"summary": "An iOS proof of concept for a luxury retailer: can a WebView wrapper sign in, keep the session and complete a purchase on a site that is part Salesforce, part not? The findings became the estimate for the app.",
+			"tone": "gold",
+			"variant": "web",
+			"duration": 18000,
+			"web": {
+				"brand": "BUCHERER",
+				"since": "SINCE 1888",
+				"login": {
+					"email": "poc.tester@example.com"
+				},
+				"product": {
+					"collection": "Automatic",
+					"name": "Classic Automatic 41 mm",
+					"price": "CHF 7,450"
+				},
+				"checkout": {
+					"address": "Bahnhofstrasse 50, 8001 Zürich",
+					"card": "Visa •••• 4242",
+					"order": "#BU-10482"
+				},
+				"console": {
+					"title": "Bucherer — Debug console",
+					"lines": [
+						{
+							"text": "➡️ URL: /ch/en/login"
+						},
+						{
+							"text": "➡️ URL: /ch/en/account"
+						},
+						{
+							"text": "🍪 Session cookie stored · 24 h",
+							"kind": "ok"
+						},
+						{
+							"text": "➡️ URL: /ch/en/watches/classic-41"
+						},
+						{
+							"text": "⚠️ AVIF image reloads while loading",
+							"kind": "warn"
+						},
+						{
+							"text": "➡️ URL: /ch/en/cart"
+						},
+						{
+							"text": "↪️ Platform switch: /checkout"
+						},
+						{
+							"text": "🍪 Session kept across platforms",
+							"kind": "ok"
+						},
+						{
+							"text": "➡️ URL: /checkout/confirmation"
+						},
+						{
+							"text": "✅ Purchase works in WKWebView",
+							"kind": "ok"
+						}
+					]
+				}
+			}
+		},
+		{
 			"category": "Android · Real-time video",
 			"title": "MuMe",
 			"summary": "Live video and chat rooms: hosts open a room, people join with coins and talk in real time.",

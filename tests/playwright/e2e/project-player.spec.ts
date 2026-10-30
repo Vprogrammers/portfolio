@@ -4,7 +4,7 @@ test('homepage displays uploaded project images and supports manual navigation',
   await page.goto('/');
   const player = page.locator('.js-project-player');
   const slides = player.locator('[data-project-slide]');
-  await expect(slides).toHaveCount(6);
+  await expect(slides).toHaveCount(7);
   await expect(slides.nth(0)).toBeVisible();
   const firstImage = slides.nth(0).locator('img.m-device-scene__background');
   await expect(firstImage).toHaveAttribute('src', /hansgrohe-background-04/);

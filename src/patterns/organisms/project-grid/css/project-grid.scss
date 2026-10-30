@@ -40,6 +40,10 @@
 		background: radial-gradient(circle at 70% 40%, #5a1717, #0d0b0b 72%);
 	}
 
+	&[data-tone='gold'] {
+		background: radial-gradient(circle at 68% 40%, #5c4b2c, #0d0c0a 72%);
+	}
+
 	&[data-tone='orange'] {
 		background: radial-gradient(circle at 75% 30%, #8a5038, #111822 70%);
 	}
@@ -67,6 +71,10 @@
 
 	.m-crew-call {
 		--phone-h: 80cqh;
+	}
+
+	.m-web-wrap {
+		--phone-h: 84cqh;
 	}
 
 	.m-laptop-scroll {

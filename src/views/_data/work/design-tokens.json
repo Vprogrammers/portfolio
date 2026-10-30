@@ -1,0 +1,243 @@
+{
+	"_nitro": {
+		"pageTitle": "Design Token Pipeline — case study · Viktor Nešić"
+	},
+	"meta": {
+		"description": "An assessment of an enterprise design system that app teams in many countries build on, and a proposal for an automated token pipeline from Figma to Web, iOS and Android, with accessibility built in and a safe way to rename tokens.",
+		"path": "/work-design-tokens"
+	},
+	"intro": {
+		"name": "Viktor Nešić",
+		"role": "Mobile & Frontend Developer"
+	},
+	"links": [
+		{
+			"label": "GitHub",
+			"icon": "github",
+			"url": "https://github.com/Vprogrammers"
+		},
+		{
+			"label": "LinkedIn",
+			"icon": "linkedin",
+			"url": "https://www.linkedin.com/in/viktor-nesic"
+		},
+		{
+			"label": "v.nesic.developer@gmail.com",
+			"icon": "mail",
+			"url": "/about#contact-form"
+		}
+	],
+	"employers": {
+		"merkle": {
+			"label": "Delivered at",
+			"name": "Merkle",
+			"note": "Enterprise mobile & digital engineering"
+		}
+	},
+	"caseStudy": {
+		"kicker": "Case study · Design system · Tokens · iOS · Android · Web",
+		"title": "Design Token Pipeline",
+		"lead": "An assessment of an enterprise design system that app teams in many countries build on, and a proposal for an automated token pipeline from Figma to Web, iOS and Android, with accessibility built in and a safe way to rename tokens.",
+		"employer": "merkle",
+		"sceneType": "tokens",
+		"scene": {
+			"source": {
+				"label": "Figma · Tokens Studio"
+			},
+			"token": {
+				"name": "Brand / Primary",
+				"path": "color.brand.primary",
+				"from": "#2457D6",
+				"to": "#0FA37F"
+			},
+			"checks": [
+				"schema",
+				"naming",
+				"duplicates"
+			],
+			"engine": "Style Dictionary",
+			"outputs": [
+				{
+					"platform": "Web",
+					"file": "tokens.css",
+					"before": "--brand-primary: ",
+					"from": "#2457d6",
+					"to": "#0fa37f",
+					"after": ";",
+					"button": "Continue"
+				},
+				{
+					"platform": "iOS",
+					"file": "Colors.swift",
+					"before": "Color(hex: ",
+					"from": "0x2457D6",
+					"to": "0x0FA37F",
+					"after": ")",
+					"button": "Continue"
+				},
+				{
+					"platform": "Android",
+					"file": "Color.kt",
+					"before": "Color(",
+					"from": "0xFF2457D6",
+					"to": "0xFF0FA37F",
+					"after": ")",
+					"button": "Continue"
+				}
+			],
+			"prs": "PRs opened → web/* · ios/* · android/*"
+		},
+		"facts": [
+			{
+				"label": "Client",
+				"value": "A European banking group (NDA)"
+			},
+			{
+				"label": "My role",
+				"value": "Mobile lead on the assessment"
+			},
+			{
+				"label": "Period",
+				"value": "Dec 2025 – Feb 2026"
+			},
+			{
+				"label": "Platform",
+				"value": "iOS · Android · Web · Figma"
+			}
+		],
+		"brief": {
+			"title": "The brief",
+			"text": [
+				"The group's design system is the default component library that country teams build their local apps on. Tokens reached iOS and Android in different ways, and there was no web output at all.",
+				"The task was to analyse the libraries and propose how tokens could flow automatically from Figma to every platform, without breaking the apps that already depend on them."
+			]
+		},
+		"contributions": {
+			"title": "What I did",
+			"items": [
+				"Reviewed the iOS and Android implementations through restricted read-only access.",
+				"Compared how each platform turns tokens into code, and where they drift.",
+				"Designed the token pipeline from Figma to Web, iOS and Android, with CI checks and pull requests into the platform repos.",
+				"Defined accessibility rules for components and typed accessibility keys generated from Figma.",
+				"Proposed a migration path for renamed tokens, and reviewed the CI/CD setup."
+			]
+		},
+		"findings": {
+			"title": "Findings",
+			"items": [
+				{
+					"tag": "Strength",
+					"title": "Clean, modular libraries",
+					"text": "Both platforms use semantic tokens and multi-brand themes."
+				},
+				{
+					"tag": "Gap",
+					"title": "Android generates only colours",
+					"text": "Typography, spacing, shapes, elevation and motion are maintained by hand, with numeric names."
+				},
+				{
+					"tag": "Gap",
+					"title": "Platforms drift",
+					"text": "iOS uses a different transformation, so parity depends on discipline. There is no web output."
+				},
+				{
+					"tag": "Risk",
+					"title": "Renaming breaks apps",
+					"text": "Apps reference tokens directly. A compatibility window with generated aliases and deprecations keeps them working."
+				},
+				{
+					"tag": "Gap",
+					"title": "CI/CD",
+					"text": "Workflows pinned to branches instead of tags, iOS tests switched off in lint and test, no PR gating."
+				},
+				{
+					"tag": "A11y",
+					"title": "Language-agnostic accessibility",
+					"text": "The library ships typed accessibility keys; apps resolve them to localised strings. Components keep one stable accessibility node."
+				}
+			]
+		},
+		"architecture": {
+			"title": "The proposed pipeline",
+			"text": "One source of truth in Git. Every change is validated and arrives on each platform as a reviewable pull request.",
+			"layers": [
+				{
+					"name": "Figma",
+					"items": [
+						"Design tokens",
+						"Tokens Studio"
+					]
+				},
+				{
+					"name": "Tokens repository",
+					"items": [
+						"Single source of truth",
+						"Pinned Style Dictionary config"
+					]
+				},
+				{
+					"name": "CI on pull requests",
+					"items": [
+						"Schema",
+						"Naming",
+						"Duplicates"
+					]
+				},
+				{
+					"name": "Generation on merge",
+					"items": [
+						"Style Dictionary",
+						"Android",
+						"iOS",
+						"Web",
+						"KMP variant"
+					]
+				},
+				{
+					"name": "Platform repositories",
+					"items": [
+						"Pull requests, no direct pushes",
+						"Aliases for renamed tokens"
+					]
+				}
+			]
+		},
+		"stack": {
+			"title": "Stack",
+			"items": [
+				"Figma",
+				"Tokens Studio",
+				"Style Dictionary",
+				"GitHub Actions",
+				"Swift / SwiftUI",
+				"Kotlin / Compose",
+				"Accessibility"
+			]
+		},
+		"team": {
+			"title": "Team",
+			"text": "The assessment team: me on mobile, a web frontend developer, a Figma designer and the agency's Product Owner, working with the client's design and platform specialists."
+		},
+		"outcome": {
+			"title": "The result",
+			"text": "The client accepted the assessment. Implementation stayed with the client's internal teams."
+		},
+		"back": {
+			"label": "All works",
+			"url": "/#works"
+		},
+		"cta": {
+			"title": "Have a project like this?",
+			"text": "I build and rescue native iOS, Android and Kotlin Multiplatform apps, and I'm happy to look at yours.",
+			"label": "Get in touch",
+			"url": "/about#contact-form"
+		},
+		"next": {
+			"title": "Anubis",
+			"url": "/work-anubis"
+		}
+	},
+	"analytics": {
+		"gaMeasurementId": "G-ZM0VPP0G2C"
+	}
+}

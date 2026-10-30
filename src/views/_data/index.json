@@ -960,6 +960,7 @@
 		{
 			"category": "Design system · Tokens · iOS · Android · Web",
 			"title": "Design Token Pipeline",
+			"url": "/work-design-tokens",
 			"summary": "A technical assessment of an enterprise design system used by app teams across many countries. I reviewed the iOS and Android libraries and designed an automated token pipeline from Figma to Web, iOS and Android, with accessibility keys and a safe migration path for renamed tokens.",
 			"tone": "green",
 			"variant": "tokens",

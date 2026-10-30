@@ -13,7 +13,7 @@ $splash: 1.5;
 $pages: ((1.6, 4.8), (4.9, 8.6), (8.7, 13.6), (13.7, 17.4));
 $type-times: (2.2, 3.2);
 $sign-in: 4.3;
-$blink: 5.3;
+$blink: 5.1;
 $add: 7.6;
 $step-times: (9.2, 10.4, 11.6);
 $order: 13;
@@ -105,26 +105,18 @@ $end: 17.4;
 @include press(web-wrap-add, $add);
 @include press(web-wrap-order, $order);
 
-// The product image flickers while it loads: the AVIF issue found in the PoC.
-@keyframes web-wrap-blink {
+// The product image fades in once it has loaded.
+@keyframes web-wrap-reveal {
 	0%,
 	#{at($blink)} {
 		opacity: 0;
+		transform: scale(0.96);
 	}
 
-	@for $i from 0 through 4 {
-		#{at($blink + 0.1 + $i * 0.2)} {
-			opacity: 1;
-		}
-
-		#{at($blink + 0.2 + $i * 0.2)} {
-			opacity: 0.15;
-		}
-	}
-
-	#{at($blink + 1.2)},
+	#{at($blink + 0.6)},
 	100% {
 		opacity: 1;
+		transform: none;
 	}
 }
 
@@ -514,7 +506,7 @@ $page-names: (login, product, checkout, done);
 	width: 66cqw;
 	margin: 2cqw 0;
 	filter: drop-shadow(0 3cqw 4cqw rgb(0 0 0 / 0.25));
-	animation: web-wrap-blink #{$loop}s steps(1, end) infinite;
+	animation: web-wrap-reveal #{$loop}s ease-out infinite;
 }
 
 .m-web-wrap__seconds {

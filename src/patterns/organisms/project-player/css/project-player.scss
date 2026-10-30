@@ -277,13 +277,14 @@
 	z-index: -2;
 }
 
-// The live room restarts its story with the slide and freezes when paused.
+// Stories freeze while their slide is away or paused; the player script
+// resumes them where they stopped when the slide comes back.
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-on-air *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-crew-call *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-web-wrap *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-lead-flow *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-live-room * {
-	animation-name: none;
+	animation-play-state: paused;
 }
 
 .o-project-player[data-paused='true'] .m-on-air *,
@@ -305,12 +306,12 @@
 	z-index: -2;
 }
 
-// Feeds restart from the top each time their slide comes in, and pausing freezes them.
+// Feeds freeze while their slide is away or paused, and resume where they stopped.
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) {
 	.m-phone-scroll__feed,
 	.m-laptop-scroll__page,
 	.m-laptop-scroll__hover {
-		animation: none;
+		animation-play-state: paused;
 	}
 }
 

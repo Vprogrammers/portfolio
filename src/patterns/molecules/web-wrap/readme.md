@@ -3,7 +3,7 @@
 An iPhone wrapper app that runs a luxury shop in a WKWebView, next to Xcode's console logging every URL it loads. One 18 s timeline:
 - the wrapper's splash;
 - sign in (email and password typed in);
-- a product page whose image flickers while it loads, the AVIF issue found in the PoC;
+- a product page whose image fades in;
 - add to bag;
 - checkout on the site's other platform, with the delivery, payment and place-order steps;
 - the order confirmation.

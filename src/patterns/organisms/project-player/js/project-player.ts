@@ -14,23 +14,38 @@ players.forEach((player) => {
   const defaultInterval = readInterval(player.dataset.interval, 7000);
   const transitionDuration = 1050;
   let active = 0;
-  const getInterval = () => readInterval(slides[active].dataset.duration, defaultInterval);
+  // No project holds the stage longer than the default interval; longer stories
+  // carry on where they stopped the next time their slide comes round.
+  const getInterval = () => Math.min(readInterval(slides[active].dataset.duration, defaultInterval), defaultInterval);
   let paused = reducedMotion.matches;
   let started = performance.now();
   let frame = 0;
   let cleanupTimer: number | undefined;
 
-  // Device scenes with several screenshot sets show the next set each time
-  // their slide returns, and the slide lasts one full cycle of that set.
+  // A hidden slide's CSS animations are dropped, so remember how far its scene
+  // got and seek its new animations there when it is shown again.
+  const saveSceneTime = (slide: HTMLElement) => {
+    const times = slide.getAnimations({ subtree: true }).map((animation) => Number(animation.currentTime) || 0);
+    slide.dataset.sceneTime = String(Math.max(0, ...times));
+  };
+  const resumeScene = (slide: HTMLElement) => {
+    const time = Number(slide.dataset.sceneTime) || 0;
+    if (time) slide.getAnimations({ subtree: true }).forEach((animation) => { animation.currentTime = time; });
+  };
+
+  // Device scenes with several screenshot sets move on to the next set only
+  // once the current one has played through.
   // Keep in sync with $frame-time in device-scene.scss.
   const frameTime = 2000;
   const prepareScene = (slide: HTMLElement) => {
     const scene = slide.querySelector<HTMLElement>('.js-device-scene');
     const sets = scene ? scene.querySelectorAll<HTMLElement>('.m-device-scene__frames[data-set]') : [];
     if (!scene || !sets.length) return;
-    if (slide.dataset.sceneShown) scene.dataset.activeSet = String((Number(scene.dataset.activeSet) + 1) % sets.length);
-    slide.dataset.sceneShown = 'true';
-    slide.dataset.duration = String(sets[Number(scene.dataset.activeSet)].children.length * frameTime);
+    const cycle = sets[Number(scene.dataset.activeSet)].children.length * frameTime;
+    if (Number(slide.dataset.sceneTime) >= cycle) {
+      scene.dataset.activeSet = String((Number(scene.dataset.activeSet) + 1) % sets.length);
+      slide.dataset.sceneTime = '0';
+    }
   };
 
   // The static HTML displays the first slide even if JavaScript is unavailable.
@@ -46,6 +61,7 @@ players.forEach((player) => {
     const outgoing = slides[active];
     const incoming = slides[target];
     if (cleanupTimer !== undefined) window.clearTimeout(cleanupTimer);
+    saveSceneTime(outgoing);
 
     // Resolve an interrupted transition before beginning another one.
     slides.forEach((slide, i) => {
@@ -58,6 +74,7 @@ players.forEach((player) => {
     incoming.classList.add('state-o-project-player__slide--entering');
     // Wait for the initial style to render so Safari can animate the incoming slide.
     incoming.getBoundingClientRect();
+    resumeScene(incoming);
     outgoing.classList.add('state-o-project-player__slide--leaving');
     incoming.classList.add('state-o-project-player__slide--active');
     incoming.classList.remove('state-o-project-player__slide--entering');

@@ -578,6 +578,7 @@
 		{
 			"category": "iOS · Objective-C · Code review",
 			"title": "PMI Market(i)",
+			"url": "/work-pmi",
 			"summary": "An internal iPad and iPhone app for Philip Morris field teams in the Nordics, covering shelf photography, store mapping, share of market and offline sync. I audited the legacy Objective-C codebase and set out a maintenance roadmap.",
 			"tone": "violet",
 			"variant": "review",

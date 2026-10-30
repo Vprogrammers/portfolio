@@ -16,7 +16,7 @@
 	"projects": [
 		{
 			"category": "Mobile · Kotlin Multiplatform",
-			"title": "Hansgrohe ProApp — In use",
+			"title": "Hansgrohe ProApp",
 			"summary": "Enterprise product presentations and offline content for field teams.",
 			"tone": "teal",
 			"image": "/assets/img/projects/hansgrohe-background-04.png",
@@ -43,8 +43,7 @@
 		},
 		{
 			"category": "Mobile · Kotlin Multiplatform",
-			"title": "Hansgrohe ProApp — Concept",
-			"gridTitle": "Hansgrohe ProApp",
+			"title": "Hansgrohe ProApp",
 			"summary": "Enterprise product presentations and offline content for field teams.",
 			"tone": "teal",
 			"image": "/assets/img/projects/hansgrohe-background-02.png",

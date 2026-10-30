@@ -122,7 +122,7 @@
 		"contributions": {
 			"title": "What I did",
 			"items": [
-				"Worked on the presenter pattern: presenters extend YamviPresenter<Model, UIState, Effect>.",
+				"Worked on the presenter pattern: every presenter extends YamviPresenter, typed by its Model, UIState and Effect.",
 				"Separated the internal Model from the UIState that the UI renders, joined by a mapper.",
 				"Handled intents with a reducer that produces the next Model, exposed as StateFlow.",
 				"Kept Effects for one-shot events only, as a last resort.",

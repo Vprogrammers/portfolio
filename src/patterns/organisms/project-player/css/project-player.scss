@@ -151,6 +151,7 @@
 .o-project-player__slide[data-scene='tokens']::before,
 .o-project-player__slide[data-scene='club']::before,
 .o-project-player__slide[data-scene='coins']::before,
+.o-project-player__slide[data-scene='duet']::before,
 .o-project-player__slide[data-scene='club2']::before,
 .o-project-player__slide[data-scene='pass']::before,
 .o-project-player__slide[data-scene='feniks']::before,
@@ -176,6 +177,7 @@
 .o-project-player__slide[data-scene='tokens']::after,
 .o-project-player__slide[data-scene='club']::after,
 .o-project-player__slide[data-scene='coins']::after,
+.o-project-player__slide[data-scene='duet']::after,
 .o-project-player__slide[data-scene='club2']::after,
 .o-project-player__slide[data-scene='pass']::after,
 .o-project-player__slide[data-scene='feniks']::after,
@@ -434,6 +436,14 @@
 	z-index: -2;
 }
 
+.o-project-player__slide .m-duet-studio {
+	--duet-h: 74cqh;
+	--duet-x: 66%;
+	--duet-y: 54%;
+
+	z-index: -2;
+}
+
 // PhotoStory crew call: the two phones right of the caption, with room for the chip beside them.
 .o-project-player__slide .m-crew-call {
 	--phone-h: 62cqh;
@@ -492,18 +502,21 @@
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-token-flow *::after,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-club-floor *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-coin-board *,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-duet-studio *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-driver-club *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-pass-card *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-freezer-case *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-apple-sort *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-club-floor *::before,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-coin-board *::before,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-duet-studio *::before,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-driver-club *::before,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-pass-card *::before,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-freezer-case *::before,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-apple-sort *::before,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-club-floor *::after,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-coin-board *::after,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-duet-studio *::after,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-driver-club *::after,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-pass-card *::after,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-freezer-case *::after,
@@ -561,18 +574,21 @@
 .o-project-player[data-paused='true'] .m-token-flow *::after,
 .o-project-player[data-paused='true'] .m-club-floor *,
 .o-project-player[data-paused='true'] .m-coin-board *,
+.o-project-player[data-paused='true'] .m-duet-studio *,
 .o-project-player[data-paused='true'] .m-driver-club *,
 .o-project-player[data-paused='true'] .m-pass-card *,
 .o-project-player[data-paused='true'] .m-freezer-case *,
 .o-project-player[data-paused='true'] .m-apple-sort *,
 .o-project-player[data-paused='true'] .m-club-floor *::before,
 .o-project-player[data-paused='true'] .m-coin-board *::before,
+.o-project-player[data-paused='true'] .m-duet-studio *::before,
 .o-project-player[data-paused='true'] .m-driver-club *::before,
 .o-project-player[data-paused='true'] .m-pass-card *::before,
 .o-project-player[data-paused='true'] .m-freezer-case *::before,
 .o-project-player[data-paused='true'] .m-apple-sort *::before,
 .o-project-player[data-paused='true'] .m-club-floor *::after,
 .o-project-player[data-paused='true'] .m-coin-board *::after,
+.o-project-player[data-paused='true'] .m-duet-studio *::after,
 .o-project-player[data-paused='true'] .m-driver-club *::after,
 .o-project-player[data-paused='true'] .m-pass-card *::after,
 .o-project-player[data-paused='true'] .m-freezer-case *::after,
@@ -1028,6 +1044,11 @@
 	.o-project-player__slide .m-driver-club {
 		--club-x: 50%;
 		--club-y: 42%;
+	}
+
+	.o-project-player__slide .m-duet-studio {
+		--duet-x: 50%;
+		--duet-y: 42%;
 	}
 
 	.o-project-player__slide .m-crew-call {

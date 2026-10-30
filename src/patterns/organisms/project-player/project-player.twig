@@ -53,6 +53,8 @@
           {% pattern name='pass-card' data=project.pass %}
         {% elseif project.club2 %}
           {% pattern name='driver-club' data=project.club2 %}
+        {% elseif project.duet %}
+          {% pattern name='duet-studio' data=project.duet %}
         {% elseif project.crew %}
           {% pattern name='crew-call' data=project.crew %}
         {% elseif project.radio %}

@@ -1694,6 +1694,46 @@
 			}
 		},
 		{
+			"category": "iOS · Swift · Firebase · AR",
+			"title": "Yaaxa",
+			"summary": "A short-video social app for iOS that connects people through the videos they share: record with AR avatars and effects powered by the DeepAR SDK, add filters, stickers and music, film duets side by side, and find matches in the feed.",
+			"tone": "violet",
+			"variant": "duet",
+			"duration": 16000,
+			"duet": {
+				"filters": [
+					"Normal",
+					"Sepia",
+					"Mono",
+					"Cool",
+					"Normal"
+				],
+				"stickers": [
+					"😍",
+					"🔥",
+					"✨"
+				],
+				"music": "Summer Nights · Original sound",
+				"modes": [
+					"15s",
+					"Duet",
+					"60s"
+				],
+				"post": {
+					"user": "nina.dance",
+					"caption": "Duet with @maks ✨ #duet #summer",
+					"likes": [
+						"0",
+						"1.2K",
+						"4.8K",
+						"12.6K"
+					],
+					"comments": "348",
+					"shares": "91"
+				}
+			}
+		},
+		{
 			"category": "Open source · Accessibility",
 			"title": "a11yOtp",
 			"summary": "An open-source, accessible one-time-code input for Android and iOS, built natively on each platform.",

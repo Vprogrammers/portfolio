@@ -38,6 +38,7 @@ import './patterns/molecules/coin-board';
 import './patterns/molecules/crew-call';
 import './patterns/molecules/device-scene';
 import './patterns/molecules/driver-club';
+import './patterns/molecules/duet-studio';
 import './patterns/molecules/example';
 import './patterns/molecules/fantasy-pitch';
 import './patterns/molecules/freezer-case';

@@ -7,6 +7,10 @@
 }
 
 html {
+	// Everything is sized in rem, so the whole site grows on large screens: 100% up
+	// to 1440px wide, rising to 137.5% at 2560px. Percentages keep the visitor's
+	// browser font setting as the base.
+	font-size: clamp(100%, 51.8% + 0.536vw, 137.5%);
 	font-family: var(--font-body);
 	line-height: 1.2;
 	color: component.$body-foreground;

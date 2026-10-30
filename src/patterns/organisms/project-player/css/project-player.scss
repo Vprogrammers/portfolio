@@ -758,6 +758,9 @@
 	gap: 0.6em;
 	margin: 0;
 	font-family: var(--font-display);
+	// The title may run wider than the caption, so short names stay on one line.
+	width: max-content;
+	max-width: calc(100vw - 2 * var(--player-gutter));
 	font-size: clamp(1.35rem, 2.4vw, 2.6rem);
 	font-weight: 500;
 	line-height: 1.1;
@@ -836,8 +839,8 @@
 	}
 }
 
-// The controls stay out of sight and appear when the pointer reaches them or a
-// keyboard user tabs into them, so the pause control is always within reach.
+// The controls are never shown to pointer or touch users; they appear only when a
+// keyboard user tabs into them, so the pause control stays within reach for them.
 .o-project-player__controls {
 	position: absolute;
 	z-index: 3; // Above the active slide (z-index: 2).
@@ -850,15 +853,17 @@
 	opacity: 0;
 	transition: opacity 250ms ease;
 
-	&:hover,
+	&:not(:has(:focus-visible)) {
+		pointer-events: none;
+	}
+
 	&:has(:focus-visible) {
 		opacity: 1;
 	}
 
-	// Touch screens cannot hover, so invisible buttons would only catch stray taps
-	// over the title. There, tapping the title holds the slide instead. With
-	// reduced motion nothing rotates, so the controls stay as the way through.
-	@media (hover: none) and (prefers-reduced-motion: no-preference) {
+	// Touch screens: invisible buttons would only catch stray taps over the title,
+	// and tapping the title already holds the slide.
+	@media (hover: none) {
 		display: none;
 	}
 
@@ -923,6 +928,55 @@
 	&:focus-visible {
 		outline: 3px solid #fff;
 		outline-offset: 4px;
+	}
+}
+
+// Faint previous/next chevrons at the sides, matching the scroll arrow. Only
+// precise pointers get them: touch screens swipe instead.
+.o-project-player__arrow {
+	position: absolute;
+	z-index: 3;
+	top: 50%;
+	display: none;
+	width: 2.4rem;
+	padding: 0.75rem 0.5rem;
+	border: 0;
+	background: none;
+	color: inherit;
+	opacity: 0.6;
+	filter: drop-shadow(0 1px 6px rgb(7 13 23 / 0.5));
+	cursor: pointer;
+	transform: translateY(-50%);
+	transition: opacity 250ms ease, transform 300ms ease;
+
+	@media (hover: hover) and (pointer: fine) {
+		display: block;
+	}
+
+	svg {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	&:hover {
+		opacity: 1;
+	}
+}
+
+.o-project-player__arrow--prev {
+	left: clamp(0.5rem, 1.6vw, 2rem);
+
+	&:hover {
+		transform: translate(-0.3rem, -50%);
+	}
+}
+
+.o-project-player__arrow--next {
+	right: clamp(0.5rem, 1.6vw, 2rem);
+
+	&:hover {
+		transform: translate(0.3rem, -50%);
 	}
 }
 
@@ -1123,6 +1177,11 @@
 	.o-project-player__description {
 		font-size: 0.95rem;
 	}
+
+	// Tighter tracking keeps the role on one line on phones.
+	.o-project-player__role {
+		letter-spacing: 0.2em;
+	}
 }
 
 // Below this width the controls reach the centre, where the arrow sits.
@@ -1142,11 +1201,6 @@
 		.o-project-player__content {
 			animation: none;
 		}
-	}
-
-	// Nothing rotates on its own here, so the controls are the only way through.
-	.o-project-player__controls {
-		opacity: 1;
 	}
 }
 

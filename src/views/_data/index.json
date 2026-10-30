@@ -84,6 +84,7 @@
 		{
 			"category": "iOS · Swift",
 			"title": "Migros iMpuls",
+			"url": "/work-migros",
 			"summary": "Ongoing development, maintenance and App Store releases of iMpuls, the health and wellbeing app from Switzerland's largest retailer, keeping a production iOS app stable, current and shipping on schedule.",
 			"tone": "cyan",
 			"variant": "phone",

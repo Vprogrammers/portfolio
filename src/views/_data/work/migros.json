@@ -1,0 +1,121 @@
+{
+	"_nitro": {
+		"pageTitle": "Migros iMpuls — case study · Viktor Nešić"
+	},
+	"meta": {
+		"description": "Keeping iMpuls, the health and wellbeing app from Switzerland's largest retailer, stable, current and shipping, as the iOS developer who carried the app on after the original mobile team moved on.",
+		"path": "/work-migros"
+	},
+	"intro": {
+		"name": "Viktor Nešić",
+		"role": "Mobile & Frontend Developer"
+	},
+	"links": [
+		{
+			"label": "GitHub",
+			"icon": "github",
+			"url": "https://github.com/Vprogrammers"
+		},
+		{
+			"label": "LinkedIn",
+			"icon": "linkedin",
+			"url": "https://www.linkedin.com/in/viktor-nesic"
+		},
+		{
+			"label": "v.nesic.developer@gmail.com",
+			"icon": "mail",
+			"url": "/about#contact-form"
+		}
+	],
+	"employers": {
+		"merkle": {
+			"label": "Delivered at",
+			"name": "Merkle",
+			"note": "Enterprise mobile & digital engineering"
+		}
+	},
+	"caseStudy": {
+		"kicker": "Case study · iOS · Maintenance & releases",
+		"title": "Migros iMpuls",
+		"lead": "Keeping iMpuls, the health and wellbeing app from Switzerland's largest retailer, stable, current and shipping, as the iOS developer who carried the app on after the original mobile team moved on.",
+		"employer": "merkle",
+		"sceneType": "phone",
+		"scene": {
+			"header": "/assets/img/projects/migros-screen-header.jpg",
+			"feed": "/assets/img/projects/migros-screen-feed.jpg",
+			"backdrop": "/assets/img/projects/migros-backdrop.jpg"
+		},
+		"facts": [
+			{
+				"label": "Client",
+				"value": "Migros, Switzerland's largest retailer"
+			},
+			{
+				"label": "My role",
+				"value": "iOS maintenance developer"
+			},
+			{
+				"label": "Period",
+				"value": "Nov 2025 – Oct 2026"
+			},
+			{
+				"label": "Platform",
+				"value": "iOS · Swift / UIKit"
+			}
+		],
+		"brief": {
+			"title": "The brief",
+			"text": [
+				"iMpuls is a production wellness app with an established user base. When the original mobile team had moved on, the app still needed someone to keep it working on new iOS versions, follow backend changes and get builds to QA and the App Store.",
+				"The job was continuity: understand an existing codebase quickly, change it safely and keep releases predictable."
+			]
+		},
+		"contributions": {
+			"title": "What I did",
+			"items": [
+				"Maintained the Swift/UIKit app's behaviour and compatibility with current iOS versions.",
+				"Updated dependencies and moved the app to new API endpoints.",
+				"Worked on the AppAuth sign-in and session handling and on the WKWebView integration.",
+				"Prepared and distributed TestFlight builds for QA and supported release preparation.",
+				"Coordinated access and requirements with QA and the relevant stakeholders."
+			]
+		},
+		"stack": {
+			"title": "Stack",
+			"items": [
+				"Swift",
+				"UIKit",
+				"AppAuth",
+				"WKWebView",
+				"Xcode",
+				"TestFlight",
+				"App Store Connect"
+			]
+		},
+		"team": {
+			"title": "Team",
+			"text": "The remaining developer from the original mobile team, working closely with QA and coordinating with the client's stakeholders."
+		},
+		"outcome": {
+			"title": "The result",
+			"text": "The app kept running on current iOS versions against the updated backend, and builds kept reaching QA and release on schedule."
+		},
+		"back": {
+			"label": "All works",
+			"url": "/#works"
+		},
+		"cta": {
+			"title": "Have a project like this?",
+			"text": "I build and rescue native iOS, Android and Kotlin Multiplatform apps, and I'm happy to look at yours.",
+			"label": "Get in touch",
+			"url": "/about#contact-form"
+		},
+		"next": {
+			"title": "Bucherer",
+			"url": "/work-bucherer"
+		}
+	},
+	"analytics": {
+		"gaMeasurementId": "G-ZM0VPP0G2C"
+	}
+}

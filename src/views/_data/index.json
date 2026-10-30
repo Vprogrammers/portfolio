@@ -600,6 +600,74 @@
 			}
 		},
 		{
+			"category": "iOS · Swift · UIKit",
+			"title": "Swipe XYZ",
+			"summary": "A shoe and fashion shopping app for a client in the Arab world: categories, filters, product pages and a swipe view to like products straight into the bag, then orders, bills and a profile. I built the native iOS app in UIKit.",
+			"tone": "green",
+			"variant": "deck",
+			"duration": 16000,
+			"deck": {
+				"bag": "Bag",
+				"products": [
+					{
+						"name": "Runner Knit",
+						"price": "€89",
+						"shape": "sneaker",
+						"hue": 160,
+						"sizes": [
+							"40",
+							"41",
+							"42",
+							"43"
+						],
+						"like": true
+					},
+					{
+						"name": "Chelsea Boot",
+						"price": "€129",
+						"shape": "boot",
+						"hue": 30,
+						"sizes": [
+							"39",
+							"40",
+							"41",
+							"42"
+						],
+						"like": false
+					},
+					{
+						"name": "Satin Pump",
+						"price": "€109",
+						"shape": "heel",
+						"hue": 340,
+						"sizes": [
+							"37",
+							"38",
+							"39",
+							"40"
+						],
+						"like": true
+					},
+					{
+						"name": "Mini Tote",
+						"price": "€74",
+						"shape": "bag",
+						"hue": 210,
+						"sizes": [
+							"S",
+							"M",
+							"L"
+						],
+						"like": true
+					}
+				],
+				"bill": {
+					"title": "Your order",
+					"total": "€272"
+				}
+			}
+		},
+		{
 			"category": "Open source · Accessibility",
 			"title": "a11yOtp",
 			"summary": "Accessible native one-time-code input for Android and iOS.",

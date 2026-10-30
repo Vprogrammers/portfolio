@@ -147,6 +147,7 @@
 .o-project-player__slide[data-scene='deck']::before,
 .o-project-player__slide[data-scene='fantasy']::before,
 .o-project-player__slide[data-scene='pageant']::before,
+.o-project-player__slide[data-scene='kids']::before,
 .o-project-player__slide[data-scene='live']::before {
 	display: none;
 }
@@ -315,6 +316,15 @@
 	z-index: -2;
 }
 
+// ÇocukFlix tablet right of the caption. The sky is bright, so the caption keeps the shade below.
+.o-project-player__slide .m-kids-tv {
+	--tablet-h: 52cqh;
+	--tablet-x: 68%;
+	--tablet-y: 56%;
+
+	z-index: -2;
+}
+
 // PhotoStory crew call: the two phones right of the caption, with room for the chip beside them.
 .o-project-player__slide .m-crew-call {
 	--phone-h: 62cqh;
@@ -344,6 +354,7 @@
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-swipe-deck *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-fantasy-pitch *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-pageant-stage *,
+.o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-kids-tv *,
 .o-project-player[data-enhanced='true'] .o-project-player__slide:not(.state-o-project-player__slide--active) .m-live-room * {
 	animation-play-state: paused;
 }
@@ -358,6 +369,7 @@
 .o-project-player[data-paused='true'] .m-swipe-deck *,
 .o-project-player[data-paused='true'] .m-fantasy-pitch *,
 .o-project-player[data-paused='true'] .m-pageant-stage *,
+.o-project-player[data-paused='true'] .m-kids-tv *,
 .o-project-player[data-paused='true'] .m-live-room * {
 	animation-play-state: paused;
 }
@@ -629,6 +641,12 @@
 		--stage-h: 44cqh;
 		--stage-x: 50%;
 		--stage-y: 42%;
+	}
+
+	.o-project-player__slide .m-kids-tv {
+		--tablet-h: 26cqh;
+		--tablet-x: 50%;
+		--tablet-y: 40%;
 	}
 
 	.o-project-player__slide .m-crew-call {

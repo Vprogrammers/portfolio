@@ -1,0 +1,50 @@
+{# ÇocukFlix: a playful sky with balloons and clouds around a tablet running the kids' cartoon app in Turkish. Browse, watch and favourite a video, then the parental gate (a sum only grown-ups solve) opens the settings with a screen-time limit. Characters are simple drawn blobs. Fills its positioned parent. #}
+<div class="m-kids-tv" aria-hidden="true">
+	<div class="m-kids-tv__sky">
+		{% for i in 1..3 %}<i class="m-kids-tv__cloud"></i>{% endfor %}
+		{% for i in 1..5 %}<i class="m-kids-tv__balloon"></i>{% endfor %}
+		{% for i in 1..8 %}<i class="m-kids-tv__star"></i>{% endfor %}
+	</div>
+
+	<div class="m-kids-tv__stage">
+		<div class="m-kids-tv__device">
+			<div class="m-kids-tv__screen">
+				<div class="m-kids-tv__bar">
+					<p class="m-kids-tv__logo">{% for char in brand|split('') %}<span>{{ char }}</span>{% endfor %}</p>
+					<p class="m-kids-tv__tabs">{% for tab in tabs %}<span>{{ tab }}</span>{% endfor %}</p>
+					<i class="m-kids-tv__gear"></i>
+				</div>
+
+				{# 1. The grid of cartoons. #}
+				<div class="m-kids-tv__grid">
+					{% for video in videos %}
+						<div class="m-kids-tv__tile" style="--hue: {{ video.hue }}">
+							<span class="m-kids-tv__thumb"><i class="m-kids-tv__blob"></i></span>
+							<b>{{ video.title }}</b>
+						</div>
+					{% endfor %}
+				</div>
+
+				{# 2. Watching, with the heart that saves it to favourites. #}
+				<div class="m-kids-tv__player" style="--hue: {{ videos[0].hue }}">
+					<i class="m-kids-tv__blob m-kids-tv__blob--big"></i>
+					<p class="m-kids-tv__now">{{ videos[0].title }}</p>
+					<i class="m-kids-tv__progress"></i>
+					<span class="m-kids-tv__heart">♥</span>
+					<p class="m-kids-tv__saved">{{ saved }}</p>
+				</div>
+
+				{# 3. The parental gate, then the settings it protects. #}
+				<div class="m-kids-tv__gate">
+					<p class="m-kids-tv__gate-title">{{ gate.title }}</p>
+					<p class="m-kids-tv__sum">{{ gate.sum }} = <b>?</b><b>{{ gate.answer }}</b></p>
+					<p class="m-kids-tv__keys">{% for key in gate.keys %}<span>{{ key }}</span>{% endfor %}</p>
+				</div>
+				<div class="m-kids-tv__settings">
+					<p class="m-kids-tv__gate-title">{{ settings.title }}</p>
+					{% for row in settings.rows %}<p class="m-kids-tv__row"><span>{{ row.label }}</span><b>{{ row.value }}</b></p>{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

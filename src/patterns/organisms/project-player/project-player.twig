@@ -31,6 +31,8 @@
           {% pattern name='fantasy-pitch' data=project.fantasy %}
         {% elseif project.pageant %}
           {% pattern name='pageant-stage' data=project.pageant %}
+        {% elseif project.kids %}
+          {% pattern name='kids-tv' data=project.kids %}
         {% elseif project.crew %}
           {% pattern name='crew-call' data=project.crew %}
         {% elseif project.radio %}

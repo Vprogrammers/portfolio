@@ -1,0 +1,607 @@
+/* stylelint-disable plugin/stylelint-bem-namics -- generated keyframe offsets and nth-child loops */
+@use 'sass:list';
+@use 'sass:math';
+
+// The whole story runs on one timeline; times below are seconds into it.
+$loop: 16;
+$round: 'Baloo 2', 'Arial Rounded MT Bold', 'Nunito', -apple-system, sans-serif;
+$letter-colors: (#ff6b6b, #ffa94d, #ffd43b, #51cf66, #339af0, #845ef7, #f06595, #20c997, #ff922b);
+$tap-tile: 3;
+$player: (3.4, 8);
+$heart: 6.2;
+$saved: (6.4, 7.6);
+$gear: 8.4;
+$gate: (8.6, 12.2);
+$key: 11.4;
+$settings: (12.4, 15.4);
+
+@function at($s) {
+	@return math.percentage(math.div($s, $loop));
+}
+
+// Hidden until $start, eased in over $in, kept until $end, then faded out.
+@mixin appear($name, $start, $end, $from: scale(0.94), $in: 0.35) {
+	@keyframes #{$name} {
+		0%,
+		#{at($start)} {
+			opacity: 0;
+			transform: $from;
+		}
+
+		#{at($start + $in)},
+		#{at($end)} {
+			opacity: 1;
+			transform: none;
+		}
+
+		#{at(math.min($end + 0.3, $loop))},
+		100% {
+			opacity: 0;
+			transform: $from;
+		}
+	}
+}
+
+@mixin press($name, $t) {
+	@keyframes #{$name} {
+		0%,
+		#{at($t)},
+		#{at($t + 0.35)},
+		100% {
+			scale: 1;
+		}
+
+		#{at($t + 0.12)} {
+			scale: 0.9;
+		}
+	}
+}
+
+@include appear(kids-tv-player, list.nth($player, 1), list.nth($player, 2), scale(0.6));
+@include appear(kids-tv-saved, list.nth($saved, 1), list.nth($saved, 2), translateY(3cqw), 0.25);
+@include appear(kids-tv-gate, list.nth($gate, 1), list.nth($gate, 2), scale(0.85));
+@include appear(kids-tv-settings, list.nth($settings, 1), list.nth($settings, 2), translateX(6cqw));
+@include press(kids-tv-tap, $tap-tile);
+@include press(kids-tv-gear, $gear);
+@include press(kids-tv-key, $key);
+
+@keyframes kids-tv-heart {
+	0%,
+	#{at($heart)} {
+		color: rgb(255 255 255 / 0.6);
+		transform: scale(1);
+	}
+
+	#{at($heart + 0.15)} {
+		color: #ff4d79;
+		transform: scale(1.5);
+	}
+
+	#{at($heart + 0.4)},
+	100% {
+		color: #ff4d79;
+		transform: scale(1);
+	}
+}
+
+@keyframes kids-tv-progress {
+	0%,
+	#{at(list.nth($player, 1))} {
+		transform: scaleX(0);
+	}
+
+	#{at(list.nth($player, 2))},
+	100% {
+		transform: scaleX(1);
+	}
+}
+
+@keyframes kids-tv-question {
+	0%,
+	#{at($key + 0.1)} {
+		opacity: 1;
+	}
+
+	#{at($key + 0.2)},
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes kids-tv-answer {
+	0%,
+	#{at($key + 0.1)} {
+		opacity: 0;
+		transform: scale(0.4);
+	}
+
+	#{at($key + 0.3)},
+	100% {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@keyframes kids-tv-bob {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+
+	50% {
+		transform: translateY(-8%);
+	}
+}
+
+@keyframes kids-tv-hop {
+	0%,
+	100% {
+		transform: translateY(0) scale(1, 1);
+	}
+
+	40% {
+		transform: translateY(-18%) scale(0.94, 1.06);
+	}
+
+	80% {
+		transform: translateY(0) scale(1.08, 0.92);
+	}
+}
+
+@keyframes kids-tv-float {
+	from {
+		transform: translateY(20cqh);
+	}
+
+	to {
+		transform: translateY(-120cqh);
+	}
+}
+
+@keyframes kids-tv-drift {
+	from {
+		transform: translateX(-30cqw);
+	}
+
+	to {
+		transform: translateX(130cqw);
+	}
+}
+
+@keyframes kids-tv-twinkle {
+	0%,
+	100% {
+		opacity: 0.2;
+		transform: scale(0.6) rotate(0);
+	}
+
+	50% {
+		opacity: 1;
+		transform: scale(1) rotate(45deg);
+	}
+}
+
+@keyframes kids-tv-sway {
+	0%,
+	100% {
+		transform: translate(-50%, -50%) rotate(-2deg);
+	}
+
+	50% {
+		transform: translate(-50%, calc(-50% - 1.4cqh)) rotate(1.5deg);
+	}
+}
+
+// The root fills its positioned parent; the parent sets --tablet-h/-x/-y.
+.m-kids-tv {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	container: kids-tv / size;
+	pointer-events: none;
+	background: linear-gradient(180deg, #4dabf7 0%, #a5d8ff 55%, #ffdeeb 100%);
+	font-family: $round;
+}
+
+.m-kids-tv__cloud {
+	position: absolute;
+	width: 22cqh;
+	height: 7cqh;
+	border-radius: 7cqh;
+	background: #fff;
+	opacity: 0.85;
+	animation: kids-tv-drift 34s linear infinite;
+
+	&::before,
+	&::after {
+		content: '';
+		position: absolute;
+		border-radius: 50%;
+		background: inherit;
+	}
+
+	&::before {
+		left: 16%;
+		top: -55%;
+		width: 9cqh;
+		height: 9cqh;
+	}
+
+	&::after {
+		left: 46%;
+		top: -80%;
+		width: 11cqh;
+		height: 11cqh;
+	}
+
+	@for $i from 1 through 3 {
+		&:nth-child(#{$i}) {
+			top: #{list.nth((4, 40, 52), $i)}cqh;
+			animation-delay: -#{$i * 11}s;
+			scale: #{1.2 - $i * 0.15};
+		}
+	}
+}
+
+.m-kids-tv__balloon {
+	position: absolute;
+	bottom: 0;
+	width: 5cqh;
+	height: 6.4cqh;
+	border-radius: 50% 50% 48% 48%;
+	background: radial-gradient(circle at 35% 30%, rgb(255 255 255 / 0.7), transparent 30%), var(--c, #ff6b6b);
+	animation: kids-tv-float 14s linear infinite;
+
+	&::after {
+		content: '';
+		position: absolute;
+		left: 50%;
+		top: 100%;
+		width: 0.15cqh;
+		height: 7cqh;
+		background: rgb(255 255 255 / 0.8);
+	}
+
+	@for $i from 1 through 5 {
+		&:nth-child(#{$i + 3}) {
+			--c: #{list.nth($letter-colors, $i * 2 - 1)};
+
+			left: #{36 + $i * 12}cqw;
+			animation-delay: -#{$i * 2.9}s;
+		}
+	}
+}
+
+.m-kids-tv__star {
+	position: absolute;
+	width: 2cqh;
+	height: 2cqh;
+	background: #fff59d;
+	clip-path: polygon(50% 0, 61% 38%, 100% 50%, 61% 62%, 50% 100%, 39% 62%, 0 50%, 39% 38%);
+	animation: kids-tv-twinkle 2.6s ease-in-out infinite;
+
+	@for $i from 1 through 8 {
+		&:nth-child(#{$i + 8}) {
+			left: #{40 + ($i * 29 % 56)}cqw;
+			top: #{6 + ($i * 41 % 60)}cqh;
+			animation-delay: -#{$i * 0.37}s;
+		}
+	}
+}
+
+.m-kids-tv__stage {
+	--h: var(--tablet-h, 60cqh);
+
+	position: absolute;
+	left: var(--tablet-x, 50%);
+	top: var(--tablet-y, 50%);
+	height: var(--h);
+	animation: kids-tv-sway 6s ease-in-out infinite;
+}
+
+.m-kids-tv__device {
+	height: 100%;
+	padding: calc(var(--h) * 0.035);
+	border-radius: calc(var(--h) * 0.06);
+	background: #ffd43b;
+	box-shadow:
+		inset 0 0 0 calc(var(--h) * 0.008) #fab005,
+		0 calc(var(--h) * 0.05) calc(var(--h) * 0.1) rgb(30 60 120 / 0.35);
+}
+
+.m-kids-tv__screen {
+	position: relative;
+	height: 100%;
+	aspect-ratio: 4 / 3;
+	overflow: hidden;
+	border-radius: calc(var(--h) * 0.035);
+	background: #fff9f0;
+	container-type: inline-size;
+	color: #343a40;
+}
+
+.m-kids-tv__bar {
+	display: flex;
+	align-items: center;
+	gap: 2cqw;
+	padding: 2cqw 3cqw;
+	background: #fff;
+	box-shadow: 0 0.4cqw 1.4cqw rgb(0 0 0 / 0.06);
+
+	p {
+		margin: 0;
+	}
+}
+
+.m-kids-tv__logo {
+	font-size: 3.6cqw;
+	font-weight: 800;
+	letter-spacing: -0.1cqw;
+
+	span {
+		display: inline-block;
+		animation: kids-tv-bob 1.6s ease-in-out infinite;
+
+		@for $i from 1 through list.length($letter-colors) {
+			&:nth-child(#{$i}) {
+				color: list.nth($letter-colors, $i);
+				animation-delay: -#{$i * 0.12}s;
+			}
+		}
+	}
+}
+
+.m-kids-tv__tabs {
+	display: flex;
+	flex: 1;
+	gap: 1.2cqw;
+
+	span {
+		padding: 0.8cqw 1.8cqw;
+		border-radius: 3cqw;
+		background: #f1f3f5;
+		font-size: 1.7cqw;
+		font-weight: 700;
+
+		&:first-child {
+			background: #ff6b6b;
+			color: #fff;
+		}
+	}
+}
+
+.m-kids-tv__gear {
+	width: 3.4cqw;
+	height: 3.4cqw;
+	border: 0.8cqw dotted #868e96;
+	border-radius: 50%;
+	animation: kids-tv-gear #{$loop}s ease-out infinite;
+}
+
+.m-kids-tv__grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 2.4cqw;
+	padding: 3cqw;
+
+	b {
+		display: block;
+		margin-top: 1cqw;
+		font-size: 1.9cqw;
+	}
+}
+
+.m-kids-tv__tile {
+	--hue: 200;
+
+	&:first-child {
+		animation: kids-tv-tap #{$loop}s ease-out infinite;
+	}
+}
+
+.m-kids-tv__thumb {
+	display: grid;
+	place-items: center;
+	aspect-ratio: 16 / 10;
+	border-radius: 2cqw;
+	background:
+		radial-gradient(circle at 80% 20%, rgb(255 255 255 / 0.5) 0 8%, transparent 9%),
+		linear-gradient(160deg, hsl(var(--hue) 85% 72%), hsl(calc(var(--hue) + 30) 80% 58%));
+	box-shadow: 0 0.8cqw 0 hsl(var(--hue) 60% 50%);
+}
+
+// A round cartoon character with two eyes and a smile.
+.m-kids-tv__blob {
+	--stroke: 0.5cqw;
+
+	position: relative;
+	width: 38%;
+	aspect-ratio: 1;
+	border-radius: 50% 50% 46% 46%;
+	background:
+		radial-gradient(circle at 36% 40%, #212529 0 6%, transparent 7%),
+		radial-gradient(circle at 64% 40%, #212529 0 6%, transparent 7%),
+		radial-gradient(circle at 30% 25%, rgb(255 255 255 / 0.6), transparent 30%),
+		hsl(calc(var(--hue) + 160) 80% 62%);
+	animation: kids-tv-hop 1.2s ease-in-out infinite;
+
+	// The smile.
+	&::after {
+		content: '';
+		position: absolute;
+		left: 32%;
+		top: 50%;
+		width: 36%;
+		height: 18%;
+		border-bottom: var(--stroke) solid #212529;
+		border-radius: 0 0 50% 50%;
+	}
+}
+
+.m-kids-tv__player {
+	position: absolute;
+	inset: 0;
+	z-index: 2;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 2cqw;
+	background: linear-gradient(160deg, hsl(var(--hue) 80% 64%), hsl(calc(var(--hue) + 40) 75% 52%));
+	color: #fff;
+	opacity: 0;
+	animation: kids-tv-player #{$loop}s cubic-bezier(0.3, 1.3, 0.5, 1) infinite;
+
+	p {
+		margin: 0;
+	}
+}
+
+.m-kids-tv__blob--big {
+	--stroke: 1cqw;
+
+	width: 26%;
+}
+
+.m-kids-tv__now {
+	font-size: 3cqw;
+	font-weight: 800;
+}
+
+.m-kids-tv__progress {
+	width: 70%;
+	height: 1cqw;
+	border-radius: 1cqw;
+	background: #fff;
+	box-shadow: 0 0 0 0.6cqw rgb(255 255 255 / 0.3);
+	transform-origin: 0 50%;
+	animation: kids-tv-progress #{$loop}s linear infinite;
+}
+
+.m-kids-tv__heart {
+	position: absolute;
+	right: 4cqw;
+	top: 4cqw;
+	font-size: 6cqw;
+	line-height: 1;
+	animation: kids-tv-heart #{$loop}s ease-out infinite;
+}
+
+.m-kids-tv__saved {
+	position: absolute;
+	right: 4cqw;
+	top: 12cqw;
+	padding: 1cqw 2cqw;
+	border-radius: 3cqw;
+	background: #fff;
+	color: #ff4d79;
+	font-size: 1.8cqw;
+	font-weight: 800;
+	opacity: 0;
+	animation: kids-tv-saved #{$loop}s ease-out infinite;
+}
+
+.m-kids-tv__gate,
+.m-kids-tv__settings {
+	position: absolute;
+	left: 18%;
+	right: 18%;
+	top: 16%;
+	z-index: 3;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2cqw;
+	padding: 3cqw;
+	border-radius: 3cqw;
+	background: #fff;
+	box-shadow: 0 2cqw 6cqw rgb(0 0 0 / 0.25), 0 0 0 100cqw rgb(52 58 64 / 0.45);
+	opacity: 0;
+
+	p {
+		margin: 0;
+	}
+}
+
+.m-kids-tv__gate {
+	animation: kids-tv-gate #{$loop}s cubic-bezier(0.3, 1.3, 0.5, 1) infinite;
+}
+
+.m-kids-tv__settings {
+	align-items: stretch;
+	animation: kids-tv-settings #{$loop}s ease-out infinite;
+}
+
+.m-kids-tv__gate-title {
+	font-size: 2.6cqw;
+	font-weight: 800;
+	text-align: center;
+}
+
+.m-kids-tv__sum {
+	display: flex;
+	align-items: center;
+	gap: 1.4cqw;
+	font-size: 5cqw;
+	font-weight: 800;
+
+	b {
+		grid-area: 1 / 1;
+		color: #339af0;
+		animation: kids-tv-question #{$loop}s steps(1, end) infinite;
+
+		&:last-child {
+			margin-left: -4.6cqw;
+			color: #51cf66;
+			animation-name: kids-tv-answer;
+			animation-timing-function: ease-out;
+		}
+	}
+}
+
+.m-kids-tv__keys {
+	display: flex;
+	gap: 1.6cqw;
+
+	span {
+		display: grid;
+		place-items: center;
+		width: 7cqw;
+		height: 7cqw;
+		border-radius: 2cqw;
+		background: #f1f3f5;
+		font-size: 3cqw;
+		font-weight: 800;
+		box-shadow: 0 0.6cqw 0 #dee2e6;
+
+		&:nth-child(3) {
+			animation: kids-tv-key #{$loop}s ease-out infinite;
+		}
+	}
+}
+
+.m-kids-tv__row {
+	display: flex;
+	justify-content: space-between;
+	padding: 1.6cqw 0;
+	border-bottom: 0.2cqw solid #f1f3f5;
+	font-size: 2.2cqw;
+
+	b {
+		color: #339af0;
+	}
+}
+
+// Reduced motion: the grid of cartoons, still.
+@media (prefers-reduced-motion: reduce) {
+	.m-kids-tv *,
+	.m-kids-tv *::before,
+	.m-kids-tv *::after {
+		/* stylelint-disable-next-line declaration-no-important -- overrides every generated story animation */
+		animation: none !important;
+	}
+
+	.m-kids-tv__stage {
+		transform: translate(-50%, -50%);
+	}
+}

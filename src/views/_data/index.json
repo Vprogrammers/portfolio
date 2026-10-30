@@ -862,6 +862,78 @@
 			}
 		},
 		{
+			"category": "iOS · Swift · Kids",
+			"title": "ÇocukFlix",
+			"summary": "A cartoon app for Turkish children: curated YouTube cartoons in Turkish, favourites, push notifications and a parental gate that keeps settings for grown-ups.",
+			"tone": "cyan",
+			"variant": "kids",
+			"duration": 16000,
+			"kids": {
+				"brand": "ÇocukFlix",
+				"tabs": [
+					"Çizgi Filmler",
+					"Şarkılar",
+					"Eğitici",
+					"Favoriler"
+				],
+				"videos": [
+					{
+						"title": "Uzay Macerası",
+						"hue": 200
+					},
+					{
+						"title": "Renkleri Öğrenelim",
+						"hue": 330
+					},
+					{
+						"title": "Dinozor Dostlar",
+						"hue": 110
+					},
+					{
+						"title": "Sayılar Şarkısı",
+						"hue": 40
+					},
+					{
+						"title": "Deniz Altında",
+						"hue": 180
+					},
+					{
+						"title": "Orman Gezisi",
+						"hue": 80
+					}
+				],
+				"saved": "Favorilere eklendi",
+				"gate": {
+					"title": "Ebeveyn kontrolü",
+					"sum": "3 + 4",
+					"answer": "7",
+					"keys": [
+						"5",
+						"6",
+						"7",
+						"8"
+					]
+				},
+				"settings": {
+					"title": "Ayarlar",
+					"rows": [
+						{
+							"label": "Günlük süre",
+							"value": "30 dk"
+						},
+						{
+							"label": "Bildirimler",
+							"value": "Açık"
+						},
+						{
+							"label": "Dil",
+							"value": "Türkçe"
+						}
+					]
+				}
+			}
+		},
+		{
 			"category": "Open source · Accessibility",
 			"title": "a11yOtp",
 			"summary": "Accessible native one-time-code input for Android and iOS.",

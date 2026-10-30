@@ -156,7 +156,7 @@
 			}
 		},
 		{
-			"category": "Android · Live radio",
+			"category": "Android · Java · Firebase",
 			"title": "Hanze3",
 			"summary": "Live radio for an Egyptian broadcaster: listeners tune in, chat live and book their own talk show once an admin approves it.",
 			"tone": "red",
@@ -202,7 +202,9 @@
 					{
 						"name": "كريم",
 						"hue": 150,
-						"text": "تحياتي من الإسكندرية ❤️"
+						"text": "الحكم ده",
+						"censor": "حمار",
+						"after": "😡"
 					},
 					{
 						"name": "سارة",

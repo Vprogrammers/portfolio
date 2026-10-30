@@ -1,4 +1,4 @@
-{# Phone playing the Hanze3 live-radio story: splash, live player with chat that floats out of the screen, a talk show request the admin approves, countdown, ON AIR. Fills its positioned parent. #}
+{# Phone playing the Hanze3 live-radio story: splash, live player with chat that floats out of the screen (a message can carry a "censor" word the swear filter turns into stars), a talk show request the admin approves, countdown, ON AIR. Fills its positioned parent. #}
 <div class="m-on-air" aria-hidden="true">
 	<img class="m-on-air__backdrop" src="{{ studio }}" alt="" loading="lazy" decoding="async">
 	<div class="m-on-air__eq">{% for i in 1..40 %}<i></i>{% endfor %}</div>
@@ -32,7 +32,7 @@
 
 					<ul class="m-on-air__chat" style="--studio: url('{{ studio }}')">
 						{% for message in messages %}
-							<li dir="rtl"><span class="m-on-air__avatar" style="--hue: {{ message.hue }}">{{ message.name|slice(0, 1) }}</span><span><b>{{ message.name }}</b>{{ message.text }}</span></li>
+							<li dir="rtl"><span class="m-on-air__avatar" style="--hue: {{ message.hue }}">{{ message.name|slice(0, 1) }}</span><span><b>{{ message.name }}</b>{{ message.text }}{% if message.censor %} <span class="m-on-air__censor"><s>{{ message.censor }}</s><span>****</span></span> {{ message.after }}{% endif %}</span></li>
 						{% endfor %}
 					</ul>
 
@@ -55,7 +55,7 @@
 
 		{# Copies of the chat messages that leave the screen and drift across the slide. #}
 		<div class="m-on-air__floats">
-			{% for message in messages %}<p class="m-on-air__float" dir="rtl"><b>{{ message.name }}</b>{{ message.text }}</p>{% endfor %}
+			{% for message in messages %}<p class="m-on-air__float" dir="rtl"><b>{{ message.name }}</b>{{ message.text }}{% if message.censor %} **** {{ message.after }}{% endif %}</p>{% endfor %}
 		</div>
 	</div>
 </div>

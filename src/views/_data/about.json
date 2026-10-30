@@ -197,5 +197,9 @@
 	},
 	"analytics": {
 		"gaMeasurementId": "G-ZM0VPP0G2C"
+	},
+	"meta": {
+		"description": "More than ten years in software and over twenty mobile apps delivered across iOS, Android and Kotlin Multiplatform. Download the CV or get in touch.",
+		"path": "/about"
 	}
 }

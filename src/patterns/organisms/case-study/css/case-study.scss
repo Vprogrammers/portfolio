@@ -552,3 +552,11 @@ $layers: (#5eead4, #7dd3fc, #fdba74, #a5b4fc, #f9a8d4);
 		animation: none;
 	}
 }
+
+// A short centred page, such as the 404, under the header.
+.o-case-study__body--center {
+	justify-content: center;
+	gap: 1.25rem;
+	min-height: 80svh;
+	padding-top: clamp(7rem, 16vh, 10rem);
+}

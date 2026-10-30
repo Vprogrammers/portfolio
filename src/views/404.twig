@@ -1,8 +1,14 @@
-<div class="container">
-	<div class="row">
-		<div class="col-md-8 offset-md-2">
-			<h1>404 - Not Found</h1>
-			{% viewlist %}
-		</div>
+{# Shown for unknown addresses. Its data lives in _data/404.json. #}
+{% pattern name='site-header' data={ intro: intro, links: links, base: '/' } %}
+<section class="o-case-study">
+	<div class="o-case-study__body o-case-study__body--center">
+		<p class="o-case-study__kicker">404</p>
+		<h1 class="o-case-study__title">This page doesn't exist</h1>
+		<p class="o-case-study__text">The link may be old, or the address mistyped.</p>
+		<p class="o-case-study__actions">
+			<a class="o-case-study__button" href="/#works">See the works</a>
+			<a class="o-case-study__button o-case-study__button--ghost" href="/about">About me</a>
+		</p>
 	</div>
-</div>
+</section>
+{% pattern name='site-footer' data={ intro: intro, links: links } %}

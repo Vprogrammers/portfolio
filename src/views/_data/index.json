@@ -1,6 +1,6 @@
 {
 	"_nitro": {
-		"pageTitle": "Viktor Nešić — Mobile & Frontend Developer"
+		"pageTitle": "Viktor Nešić — Senior Mobile Engineer · iOS, Android, KMP"
 	},
 	"intro": {
 		"name": "Viktor Nešić",
@@ -2165,5 +2165,9 @@
 	},
 	"analytics": {
 		"gaMeasurementId": "G-ZM0VPP0G2C"
+	},
+	"meta": {
+		"description": "Viktor Nešić, senior mobile engineer: native iOS, Android and Kotlin Multiplatform apps for Hansgrohe, Migros, CGIAR and more, from enterprise products to MVPs.",
+		"path": "/"
 	}
 }

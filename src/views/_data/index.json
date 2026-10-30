@@ -29,7 +29,7 @@
 			"title": "Hansgrohe ProApp",
 			"summary": "A Kotlin Multiplatform iPad app that gives Hansgrohe's sales teams product presentations and a complete offline catalogue, so every customer meeting runs smoothly with or without a connection.",
 			"tone": "teal",
-			"image": "/assets/img/projects/hansgrohe-background-04.png",
+			"image": "/assets/img/projects/hansgrohe-background-04.jpg",
 			"foreground": "/assets/img/projects/hansgrohe-background-04-hands.png",
 			"staticBackground": true,
 			"frameSets": [
@@ -57,7 +57,7 @@
 			"title": "Hansgrohe ProApp",
 			"summary": "A Kotlin Multiplatform iPad app that gives Hansgrohe's sales teams product presentations and a complete offline catalogue, so every customer meeting runs smoothly with or without a connection.",
 			"tone": "teal",
-			"image": "/assets/img/projects/hansgrohe-background-02.png",
+			"image": "/assets/img/projects/hansgrohe-background-02.jpg",
 			"staticBackground": true,
 			"frameSets": [
 				[

@@ -1,0 +1,150 @@
+{
+	"_nitro": {
+		"pageTitle": "Sliike — case study · Viktor Nešić"
+	},
+	"meta": {
+		"description": "A native iOS app for a beauty booking platform for Afro-American women in Canada: discover salons and stylists, choose a service and a time, and get reminded before the appointment.",
+		"path": "/work-sliike"
+	},
+	"intro": {
+		"name": "Viktor Nešić",
+		"role": "Mobile & Frontend Developer"
+	},
+	"links": [
+		{
+			"label": "GitHub",
+			"icon": "github",
+			"url": "https://github.com/Vprogrammers"
+		},
+		{
+			"label": "LinkedIn",
+			"icon": "linkedin",
+			"url": "https://www.linkedin.com/in/viktor-nesic"
+		},
+		{
+			"label": "v.nesic.developer@gmail.com",
+			"icon": "mail",
+			"url": "/about#contact-form"
+		}
+	],
+	"employers": {
+		"merkle": {
+			"label": "Delivered at",
+			"name": "Merkle",
+			"note": "Enterprise mobile & digital engineering"
+		}
+	},
+	"caseStudy": {
+		"kicker": "Case study · iOS · Swift · UIKit",
+		"title": "Sliike",
+		"lead": "A native iOS app for a beauty booking platform for Afro-American women in Canada: discover salons and stylists, choose a service and a time, and get reminded before the appointment.",
+		"sceneType": "salon",
+		"scene": {
+			"tagline": "Find your beautiful",
+			"search": "Search braids, locs, salons…",
+			"categories": [
+				{
+					"name": "Braids",
+					"hue": 20
+				},
+				{
+					"name": "Locs",
+					"hue": 35
+				},
+				{
+					"name": "Twists",
+					"hue": 340
+				},
+				{
+					"name": "Natural",
+					"hue": 150
+				},
+				{
+					"name": "Nails",
+					"hue": 280
+				}
+			],
+			"salons": [
+				{
+					"name": "Crown & Coils Studio",
+					"rating": "4.9",
+					"meta": "1.2 km · Toronto",
+					"hue": 22
+				},
+				{
+					"name": "Halo Braid Bar",
+					"rating": "4.8",
+					"meta": "2.4 km · Toronto",
+					"hue": 330
+				},
+				{
+					"name": "Nubian Glow",
+					"rating": "4.7",
+					"meta": "3.1 km · Toronto",
+					"hue": 160
+				}
+			]
+		},
+		"facts": [
+			{
+				"label": "Client",
+				"value": "Sliike, beauty booking platform, Canada"
+			},
+			{
+				"label": "My role",
+				"value": "Independent mobile developer"
+			},
+			{
+				"label": "Platform",
+				"value": "iOS · Swift · UIKit"
+			}
+		],
+		"brief": {
+			"title": "The brief",
+			"text": [
+				"Sliike connects Afro-American women with salons and stylists who specialise in their hair and beauty. The first version was to be a native iOS app built from the client's Figma designs."
+			]
+		},
+		"contributions": {
+			"title": "What I did",
+			"items": [
+				"Built the native iOS app in Swift and UIKit from the Figma designs.",
+				"Implemented discovering salons and stylists, choosing a service and booking a time.",
+				"Worked with the client through the native iOS phase of the product."
+			]
+		},
+		"stack": {
+			"title": "Stack",
+			"items": [
+				"Swift",
+				"UIKit",
+				"Figma"
+			]
+		},
+		"team": {
+			"title": "Team",
+			"text": "I built the app myself, working directly with the client."
+		},
+		"outcome": {
+			"title": "The result",
+			"text": "The client later chose a cross-platform framework to cover Android as well, and the project continued without me after the native iOS phase."
+		},
+		"back": {
+			"label": "All works",
+			"url": "/#works"
+		},
+		"cta": {
+			"title": "Have a project like this?",
+			"text": "I build and rescue native iOS, Android and Kotlin Multiplatform apps, and I'm happy to look at yours.",
+			"label": "Get in touch",
+			"url": "/about#contact-form"
+		},
+		"next": {
+			"title": "KOCH Scan App",
+			"url": "/work-koch"
+		}
+	},
+	"analytics": {
+		"gaMeasurementId": "G-ZM0VPP0G2C"
+	}
+}

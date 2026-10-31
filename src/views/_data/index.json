@@ -1976,6 +1976,7 @@
 		{
 			"category": "Mobile · Matchmaking",
 			"title": "PerfectMatrimony",
+			"url": "/work-perfectmatrimony",
 			"summary": "A matchmaking app for an Indian client: members fill in a detailed profile, and the app searches the database and suggests partners whose details match, with the community and family preferences that matter in Indian marriages.",
 			"tone": "red",
 			"hero": false,

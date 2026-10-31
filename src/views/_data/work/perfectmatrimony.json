@@ -1,0 +1,138 @@
+{
+	"_nitro": {
+		"pageTitle": "PerfectMatrimony — case study · Viktor Nešić"
+	},
+	"meta": {
+		"description": "A matchmaking app for an Indian client: members fill in a detailed profile, and the app searches the database and suggests partners whose details match, with the community and family preferences that matter in Indian marriages.",
+		"path": "/work-perfectmatrimony"
+	},
+	"intro": {
+		"name": "Viktor Nešić",
+		"role": "Mobile & Frontend Developer"
+	},
+	"links": [
+		{
+			"label": "GitHub",
+			"icon": "github",
+			"url": "https://github.com/Vprogrammers"
+		},
+		{
+			"label": "LinkedIn",
+			"icon": "linkedin",
+			"url": "https://www.linkedin.com/in/viktor-nesic"
+		},
+		{
+			"label": "v.nesic.developer@gmail.com",
+			"icon": "mail",
+			"url": "/about#contact-form"
+		}
+	],
+	"employers": {
+		"merkle": {
+			"label": "Delivered at",
+			"name": "Merkle",
+			"note": "Enterprise mobile & digital engineering"
+		}
+	},
+	"caseStudy": {
+		"kicker": "Case study · Mobile · Matchmaking",
+		"title": "PerfectMatrimony",
+		"lead": "A matchmaking app for an Indian client: members fill in a detailed profile, and the app searches the database and suggests partners whose details match, with the community and family preferences that matter in Indian marriages.",
+		"sceneType": "match-mandala",
+		"scene": {
+			"pattern": "match-mandala",
+			"fields": [
+				"Age",
+				"Community",
+				"Language",
+				"City",
+				"Family"
+			],
+			"people": [
+				{
+					"initial": "A",
+					"name": "Arjun",
+					"values": [
+						"29",
+						"Matches",
+						"Hindi",
+						"Pune",
+						"Joint"
+					]
+				},
+				{
+					"initial": "P",
+					"name": "Priya",
+					"values": [
+						"27",
+						"Matches",
+						"Hindi",
+						"Mumbai",
+						"Joint"
+					]
+				}
+			],
+			"score": "94% match",
+			"banner": "It's a match!"
+		},
+		"facts": [
+			{
+				"label": "Client",
+				"value": "A matchmaking service in India"
+			},
+			{
+				"label": "My role",
+				"value": "Independent mobile developer"
+			},
+			{
+				"label": "Platform",
+				"value": "Mobile app"
+			}
+		],
+		"brief": {
+			"title": "The brief",
+			"text": [
+				"Arranged and assisted marriages in India weigh more than age and city: community, language and family matter too. The client wanted an app that takes all of that into account."
+			]
+		},
+		"contributions": {
+			"title": "What I did",
+			"items": [
+				"Built the app around a detailed member profile.",
+				"Implemented searching the database and suggesting partners whose details match.",
+				"Used a festive design in bright colours, with traditional wedding imagery."
+			]
+		},
+		"stack": {
+			"title": "Stack",
+			"items": [
+				"Mobile app"
+			]
+		},
+		"team": {
+			"title": "Team",
+			"text": "I built the app myself, working directly with the client."
+		},
+		"outcome": {
+			"title": "The result",
+			"text": "Members get partner suggestions based on the details that matter to them and their families."
+		},
+		"back": {
+			"label": "All works",
+			"url": "/#works"
+		},
+		"cta": {
+			"title": "Have a project like this?",
+			"text": "I build and rescue native iOS, Android and Kotlin Multiplatform apps, and I'm happy to look at yours.",
+			"label": "Get in touch",
+			"url": "/about#contact-form"
+		},
+		"next": {
+			"title": "Hansgrohe ProApp",
+			"url": "/work-proapp"
+		}
+	},
+	"analytics": {
+		"gaMeasurementId": "G-ZM0VPP0G2C"
+	}
+}

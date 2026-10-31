@@ -1773,6 +1773,7 @@
 		{
 			"category": "Android · Java · Firebase",
 			"title": "MyPH",
+			"url": "/work-myph",
 			"summary": "A social and dating app for Android that brings people together by city: build a profile, join your city's group chat, make friends, and sign in with Facebook or Google, with a web admin panel behind it.",
 			"tone": "red",
 			"variant": "chat",

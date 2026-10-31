@@ -128,25 +128,7 @@
 		},
 		"team": {
 			"title": "Team",
-			"text": "Four frontend developers, three Drupal backend developers, three designers, a project manager and QA.",
-			"items": [
-				[
-					"4",
-					"frontend developers"
-				],
-				[
-					"3",
-					"Drupal developers"
-				],
-				[
-					"3",
-					"designers"
-				],
-				[
-					"1",
-					"QA"
-				]
-			]
+			"text": "Frontend and Drupal developers, designers, a project manager and QA, working together on one component library."
 		},
 		"outcome": {
 			"title": "The result",

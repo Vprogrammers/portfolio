@@ -35,7 +35,7 @@
 		}
 	},
 	"caseStudy": {
-		"kicker": "Case study · Android · Real-time video",
+		"kicker": "Case study · Android · Java · Agora",
 		"title": "MuMe",
 		"lead": "An Android app for live video chat rooms: hosts open a room, guests join by paying with coins, and the conversation happens in real time.",
 		"sceneType": "live",
@@ -96,32 +96,35 @@
 			},
 			{
 				"label": "Platform",
-				"value": "Android"
+				"value": "Android · Java · XML views"
 			},
 			{
-				"label": "Type",
-				"value": "Live video rooms"
+				"label": "Real time",
+				"value": "Agora video and audio · Firebase"
 			}
 		],
 		"brief": {
 			"title": "The brief",
 			"text": [
-				"Live conversations as a product: a host opens a room, guests pay a small amount of coins to join, and everyone talks face to face in real time."
+				"Live conversations as a product: a host opens a room, guests pay a small amount of coins to join, and everyone talks in real time, face to face in video rooms or by voice in audio rooms."
 			]
 		},
 		"contributions": {
 			"title": "What I did",
 			"items": [
-				"Built the Android app around live video rooms.",
-				"Implemented joining a room with coins.",
-				"Worked on the real-time conversation inside the room."
+				"Built the native Android app in Java with XML views.",
+				"Integrated Agora for the real-time video rooms and the audio rooms.",
+				"Built the chat inside the rooms on Firebase, which also serves as the app's backend.",
+				"Implemented joining a room with coins."
 			]
 		},
 		"stack": {
 			"title": "Stack",
 			"items": [
-				"Android",
-				"Real-time video",
+				"Java",
+				"Android Views (XML)",
+				"Agora RTC",
+				"Firebase",
 				"In-app coins"
 			]
 		},
@@ -131,7 +134,7 @@
 		},
 		"outcome": {
 			"title": "The result",
-			"text": "A working Android app for paid live video rooms."
+			"text": "A native Android app for paid live rooms, in video and in audio, with chat in every room."
 		},
 		"back": {
 			"label": "All works",
@@ -146,6 +149,26 @@
 		"next": {
 			"title": "CGIAR",
 			"url": "/work-cgiar"
+		},
+		"findings": {
+			"title": "Two kinds of rooms",
+			"items": [
+				{
+					"tag": "Video",
+					"title": "Video rooms",
+					"text": "Hosts and guests see each other live, streamed through Agora."
+				},
+				{
+					"tag": "Audio",
+					"title": "Audio rooms",
+					"text": "Voice-only rooms on the same Agora real-time engine."
+				},
+				{
+					"tag": "Chat",
+					"title": "Room chat",
+					"text": "Messages next to the conversation, synced through Firebase."
+				}
+			]
 		}
 	},
 	"analytics": {

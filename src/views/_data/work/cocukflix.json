@@ -1,0 +1,172 @@
+{
+	"_nitro": {
+		"pageTitle": "ÇocukFlix — case study · Viktor Nešić"
+	},
+	"meta": {
+		"description": "A safe cartoon app for Turkish children: curated cartoons in Turkish, favourites and notifications, with a parental gate that keeps the settings in grown-up hands.",
+		"path": "/work-cocukflix"
+	},
+	"intro": {
+		"name": "Viktor Nešić",
+		"role": "Mobile & Frontend Developer"
+	},
+	"links": [
+		{
+			"label": "GitHub",
+			"icon": "github",
+			"url": "https://github.com/Vprogrammers"
+		},
+		{
+			"label": "LinkedIn",
+			"icon": "linkedin",
+			"url": "https://www.linkedin.com/in/viktor-nesic"
+		},
+		{
+			"label": "v.nesic.developer@gmail.com",
+			"icon": "mail",
+			"url": "/about#contact-form"
+		}
+	],
+	"employers": {
+		"merkle": {
+			"label": "Delivered at",
+			"name": "Merkle",
+			"note": "Enterprise mobile & digital engineering"
+		}
+	},
+	"caseStudy": {
+		"kicker": "Case study · iOS · Swift · Kids",
+		"title": "ÇocukFlix",
+		"lead": "A safe cartoon app for Turkish children: curated cartoons in Turkish, favourites and notifications, with a parental gate that keeps the settings in grown-up hands.",
+		"sceneType": "kids",
+		"scene": {
+			"brand": "ÇocukFlix",
+			"tabs": [
+				"Çizgi Filmler",
+				"Şarkılar",
+				"Eğitici",
+				"Favoriler"
+			],
+			"videos": [
+				{
+					"title": "Uzay Macerası",
+					"hue": 200
+				},
+				{
+					"title": "Renkleri Öğrenelim",
+					"hue": 330
+				},
+				{
+					"title": "Dinozor Dostlar",
+					"hue": 110
+				},
+				{
+					"title": "Sayılar Şarkısı",
+					"hue": 40
+				},
+				{
+					"title": "Deniz Altında",
+					"hue": 180
+				},
+				{
+					"title": "Orman Gezisi",
+					"hue": 80
+				}
+			],
+			"saved": "Favorilere eklendi",
+			"gate": {
+				"title": "Ebeveyn kontrolü",
+				"sum": "3 + 4",
+				"answer": "7",
+				"keys": [
+					"5",
+					"6",
+					"7",
+					"8"
+				]
+			},
+			"settings": {
+				"title": "Ayarlar",
+				"rows": [
+					{
+						"label": "Günlük süre",
+						"value": "30 dk"
+					},
+					{
+						"label": "Bildirimler",
+						"value": "Açık"
+					},
+					{
+						"label": "Dil",
+						"value": "Türkçe"
+					}
+				]
+			}
+		},
+		"facts": [
+			{
+				"label": "Client",
+				"value": "A Turkish client"
+			},
+			{
+				"label": "My role",
+				"value": "Independent mobile developer"
+			},
+			{
+				"label": "Platform",
+				"value": "iOS · Swift"
+			}
+		],
+		"brief": {
+			"title": "The brief",
+			"text": [
+				"A cartoon app for children in Turkish: curated videos in categories, favourites, and the settings kept behind a parental gate."
+			]
+		},
+		"contributions": {
+			"title": "What I did",
+			"items": [
+				"Built the iOS app in Swift: categories, details, favourites and the video screen.",
+				"Added a parental gate in front of the parental controls.",
+				"Integrated push notifications with OneSignal and ads with AdMob.",
+				"Loaded content with Alamofire and ObjectMapper, and images with Kingfisher."
+			]
+		},
+		"stack": {
+			"title": "Stack",
+			"items": [
+				"Swift",
+				"iOS",
+				"OneSignal",
+				"AdMob",
+				"Alamofire",
+				"Kingfisher"
+			]
+		},
+		"team": {
+			"title": "Team",
+			"text": "I built the app myself, working directly with the client."
+		},
+		"outcome": {
+			"title": "The result",
+			"text": "A focused cartoon app for children, with the settings behind a parental gate."
+		},
+		"back": {
+			"label": "All works",
+			"url": "/#works"
+		},
+		"cta": {
+			"title": "Have a project like this?",
+			"text": "I build and rescue native iOS, Android and Kotlin Multiplatform apps, and I'm happy to look at yours.",
+			"label": "Get in touch",
+			"url": "/about#contact-form"
+		},
+		"next": {
+			"title": "Design Token Pipeline",
+			"url": "/work-design-tokens"
+		}
+	},
+	"analytics": {
+		"gaMeasurementId": "G-ZM0VPP0G2C"
+	}
+}

@@ -1,0 +1,177 @@
+{
+	"_nitro": {
+		"pageTitle": "MuMe — case study · Viktor Nešić"
+	},
+	"meta": {
+		"description": "An Android app for live video chat rooms: hosts open a room, guests join by paying with coins, and the conversation happens in real time.",
+		"path": "/work-mume"
+	},
+	"intro": {
+		"name": "Viktor Nešić",
+		"role": "Mobile & Frontend Developer"
+	},
+	"links": [
+		{
+			"label": "GitHub",
+			"icon": "github",
+			"url": "https://github.com/Vprogrammers"
+		},
+		{
+			"label": "LinkedIn",
+			"icon": "linkedin",
+			"url": "https://www.linkedin.com/in/viktor-nesic"
+		},
+		{
+			"label": "v.nesic.developer@gmail.com",
+			"icon": "mail",
+			"url": "/about#contact-form"
+		}
+	],
+	"employers": {
+		"merkle": {
+			"label": "Delivered at",
+			"name": "Merkle",
+			"note": "Enterprise mobile & digital engineering"
+		}
+	},
+	"caseStudy": {
+		"kicker": "Case study · Android · Java · Agora",
+		"title": "MuMe",
+		"lead": "An Android app for live video chat rooms: hosts open a room, guests join by paying with coins, and the conversation happens in real time.",
+		"sceneType": "live",
+		"scene": {
+			"room": "Late Night Talks",
+			"host": {
+				"name": "You",
+				"initials": "VN"
+			},
+			"guests": [
+				{
+					"name": "Mia",
+					"hue": 330
+				},
+				{
+					"name": "Alex",
+					"hue": 200
+				},
+				{
+					"name": "Sara",
+					"hue": 150
+				}
+			],
+			"fee": 5,
+			"wallet": [
+				120,
+				125,
+				130,
+				135,
+				147
+			],
+			"gift": 12,
+			"messages": [
+				{
+					"name": "Mia",
+					"text": "Hi everyone 👋"
+				},
+				{
+					"name": "Alex",
+					"text": "Love this room 💛"
+				},
+				{
+					"name": "Sara",
+					"text": "Where are you all from?"
+				},
+				{
+					"name": "Alex",
+					"text": "sent a gift 🎁"
+				}
+			],
+			"wordmark": "/assets/img/projects/mume-wordmark.png",
+			"nav": "/assets/img/projects/mume-nav.png"
+		},
+		"facts": [
+			{
+				"label": "My role",
+				"value": "Independent mobile developer"
+			},
+			{
+				"label": "Platform",
+				"value": "Android · Java · XML views"
+			},
+			{
+				"label": "Real time",
+				"value": "Agora video and audio · Firebase"
+			}
+		],
+		"brief": {
+			"title": "The brief",
+			"text": [
+				"Live conversations as a product: a host opens a room, guests pay a small amount of coins to join, and everyone talks in real time, face to face in video rooms or by voice in audio rooms."
+			]
+		},
+		"contributions": {
+			"title": "What I did",
+			"items": [
+				"Built the native Android app in Java with XML views.",
+				"Integrated Agora for the real-time video rooms and the audio rooms.",
+				"Built the chat inside the rooms on Firebase, which also serves as the app's backend.",
+				"Implemented joining a room with coins."
+			]
+		},
+		"stack": {
+			"title": "Stack",
+			"items": [
+				"Java",
+				"Android Views (XML)",
+				"Agora RTC",
+				"Firebase",
+				"In-app coins"
+			]
+		},
+		"team": {
+			"title": "Team",
+			"text": "I built the app myself, working directly with the client."
+		},
+		"outcome": {
+			"title": "The result",
+			"text": "A native Android app for paid live rooms, in video and in audio, with chat in every room."
+		},
+		"back": {
+			"label": "All works",
+			"url": "/#works"
+		},
+		"cta": {
+			"title": "Have a project like this?",
+			"text": "I build and rescue native iOS, Android and Kotlin Multiplatform apps, and I'm happy to look at yours.",
+			"label": "Get in touch",
+			"url": "/about#contact-form"
+		},
+		"next": {
+			"title": "CGIAR",
+			"url": "/work-cgiar"
+		},
+		"findings": {
+			"title": "Two kinds of rooms",
+			"items": [
+				{
+					"tag": "Video",
+					"title": "Video rooms",
+					"text": "Hosts and guests see each other live, streamed through Agora."
+				},
+				{
+					"tag": "Audio",
+					"title": "Audio rooms",
+					"text": "Voice-only rooms on the same Agora real-time engine."
+				},
+				{
+					"tag": "Chat",
+					"title": "Room chat",
+					"text": "Messages next to the conversation, synced through Firebase."
+				}
+			]
+		}
+	},
+	"analytics": {
+		"gaMeasurementId": "G-ZM0VPP0G2C"
+	}
+}

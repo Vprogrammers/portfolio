@@ -163,8 +163,9 @@
 			"employer": "merkle"
 		},
 		{
-			"category": "Android · Real-time video",
+			"category": "Android · Java · Agora · Firebase",
 			"title": "MuMe",
+			"url": "/work-mume",
 			"summary": "An Android app for live video chat rooms: hosts open a room, guests join by paying with coins, and the conversation happens in real time.",
 			"tone": "yellow",
 			"variant": "live",
@@ -240,6 +241,7 @@
 		{
 			"category": "Android · Java · Firebase",
 			"title": "Hanze3",
+			"url": "/work-hanze3",
 			"summary": "A live radio app for an Egyptian broadcaster: listeners tune in, chat in real time behind a profanity filter and book their own on-air slot once a moderator approves it.",
 			"tone": "red",
 			"variant": "radio",
@@ -300,6 +302,7 @@
 		{
 			"category": "KMP · SwiftUI · Compose · Firebase",
 			"title": "PhotoStory",
+			"url": "/work-photostory",
 			"summary": "Crew scheduling for a photo studio, built with Kotlin Multiplatform: the admin books an event and invites the crew, each member accepts or declines from a push notification, and a declined offer moves on to the next person.",
 			"tone": "red",
 			"variant": "crew",
@@ -391,6 +394,7 @@
 		{
 			"category": "KMP · SwiftUI · Compose · Firebase",
 			"title": "BezBrige!",
+			"url": "/work-bezbrige",
 			"summary": "A sales CRM for insurance agents, built with Kotlin Multiplatform: assigned leads, call outcomes and awareness levels guide every client from the first call to a signed contract for insurance, credit or an investment fund.",
 			"tone": "red",
 			"variant": "leads",
@@ -481,6 +485,7 @@
 		{
 			"category": "iOS · Swift · UIKit",
 			"title": "Sliike",
+			"url": "/work-sliike",
 			"summary": "A native iOS app in Swift and UIKit for a beauty booking platform for Afro-American women in Canada: discover salons and stylists, choose a service and a time, and get reminded before the appointment.",
 			"tone": "orange",
 			"variant": "salon",
@@ -625,6 +630,7 @@
 		{
 			"category": "iOS · Swift · UIKit",
 			"title": "Swipe XYZ",
+			"url": "/work-swipe-xyz",
 			"summary": "A native iOS shopping app for a fashion and footwear retailer in the Arab world, combining classic browsing with a swipe-to-like product feed that sends favourites straight to the bag.",
 			"tone": "green",
 			"variant": "deck",
@@ -693,6 +699,7 @@
 		{
 			"category": "Android · iOS · Fantasy soccer · MVP",
 			"title": "Goaleadors",
+			"url": "/work-goaleadors",
 			"summary": "A fantasy football platform spanning Europe's top five leagues: draft a squad on a budget, score every matchday and climb a multi-tier league pyramid in free or premium play. The MVP shipped before the client paused the product.",
 			"tone": "blue",
 			"variant": "fantasy",
@@ -843,6 +850,7 @@
 		{
 			"category": "Android · iOS · Competition",
 			"title": "Bikini",
+			"url": "/work-bikini",
 			"summary": "Android and iOS apps for a beauty competition in Asia, bringing contestants, live audience voting, the judges' scores and the final result together on the night.",
 			"tone": "violet",
 			"variant": "pageant",
@@ -888,6 +896,7 @@
 		{
 			"category": "iOS · Swift · Kids",
 			"title": "ÇocukFlix",
+			"url": "/work-cocukflix",
 			"summary": "A safe cartoon app for Turkish children: curated cartoons in Turkish, favourites and notifications, with a parental gate that keeps the settings in grown-up hands.",
 			"tone": "cyan",
 			"variant": "kids",
@@ -1184,6 +1193,7 @@
 		{
 			"category": "Android · Java · Firebase",
 			"title": "Masse",
+			"url": "/work-masse",
 			"summary": "Online booking for a billiard club: guests reserve a pool table or a dartboard for a free slot, while an admin panel manages the data and the evening's reservations.",
 			"tone": "cyan",
 			"variant": "club",
@@ -1305,6 +1315,7 @@
 		{
 			"category": "iOS · Swift · Core ML · Vision",
 			"title": "AppleDetect",
+			"url": "/work-appledetect",
 			"summary": "An iOS app that grades apples with on-device machine learning: the camera detects every apple in a crate, a Core ML model sorts each one into four quality classes, and the result guides which crate it goes into.",
 			"tone": "green",
 			"variant": "apples",
@@ -1428,6 +1439,7 @@
 		{
 			"category": "Android · Java · CoinGecko API · MVP",
 			"title": "Cryptocent",
+			"url": "/work-cryptocent",
 			"summary": "A cryptocurrency market app for Android: live prices, sparklines and detailed charts from the CoinGecko API, with onboarding, sign-in and sections for trading, a portfolio and a wallet, delivered as an MVP.",
 			"tone": "orange",
 			"variant": "coins",
@@ -1539,6 +1551,7 @@
 		{
 			"category": "Android tablet · Java · Firebase",
 			"title": "Feniks",
+			"url": "/work-feniks",
 			"summary": "An Android tablet app for an ice cream shop that tracks what is left of every flavour across two display cases and tells the kitchen which flavour to make next.",
 			"tone": "violet",
 			"variant": "feniks",
@@ -1645,6 +1658,7 @@
 		{
 			"category": "Android · Java · JWT",
 			"title": "DigitalPass",
+			"url": "/work-digitalpass",
 			"summary": "A digital pass prototype for Android: accounts and passes backed by signed JWT credentials, decoded on the device, with live expiry countdowns, online status and credential renewal.",
 			"tone": "violet",
 			"variant": "pass",
@@ -1677,6 +1691,7 @@
 		{
 			"category": "iOS · Swift · UIKit",
 			"title": "ConnectClub",
+			"url": "/work-connectclub",
 			"summary": "A members' club app for taxi drivers: sign in with Face ID, verify a driving licence by photographing both sides, carry a member badge and unlock offers from partner companies.",
 			"tone": "orange",
 			"variant": "club2",
@@ -1717,6 +1732,7 @@
 		{
 			"category": "iOS · Swift · Firebase · AR",
 			"title": "Yaaxa",
+			"url": "/work-yaaxa",
 			"summary": "A short-video social app for iOS that connects people through the videos they share: record with AR avatars and effects powered by the DeepAR SDK, add filters, stickers and music, film duets side by side, and find matches in the feed.",
 			"tone": "violet",
 			"variant": "duet",
@@ -1757,6 +1773,7 @@
 		{
 			"category": "Android · Java · Firebase",
 			"title": "MyPH",
+			"url": "/work-myph",
 			"summary": "A social and dating app for Android that brings people together by city: build a profile, join your city's group chat, make friends, and sign in with Facebook or Google, with a web admin panel behind it.",
 			"tone": "red",
 			"variant": "chat",
@@ -1904,6 +1921,7 @@
 		{
 			"category": "Mobile · Cleaning services",
 			"title": "Houseleek Renhold",
+			"url": "/work-houseleek",
 			"summary": "A presentation app for a Norwegian cleaning company: every service, from homes and offices to stairs, windows and car care, with photos, a short description and a direct line to book.",
 			"tone": "teal",
 			"hero": false,
@@ -1958,6 +1976,7 @@
 		{
 			"category": "Mobile · Matchmaking",
 			"title": "PerfectMatrimony",
+			"url": "/work-perfectmatrimony",
 			"summary": "A matchmaking app for an Indian client: members fill in a detailed profile, and the app searches the database and suggests partners whose details match, with the community and family preferences that matter in Indian marriages.",
 			"tone": "red",
 			"hero": false,

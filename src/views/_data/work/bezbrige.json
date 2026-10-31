@@ -1,0 +1,261 @@
+{
+	"_nitro": {
+		"pageTitle": "BezBrige! — case study · Viktor Nešić"
+	},
+	"meta": {
+		"description": "A sales CRM for insurance agents: assigned leads, call outcomes and awareness levels guide every client from the first call to a signed contract for insurance, credit or an investment fund.",
+		"path": "/work-bezbrige"
+	},
+	"intro": {
+		"name": "Viktor Nešić",
+		"role": "Mobile & Frontend Developer"
+	},
+	"links": [
+		{
+			"label": "GitHub",
+			"icon": "github",
+			"url": "https://github.com/Vprogrammers"
+		},
+		{
+			"label": "LinkedIn",
+			"icon": "linkedin",
+			"url": "https://www.linkedin.com/in/viktor-nesic"
+		},
+		{
+			"label": "v.nesic.developer@gmail.com",
+			"icon": "mail",
+			"url": "/about#contact-form"
+		}
+	],
+	"employers": {
+		"merkle": {
+			"label": "Delivered at",
+			"name": "Merkle",
+			"note": "Enterprise mobile & digital engineering"
+		}
+	},
+	"caseStudy": {
+		"kicker": "Case study · Kotlin Multiplatform · Sales CRM",
+		"title": "BezBrige!",
+		"lead": "A sales CRM for insurance agents: assigned leads, call outcomes and awareness levels guide every client from the first call to a signed contract for insurance, credit or an investment fund.",
+		"sceneType": "leads",
+		"scene": {
+			"logo": "/assets/img/projects/bezbrige-logo.png",
+			"push": {
+				"title": "Novi kontakt",
+				"body": "Admin ti je dodelio novi kontakt: Milan Petrović"
+			},
+			"agent": {
+				"initials": "MJ",
+				"name": "Marija Jovanović",
+				"level": "Nivo 3",
+				"stats": [
+					{
+						"label": "Broj kontakata",
+						"before": "47",
+						"after": "48"
+					},
+					{
+						"label": "Broj ugovora",
+						"before": "12",
+						"after": "13"
+					},
+					{
+						"label": "Provizija",
+						"before": "1.180 €",
+						"after": "1.257 €"
+					}
+				]
+			},
+			"client": {
+				"name": "Milan Petrović",
+				"age": 34,
+				"phone": "064 123 4567",
+				"product": "Osiguranje",
+				"duration": "20 godina",
+				"amount": "50 € mesečno"
+			},
+			"contacts": [
+				{
+					"name": "Jovana Marković",
+					"age": 29,
+					"product": "Fond",
+					"status": "Razmišlja",
+					"color": "#2323ff"
+				},
+				{
+					"name": "Stefan Ristić",
+					"age": 41,
+					"product": "Kredit",
+					"status": "Poslao/la ponudu",
+					"color": "#9a6f01"
+				},
+				{
+					"name": "Ana Kostić",
+					"age": 52,
+					"product": "Osiguranje",
+					"status": "Potpisan ugovor",
+					"color": "#656244"
+				}
+			],
+			"statuses": [
+				"Klijent nije pozvan",
+				"Klijent se nije javio",
+				"Nezainteresovan/a",
+				"Zainteresovan/a",
+				"Poslao/la ponudu",
+				"Razmišlja",
+				"Potpisan ugovor",
+				"Odustao"
+			],
+			"awareness": [
+				"Nisam čuo — NE",
+				"Čuo sam — ZNAM",
+				"Treba mi — ali mogu",
+				"Želim — Hoću",
+				"Potpisano — PLAĆAM"
+			],
+			"reminder": {
+				"when": "Petak, 14:00",
+				"text": "Poslati ponudu za osiguranje"
+			},
+			"contract": "Ugovor · Osiguranje · 20 god."
+		},
+		"facts": [
+			{
+				"label": "Client",
+				"value": "BezBrige!, insurance and finance sales, Serbia"
+			},
+			{
+				"label": "My role",
+				"value": "Independent mobile developer"
+			},
+			{
+				"label": "Platform",
+				"value": "iOS · Android"
+			},
+			{
+				"label": "Stack",
+				"value": "KMP · Compose Multiplatform · Firebase"
+			}
+		],
+		"brief": {
+			"title": "The brief",
+			"text": [
+				"An admin hands out contacts to agents, who offer them insurance, credit or investment in a fund. Agents needed to see at a glance where every conversation stands and what each client is interested in.",
+				"The design was made in Figma together with the client."
+			]
+		},
+		"contributions": {
+			"title": "What I did",
+			"items": [
+				"Built the app with Kotlin Multiplatform: business logic, models and ViewModels shared, Compose Multiplatform UI on both platforms.",
+				"Built Firebase repositories for clients, agents, contracts, comments, reminders and period statistics.",
+				"Tracked every lead by call status, from not called yet to signed contract, each with its own badge.",
+				"Added the client's awareness level, from 0 (never heard of it) to 4 (signed and paying).",
+				"Built reminders, archiving and one-tap calls, and a profile with contacts, contracts, commission and the agent's level."
+			]
+		},
+		"findings": {
+			"title": "How a lead moves",
+			"items": [
+				{
+					"tag": "1",
+					"title": "Assigned",
+					"text": "The admin gives the agent a new contact."
+				},
+				{
+					"tag": "2",
+					"title": "Called",
+					"text": "Each call ends with a status: no answer, interested, offer sent, thinking, signed…"
+				},
+				{
+					"tag": "3",
+					"title": "Warmed up",
+					"text": "The awareness level shows how close the client is to a decision."
+				},
+				{
+					"tag": "4",
+					"title": "Signed",
+					"text": "The contract counts toward the agent's points and commission."
+				}
+			]
+		},
+		"architecture": {
+			"title": "Architecture",
+			"layers": [
+				{
+					"name": "Apps",
+					"items": [
+						"Compose Multiplatform UI",
+						"iOS via XCFramework and Tuist"
+					]
+				},
+				{
+					"name": "Shared Kotlin",
+					"items": [
+						"Business logic",
+						"Models",
+						"ViewModels"
+					]
+				},
+				{
+					"name": "Firebase repositories",
+					"items": [
+						"Clients",
+						"Agents",
+						"Contracts",
+						"Comments",
+						"Reminders",
+						"Stats"
+					]
+				},
+				{
+					"name": "Quality",
+					"items": [
+						"detekt",
+						"Local CI scripts",
+						"App version check"
+					]
+				}
+			]
+		},
+		"stack": {
+			"title": "Stack",
+			"items": [
+				"Kotlin Multiplatform",
+				"Compose Multiplatform",
+				"SwiftUI",
+				"Firebase",
+				"Notifications",
+				"Figma",
+				"detekt"
+			]
+		},
+		"team": {
+			"title": "Team",
+			"text": "I built the app and worked on the design with the client."
+		},
+		"outcome": {
+			"title": "The result",
+			"text": "Agents work their leads from one app, and the admin sees every client's status, contract and commission."
+		},
+		"back": {
+			"label": "All works",
+			"url": "/#works"
+		},
+		"cta": {
+			"title": "Have a project like this?",
+			"text": "I build and rescue native iOS, Android and Kotlin Multiplatform apps, and I'm happy to look at yours.",
+			"label": "Get in touch",
+			"url": "/about#contact-form"
+		},
+		"next": {
+			"title": "Sliike",
+			"url": "/work-sliike"
+		}
+	},
+	"analytics": {
+		"gaMeasurementId": "G-ZM0VPP0G2C"
+	}
+}

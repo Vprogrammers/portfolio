@@ -68,6 +68,10 @@ $layers: (#5eead4, #7dd3fc, #fdba74, #a5b4fc, #f9a8d4);
 	.o-case-study__hero--panel .o-case-study__hero-content {
 		max-width: min(44rem, 38%);
 	}
+
+	.o-case-study__hero--panel .o-case-study__title {
+		font-size: clamp(1.75rem, min(7vw, 46vw / var(--longest-word, 6)), 5.5rem);
+	}
 }
 
 .o-case-study__hero-image {
@@ -117,7 +121,8 @@ $layers: (#5eead4, #7dd3fc, #fdba74, #a5b4fc, #f9a8d4);
 .o-case-study__title {
 	margin: 0;
 	font-family: var(--font-display);
-	font-size: clamp(2.4rem, 7vw, 5.5rem);
+	// A display letter is about 0.75em wide, so the longest word fits the copy column.
+	font-size: clamp(1.75rem, min(10vw, 115vw / var(--longest-word, 6)), 5.5rem);
 	font-weight: 700;
 	line-height: 1;
 }

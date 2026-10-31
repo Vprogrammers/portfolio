@@ -1,0 +1,142 @@
+{
+	"_nitro": {
+		"pageTitle": "Yaaxa — case study · Viktor Nešić"
+	},
+	"meta": {
+		"description": "A short-video social app for iOS that connects people through the videos they share: record with AR avatars and effects, add filters, stickers and music, film duets side by side, and find matches in the feed.",
+		"path": "/work-yaaxa"
+	},
+	"intro": {
+		"name": "Viktor Nešić",
+		"role": "Mobile & Frontend Developer"
+	},
+	"links": [
+		{
+			"label": "GitHub",
+			"icon": "github",
+			"url": "https://github.com/Vprogrammers"
+		},
+		{
+			"label": "LinkedIn",
+			"icon": "linkedin",
+			"url": "https://www.linkedin.com/in/viktor-nesic"
+		},
+		{
+			"label": "v.nesic.developer@gmail.com",
+			"icon": "mail",
+			"url": "/about#contact-form"
+		}
+	],
+	"employers": {
+		"merkle": {
+			"label": "Delivered at",
+			"name": "Merkle",
+			"note": "Enterprise mobile & digital engineering"
+		}
+	},
+	"caseStudy": {
+		"kicker": "Case study · iOS · Swift · AR",
+		"title": "Yaaxa",
+		"lead": "A short-video social app for iOS that connects people through the videos they share: record with AR avatars and effects, add filters, stickers and music, film duets side by side, and find matches in the feed.",
+		"sceneType": "duet",
+		"scene": {
+			"filters": [
+				"Normal",
+				"Sepia",
+				"Mono",
+				"Cool",
+				"Normal"
+			],
+			"stickers": [
+				"😍",
+				"🔥",
+				"✨"
+			],
+			"music": "Summer Nights · Original sound",
+			"modes": [
+				"15s",
+				"Duet",
+				"60s"
+			],
+			"post": {
+				"user": "nina.dance",
+				"caption": "Duet with @maks ✨ #duet #summer",
+				"likes": [
+					"0",
+					"1.2K",
+					"4.8K",
+					"12.6K"
+				],
+				"comments": "348",
+				"shares": "91"
+			}
+		},
+		"facts": [
+			{
+				"label": "My role",
+				"value": "Independent mobile developer"
+			},
+			{
+				"label": "Platform",
+				"value": "iOS · Swift · Firebase"
+			},
+			{
+				"label": "Focus",
+				"value": "Video, AR and real-time features"
+			}
+		],
+		"brief": {
+			"title": "The brief",
+			"text": [
+				"Yaaxa wanted people to meet through short videos instead of profiles: record something, share it, and let the app find people who match."
+			]
+		},
+		"contributions": {
+			"title": "What I did",
+			"items": [
+				"Built the native iOS app in Swift with RxSwift and SnapKit.",
+				"Integrated DeepAR for AR avatars and effects, including an API for avatars.",
+				"Built filters, stickers, emoji, watermark and music on videos.",
+				"Built duet videos side by side, Discover, comments and the inbox.",
+				"Used Firebase Auth, Firestore, Storage and Messaging, with Facebook and Google sign-in."
+			]
+		},
+		"stack": {
+			"title": "Stack",
+			"items": [
+				"Swift",
+				"RxSwift",
+				"SnapKit",
+				"DeepAR",
+				"Firebase",
+				"Facebook Login",
+				"Google Sign-In"
+			]
+		},
+		"team": {
+			"title": "Team",
+			"text": "I built the app myself, working directly with the client."
+		},
+		"outcome": {
+			"title": "The result",
+			"text": "A video-first social app with AR recording, duets and matching."
+		},
+		"back": {
+			"label": "All works",
+			"url": "/#works"
+		},
+		"cta": {
+			"title": "Have a project like this?",
+			"text": "I build and rescue native iOS, Android and Kotlin Multiplatform apps, and I'm happy to look at yours.",
+			"label": "Get in touch",
+			"url": "/about#contact-form"
+		},
+		"next": {
+			"title": "MyPH",
+			"url": "/work-myph"
+		}
+	},
+	"analytics": {
+		"gaMeasurementId": "G-ZM0VPP0G2C"
+	}
+}

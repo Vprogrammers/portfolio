@@ -27,6 +27,44 @@
 					{% pattern name='mvi-loop' data=scene %}
 				{% elseif sceneType == 'kit' %}
 					{% pattern name='kmp-stack' data=scene %}
+				{% elseif sceneType == 'leads' %}
+					{% pattern name='lead-flow' data=scene %}
+				{% elseif sceneType == 'salon' %}
+					{% pattern name='salon-scene' data=scene %}
+				{% elseif sceneType == 'deck' %}
+					{% pattern name='swipe-deck' data=scene %}
+				{% elseif sceneType == 'fantasy' %}
+					{% pattern name='fantasy-pitch' data=scene %}
+				{% elseif sceneType == 'pageant' %}
+					{% pattern name='pageant-stage' data=scene %}
+				{% elseif sceneType == 'kids' %}
+					{% pattern name='kids-tv' data=scene %}
+				{% elseif sceneType == 'club' %}
+					{% pattern name='club-floor' data=scene %}
+				{% elseif sceneType == 'apples' %}
+					{% pattern name='apple-sort' data=scene %}
+				{% elseif sceneType == 'coins' %}
+					{% pattern name='coin-board' data=scene %}
+				{% elseif sceneType == 'feniks' %}
+					{% pattern name='freezer-case' data=scene %}
+				{% elseif sceneType == 'pass' %}
+					{% pattern name='pass-card' data=scene %}
+				{% elseif sceneType == 'club2' %}
+					{% pattern name='driver-club' data=scene %}
+				{% elseif sceneType == 'duet' %}
+					{% pattern name='duet-studio' data=scene %}
+				{% elseif sceneType == 'chat' %}
+					{% pattern name='city-chat' data=scene %}
+				{% elseif sceneType == 'crew' %}
+					{% pattern name='crew-call' data=scene %}
+				{% elseif sceneType == 'radio' %}
+					{% pattern name='on-air' data=scene %}
+				{% elseif sceneType == 'live' %}
+					{% pattern name='live-room' data=scene %}
+				{% elseif sceneType == 'wipe-clean' %}
+					{% pattern name='wipe-clean' data=scene %}
+				{% elseif sceneType == 'match-mandala' %}
+					{% pattern name='match-mandala' data=scene %}
 				{% endif %}
 			</div>
 		{% elseif hero %}
@@ -35,7 +73,10 @@
 		<div class="o-case-study__hero-content">
 			<a class="o-case-study__back" href="{{ back.url }}"><span aria-hidden="true">←</span> {{ back.label }}</a>
 			<p class="o-case-study__kicker">{{ kicker }}</p>
-			<h1 class="o-case-study__title">{{ title }}</h1>
+			{# The longest word sets the title size, so a long single word never runs into the scene. #}
+			{% set longest = 6 %}
+			{% for word in title|split(' ') %}{% if word|length > longest %}{% set longest = word|length %}{% endif %}{% endfor %}
+			<h1 class="o-case-study__title" style="--longest-word: {{ longest }}">{{ title }}</h1>
 			<p class="o-case-study__lead">{{ lead }}</p>
 			{% if employer %}{% pattern name='employer' data=employers[employer] %}{% endif %}
 		</div>

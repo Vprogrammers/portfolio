@@ -1,0 +1,165 @@
+{
+	"_nitro": {
+		"pageTitle": "Swipe XYZ — case study · Viktor Nešić"
+	},
+	"meta": {
+		"description": "A native iOS shopping app for a fashion and footwear retailer in the Arab world, combining classic browsing with a swipe-to-like product feed that sends favourites straight to the bag.",
+		"path": "/work-swipe-xyz"
+	},
+	"intro": {
+		"name": "Viktor Nešić",
+		"role": "Mobile & Frontend Developer"
+	},
+	"links": [
+		{
+			"label": "GitHub",
+			"icon": "github",
+			"url": "https://github.com/Vprogrammers"
+		},
+		{
+			"label": "LinkedIn",
+			"icon": "linkedin",
+			"url": "https://www.linkedin.com/in/viktor-nesic"
+		},
+		{
+			"label": "v.nesic.developer@gmail.com",
+			"icon": "mail",
+			"url": "/about#contact-form"
+		}
+	],
+	"employers": {
+		"merkle": {
+			"label": "Delivered at",
+			"name": "Merkle",
+			"note": "Enterprise mobile & digital engineering"
+		}
+	},
+	"caseStudy": {
+		"kicker": "Case study · iOS · Swift · UIKit",
+		"title": "Swipe XYZ",
+		"lead": "A native iOS shopping app for a fashion and footwear retailer in the Arab world, combining classic browsing with a swipe-to-like product feed that sends favourites straight to the bag.",
+		"sceneType": "deck",
+		"scene": {
+			"bag": "Bag",
+			"products": [
+				{
+					"name": "Runner Knit",
+					"price": "€89",
+					"shape": "sneaker",
+					"hue": 160,
+					"sizes": [
+						"40",
+						"41",
+						"42",
+						"43"
+					],
+					"like": true
+				},
+				{
+					"name": "Chelsea Boot",
+					"price": "€129",
+					"shape": "boot",
+					"hue": 30,
+					"sizes": [
+						"39",
+						"40",
+						"41",
+						"42"
+					],
+					"like": false
+				},
+				{
+					"name": "Satin Pump",
+					"price": "€109",
+					"shape": "heel",
+					"hue": 340,
+					"sizes": [
+						"37",
+						"38",
+						"39",
+						"40"
+					],
+					"like": true
+				},
+				{
+					"name": "Mini Tote",
+					"price": "€74",
+					"shape": "bag",
+					"hue": 210,
+					"sizes": [
+						"S",
+						"M",
+						"L"
+					],
+					"like": true
+				}
+			],
+			"bill": {
+				"title": "Your order",
+				"total": "€272"
+			}
+		},
+		"facts": [
+			{
+				"label": "Client",
+				"value": "A fashion and footwear retailer in the Arab world"
+			},
+			{
+				"label": "My role",
+				"value": "Independent mobile developer"
+			},
+			{
+				"label": "Platform",
+				"value": "iOS · Swift · UIKit"
+			}
+		],
+		"brief": {
+			"title": "The brief",
+			"text": [
+				"The retailer wanted shopping to feel playful: next to categories and filters, a swipe view where liking a product puts it in the bag."
+			]
+		},
+		"contributions": {
+			"title": "What I did",
+			"items": [
+				"Built the native iOS app in Swift and UIKit from the Figma designs.",
+				"Implemented sign-in and registration, categories, filters and product pages.",
+				"Built the swipe product view that sends liked items to the bag.",
+				"Implemented orders and bills, the profile and settings."
+			]
+		},
+		"stack": {
+			"title": "Stack",
+			"items": [
+				"Swift",
+				"UIKit",
+				"Figma"
+			]
+		},
+		"team": {
+			"title": "Team",
+			"text": "I built the app myself, working directly with the client."
+		},
+		"outcome": {
+			"title": "The result",
+			"text": "A shopping app with both a classic catalogue and a swipe feed for quick discovery."
+		},
+		"back": {
+			"label": "All works",
+			"url": "/#works"
+		},
+		"cta": {
+			"title": "Have a project like this?",
+			"text": "I build and rescue native iOS, Android and Kotlin Multiplatform apps, and I'm happy to look at yours.",
+			"label": "Get in touch",
+			"url": "/about#contact-form"
+		},
+		"next": {
+			"title": "Goaleadors",
+			"url": "/work-goaleadors"
+		}
+	},
+	"analytics": {
+		"gaMeasurementId": "G-ZM0VPP0G2C"
+	}
+}

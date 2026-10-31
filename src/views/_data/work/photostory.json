@@ -1,0 +1,262 @@
+{
+	"_nitro": {
+		"pageTitle": "PhotoStory — case study · Viktor Nešić"
+	},
+	"meta": {
+		"description": "Crew scheduling for a photo studio: the admin books an event and invites the crew, each member accepts or declines from a push notification, and a declined offer moves on to the next person.",
+		"path": "/work-photostory"
+	},
+	"intro": {
+		"name": "Viktor Nešić",
+		"role": "Mobile & Frontend Developer"
+	},
+	"links": [
+		{
+			"label": "GitHub",
+			"icon": "github",
+			"url": "https://github.com/Vprogrammers"
+		},
+		{
+			"label": "LinkedIn",
+			"icon": "linkedin",
+			"url": "https://www.linkedin.com/in/viktor-nesic"
+		},
+		{
+			"label": "v.nesic.developer@gmail.com",
+			"icon": "mail",
+			"url": "/about#contact-form"
+		}
+	],
+	"employers": {
+		"merkle": {
+			"label": "Delivered at",
+			"name": "Merkle",
+			"note": "Enterprise mobile & digital engineering"
+		}
+	},
+	"caseStudy": {
+		"kicker": "Case study · Kotlin Multiplatform · SwiftUI · Compose",
+		"title": "PhotoStory",
+		"lead": "Crew scheduling for a photo studio: the admin books an event and invites the crew, each member accepts or declines from a push notification, and a declined offer moves on to the next person.",
+		"sceneType": "crew",
+		"scene": {
+			"background": "/assets/img/projects/photostory-start.jpg",
+			"logo": "/assets/img/projects/photostory-logo.png",
+			"month": "Novembar 2026",
+			"offset": 6,
+			"days": 30,
+			"busy": [
+				1,
+				6,
+				7,
+				8,
+				13,
+				14,
+				15,
+				22,
+				27,
+				28,
+				29
+			],
+			"pick": 21,
+			"date": "Subota, 21. Novembar 2026.",
+			"fields": [
+				{
+					"hint": "Početak i trajanje",
+					"value": "16:00 · 8 sati"
+				},
+				{
+					"hint": "Mesto održavanja",
+					"value": "Sala Panorama, Užice"
+				},
+				{
+					"hint": "Izaberi tip proslave",
+					"value": "Venčanje",
+					"select": true
+				},
+				{
+					"hint": "Ime i prezime slavljenika",
+					"value": "Ana i Luka"
+				}
+			],
+			"crew": [
+				{
+					"role": "Fotograf",
+					"name": "Marko",
+					"hue": 210
+				},
+				{
+					"role": "Snimatelj",
+					"name": "Jelena",
+					"hue": 330
+				},
+				{
+					"role": "Dron",
+					"name": "Nikola",
+					"hue": 150,
+					"backup": {
+						"name": "Stefan",
+						"hue": 30
+					}
+				},
+				{
+					"role": "Pomoćno osoblje",
+					"name": "Ivana",
+					"hue": 270
+				}
+			],
+			"type": "Venčanje",
+			"summary": "Subota 21.11. · 16:00 · Sala Panorama",
+			"today": "Petak, 30. oktobar",
+			"push": {
+				"title": "Nova proslava",
+				"body": "Zakazana je nova proslava za 21.11.2026. 16:00 u Sala Panorama"
+			},
+			"offer": {
+				"role": "Snimanje dronom",
+				"forwarded": "Ponuda je prosleđena dalje",
+				"next": {
+					"name": "Stefan",
+					"hue": 30,
+					"text": "Ponuda poslata: Stefan"
+				}
+			}
+		},
+		"facts": [
+			{
+				"label": "Client",
+				"value": "PhotoStory, a photo studio in Užice, Serbia"
+			},
+			{
+				"label": "My role",
+				"value": "Independent mobile developer"
+			},
+			{
+				"label": "Platform",
+				"value": "iOS · Android · iPad"
+			},
+			{
+				"label": "Stack",
+				"value": "KMP · SwiftUI · Compose · Firebase"
+			}
+		],
+		"brief": {
+			"title": "The brief",
+			"text": [
+				"The studio covers weddings, first and eighteenth birthdays and christenings with its own photographers, videographers, drone operators and helpers, and every event needs the right people.",
+				"The app had to let the admin plan an event once and get the crew confirmed without chasing anyone."
+			]
+		},
+		"contributions": {
+			"title": "What I did",
+			"items": [
+				"Built a Kotlin Multiplatform app with a shared module and native UI: SwiftUI on iOS and Jetpack Compose on Android.",
+				"Modelled events, users and finances in shared Kotlin, with kotlinx-serialization, kotlinx-datetime and moko-resources for Serbian and English.",
+				"Built the event flow: date, type of celebration, place, duration and the crew it needs, plus the staff the admin invites.",
+				"Sent invitations as FCM push notifications from a Firebase Cloud Function; staff accept or decline, and a declined offer goes to someone else.",
+				"Built the calendar, the event lists and a finance module that splits earnings between photographer, helper and drone operator."
+			]
+		},
+		"findings": {
+			"title": "In the app",
+			"items": [
+				{
+					"tag": "Plan",
+					"title": "Booked",
+					"text": "Upcoming events with their crew."
+				},
+				{
+					"tag": "Calendar",
+					"title": "The month at a glance",
+					"text": "Days marked green or red by status."
+				},
+				{
+					"tag": "Crew",
+					"title": "Waiting for crew",
+					"text": "Events whose crew hasn't confirmed yet."
+				},
+				{
+					"tag": "History",
+					"title": "Past events",
+					"text": "Finished events and their finances."
+				}
+			]
+		},
+		"architecture": {
+			"title": "Architecture",
+			"layers": [
+				{
+					"name": "iOS app",
+					"items": [
+						"SwiftUI",
+						"Tuist"
+					]
+				},
+				{
+					"name": "Android app",
+					"items": [
+						"Jetpack Compose"
+					]
+				},
+				{
+					"name": "Shared KMP module",
+					"items": [
+						"Event, user and finance models",
+						"kotlinx-serialization",
+						"kotlinx-datetime",
+						"moko-resources (sr, en)"
+					]
+				},
+				{
+					"name": "Firebase",
+					"items": [
+						"Auth",
+						"Firestore",
+						"Cloud Messaging",
+						"Cloud Functions",
+						"Analytics"
+					]
+				}
+			],
+			"text": "Native screens on each platform, one shared Kotlin core, Firebase behind it."
+		},
+		"stack": {
+			"title": "Stack",
+			"items": [
+				"Kotlin Multiplatform",
+				"SwiftUI",
+				"Jetpack Compose",
+				"Firebase",
+				"Cloud Functions",
+				"FCM",
+				"Tuist",
+				"GitHub Actions"
+			]
+		},
+		"team": {
+			"title": "Team",
+			"text": "I built the app myself, working directly with the client."
+		},
+		"outcome": {
+			"title": "The result",
+			"text": "The studio plans an event once and the crew confirms from their phones, with the finances of every event in the same app."
+		},
+		"back": {
+			"label": "All works",
+			"url": "/#works"
+		},
+		"cta": {
+			"title": "Have a project like this?",
+			"text": "I build and rescue native iOS, Android and Kotlin Multiplatform apps, and I'm happy to look at yours.",
+			"label": "Get in touch",
+			"url": "/about#contact-form"
+		},
+		"next": {
+			"title": "BezBrige!",
+			"url": "/work-bezbrige"
+		}
+	},
+	"analytics": {
+		"gaMeasurementId": "G-ZM0VPP0G2C"
+	}
+}

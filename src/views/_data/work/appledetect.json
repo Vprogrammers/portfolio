@@ -1,0 +1,224 @@
+{
+	"_nitro": {
+		"pageTitle": "AppleDetect — case study · Viktor Nešić"
+	},
+	"meta": {
+		"description": "An iOS app that grades apples with on-device machine learning: the camera detects every apple in a crate, a Core ML model sorts each one into quality classes, and the result guides which crate it goes into.",
+		"path": "/work-appledetect"
+	},
+	"intro": {
+		"name": "Viktor Nešić",
+		"role": "Mobile & Frontend Developer"
+	},
+	"links": [
+		{
+			"label": "GitHub",
+			"icon": "github",
+			"url": "https://github.com/Vprogrammers"
+		},
+		{
+			"label": "LinkedIn",
+			"icon": "linkedin",
+			"url": "https://www.linkedin.com/in/viktor-nesic"
+		},
+		{
+			"label": "v.nesic.developer@gmail.com",
+			"icon": "mail",
+			"url": "/about#contact-form"
+		}
+	],
+	"employers": {
+		"merkle": {
+			"label": "Delivered at",
+			"name": "Merkle",
+			"note": "Enterprise mobile & digital engineering"
+		}
+	},
+	"caseStudy": {
+		"kicker": "Case study · iOS · Core ML · Vision",
+		"title": "AppleDetect",
+		"lead": "An iOS app that grades apples with on-device machine learning: the camera detects every apple in a crate, a Core ML model sorts each one into quality classes, and the result guides which crate it goes into.",
+		"sceneType": "apples",
+		"scene": {
+			"apples": [
+				{
+					"x": 72,
+					"y": 45,
+					"class": 1,
+					"confidence": 97
+				},
+				{
+					"x": 71,
+					"y": 22,
+					"class": 1,
+					"confidence": 88
+				},
+				{
+					"x": 30,
+					"y": 40,
+					"class": 1,
+					"confidence": 88
+				},
+				{
+					"x": 12,
+					"y": 45,
+					"class": 1,
+					"confidence": 97
+				},
+				{
+					"x": 16,
+					"y": 82,
+					"class": 1,
+					"confidence": 91
+				},
+				{
+					"x": 29,
+					"y": 78,
+					"class": 2,
+					"confidence": 89
+				},
+				{
+					"x": 46,
+					"y": 21,
+					"class": 2,
+					"confidence": 89
+				},
+				{
+					"x": 46,
+					"y": 65,
+					"class": 2,
+					"confidence": 89
+				},
+				{
+					"x": 14,
+					"y": 22,
+					"class": 2,
+					"confidence": 97
+				},
+				{
+					"x": 34,
+					"y": 24,
+					"class": 3,
+					"confidence": 89
+				},
+				{
+					"x": 70,
+					"y": 62,
+					"class": 3,
+					"confidence": 88
+				},
+				{
+					"x": 17,
+					"y": 60,
+					"class": 3,
+					"confidence": 95
+				},
+				{
+					"x": 83,
+					"y": 77,
+					"class": 4,
+					"confidence": 93
+				},
+				{
+					"x": 89,
+					"y": 40,
+					"class": 4,
+					"confidence": 95
+				}
+			],
+			"classes": [
+				{
+					"name": "Class 1",
+					"short": "C1",
+					"note": "Excellent"
+				},
+				{
+					"name": "Class 2",
+					"short": "C2",
+					"note": "Minor defects"
+				},
+				{
+					"name": "Class 3",
+					"short": "C3",
+					"note": "Visible defects"
+				},
+				{
+					"name": "Class 4",
+					"short": "C4",
+					"note": "Major defects"
+				}
+			],
+			"hud": {
+				"count": "Apples",
+				"inference": "Inference 18 ms",
+				"model": "Core ML · on device"
+			}
+		},
+		"facts": [
+			{
+				"label": "My role",
+				"value": "Independent mobile developer"
+			},
+			{
+				"label": "Platform",
+				"value": "iOS · Swift"
+			},
+			{
+				"label": "Focus",
+				"value": "On-device machine learning"
+			}
+		],
+		"brief": {
+			"title": "The brief",
+			"text": [
+				"Sorting apples by quality is slow by hand. The client wanted a phone to look at a crate and tell which apples belong in which class, without sending images to a server."
+			]
+		},
+		"contributions": {
+			"title": "What I did",
+			"items": [
+				"Built the native iOS app in Swift with Vision and Core ML.",
+				"Integrated a Create ML object-detection model that finds and boxes every apple, with tuned confidence and overlap thresholds.",
+				"Used DeepLabV3 segmentation to remove the background.",
+				"Added live camera capture and an image cropper.",
+				"Built a performance monitor showing CPU, memory, FPS and inference time, and the count of detected apples."
+			]
+		},
+		"stack": {
+			"title": "Stack",
+			"items": [
+				"Swift",
+				"Vision",
+				"Core ML",
+				"Create ML",
+				"DeepLabV3",
+				"AVFoundation"
+			]
+		},
+		"team": {
+			"title": "Team",
+			"text": "I built the iOS app and the machine learning integration myself. The work integrates an existing model; no claim on model training or accuracy."
+		},
+		"outcome": {
+			"title": "The result",
+			"text": "Apple grading that runs entirely on the device, with live feedback on how fast the model runs."
+		},
+		"back": {
+			"label": "All works",
+			"url": "/#works"
+		},
+		"cta": {
+			"title": "Have a project like this?",
+			"text": "I build and rescue native iOS, Android and Kotlin Multiplatform apps, and I'm happy to look at yours.",
+			"label": "Get in touch",
+			"url": "/about#contact-form"
+		},
+		"next": {
+			"title": "Cryptocent",
+			"url": "/work-cryptocent"
+		}
+	},
+	"analytics": {
+		"gaMeasurementId": "G-ZM0VPP0G2C"
+	}
+}

@@ -1,0 +1,203 @@
+{
+	"_nitro": {
+		"pageTitle": "Feniks — case study · Viktor Nešić"
+	},
+	"meta": {
+		"description": "An Android tablet app for an ice cream shop that tracks what is left of every flavour across two display cases and tells the kitchen which flavour to make next.",
+		"path": "/work-feniks"
+	},
+	"intro": {
+		"name": "Viktor Nešić",
+		"role": "Mobile & Frontend Developer"
+	},
+	"links": [
+		{
+			"label": "GitHub",
+			"icon": "github",
+			"url": "https://github.com/Vprogrammers"
+		},
+		{
+			"label": "LinkedIn",
+			"icon": "linkedin",
+			"url": "https://www.linkedin.com/in/viktor-nesic"
+		},
+		{
+			"label": "v.nesic.developer@gmail.com",
+			"icon": "mail",
+			"url": "/about#contact-form"
+		}
+	],
+	"employers": {
+		"merkle": {
+			"label": "Delivered at",
+			"name": "Merkle",
+			"note": "Enterprise mobile & digital engineering"
+		}
+	},
+	"caseStudy": {
+		"kicker": "Case study · Android tablet · Java · Firebase",
+		"title": "Feniks",
+		"lead": "An Android tablet app for an ice cream shop that tracks what is left of every flavour across two display cases and tells the kitchen which flavour to make next.",
+		"sceneType": "feniks",
+		"scene": {
+			"brand": "Feniks sladoledi",
+			"add": "Dodaj sladoled",
+			"cases": [
+				{
+					"name": "Prva vitrina",
+					"tubs": [
+						{
+							"name": "Vanila",
+							"color": "#f6e7b8",
+							"level": 78
+						},
+						{
+							"name": "Čokolada",
+							"color": "#6b3e26",
+							"level": 64
+						},
+						{
+							"name": "Jagoda",
+							"color": "#f48fb1",
+							"level": 70
+						},
+						{
+							"name": "Pistaći",
+							"color": "#a5c96b",
+							"level": 40
+						},
+						{
+							"name": "Limun",
+							"color": "#f7e463",
+							"level": 82
+						},
+						{
+							"name": "Kokos",
+							"color": "#f4f1ea",
+							"level": 58
+						},
+						{
+							"name": "Borovnica",
+							"color": "#7e6bc4",
+							"level": 66
+						}
+					]
+				},
+				{
+					"name": "Druga vitrina",
+					"tubs": [
+						{
+							"name": "Straćatela",
+							"color": "#efe7dc",
+							"level": 72,
+							"low": false
+						},
+						{
+							"name": "Lešnik",
+							"color": "#b48a5a",
+							"level": 60,
+							"low": false
+						},
+						{
+							"name": "Malina",
+							"color": "#e2557a",
+							"level": 22,
+							"low": true
+						},
+						{
+							"name": "Karamela",
+							"color": "#d79a45",
+							"level": 76,
+							"low": false
+						},
+						{
+							"name": "Menta",
+							"color": "#9fe3c6",
+							"level": 62,
+							"low": false
+						},
+						{
+							"name": "Banana",
+							"color": "#f3dc7a",
+							"level": 54,
+							"low": false
+						},
+						{
+							"name": "Višnja",
+							"color": "#9c2b45",
+							"level": 68,
+							"low": false
+						}
+					]
+				}
+			],
+			"push": {
+				"app": "Feniks",
+				"title": "Napravi: Malina",
+				"body": "Druga vitrina, treća polica je skoro prazna."
+			}
+		},
+		"facts": [
+			{
+				"label": "Client",
+				"value": "Feniks, an ice cream shop"
+			},
+			{
+				"label": "My role",
+				"value": "Independent mobile developer"
+			},
+			{
+				"label": "Platform",
+				"value": "Android tablet · Java · Firebase"
+			}
+		],
+		"brief": {
+			"title": "The brief",
+			"text": [
+				"Running out of a flavour in the display case means lost sales. The shop wanted a tablet behind the counter that knows what is in the cases and warns the kitchen in time."
+			]
+		},
+		"contributions": {
+			"title": "What I did",
+			"items": [
+				"Built the Android tablet app in Java.",
+				"Modelled two display cases with seven shelves each, with a flavour on every shelf.",
+				"Stored the stock in Firestore and sent notifications with FCM about which flavour to make."
+			]
+		},
+		"stack": {
+			"title": "Stack",
+			"items": [
+				"Java",
+				"Android",
+				"Firestore",
+				"Firebase Cloud Messaging"
+			]
+		},
+		"team": {
+			"title": "Team",
+			"text": "I built the app myself, working directly with the client."
+		},
+		"outcome": {
+			"title": "The result",
+			"text": "The counter and the kitchen see the same stock, and the kitchen knows what to make next."
+		},
+		"back": {
+			"label": "All works",
+			"url": "/#works"
+		},
+		"cta": {
+			"title": "Have a project like this?",
+			"text": "I build and rescue native iOS, Android and Kotlin Multiplatform apps, and I'm happy to look at yours.",
+			"label": "Get in touch",
+			"url": "/about#contact-form"
+		},
+		"next": {
+			"title": "DigitalPass",
+			"url": "/work-digitalpass"
+		}
+	},
+	"analytics": {
+		"gaMeasurementId": "G-ZM0VPP0G2C"
+	}
+}

@@ -1,0 +1,226 @@
+{
+	"_nitro": {
+		"pageTitle": "Bikini — case study · Viktor Nešić"
+	},
+	"meta": {
+		"description": "Android and iOS apps for a bikini competition in Asia: contestants post videos and photos, fans follow, vote and buy extra votes, judges score every stage, and live calls bring the audience close to the contestants.",
+		"path": "/work-bikini"
+	},
+	"intro": {
+		"name": "Viktor Nešić",
+		"role": "Mobile & Frontend Developer"
+	},
+	"links": [
+		{
+			"label": "GitHub",
+			"icon": "github",
+			"url": "https://github.com/Vprogrammers"
+		},
+		{
+			"label": "LinkedIn",
+			"icon": "linkedin",
+			"url": "https://www.linkedin.com/in/viktor-nesic"
+		},
+		{
+			"label": "v.nesic.developer@gmail.com",
+			"icon": "mail",
+			"url": "/about#contact-form"
+		}
+	],
+	"employers": {
+		"merkle": {
+			"label": "Delivered at",
+			"name": "Merkle",
+			"note": "Enterprise mobile & digital engineering"
+		}
+	},
+	"caseStudy": {
+		"kicker": "Case study · Android · iOS · Competition",
+		"title": "Bikini",
+		"lead": "Android and iOS apps for a bikini competition in Asia: contestants post videos and photos, fans follow, vote and buy extra votes, judges score every stage, and live calls bring the audience close to the contestants.",
+		"sceneType": "pageant",
+		"scene": {
+			"logo": "/assets/img/projects/bikini-logo.png",
+			"title": "Final night",
+			"vote": "Vote",
+			"judges": [
+				"9.6",
+				"9.4",
+				"9.8"
+			],
+			"contestants": [
+				{
+					"number": "03",
+					"city": "Seoul",
+					"votes": 46,
+					"hue": 250
+				},
+				{
+					"number": "07",
+					"city": "Manila",
+					"votes": 88,
+					"hue": 200,
+					"winner": true
+				},
+				{
+					"number": "11",
+					"city": "Bangkok",
+					"votes": 61,
+					"hue": 290
+				},
+				{
+					"number": "14",
+					"city": "Hanoi",
+					"votes": 34,
+					"hue": 220
+				}
+			]
+		},
+		"facts": [
+			{
+				"label": "Client",
+				"value": "A bikini competition in Asia"
+			},
+			{
+				"label": "My role",
+				"value": "Independent mobile developer"
+			},
+			{
+				"label": "Platform",
+				"value": "Two native apps: iOS and Android"
+			},
+			{
+				"label": "Stack",
+				"value": "UIKit · Java + XML · Firebase · Agora"
+			}
+		],
+		"brief": {
+			"title": "The brief",
+			"text": [
+				"The organisers run their competition by country and in stages. They wanted the whole event in one app: contestants showing themselves through videos and photos, fans following and voting, judges scoring, and a way to earn from votes and subscriptions.",
+				"I built two separate native apps, one for iOS and one for Android, on a shared Firebase backend."
+			]
+		},
+		"contributions": {
+			"title": "What I did",
+			"items": [
+				"Built the iOS app natively with UIKit, RxSwift and SnapKit, organised in feature modules.",
+				"Modelled contests by country with stages, start and end dates and a registration deadline.",
+				"Kept new contestant accounts under review until an administrator approves them to post videos and photos.",
+				"Built the video feed with caching, comments and music, and a camera with effects, stickers and emoji.",
+				"Built voting with vote levels, judges' votes per stage and extra votes bought through in-app purchases and Stripe.",
+				"Added followers, likes, messages, online users and audio and video calls on Agora, with push notifications and Facebook sign-in.",
+				"Built the Android app natively in Java with XML views and a clean architecture."
+			]
+		},
+		"stack": {
+			"title": "Stack",
+			"items": [
+				"UIKit",
+				"RxSwift",
+				"SnapKit",
+				"Java",
+				"Android Views (XML)",
+				"Clean architecture",
+				"Firebase",
+				"Agora RTC",
+				"StoreKit",
+				"Stripe",
+				"APNs"
+			]
+		},
+		"team": {
+			"title": "Team",
+			"text": "I built both apps myself, working directly with the client."
+		},
+		"outcome": {
+			"title": "The result",
+			"text": "The whole competition in one app on each platform: registration and approval, stages, votes from fans and judges, paid votes and live contact with the contestants."
+		},
+		"back": {
+			"label": "All works",
+			"url": "/#works"
+		},
+		"cta": {
+			"title": "Have a project like this?",
+			"text": "I build and rescue native iOS, Android and Kotlin Multiplatform apps, and I'm happy to look at yours.",
+			"label": "Get in touch",
+			"url": "/about#contact-form"
+		},
+		"next": {
+			"title": "ÇocukFlix",
+			"url": "/work-cocukflix"
+		},
+		"architecture": {
+			"title": "Architecture",
+			"text": "Two native apps on one Firebase backend, with real-time calls and payments as services.",
+			"layers": [
+				{
+					"name": "iOS app",
+					"items": [
+						"UIKit",
+						"RxSwift",
+						"SnapKit",
+						"Feature modules"
+					]
+				},
+				{
+					"name": "Android app",
+					"items": [
+						"Java",
+						"XML views",
+						"Clean architecture"
+					]
+				},
+				{
+					"name": "Firebase",
+					"items": [
+						"Auth",
+						"Firestore",
+						"Realtime Database",
+						"Storage",
+						"Cloud Messaging",
+						"Analytics"
+					]
+				},
+				{
+					"name": "Services",
+					"items": [
+						"Agora audio and video",
+						"StoreKit in-app purchases",
+						"Stripe",
+						"Facebook Login"
+					]
+				}
+			]
+		},
+		"findings": {
+			"title": "How the competition works",
+			"items": [
+				{
+					"tag": "Register",
+					"title": "Sign up and get approved",
+					"text": "Contestants register before the deadline; an administrator reviews each account before it can post."
+				},
+				{
+					"tag": "Compete",
+					"title": "Stage by stage",
+					"text": "Each country's contest runs in stages, and every stage closes with a result."
+				},
+				{
+					"tag": "Vote",
+					"title": "Fans and judges",
+					"text": "Fans vote and can buy extra votes; judges score each stage."
+				},
+				{
+					"tag": "Connect",
+					"title": "Close to the contestants",
+					"text": "Follow, like, message and call contestants in audio or video."
+				}
+			]
+		}
+	},
+	"analytics": {
+		"gaMeasurementId": "G-ZM0VPP0G2C"
+	}
+}

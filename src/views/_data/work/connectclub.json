@@ -1,0 +1,139 @@
+{
+	"_nitro": {
+		"pageTitle": "ConnectClub — case study · Viktor Nešić"
+	},
+	"meta": {
+		"description": "A members' club app for taxi drivers: sign in with Face ID, verify a driving licence by photographing both sides, carry a member badge and unlock offers from partner companies.",
+		"path": "/work-connectclub"
+	},
+	"intro": {
+		"name": "Viktor Nešić",
+		"role": "Mobile & Frontend Developer"
+	},
+	"links": [
+		{
+			"label": "GitHub",
+			"icon": "github",
+			"url": "https://github.com/Vprogrammers"
+		},
+		{
+			"label": "LinkedIn",
+			"icon": "linkedin",
+			"url": "https://www.linkedin.com/in/viktor-nesic"
+		},
+		{
+			"label": "v.nesic.developer@gmail.com",
+			"icon": "mail",
+			"url": "/about#contact-form"
+		}
+	],
+	"employers": {
+		"merkle": {
+			"label": "Delivered at",
+			"name": "Merkle",
+			"note": "Enterprise mobile & digital engineering"
+		}
+	},
+	"caseStudy": {
+		"kicker": "Case study · iOS · Swift · UIKit",
+		"title": "ConnectClub",
+		"lead": "A members' club app for taxi drivers: sign in with Face ID, verify a driving licence by photographing both sides, carry a member badge and unlock offers from partner companies.",
+		"sceneType": "club2",
+		"scene": {
+			"photo": "/assets/img/projects/connectclub-taxi.jpg",
+			"faceid": "Face ID",
+			"licence": {
+				"title": "DRIVING LICENCE",
+				"front": "Front of your driver licence",
+				"back": "Back of your driver licence"
+			},
+			"brand": "Connect Club",
+			"member": {
+				"name": "Luka Marić",
+				"id": "BADGE · CC-08417",
+				"level": "VERIFIED DRIVER"
+			},
+			"offers": [
+				{
+					"deal": "−10%",
+					"partner": "Fuel partner",
+					"hue": 45
+				},
+				{
+					"deal": "−25%",
+					"partner": "Car wash",
+					"hue": 200
+				},
+				{
+					"deal": "Free",
+					"partner": "Tyre check",
+					"hue": 140
+				}
+			]
+		},
+		"facts": [
+			{
+				"label": "My role",
+				"value": "Independent mobile developer"
+			},
+			{
+				"label": "Platform",
+				"value": "iOS · Swift · UIKit"
+			},
+			{
+				"label": "Period",
+				"value": "2022"
+			}
+		],
+		"brief": {
+			"title": "The brief",
+			"text": [
+				"The club gives taxi drivers access to offers from partner companies. Membership had to be tied to a real driving licence."
+			]
+		},
+		"contributions": {
+			"title": "What I did",
+			"items": [
+				"Built the native iOS app in Swift and UIKit.",
+				"Implemented sign-in and registration with biometrics.",
+				"Built licence verification: photograph the front and back, crop with Mantis and upload.",
+				"Showed partners and their offers from the backend through Alamofire, with a Home tab and an Account tab."
+			]
+		},
+		"stack": {
+			"title": "Stack",
+			"items": [
+				"Swift",
+				"UIKit",
+				"LocalAuthentication",
+				"Mantis",
+				"Alamofire"
+			]
+		},
+		"team": {
+			"title": "Team",
+			"text": "I built the app myself, working directly with the client."
+		},
+		"outcome": {
+			"title": "The result",
+			"text": "Drivers join with a verified licence and get a badge that unlocks partner offers."
+		},
+		"back": {
+			"label": "All works",
+			"url": "/#works"
+		},
+		"cta": {
+			"title": "Have a project like this?",
+			"text": "I build and rescue native iOS, Android and Kotlin Multiplatform apps, and I'm happy to look at yours.",
+			"label": "Get in touch",
+			"url": "/about#contact-form"
+		},
+		"next": {
+			"title": "Yaaxa",
+			"url": "/work-yaaxa"
+		}
+	},
+	"analytics": {
+		"gaMeasurementId": "G-ZM0VPP0G2C"
+	}
+}

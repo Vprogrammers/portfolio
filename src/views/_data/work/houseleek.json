@@ -1,0 +1,149 @@
+{
+	"_nitro": {
+		"pageTitle": "Houseleek Renhold — case study · Viktor Nešić"
+	},
+	"meta": {
+		"description": "A presentation app for a Norwegian cleaning company: every service, from homes and offices to stairs, windows and car care, with photos, a short description and a direct line to book.",
+		"path": "/work-houseleek"
+	},
+	"intro": {
+		"name": "Viktor Nešić",
+		"role": "Mobile & Frontend Developer"
+	},
+	"links": [
+		{
+			"label": "GitHub",
+			"icon": "github",
+			"url": "https://github.com/Vprogrammers"
+		},
+		{
+			"label": "LinkedIn",
+			"icon": "linkedin",
+			"url": "https://www.linkedin.com/in/viktor-nesic"
+		},
+		{
+			"label": "v.nesic.developer@gmail.com",
+			"icon": "mail",
+			"url": "/about#contact-form"
+		}
+	],
+	"employers": {
+		"merkle": {
+			"label": "Delivered at",
+			"name": "Merkle",
+			"note": "Enterprise mobile & digital engineering"
+		}
+	},
+	"caseStudy": {
+		"kicker": "Case study · Mobile · Cleaning services",
+		"title": "Houseleek Renhold",
+		"lead": "A presentation app for a Norwegian cleaning company: every service, from homes and offices to stairs, windows and car care, with photos, a short description and a direct line to book.",
+		"sceneType": "wipe-clean",
+		"scene": {
+			"pattern": "wipe-clean",
+			"logo": "/assets/img/projects/houseleek-logo.png",
+			"cta": "Get started",
+			"services": [
+				{
+					"icon": "🏠",
+					"name": "Home cleaning",
+					"note": "Daily and regular"
+				},
+				{
+					"icon": "📦",
+					"name": "Move-out",
+					"note": "Empty homes, top to bottom"
+				},
+				{
+					"icon": "🛋️",
+					"name": "Furniture & carpets",
+					"note": "Deep stain removal"
+				},
+				{
+					"icon": "🚗",
+					"name": "Car care",
+					"note": "Inside and out"
+				},
+				{
+					"icon": "🏢",
+					"name": "Offices",
+					"note": "Daily or weekly"
+				},
+				{
+					"icon": "🪜",
+					"name": "Stairs",
+					"note": "Housing co-ops"
+				},
+				{
+					"icon": "🪟",
+					"name": "Windows",
+					"note": "Service agreements"
+				},
+				{
+					"icon": "🌿",
+					"name": "Garden & facade",
+					"note": "And more on request"
+				}
+			]
+		},
+		"facts": [
+			{
+				"label": "Client",
+				"value": "Houseleek Klasic Solutions AS, Norway"
+			},
+			{
+				"label": "My role",
+				"value": "Independent mobile developer"
+			},
+			{
+				"label": "Platform",
+				"value": "Mobile app"
+			}
+		],
+		"brief": {
+			"title": "The brief",
+			"text": [
+				"The company wanted its services in customers' pockets: what it cleans, how it works and how to get in touch, in one simple app."
+			]
+		},
+		"contributions": {
+			"title": "What I did",
+			"items": [
+				"Built the app with a service carousel and a page for each service.",
+				"Covered home, move-out, furniture and carpets, car care, offices, stairs, windows, gardening and facades.",
+				"Put the company's email and phone on every page so customers can book directly."
+			]
+		},
+		"stack": {
+			"title": "Stack",
+			"items": [
+				"Mobile app"
+			]
+		},
+		"team": {
+			"title": "Team",
+			"text": "I built the app myself, working directly with the client."
+		},
+		"outcome": {
+			"title": "The result",
+			"text": "Customers see every service with photos and a description, and can contact the company from any page."
+		},
+		"back": {
+			"label": "All works",
+			"url": "/#works"
+		},
+		"cta": {
+			"title": "Have a project like this?",
+			"text": "I build and rescue native iOS, Android and Kotlin Multiplatform apps, and I'm happy to look at yours.",
+			"label": "Get in touch",
+			"url": "/about#contact-form"
+		},
+		"next": {
+			"title": "PerfectMatrimony",
+			"url": "/work-perfectmatrimony"
+		}
+	},
+	"analytics": {
+		"gaMeasurementId": "G-ZM0VPP0G2C"
+	}
+}

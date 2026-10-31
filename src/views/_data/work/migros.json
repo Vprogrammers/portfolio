@@ -3,7 +3,7 @@
 		"pageTitle": "Migros iMpuls — case study · Viktor Nešić"
 	},
 	"meta": {
-		"description": "Keeping iMpuls, the health and wellbeing app from Switzerland's largest retailer, stable, current and shipping, as the iOS developer who carried the app on after the original mobile team moved on.",
+		"description": "Keeping iMpuls, the health and wellbeing app from Switzerland's largest retailer, stable, current and shipping on schedule.",
 		"path": "/work-migros"
 	},
 	"intro": {
@@ -37,7 +37,7 @@
 	"caseStudy": {
 		"kicker": "Case study · iOS · Maintenance & releases",
 		"title": "Migros iMpuls",
-		"lead": "Keeping iMpuls, the health and wellbeing app from Switzerland's largest retailer, stable, current and shipping, as the iOS developer who carried the app on after the original mobile team moved on.",
+		"lead": "Keeping iMpuls, the health and wellbeing app from Switzerland's largest retailer, stable, current and shipping on schedule.",
 		"employer": "merkle",
 		"sceneType": "phone",
 		"scene": {
@@ -52,7 +52,7 @@
 			},
 			{
 				"label": "My role",
-				"value": "iOS maintenance developer"
+				"value": "Mobile developer"
 			},
 			{
 				"label": "Period",
@@ -66,7 +66,7 @@
 		"brief": {
 			"title": "The brief",
 			"text": [
-				"iMpuls is a production wellness app with an established user base. When the original mobile team had moved on, the app still needed someone to keep it working on new iOS versions, follow backend changes and get builds to QA and the App Store.",
+				"iMpuls is a production wellness app with an established user base. It needed to keep working on new iOS versions, follow backend changes and get builds to QA and the App Store.",
 				"The job was continuity: understand an existing codebase quickly, change it safely and keep releases predictable."
 			]
 		},
@@ -94,7 +94,7 @@
 		},
 		"team": {
 			"title": "Team",
-			"text": "The remaining developer from the original mobile team, working closely with QA and coordinating with the client's stakeholders."
+			"text": "Me as the mobile developer, working with a QA tester and the project lead on the client's side."
 		},
 		"outcome": {
 			"title": "The result",

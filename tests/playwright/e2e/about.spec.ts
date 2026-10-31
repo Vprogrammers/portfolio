@@ -9,7 +9,7 @@ test('the name in the hero opens the About page', async ({ page }) => {
 
 test('the About page offers email and LinkedIn contact', async ({ page }) => {
   await page.goto('/about');
-  await expect(page.locator('.m-contact-form a[href="mailto:v.nesic.developer@gmail.com"]')).toBeVisible();
+  await expect(page.locator('.m-contact-form a[href="mailto:contact@vprogrammers.me"]')).toBeVisible();
   await expect(page.locator('.o-about__elsewhere a[href="https://www.linkedin.com/in/viktor-nesic"]')).toBeVisible();
   await expect(page.locator('.o-site-header__nav a[href="/#works"]')).toBeVisible();
 });
@@ -79,5 +79,5 @@ test('the contact form points to the address when sending fails', async ({ page 
   await form.getByLabel('Email').fill('ana@example.com');
   await form.getByLabel('What can I help with?').fill('Hello');
   await form.getByRole('button', { name: 'Send message' }).click();
-  await expect(form.locator('.m-contact-form__status')).toContainText('v.nesic.developer@gmail.com');
+  await expect(form.locator('.m-contact-form__status')).toContainText('contact@vprogrammers.me');
 });

@@ -50,3 +50,6 @@ debug.log
 
 # allow
 !.gitkeep
+
+# Firebase CLI cache
+.firebase/

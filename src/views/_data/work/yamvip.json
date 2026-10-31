@@ -8,7 +8,8 @@
 	},
 	"intro": {
 		"name": "Viktor Nešić",
-		"role": "Mobile & Frontend Developer"
+		"role": "Mobile & Frontend Developer",
+		"offer": "Viktor Nešić is a senior mobile developer building native iOS, Android and Kotlin Multiplatform apps with Swift, SwiftUI, UIKit, Kotlin and Jetpack Compose. Available for freelance and contract projects, working remotely."
 	},
 	"links": [
 		{
@@ -201,5 +202,39 @@
 	},
 	"analytics": {
 		"gaMeasurementId": "G-ZM0VPP0G2C"
+	},
+	"structuredData": {
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "CreativeWork",
+				"@id": "https://vprogrammers.me/work-yamvip#work",
+				"url": "https://vprogrammers.me/work-yamvip",
+				"name": "YAMVIP",
+				"headline": "YAMVIP — mobile app case study",
+				"description": "YAMVIP (Yet Another MVI Presenter): a multiplatform MVI engine that shares presentation logic between Android and iOS, with a strict split between Model, UIState, Intent and Effect.",
+				"inLanguage": "en",
+				"creator": {
+					"@id": "https://vprogrammers.me/#person"
+				},
+				"keywords": "Kotlin Multiplatform, Coroutines, StateFlow, Compose, SwiftUI, Unit tests",
+				"genre": "Kotlin Multiplatform · MVI · Internal",
+				"sourceOrganization": {
+					"@type": "Organization",
+					"name": "Internal engineering at Merkle"
+				},
+				"about": {
+					"@type": "SoftwareApplication",
+					"name": "YAMVIP",
+					"operatingSystem": "Kotlin Multiplatform · StateFlow",
+					"applicationCategory": "MobileApplication"
+				}
+			},
+			{
+				"@type": "Person",
+				"@id": "https://vprogrammers.me/#person",
+				"name": "Viktor Nešić"
+			}
+		]
 	}
 }

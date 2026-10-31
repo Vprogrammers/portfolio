@@ -8,7 +8,8 @@
 	},
 	"intro": {
 		"name": "Viktor Nešić",
-		"role": "Mobile & Frontend Developer"
+		"role": "Mobile & Frontend Developer",
+		"offer": "Viktor Nešić is a senior mobile developer building native iOS, Android and Kotlin Multiplatform apps with Swift, SwiftUI, UIKit, Kotlin and Jetpack Compose. Available for freelance and contract projects, working remotely."
 	},
 	"links": [
 		{
@@ -138,5 +139,35 @@
 	},
 	"analytics": {
 		"gaMeasurementId": "G-ZM0VPP0G2C"
+	},
+	"structuredData": {
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "CreativeWork",
+				"@id": "https://vprogrammers.me/work-yaaxa#work",
+				"url": "https://vprogrammers.me/work-yaaxa",
+				"name": "Yaaxa",
+				"headline": "Yaaxa — mobile app case study",
+				"description": "A short-video social app for iOS that connects people through the videos they share: record with AR avatars and effects, add filters, stickers and music, film duets side by side, and find matches in the feed.",
+				"inLanguage": "en",
+				"creator": {
+					"@id": "https://vprogrammers.me/#person"
+				},
+				"keywords": "Swift, RxSwift, SnapKit, DeepAR, Firebase, Facebook Login, Google Sign-In",
+				"genre": "iOS · Swift · AR",
+				"about": {
+					"@type": "SoftwareApplication",
+					"name": "Yaaxa",
+					"operatingSystem": "iOS · Swift · Firebase",
+					"applicationCategory": "MobileApplication"
+				}
+			},
+			{
+				"@type": "Person",
+				"@id": "https://vprogrammers.me/#person",
+				"name": "Viktor Nešić"
+			}
+		]
 	}
 }

@@ -8,7 +8,8 @@
 	},
 	"intro": {
 		"name": "Viktor Nešić",
-		"role": "Mobile & Frontend Developer"
+		"role": "Mobile & Frontend Developer",
+		"offer": "Viktor Nešić is a senior mobile developer building native iOS, Android and Kotlin Multiplatform apps with Swift, SwiftUI, UIKit, Kotlin and Jetpack Compose. Available for freelance and contract projects, working remotely."
 	},
 	"links": [
 		{
@@ -199,5 +200,39 @@
 	},
 	"analytics": {
 		"gaMeasurementId": "G-ZM0VPP0G2C"
+	},
+	"structuredData": {
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "CreativeWork",
+				"@id": "https://vprogrammers.me/work-feniks#work",
+				"url": "https://vprogrammers.me/work-feniks",
+				"name": "Feniks",
+				"headline": "Feniks — mobile app case study",
+				"description": "An Android tablet app for an ice cream shop that tracks what is left of every flavour across two display cases and tells the kitchen which flavour to make next.",
+				"inLanguage": "en",
+				"creator": {
+					"@id": "https://vprogrammers.me/#person"
+				},
+				"keywords": "Java, Android, Firestore, Firebase Cloud Messaging",
+				"genre": "Android tablet · Java · Firebase",
+				"sourceOrganization": {
+					"@type": "Organization",
+					"name": "Feniks, an ice cream shop"
+				},
+				"about": {
+					"@type": "SoftwareApplication",
+					"name": "Feniks",
+					"operatingSystem": "Android tablet · Java · Firebase",
+					"applicationCategory": "MobileApplication"
+				}
+			},
+			{
+				"@type": "Person",
+				"@id": "https://vprogrammers.me/#person",
+				"name": "Viktor Nešić"
+			}
+		]
 	}
 }

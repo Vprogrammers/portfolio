@@ -8,7 +8,8 @@
 	},
 	"intro": {
 		"name": "Viktor Nešić",
-		"role": "Mobile & Frontend Developer"
+		"role": "Mobile & Frontend Developer",
+		"offer": "Viktor Nešić is a senior mobile developer building native iOS, Android and Kotlin Multiplatform apps with Swift, SwiftUI, UIKit, Kotlin and Jetpack Compose. Available for freelance and contract projects, working remotely."
 	},
 	"links": [
 		{
@@ -146,5 +147,39 @@
 	},
 	"analytics": {
 		"gaMeasurementId": "G-ZM0VPP0G2C"
+	},
+	"structuredData": {
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "CreativeWork",
+				"@id": "https://vprogrammers.me/work-sliike#work",
+				"url": "https://vprogrammers.me/work-sliike",
+				"name": "Sliike",
+				"headline": "Sliike — mobile app case study",
+				"description": "A native iOS app for a beauty booking platform for Afro-American women in Canada: discover salons and stylists, choose a service and a time, and get reminded before the appointment.",
+				"inLanguage": "en",
+				"creator": {
+					"@id": "https://vprogrammers.me/#person"
+				},
+				"keywords": "Swift, UIKit, Figma",
+				"genre": "iOS · Swift · UIKit",
+				"sourceOrganization": {
+					"@type": "Organization",
+					"name": "Sliike, beauty booking platform, Canada"
+				},
+				"about": {
+					"@type": "SoftwareApplication",
+					"name": "Sliike",
+					"operatingSystem": "iOS · Swift · UIKit",
+					"applicationCategory": "MobileApplication"
+				}
+			},
+			{
+				"@type": "Person",
+				"@id": "https://vprogrammers.me/#person",
+				"name": "Viktor Nešić"
+			}
+		]
 	}
 }

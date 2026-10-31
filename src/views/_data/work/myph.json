@@ -8,7 +8,8 @@
 	},
 	"intro": {
 		"name": "Viktor Nešić",
-		"role": "Mobile & Frontend Developer"
+		"role": "Mobile & Frontend Developer",
+		"offer": "Viktor Nešić is a senior mobile developer building native iOS, Android and Kotlin Multiplatform apps with Swift, SwiftUI, UIKit, Kotlin and Jetpack Compose. Available for freelance and contract projects, working remotely."
 	},
 	"links": [
 		{
@@ -244,5 +245,35 @@
 	},
 	"analytics": {
 		"gaMeasurementId": "G-ZM0VPP0G2C"
+	},
+	"structuredData": {
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "CreativeWork",
+				"@id": "https://vprogrammers.me/work-myph#work",
+				"url": "https://vprogrammers.me/work-myph",
+				"name": "MyPH",
+				"headline": "MyPH — mobile app case study",
+				"description": "A social and dating app for Android that brings people together by city: build a profile, join your city's group chat, make friends, and sign in with Facebook or Google, with a web admin panel behind it.",
+				"inLanguage": "en",
+				"creator": {
+					"@id": "https://vprogrammers.me/#person"
+				},
+				"keywords": "Java, Android, Firebase, Facebook Login, Google Sign-In, Web admin panel",
+				"genre": "Android · Java · Firebase",
+				"about": {
+					"@type": "SoftwareApplication",
+					"name": "MyPH",
+					"operatingSystem": "Android · Java · Firebase",
+					"applicationCategory": "MobileApplication"
+				}
+			},
+			{
+				"@type": "Person",
+				"@id": "https://vprogrammers.me/#person",
+				"name": "Viktor Nešić"
+			}
+		]
 	}
 }

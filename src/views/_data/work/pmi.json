@@ -8,7 +8,8 @@
 	},
 	"intro": {
 		"name": "Viktor Nešić",
-		"role": "Mobile & Frontend Developer"
+		"role": "Mobile & Frontend Developer",
+		"offer": "Viktor Nešić is a senior mobile developer building native iOS, Android and Kotlin Multiplatform apps with Swift, SwiftUI, UIKit, Kotlin and Jetpack Compose. Available for freelance and contract projects, working remotely."
 	},
 	"links": [
 		{
@@ -184,5 +185,39 @@
 	},
 	"analytics": {
 		"gaMeasurementId": "G-ZM0VPP0G2C"
+	},
+	"structuredData": {
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "CreativeWork",
+				"@id": "https://vprogrammers.me/work-pmi#work",
+				"url": "https://vprogrammers.me/work-pmi",
+				"name": "PMI Market(i)",
+				"headline": "PMI Market(i) — mobile app case study",
+				"description": "A technical audit of Market(i), an internal iPad and iPhone app for Philip Morris field teams in the Nordics, and a roadmap for maintaining its legacy Objective-C codebase.",
+				"inLanguage": "en",
+				"creator": {
+					"@id": "https://vprogrammers.me/#person"
+				},
+				"keywords": "Objective-C, UIKit, Core Data, CocoaPods, AFNetworking, ReactiveCocoa",
+				"genre": "iOS · Code review",
+				"sourceOrganization": {
+					"@type": "Organization",
+					"name": "Philip Morris International, Nordics"
+				},
+				"about": {
+					"@type": "SoftwareApplication",
+					"name": "PMI Market(i)",
+					"operatingSystem": "iOS · Objective-C · UIKit",
+					"applicationCategory": "MobileApplication"
+				}
+			},
+			{
+				"@type": "Person",
+				"@id": "https://vprogrammers.me/#person",
+				"name": "Viktor Nešić"
+			}
+		]
 	}
 }

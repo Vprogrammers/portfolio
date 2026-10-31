@@ -1,10 +1,11 @@
 {
 	"_nitro": {
-		"pageTitle": "Viktor Nešić — Senior Mobile Engineer · iOS, Android, KMP"
+		"pageTitle": "Viktor Nešić — Mobile Developer · iOS, Android, Kotlin Multiplatform"
 	},
 	"intro": {
 		"name": "Viktor Nešić",
-		"role": "Mobile & Frontend Developer"
+		"role": "Mobile & Frontend Developer",
+		"offer": "Viktor Nešić is a senior mobile developer building native iOS, Android and Kotlin Multiplatform apps with Swift, SwiftUI, UIKit, Kotlin and Jetpack Compose. Available for freelance and contract projects, working remotely."
 	},
 	"links": [
 		{
@@ -2186,7 +2187,243 @@
 		"gaMeasurementId": "G-ZM0VPP0G2C"
 	},
 	"meta": {
-		"description": "Viktor Nešić, senior mobile engineer: native iOS, Android and Kotlin Multiplatform apps for Hansgrohe, Migros, CGIAR and more, from enterprise products to MVPs.",
+		"description": "Senior mobile developer for native iOS, Android and Kotlin Multiplatform apps. Case studies for Hansgrohe, Migros, CGIAR and more, from enterprise products to MVPs. Available for freelance and contract work.",
 		"path": "/"
+	},
+	"structuredData": {
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "WebSite",
+				"@id": "https://vprogrammers.me/#website",
+				"url": "https://vprogrammers.me/",
+				"name": "Viktor Nešić — Mobile Developer",
+				"inLanguage": "en",
+				"publisher": {
+					"@id": "https://vprogrammers.me/#person"
+				}
+			},
+			{
+				"@type": "Person",
+				"@id": "https://vprogrammers.me/#person",
+				"name": "Viktor Nešić",
+				"alternateName": "Viktor Nesic",
+				"jobTitle": "Senior Mobile Developer",
+				"description": "Viktor Nešić is a senior mobile developer building native iOS, Android and Kotlin Multiplatform apps with Swift, SwiftUI, UIKit, Kotlin and Jetpack Compose. Available for freelance and contract projects, working remotely.",
+				"url": "https://vprogrammers.me/",
+				"email": "mailto:v.nesic.developer@gmail.com",
+				"image": "https://vprogrammers.me/assets/img/icon/icon-512x512.png",
+				"sameAs": [
+					"https://www.linkedin.com/in/viktor-nesic",
+					"https://github.com/Vprogrammers"
+				],
+				"knowsAbout": [
+					"iOS development",
+					"Android development",
+					"Kotlin Multiplatform",
+					"Swift",
+					"SwiftUI",
+					"UIKit",
+					"Kotlin",
+					"Jetpack Compose",
+					"Compose Multiplatform",
+					"Java",
+					"Firebase",
+					"GraphQL",
+					"SQLDelight",
+					"Offline-first apps",
+					"Mobile accessibility",
+					"Design systems",
+					"Code review",
+					"TypeScript",
+					"Twig",
+					"SCSS"
+				],
+				"knowsLanguage": [
+					"English",
+					"Serbian"
+				]
+			},
+			{
+				"@type": "ItemList",
+				"name": "Mobile app case studies",
+				"itemListElement": [
+					{
+						"@type": "ListItem",
+						"position": 1,
+						"url": "https://vprogrammers.me/work-proapp",
+						"name": "Hansgrohe ProApp"
+					},
+					{
+						"@type": "ListItem",
+						"position": 2,
+						"url": "https://vprogrammers.me/work-migros",
+						"name": "Migros iMpuls"
+					},
+					{
+						"@type": "ListItem",
+						"position": 3,
+						"url": "https://vprogrammers.me/work-bucherer",
+						"name": "Bucherer"
+					},
+					{
+						"@type": "ListItem",
+						"position": 4,
+						"url": "https://vprogrammers.me/work-mume",
+						"name": "MuMe"
+					},
+					{
+						"@type": "ListItem",
+						"position": 5,
+						"url": "https://vprogrammers.me/work-cgiar",
+						"name": "CGIAR"
+					},
+					{
+						"@type": "ListItem",
+						"position": 6,
+						"url": "https://vprogrammers.me/work-hanze3",
+						"name": "Hanze3"
+					},
+					{
+						"@type": "ListItem",
+						"position": 7,
+						"url": "https://vprogrammers.me/work-photostory",
+						"name": "PhotoStory"
+					},
+					{
+						"@type": "ListItem",
+						"position": 8,
+						"url": "https://vprogrammers.me/work-bezbrige",
+						"name": "BezBrige!"
+					},
+					{
+						"@type": "ListItem",
+						"position": 9,
+						"url": "https://vprogrammers.me/work-sliike",
+						"name": "Sliike"
+					},
+					{
+						"@type": "ListItem",
+						"position": 10,
+						"url": "https://vprogrammers.me/work-koch",
+						"name": "KOCH Scan App"
+					},
+					{
+						"@type": "ListItem",
+						"position": 11,
+						"url": "https://vprogrammers.me/work-pmi",
+						"name": "PMI Market(i)"
+					},
+					{
+						"@type": "ListItem",
+						"position": 12,
+						"url": "https://vprogrammers.me/work-swipe-xyz",
+						"name": "Swipe XYZ"
+					},
+					{
+						"@type": "ListItem",
+						"position": 13,
+						"url": "https://vprogrammers.me/work-goaleadors",
+						"name": "Goaleadors"
+					},
+					{
+						"@type": "ListItem",
+						"position": 14,
+						"url": "https://vprogrammers.me/work-bikini",
+						"name": "Bikini"
+					},
+					{
+						"@type": "ListItem",
+						"position": 15,
+						"url": "https://vprogrammers.me/work-cocukflix",
+						"name": "ÇocukFlix"
+					},
+					{
+						"@type": "ListItem",
+						"position": 16,
+						"url": "https://vprogrammers.me/work-design-tokens",
+						"name": "Design Token Pipeline"
+					},
+					{
+						"@type": "ListItem",
+						"position": 17,
+						"url": "https://vprogrammers.me/work-anubis",
+						"name": "Anubis"
+					},
+					{
+						"@type": "ListItem",
+						"position": 18,
+						"url": "https://vprogrammers.me/work-yamvip",
+						"name": "YAMVIP"
+					},
+					{
+						"@type": "ListItem",
+						"position": 19,
+						"url": "https://vprogrammers.me/work-kmp-template",
+						"name": "KMP Template"
+					},
+					{
+						"@type": "ListItem",
+						"position": 20,
+						"url": "https://vprogrammers.me/work-masse",
+						"name": "Masse"
+					},
+					{
+						"@type": "ListItem",
+						"position": 21,
+						"url": "https://vprogrammers.me/work-appledetect",
+						"name": "AppleDetect"
+					},
+					{
+						"@type": "ListItem",
+						"position": 22,
+						"url": "https://vprogrammers.me/work-cryptocent",
+						"name": "Cryptocent"
+					},
+					{
+						"@type": "ListItem",
+						"position": 23,
+						"url": "https://vprogrammers.me/work-feniks",
+						"name": "Feniks"
+					},
+					{
+						"@type": "ListItem",
+						"position": 24,
+						"url": "https://vprogrammers.me/work-digitalpass",
+						"name": "DigitalPass"
+					},
+					{
+						"@type": "ListItem",
+						"position": 25,
+						"url": "https://vprogrammers.me/work-connectclub",
+						"name": "ConnectClub"
+					},
+					{
+						"@type": "ListItem",
+						"position": 26,
+						"url": "https://vprogrammers.me/work-yaaxa",
+						"name": "Yaaxa"
+					},
+					{
+						"@type": "ListItem",
+						"position": 27,
+						"url": "https://vprogrammers.me/work-myph",
+						"name": "MyPH"
+					},
+					{
+						"@type": "ListItem",
+						"position": 28,
+						"url": "https://vprogrammers.me/work-houseleek",
+						"name": "Houseleek Renhold"
+					},
+					{
+						"@type": "ListItem",
+						"position": 29,
+						"url": "https://vprogrammers.me/work-perfectmatrimony",
+						"name": "PerfectMatrimony"
+					}
+				]
+			}
+		]
 	}
 }

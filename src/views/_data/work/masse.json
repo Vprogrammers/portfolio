@@ -8,7 +8,8 @@
 	},
 	"intro": {
 		"name": "Viktor Nešić",
-		"role": "Mobile & Frontend Developer"
+		"role": "Mobile & Frontend Developer",
+		"offer": "Viktor Nešić is a senior mobile developer building native iOS, Android and Kotlin Multiplatform apps with Swift, SwiftUI, UIKit, Kotlin and Jetpack Compose. Available for freelance and contract projects, working remotely."
 	},
 	"links": [
 		{
@@ -218,5 +219,39 @@
 	},
 	"analytics": {
 		"gaMeasurementId": "G-ZM0VPP0G2C"
+	},
+	"structuredData": {
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "CreativeWork",
+				"@id": "https://vprogrammers.me/work-masse#work",
+				"url": "https://vprogrammers.me/work-masse",
+				"name": "Masse",
+				"headline": "Masse — mobile app case study",
+				"description": "Online booking for a billiard club: guests reserve a pool table or a dartboard for a free slot, while an admin panel manages the data and the evening's reservations.",
+				"inLanguage": "en",
+				"creator": {
+					"@id": "https://vprogrammers.me/#person"
+				},
+				"keywords": "Java, Android Views, Firebase, Glide, Lottie, Web admin panel",
+				"genre": "Android · Java · Firebase",
+				"sourceOrganization": {
+					"@type": "Organization",
+					"name": "Masse, a billiard club in Užice, Serbia"
+				},
+				"about": {
+					"@type": "SoftwareApplication",
+					"name": "Masse",
+					"operatingSystem": "Android · Java · Web admin",
+					"applicationCategory": "MobileApplication"
+				}
+			},
+			{
+				"@type": "Person",
+				"@id": "https://vprogrammers.me/#person",
+				"name": "Viktor Nešić"
+			}
+		]
 	}
 }

@@ -8,7 +8,8 @@
 	},
 	"intro": {
 		"name": "Viktor Nešić",
-		"role": "Mobile & Frontend Developer"
+		"role": "Mobile & Frontend Developer",
+		"offer": "Viktor Nešić is a senior mobile developer building native iOS, Android and Kotlin Multiplatform apps with Swift, SwiftUI, UIKit, Kotlin and Jetpack Compose. Available for freelance and contract projects, working remotely."
 	},
 	"links": [
 		{
@@ -145,5 +146,39 @@
 	},
 	"analytics": {
 		"gaMeasurementId": "G-ZM0VPP0G2C"
+	},
+	"structuredData": {
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "CreativeWork",
+				"@id": "https://vprogrammers.me/work-houseleek#work",
+				"url": "https://vprogrammers.me/work-houseleek",
+				"name": "Houseleek Renhold",
+				"headline": "Houseleek Renhold — mobile app case study",
+				"description": "A presentation app for a Norwegian cleaning company: every service, from homes and offices to stairs, windows and car care, with photos, a short description and a direct line to book.",
+				"inLanguage": "en",
+				"creator": {
+					"@id": "https://vprogrammers.me/#person"
+				},
+				"keywords": "Mobile app",
+				"genre": "Mobile · Cleaning services",
+				"sourceOrganization": {
+					"@type": "Organization",
+					"name": "Houseleek Klasic Solutions AS, Norway"
+				},
+				"about": {
+					"@type": "SoftwareApplication",
+					"name": "Houseleek Renhold",
+					"operatingSystem": "Mobile app",
+					"applicationCategory": "MobileApplication"
+				}
+			},
+			{
+				"@type": "Person",
+				"@id": "https://vprogrammers.me/#person",
+				"name": "Viktor Nešić"
+			}
+		]
 	}
 }

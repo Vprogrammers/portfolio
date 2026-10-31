@@ -197,25 +197,7 @@
 		},
 		"team": {
 			"title": "Team",
-			"text": "Three mobile developers and an intern, three designers, a QA tester, a Scrum Master, the client's Product Owner and an agency project manager, working with the backend and web teams.",
-			"items": [
-				[
-					"4",
-					"mobile developers incl. intern"
-				],
-				[
-					"3",
-					"designers"
-				],
-				[
-					"1",
-					"QA tester"
-				],
-				[
-					"2",
-					"years on the project"
-				]
-			]
+			"text": "A cross-functional team of mobile developers, designers, QA, a Scrum Master and the client's Product Owner, working with the backend and web teams."
 		},
 		"outcome": {
 			"title": "The result",

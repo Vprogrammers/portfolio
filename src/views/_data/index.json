@@ -1439,6 +1439,7 @@
 		{
 			"category": "Android · Java · CoinGecko API · MVP",
 			"title": "Cryptocent",
+			"url": "/work-cryptocent",
 			"summary": "A cryptocurrency market app for Android: live prices, sparklines and detailed charts from the CoinGecko API, with onboarding, sign-in and sections for trading, a portfolio and a wallet, delivered as an MVP.",
 			"tone": "orange",
 			"variant": "coins",

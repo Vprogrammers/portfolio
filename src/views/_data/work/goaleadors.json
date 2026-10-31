@@ -1,0 +1,271 @@
+{
+	"_nitro": {
+		"pageTitle": "Goaleadors — case study · Viktor Nešić"
+	},
+	"meta": {
+		"description": "A fantasy football platform spanning Europe's top five leagues: draft a squad on a budget, score every matchday and climb a multi-tier league pyramid in free or premium play.",
+		"path": "/work-goaleadors"
+	},
+	"intro": {
+		"name": "Viktor Nešić",
+		"role": "Mobile & Frontend Developer"
+	},
+	"links": [
+		{
+			"label": "GitHub",
+			"icon": "github",
+			"url": "https://github.com/Vprogrammers"
+		},
+		{
+			"label": "LinkedIn",
+			"icon": "linkedin",
+			"url": "https://www.linkedin.com/in/viktor-nesic"
+		},
+		{
+			"label": "v.nesic.developer@gmail.com",
+			"icon": "mail",
+			"url": "/about#contact-form"
+		}
+	],
+	"employers": {
+		"merkle": {
+			"label": "Delivered at",
+			"name": "Merkle",
+			"note": "Enterprise mobile & digital engineering"
+		}
+	},
+	"caseStudy": {
+		"kicker": "Case study · Android · iOS · Fantasy football MVP",
+		"title": "Goaleadors",
+		"lead": "A fantasy football platform spanning Europe's top five leagues: draft a squad on a budget, score every matchday and climb a multi-tier league pyramid in free or premium play.",
+		"sceneType": "fantasy",
+		"scene": {
+			"logo": "/assets/img/projects/goleadors-logo.png",
+			"draft": "Draft your team",
+			"budget": [
+				"€100.0M",
+				"€71.5M",
+				"€38.0M",
+				"€3.5M"
+			],
+			"gameweek": "Gameweek 12",
+			"totals": [
+				"0",
+				"21",
+				"43",
+				"50"
+			],
+			"players": [
+				{
+					"x": 50,
+					"y": 90,
+					"number": 1,
+					"name": "Kovač",
+					"points": 6,
+					"keeper": true,
+					"captain": false
+				},
+				{
+					"x": 14,
+					"y": 70,
+					"number": 2,
+					"name": "Ilić",
+					"points": 2,
+					"keeper": false,
+					"captain": false
+				},
+				{
+					"x": 38,
+					"y": 74,
+					"number": 4,
+					"name": "Ramos",
+					"points": 6,
+					"keeper": false,
+					"captain": false
+				},
+				{
+					"x": 62,
+					"y": 74,
+					"number": 5,
+					"name": "Berg",
+					"points": 1,
+					"keeper": false,
+					"captain": false
+				},
+				{
+					"x": 86,
+					"y": 70,
+					"number": 3,
+					"name": "Silva",
+					"points": 2,
+					"keeper": false,
+					"captain": false
+				},
+				{
+					"x": 24,
+					"y": 48,
+					"number": 8,
+					"name": "Novak",
+					"points": 3,
+					"keeper": false,
+					"captain": false
+				},
+				{
+					"x": 50,
+					"y": 52,
+					"number": 6,
+					"name": "Duarte",
+					"points": 2,
+					"keeper": false,
+					"captain": false
+				},
+				{
+					"x": 76,
+					"y": 48,
+					"number": 10,
+					"name": "Moretti",
+					"points": 9,
+					"keeper": false,
+					"captain": true
+				},
+				{
+					"x": 20,
+					"y": 24,
+					"number": 7,
+					"name": "Lindqvist",
+					"points": 5,
+					"keeper": false,
+					"captain": false
+				},
+				{
+					"x": 50,
+					"y": 18,
+					"number": 9,
+					"name": "Okafor",
+					"points": 12,
+					"keeper": false,
+					"captain": false
+				},
+				{
+					"x": 80,
+					"y": 24,
+					"number": 11,
+					"name": "Petit",
+					"points": 2,
+					"keeper": false,
+					"captain": false
+				}
+			],
+			"prize": "Pro League · €320,000 prize pool",
+			"pyramid": [
+				{
+					"label": "1. Liga",
+					"count": 1
+				},
+				{
+					"label": "2. Liga",
+					"count": 2
+				},
+				{
+					"label": "3. Liga",
+					"count": 4
+				},
+				{
+					"label": "4. L.",
+					"count": 8
+				},
+				{
+					"label": "Osnovno takmičenje",
+					"count": 1
+				}
+			],
+			"team": "Your team"
+		},
+		"facts": [
+			{
+				"label": "My role",
+				"value": "Independent mobile developer"
+			},
+			{
+				"label": "Platform",
+				"value": "Android · iOS · Admin panel"
+			},
+			{
+				"label": "Period",
+				"value": "2020"
+			},
+			{
+				"label": "Status",
+				"value": "MVP built, then paused by the client"
+			}
+		],
+		"brief": {
+			"title": "The brief",
+			"text": [
+				"Goaleadors was planned as a universal fantasy football game across England, Spain, Italy, Germany and France, free to play with a premium tier and a prize fund.",
+				"Players start in a base competition and climb a pyramid of leagues, from the fourth league up to the first."
+			]
+		},
+		"contributions": {
+			"title": "What I did",
+			"items": [
+				"Built the MVP for Android and iOS.",
+				"Built the admin panel behind it.",
+				"Implemented the squad, matchday scoring and the league structure for free and premium play."
+			]
+		},
+		"findings": {
+			"title": "The league pyramid",
+			"items": [
+				{
+					"tag": "Base",
+					"title": "Everyone starts here",
+					"text": "The open competition for all players."
+				},
+				{
+					"tag": "4th–2nd",
+					"title": "Climb",
+					"text": "Eight fourth leagues, four third leagues and two second leagues."
+				},
+				{
+					"tag": "1st",
+					"title": "The top",
+					"text": "One first league at the peak, with the premium prize pool."
+				}
+			]
+		},
+		"stack": {
+			"title": "Stack",
+			"items": [
+				"Android",
+				"iOS",
+				"Admin panel"
+			]
+		},
+		"team": {
+			"title": "Team",
+			"text": "I built the app myself, working directly with the client."
+		},
+		"outcome": {
+			"title": "The result",
+			"text": "The MVP was built on Android, iOS and the admin side; the client then paused the product."
+		},
+		"back": {
+			"label": "All works",
+			"url": "/#works"
+		},
+		"cta": {
+			"title": "Have a project like this?",
+			"text": "I build and rescue native iOS, Android and Kotlin Multiplatform apps, and I'm happy to look at yours.",
+			"label": "Get in touch",
+			"url": "/about#contact-form"
+		},
+		"next": {
+			"title": "Bikini",
+			"url": "/work-bikini"
+		}
+	},
+	"analytics": {
+		"gaMeasurementId": "G-ZM0VPP0G2C"
+	}
+}

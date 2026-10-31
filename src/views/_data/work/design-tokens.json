@@ -108,53 +108,17 @@
 		"brief": {
 			"title": "The brief",
 			"text": [
-				"The group's design system is the default component library that country teams build their local apps on. Tokens reached iOS and Android in different ways, and there was no web output at all.",
-				"The task was to analyse the libraries and propose how tokens could flow automatically from Figma to every platform, without breaking the apps that already depend on them."
+				"The group's design system is the default component library that country teams build their local apps on.",
+				"The task was to propose how design tokens could flow automatically from Figma to Web, iOS and Android, keep every platform in step and never break the apps that already depend on them."
 			]
 		},
 		"contributions": {
 			"title": "What I did",
 			"items": [
-				"Reviewed the iOS and Android implementations through restricted read-only access.",
-				"Compared how each platform turns tokens into code, and where they drift.",
+				"Took part in the assessment as the mobile lead, for iOS and Android.",
 				"Designed the token pipeline from Figma to Web, iOS and Android, with CI checks and pull requests into the platform repos.",
 				"Defined accessibility rules for components and typed accessibility keys generated from Figma.",
-				"Proposed a migration path for renamed tokens, and reviewed the CI/CD setup."
-			]
-		},
-		"findings": {
-			"title": "Findings",
-			"items": [
-				{
-					"tag": "Strength",
-					"title": "Clean, modular libraries",
-					"text": "Both platforms use semantic tokens and multi-brand themes."
-				},
-				{
-					"tag": "Gap",
-					"title": "Android generates only colours",
-					"text": "Typography, spacing, shapes, elevation and motion are maintained by hand, with numeric names."
-				},
-				{
-					"tag": "Gap",
-					"title": "Platforms drift",
-					"text": "iOS uses a different transformation, so parity depends on discipline. There is no web output."
-				},
-				{
-					"tag": "Risk",
-					"title": "Renaming breaks apps",
-					"text": "Apps reference tokens directly. A compatibility window with generated aliases and deprecations keeps them working."
-				},
-				{
-					"tag": "Gap",
-					"title": "CI/CD",
-					"text": "Workflows pinned to branches instead of tags, iOS tests switched off in lint and test, no PR gating."
-				},
-				{
-					"tag": "A11y",
-					"title": "Language-agnostic accessibility",
-					"text": "The library ships typed accessibility keys; apps resolve them to localised strings. Components keep one stable accessibility node."
-				}
+				"Proposed a migration path for renamed tokens and recommendations for CI/CD."
 			]
 		},
 		"architecture": {
@@ -235,6 +199,41 @@
 		"next": {
 			"title": "Anubis",
 			"url": "/work-anubis"
+		},
+		"findings": {
+			"title": "What we proposed",
+			"items": [
+				{
+					"tag": "Pipeline",
+					"title": "One source of truth",
+					"text": "Tokens designed in Figma and stored in a Git repository, with a pinned Style Dictionary config, so every platform is generated from the same data."
+				},
+				{
+					"tag": "Pipeline",
+					"title": "Checked on every change",
+					"text": "CI validates schema, naming and duplicates on each pull request before anything reaches an app."
+				},
+				{
+					"tag": "Pipeline",
+					"title": "Delivered as pull requests",
+					"text": "On merge, Android, iOS and Web artifacts are generated and arrive as pull requests in the platform repositories, never as direct pushes."
+				},
+				{
+					"tag": "Migration",
+					"title": "Safe renames",
+					"text": "A compatibility window with generated aliases and deprecations keeps apps working while tokens are renamed."
+				},
+				{
+					"tag": "A11y",
+					"title": "Language-agnostic accessibility",
+					"text": "The library ships typed accessibility keys; apps resolve them to localised strings. Components keep one stable accessibility node."
+				},
+				{
+					"tag": "Option",
+					"title": "A Kotlin Multiplatform variant",
+					"text": "Tokens generated once for shared KMP code, for teams that build on it."
+				}
+			]
 		}
 	},
 	"analytics": {

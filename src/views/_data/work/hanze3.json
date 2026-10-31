@@ -1,0 +1,186 @@
+{
+	"_nitro": {
+		"pageTitle": "Hanze3 — case study · Viktor Nešić"
+	},
+	"meta": {
+		"description": "A live radio app for an Egyptian broadcaster: listeners tune in, chat in real time behind a profanity filter and book their own on-air slot once a moderator approves it.",
+		"path": "/work-hanze3"
+	},
+	"intro": {
+		"name": "Viktor Nešić",
+		"role": "Mobile & Frontend Developer"
+	},
+	"links": [
+		{
+			"label": "GitHub",
+			"icon": "github",
+			"url": "https://github.com/Vprogrammers"
+		},
+		{
+			"label": "LinkedIn",
+			"icon": "linkedin",
+			"url": "https://www.linkedin.com/in/viktor-nesic"
+		},
+		{
+			"label": "v.nesic.developer@gmail.com",
+			"icon": "mail",
+			"url": "/about#contact-form"
+		}
+	],
+	"employers": {
+		"merkle": {
+			"label": "Delivered at",
+			"name": "Merkle",
+			"note": "Enterprise mobile & digital engineering"
+		}
+	},
+	"caseStudy": {
+		"kicker": "Case study · Android · Live radio",
+		"title": "Hanze3",
+		"lead": "A live radio app for an Egyptian broadcaster: listeners tune in, chat in real time behind a profanity filter and book their own on-air slot once a moderator approves it.",
+		"sceneType": "radio",
+		"scene": {
+			"splash": "/assets/img/projects/hanze-splash.jpg",
+			"main": "/assets/img/projects/hanze-main.jpg",
+			"studio": "/assets/img/projects/hanze-studio.jpg",
+			"tagline": "Listen, Talk, ENJOY !",
+			"tabs": [
+				"Headlines",
+				"Sports",
+				"World",
+				"Business",
+				"Tech"
+			],
+			"news": [
+				{
+					"label": "عاجل",
+					"title": "نشرة أخبار الساعة العاشرة"
+				},
+				{
+					"label": "رياضة",
+					"title": "ملخص مباريات الدوري المصري"
+				},
+				{
+					"label": "العالم",
+					"title": "جولة في أهم أخبار العالم"
+				}
+			],
+			"messages": [
+				{
+					"name": "أحمد",
+					"hue": 210,
+					"text": "مساء الخير يا جماعة 🌙"
+				},
+				{
+					"name": "منى",
+					"hue": 330,
+					"text": "الحلقة النهارده تحفة 👏"
+				},
+				{
+					"name": "كريم",
+					"hue": 150,
+					"text": "الحكم ده",
+					"censor": "حمار",
+					"after": "😡"
+				},
+				{
+					"name": "سارة",
+					"hue": 30,
+					"text": "ممكن نسمع أغنية قديمة؟ 🎶"
+				}
+			],
+			"countdown": 3
+		},
+		"facts": [
+			{
+				"label": "Client",
+				"value": "A radio broadcaster in Egypt"
+			},
+			{
+				"label": "My role",
+				"value": "Independent mobile developer"
+			},
+			{
+				"label": "Platform",
+				"value": "Android · Java · Firebase"
+			}
+		],
+		"brief": {
+			"title": "The brief",
+			"text": [
+				"The broadcaster wanted listeners to do more than listen: talk to each other while the show is on, and even get on air themselves.",
+				"And the stream had to be cheap to run, without a dedicated streaming server."
+			]
+		},
+		"contributions": {
+			"title": "What I did",
+			"items": [
+				"Built the native Android app in Java with XML layouts.",
+				"Played the programme from audio files in Firebase Storage, loaded into the player by link, so no streaming server was needed.",
+				"Built the live chat on Firebase, with a profanity filter I wrote that replaces offensive words with asterisks.",
+				"Built the admin panel: approve talk show requests and delete offensive messages.",
+				"Let admins publish the weekly programme by date and time slot and show when a talk show is on air."
+			]
+		},
+		"findings": {
+			"title": "How it works",
+			"items": [
+				{
+					"tag": "Listen",
+					"title": "Tune in",
+					"text": "The current programme plays from Firebase Storage, with no streaming server to pay for."
+				},
+				{
+					"tag": "Chat",
+					"title": "Talk while it's on",
+					"text": "Listeners chat in real time; insults turn into asterisks before anyone sees them."
+				},
+				{
+					"tag": "On air",
+					"title": "Book a talk show slot",
+					"text": "Listeners request a slot of up to 30 minutes, and a moderator approves it."
+				},
+				{
+					"tag": "Admin",
+					"title": "Run the station",
+					"text": "Approve requests, delete messages and publish the week's schedule."
+				}
+			]
+		},
+		"stack": {
+			"title": "Stack",
+			"items": [
+				"Java",
+				"Android Views (XML)",
+				"Firebase Storage",
+				"Firebase chat",
+				"Admin panel"
+			]
+		},
+		"team": {
+			"title": "Team",
+			"text": "I built the app myself, working directly with the client."
+		},
+		"outcome": {
+			"title": "The result",
+			"text": "A low-cost live radio app with listener chat, moderated on-air slots and a weekly schedule the station runs itself."
+		},
+		"back": {
+			"label": "All works",
+			"url": "/#works"
+		},
+		"cta": {
+			"title": "Have a project like this?",
+			"text": "I build and rescue native iOS, Android and Kotlin Multiplatform apps, and I'm happy to look at yours.",
+			"label": "Get in touch",
+			"url": "/about#contact-form"
+		},
+		"next": {
+			"title": "PhotoStory",
+			"url": "/work-photostory"
+		}
+	},
+	"analytics": {
+		"gaMeasurementId": "G-ZM0VPP0G2C"
+	}
+}

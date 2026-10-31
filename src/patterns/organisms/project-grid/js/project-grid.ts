@@ -1,3 +1,5 @@
+import { initDeviceScene } from '../../../molecules/device-scene/js/device-scene';
+
 // Only tiles on screen animate: each scene's animations pause while its tile is
 // out of view, so the grid does not run dozens of scenes at once.
 const tiles = document.querySelectorAll<HTMLElement>('.o-project-grid__item');
@@ -6,7 +8,9 @@ const tiles = document.querySelectorAll<HTMLElement>('.o-project-grid__item');
 // nears the screen, so tiles further down cost nothing until then.
 const mountScene = (tile: Element) => {
   const template = tile.querySelector<HTMLTemplateElement>('.js-project-grid-media > template');
-  if (template) template.replaceWith(template.content);
+  if (!template) return;
+  template.replaceWith(template.content);
+  tile.querySelectorAll<HTMLElement>('.js-device-scene').forEach(initDeviceScene);
 };
 
 if (!('IntersectionObserver' in window)) tiles.forEach(mountScene);

@@ -77,3 +77,10 @@ test('works tiles add their scene only when they near the screen', async ({ page
   await expect(lastTile.locator('.js-project-grid-media > template')).toHaveCount(0);
   await expect(lastTile.locator('.js-project-grid-media > *').first()).toBeAttached();
 });
+
+test('a device scene added to a works tile waits for its artwork before showing screenshots', async ({ page }) => {
+  await page.goto('/');
+  const tile = page.locator('.o-project-grid__item', { has: page.locator('.js-device-scene') }).first();
+  await tile.scrollIntoViewIfNeeded();
+  await expect(tile.locator('.js-device-scene')).toHaveAttribute('data-ready', 'true');
+});

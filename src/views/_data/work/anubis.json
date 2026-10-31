@@ -142,7 +142,7 @@
 		},
 		"team": {
 			"title": "Team",
-			"text": "An internal engineering group of five to nine people, depending on client assignments. I contributed implementation and shared in the technical decisions. This is internal reference work, not production software adopted by a client."
+			"text": "Built by the internal mobile engineering team at Merkle, as internal reference work."
 		},
 		"outcome": {
 			"title": "The result",

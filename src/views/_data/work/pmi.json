@@ -1,0 +1,188 @@
+{
+	"_nitro": {
+		"pageTitle": "PMI Market(i) — case study · Viktor Nešić"
+	},
+	"meta": {
+		"description": "A technical audit of Market(i), an internal iPad and iPhone app for Philip Morris field teams in the Nordics, and a roadmap for maintaining its legacy Objective-C codebase.",
+		"path": "/work-pmi"
+	},
+	"intro": {
+		"name": "Viktor Nešić",
+		"role": "Mobile & Frontend Developer"
+	},
+	"links": [
+		{
+			"label": "GitHub",
+			"icon": "github",
+			"url": "https://github.com/Vprogrammers"
+		},
+		{
+			"label": "LinkedIn",
+			"icon": "linkedin",
+			"url": "https://www.linkedin.com/in/viktor-nesic"
+		},
+		{
+			"label": "v.nesic.developer@gmail.com",
+			"icon": "mail",
+			"url": "/about#contact-form"
+		}
+	],
+	"employers": {
+		"merkle": {
+			"label": "Delivered at",
+			"name": "Merkle",
+			"note": "Enterprise mobile & digital engineering"
+		}
+	},
+	"caseStudy": {
+		"kicker": "Case study · iOS · Code review",
+		"title": "PMI Market(i)",
+		"lead": "A technical audit of Market(i), an internal iPad and iPhone app for Philip Morris field teams in the Nordics, and a roadmap for maintaining its legacy Objective-C codebase.",
+		"employer": "merkle",
+		"sceneType": "review",
+		"scene": {
+			"file": "AppDelegate.m",
+			"reviewer": "VN",
+			"findings": [
+				{
+					"severity": "Critical",
+					"title": "AFNetworking pinned below 1.9",
+					"body": "AFHTTPRequestOperation in 19 files, on a library that has had no support for years. Move networking to URLSession."
+				},
+				{
+					"severity": "Major",
+					"title": "ReactiveCocoa 2.5",
+					"body": "The Objective-C version of RAC is unmaintained. Replace its signals with Combine or async/await step by step."
+				},
+				{
+					"severity": "Major",
+					"title": "Fabric is shut down",
+					"body": "Crash reports still go through Fabric with CrashlyticsKit. Switch to Firebase Crashlytics."
+				},
+				{
+					"severity": "Minor",
+					"title": "Debug tools in release builds",
+					"body": "PonyDebugger and the Reveal SDK are linked for every configuration. Limit them to Debug."
+				},
+				{
+					"severity": "Minor",
+					"title": "UIAlertView in 17 files",
+					"body": "Deprecated since iOS 9. Replace with UIAlertController."
+				},
+				{
+					"severity": "Info",
+					"title": "No unit tests",
+					"body": "There is no test target yet. Start with the sync and the data mapping before changing them."
+				}
+			],
+			"summary": "Review done: a maintenance plan from the riskiest dependencies down."
+		},
+		"facts": [
+			{
+				"label": "Client",
+				"value": "Philip Morris International, Nordics"
+			},
+			{
+				"label": "My role",
+				"value": "Mobile codebase assessment"
+			},
+			{
+				"label": "Period",
+				"value": "Sep 2021 – May 2022 (approx.)"
+			},
+			{
+				"label": "Platform",
+				"value": "iOS · Objective-C · UIKit"
+			}
+		],
+		"brief": {
+			"title": "The brief",
+			"text": [
+				"Market(i) helps field teams photograph and share store shelves with hashtags and private tags, see stores on a map, follow share of market and work offline with sync. It had grown over years and was about to be handed over for maintenance.",
+				"I assessed the inherited codebase independently, so the client would know its condition and what keeping it alive would take."
+			]
+		},
+		"contributions": {
+			"title": "What I reviewed",
+			"items": [
+				"The features: shelf photos with tags, store map with clustering, share of market, segmentation, POS and sync.",
+				"The code: about 440 Objective-C files of its own, CocoaPods and Core Data.",
+				"Dependencies and SDKs, build settings and deployment targets.",
+				"Tooling, tests and debug libraries in every configuration.",
+				"A maintenance roadmap from urgent fixes to modernisation."
+			]
+		},
+		"findings": {
+			"title": "Findings",
+			"text": "Each one confirmed in the code.",
+			"items": [
+				{
+					"tag": "High",
+					"title": "Networking on AFNetworking 1.x",
+					"text": "Pinned below 1.9, with AFHTTPRequestOperation in 19 files."
+				},
+				{
+					"tag": "High",
+					"title": "Debug tools in every build",
+					"text": "PonyDebugger and Reveal linked in all configurations, including release."
+				},
+				{
+					"tag": "Medium",
+					"title": "Deprecated SDKs",
+					"text": "Fabric / CrashlyticsKit and the legacy Google Analytics SDK still in use."
+				},
+				{
+					"tag": "Medium",
+					"title": "Old patterns",
+					"text": "ReactiveCocoa 2.5 and UIAlertView in 17 files."
+				},
+				{
+					"tag": "Medium",
+					"title": "Mismatched targets",
+					"text": "The Podfile targets iOS 9 while the project targets iOS 12.4."
+				},
+				{
+					"tag": "Medium",
+					"title": "No unit tests",
+					"text": "Every change has to be verified by hand."
+				}
+			]
+		},
+		"stack": {
+			"title": "Stack",
+			"items": [
+				"Objective-C",
+				"UIKit",
+				"Core Data",
+				"CocoaPods",
+				"AFNetworking",
+				"ReactiveCocoa"
+			]
+		},
+		"team": {
+			"title": "Team",
+			"text": "An independent assessment, in coordination with the project stakeholders."
+		},
+		"outcome": {
+			"title": "The result",
+			"text": "A prioritised list of risks and a roadmap from urgent fixes to modernisation. The maintenance engagement itself did not go ahead."
+		},
+		"back": {
+			"label": "All works",
+			"url": "/#works"
+		},
+		"cta": {
+			"title": "Have a project like this?",
+			"text": "I build and rescue native iOS, Android and Kotlin Multiplatform apps, and I'm happy to look at yours.",
+			"label": "Get in touch",
+			"url": "/about#contact-form"
+		},
+		"next": {
+			"title": "Design Token Pipeline",
+			"url": "/work-design-tokens"
+		}
+	},
+	"analytics": {
+		"gaMeasurementId": "G-ZM0VPP0G2C"
+	}
+}

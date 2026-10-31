@@ -1,0 +1,6 @@
+{# CGIAR case study. Its data lives in _data/work/cgiar.json. #}
+{% pattern name='site-header' data={ intro: intro, links: links, base: '/' } %}
+{% pattern name='case-study' data=caseStudy|merge({ employers: employers }) %}
+{% pattern name='site-footer' data={ intro: intro, links: links } %}
+{% pattern name='back-to-top' data={ threshold: '.o-case-study__facts' } %}
+{% pattern name='consent' %}

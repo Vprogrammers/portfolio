@@ -1,0 +1,175 @@
+{
+	"_nitro": {
+		"pageTitle": "KOCH Scan App — case study · Viktor Nešić"
+	},
+	"meta": {
+		"description": "A review of the KOCH Scan App, a B2B app for a Swiss building supplier that lets tradespeople scan article labels, collect them by commission and order on site, in preparation for taking over its maintenance.",
+		"path": "/work-koch"
+	},
+	"intro": {
+		"name": "Viktor Nešić",
+		"role": "Mobile & Frontend Developer"
+	},
+	"links": [
+		{
+			"label": "GitHub",
+			"icon": "github",
+			"url": "https://github.com/Vprogrammers"
+		},
+		{
+			"label": "LinkedIn",
+			"icon": "linkedin",
+			"url": "https://www.linkedin.com/in/viktor-nesic"
+		},
+		{
+			"label": "v.nesic.developer@gmail.com",
+			"icon": "mail",
+			"url": "/about#contact-form"
+		}
+	],
+	"employers": {
+		"merkle": {
+			"label": "Delivered at",
+			"name": "Merkle",
+			"note": "Enterprise mobile & digital engineering"
+		}
+	},
+	"caseStudy": {
+		"kicker": "Case study · iOS · Code review",
+		"title": "KOCH Scan App",
+		"lead": "A review of the KOCH Scan App, a B2B app for a Swiss building supplier that lets tradespeople scan article labels, collect them by commission and order on site, in preparation for taking over its maintenance.",
+		"employer": "merkle",
+		"sceneType": "scan",
+		"scene": {
+			"logo": "/assets/img/projects/koch-logo.png",
+			"hint": "EAN-Strichcode scannen",
+			"tabs": [
+				"SCANNEN",
+				"LISTE",
+				"BESTELLEN",
+				"STANDORTE",
+				"NEWS"
+			],
+			"commission": "Baustelle Zürich-West",
+			"items": [
+				{
+					"name": "Möbelgriff Edelstahl 128 mm",
+					"number": "KOCH 470.128",
+					"ean": "7640123456789",
+					"amounts": [
+						1,
+						2,
+						3
+					]
+				},
+				{
+					"name": "Topfband 110° mit Dämpfung",
+					"number": "KOCH 312.110",
+					"ean": "7640987654321",
+					"amounts": [
+						1,
+						2
+					]
+				}
+			]
+		},
+		"facts": [
+			{
+				"label": "Client",
+				"value": "KOCH, Swiss building supplier"
+			},
+			{
+				"label": "My role",
+				"value": "Mobile codebase assessment"
+			},
+			{
+				"label": "Period",
+				"value": "Sep 2021 – May 2022 (approx.)"
+			},
+			{
+				"label": "Platform",
+				"value": "iOS · Swift · UIKit & SwiftUI"
+			}
+		],
+		"brief": {
+			"title": "The brief",
+			"text": [
+				"The app had been built by another agency, and we were to take over its maintenance. Before that, the client needed to know what they had: how the app is built, how healthy the code is and what maintaining it would involve.",
+				"I reviewed the native iOS app independently and coordinated with the project stakeholders."
+			]
+		},
+		"contributions": {
+			"title": "What I reviewed",
+			"items": [
+				"The app structure: five tabs for scanning, the article list, ordering, locations and news.",
+				"The scanner: auto and tap scan modes, flashlight, detection overlay and manual EAN entry.",
+				"The order flow, which runs in a WKWebView with a script message handler.",
+				"The SAP Commerce (Hybris) backend with OAuth, and Firebase Crashlytics, Remote Config, Performance and Analytics.",
+				"Push notifications with a notification service extension, three Swiss languages, the app version guard and the unit tests."
+			]
+		},
+		"findings": {
+			"title": "What stood out",
+			"items": [
+				{
+					"tag": "Strength",
+					"title": "A focused scanner",
+					"text": "Auto and tap scanning, a flashlight and manual EAN entry cover real conditions on building sites."
+				},
+				{
+					"tag": "Strength",
+					"title": "Unit tests and a version guard",
+					"text": "A base to change the app safely, and a way to retire old versions."
+				},
+				{
+					"tag": "Watch",
+					"title": "Ordering in a WebView",
+					"text": "Checkout depends on the web shop and a JavaScript bridge, so both sides have to change together."
+				},
+				{
+					"tag": "Watch",
+					"title": "Mixed UI technologies",
+					"text": "UIKit storyboards next to SwiftUI views: workable, but every change needs a clear rule for which to use."
+				}
+			]
+		},
+		"stack": {
+			"title": "Stack",
+			"items": [
+				"Swift",
+				"UIKit",
+				"SwiftUI",
+				"WKWebView",
+				"SAP Commerce (Hybris)",
+				"OAuth",
+				"Firebase",
+				"APNs"
+			]
+		},
+		"team": {
+			"title": "Team",
+			"text": "An independent assessment, in coordination with the project stakeholders on the client's and the agency's side."
+		},
+		"outcome": {
+			"title": "The result",
+			"text": "The client got a clear picture of the codebase and of what maintaining it would take. The maintenance engagement itself did not go ahead."
+		},
+		"back": {
+			"label": "All works",
+			"url": "/#works"
+		},
+		"cta": {
+			"title": "Have a project like this?",
+			"text": "I build and rescue native iOS, Android and Kotlin Multiplatform apps, and I'm happy to look at yours.",
+			"label": "Get in touch",
+			"url": "/about#contact-form"
+		},
+		"next": {
+			"title": "PMI Market(i)",
+			"url": "/work-pmi"
+		}
+	},
+	"analytics": {
+		"gaMeasurementId": "G-ZM0VPP0G2C"
+	}
+}

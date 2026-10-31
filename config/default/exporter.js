@@ -1,5 +1,9 @@
 /**
  * Nitro Exporter Config
+ *
+ * Exports the static site to export/ for Firebase Hosting (see firebase.json).
+ * Asset paths stay absolute (/assets/...) and links stay clean (/about); Firebase
+ * serves about.html for /about through cleanUrls.
  */
 
 const config = {
@@ -7,61 +11,11 @@ const config = {
 		{
 			dest: 'export',
 			i18n: [],
-			publics: ['public/*', 'public/assets/**/*', 'public/content/**/*'],
-			renames: [
-				{
-					src: 'export/assets/**',
-					base: 'export/assets',
-					dest: 'export/',
-				},
-			],
-			replacements: [
-				{
-					glob: ['export/*.html'],
-					replace: [
-						{
-							from: '/assets/',
-							to: '',
-						},
-						{
-							from: '/content/',
-							to: 'content/',
-						},
-						{
-							from: ' href="/?([a-z0-9-]+)"',
-							to: ' href="$1.html"',
-						},
-					],
-				},
-				{
-					glob: ['export/css/*.css'],
-					replace: [
-						{
-							from: '/assets/',
-							to: '../',
-						},
-						{
-							from: '/content/',
-							to: '../content/',
-						},
-					],
-				},
-				{
-					glob: ['export/js/*.js'],
-					replace: [
-						{
-							from: '/assets/',
-							to: '',
-						},
-						{
-							from: '/api',
-							to: 'api',
-						},
-					],
-				},
-			],
+			publics: ['public/*', 'public/assets/**/*'],
+			renames: [],
+			replacements: [],
 			views: true,
-			additionalRoutes: ['api/lottie/shipment.json', 'api/lottie/bouncing.json'],
+			additionalRoutes: [],
 			minifyHtml: true,
 			zip: false,
 		},

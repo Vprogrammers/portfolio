@@ -20,3 +20,24 @@ test('the case study has no horizontal overflow on phones and desktops', async (
     expect(overflow, `overflow at ${width}px`).toBeLessThanOrEqual(0);
   }
 });
+
+const caseStudies = [
+  ['proapp', 'Hansgrohe ProApp'], ['migros', 'Migros iMpuls'], ['bucherer', 'Bucherer'], ['cgiar', 'CGIAR'],
+  ['koch', 'KOCH Scan App'], ['pmi', 'PMI Market(i)'], ['design-tokens', 'Design Token Pipeline'],
+  ['anubis', 'Anubis'], ['yamvip', 'YAMVIP'], ['kmp-template', 'KMP Template'],
+];
+
+test('every Merkle project has a case study, linked from the grid and chained to the next one', async ({ page }) => {
+  await page.goto('/');
+  for (const [slug] of caseStudies) {
+    await expect(page.locator(`.o-project-grid a[href="/work-${slug}"]`)).toHaveCount(1);
+  }
+  for (const [index, [slug, title]] of caseStudies.entries()) {
+    await page.goto(`/work-${slug}`);
+    await expect(page.getByRole('heading', { level: 1, name: title, exact: true })).toBeVisible();
+    // Every hero shows its project's scene, not an empty box.
+    await expect(page.locator('.o-case-study__hero-scene > *').first()).toBeAttached();
+    const [nextSlug] = caseStudies[(index + 1) % caseStudies.length];
+    await expect(page.locator('.o-case-study__next')).toHaveAttribute('href', `/work-${nextSlug}`);
+  }
+});

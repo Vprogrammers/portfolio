@@ -53,6 +53,7 @@
     "build:assets": "gulp assets",
     "build:webpack": "webpack --mode production --config config/webpack/webpack.config.prod.js",
     "export": "npm run build && gulp export",
+    "deploy": "npm run export && npx -y firebase-tools deploy --only hosting",
     "\n# RUN ------- ": "",
     "dev": "npm-run-all check-node-version --parallel --race dev:*",
     "dev:serve": "cross-env NODE_ENV=development nitro-app-serve --open",

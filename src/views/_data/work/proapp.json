@@ -36,6 +36,7 @@
 		"lead": "An enterprise iPad app that puts Hansgrohe's and AXOR's whole product world in a sales rep's hands: catalogue, product stories and ready-made presentations, all available offline in showrooms, on building sites and wherever the network drops.",
 		"employer": "merkle",
 		"hero": "/assets/img/projects/hansgrohe-background-04.jpg",
+		"sceneType": "device",
 		"scene": {
 			"variant": "handheld",
 			"image": "/assets/img/projects/hansgrohe-background-04.jpg",
@@ -197,25 +198,7 @@
 		},
 		"team": {
 			"title": "Team",
-			"text": "Three mobile developers and an intern, three designers, a QA tester, a Scrum Master, the client's Product Owner and an agency project manager, working with the backend and web teams.",
-			"items": [
-				[
-					"4",
-					"mobile developers incl. intern"
-				],
-				[
-					"3",
-					"designers"
-				],
-				[
-					"1",
-					"QA tester"
-				],
-				[
-					"2",
-					"years on the project"
-				]
-			]
+			"text": "A cross-functional team of mobile developers, designers, QA, a Scrum Master and the client's Product Owner, working with the backend and web teams."
 		},
 		"outcome": {
 			"title": "The result",
@@ -230,9 +213,17 @@
 			"text": "I build offline-first, enterprise-grade mobile apps on iOS, Android and Kotlin Multiplatform.",
 			"label": "Get in touch",
 			"url": "/about#contact-form"
+		},
+		"next": {
+			"title": "Migros iMpuls",
+			"url": "/work-migros"
 		}
 	},
 	"analytics": {
 		"gaMeasurementId": "G-ZM0VPP0G2C"
+	},
+	"meta": {
+		"description": "An enterprise iPad app that puts Hansgrohe's and AXOR's whole product world in a sales rep's hands: catalogue, product stories and ready-made presentations, all available offline in showrooms, on building sites and wherever the network drops.",
+		"path": "/work-proapp"
 	}
 }

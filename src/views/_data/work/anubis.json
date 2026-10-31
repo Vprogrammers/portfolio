@@ -1,0 +1,169 @@
+{
+	"_nitro": {
+		"pageTitle": "Anubis — case study · Viktor Nešić"
+	},
+	"meta": {
+		"description": "Anubis (Automatic Network User Based Interface System): a server-driven UI framework for Kotlin Multiplatform. Screens are described as JSON on a Ktor server and rendered natively with Compose, so layouts can change without an app release.",
+		"path": "/work-anubis"
+	},
+	"intro": {
+		"name": "Viktor Nešić",
+		"role": "Mobile & Frontend Developer"
+	},
+	"links": [
+		{
+			"label": "GitHub",
+			"icon": "github",
+			"url": "https://github.com/Vprogrammers"
+		},
+		{
+			"label": "LinkedIn",
+			"icon": "linkedin",
+			"url": "https://www.linkedin.com/in/viktor-nesic"
+		},
+		{
+			"label": "v.nesic.developer@gmail.com",
+			"icon": "mail",
+			"url": "/about#contact-form"
+		}
+	],
+	"employers": {
+		"merkle": {
+			"label": "Delivered at",
+			"name": "Merkle",
+			"note": "Enterprise mobile & digital engineering"
+		}
+	},
+	"caseStudy": {
+		"kicker": "Case study · Kotlin Multiplatform · Server-driven UI · Internal",
+		"title": "Anubis",
+		"lead": "Anubis (Automatic Network User Based Interface System): a server-driven UI framework for Kotlin Multiplatform. Screens are described as JSON on a Ktor server and rendered natively with Compose, so layouts can change without an app release.",
+		"employer": "merkle",
+		"sceneType": "sdui",
+		"scene": {
+			"file": "home.json",
+			"server": "GET /screens/home · Ktor",
+			"title": "Discover",
+			"cards": [
+				{
+					"heading": "DevOps",
+					"subheading": "The Cycle of DevOps",
+					"hue": 250
+				},
+				{
+					"heading": "Anubis",
+					"subheading": "The best way to build mobile apps",
+					"hue": 300
+				}
+			],
+			"button": "See all"
+		},
+		"facts": [
+			{
+				"label": "Context",
+				"value": "Internal engineering at Merkle"
+			},
+			{
+				"label": "My role",
+				"value": "Contributor: implementation and design"
+			},
+			{
+				"label": "Period",
+				"value": "Sep 2023 – Oct 2024 (approx.)"
+			},
+			{
+				"label": "Platform",
+				"value": "Kotlin Multiplatform · Compose · Ktor"
+			}
+		],
+		"brief": {
+			"title": "The idea",
+			"text": [
+				"App teams often need to change a screen faster than an App Store release allows. Anubis moves the layout to the server: the app knows how to draw a set of components, and the server decides which ones to show and in what order.",
+				"Adding an object to the JSON adds a component to the screen."
+			]
+		},
+		"contributions": {
+			"title": "What I did",
+			"items": [
+				"Worked on the shared models for the components: card, container, divider, text and text button.",
+				"Rendered the JSON object list natively with Compose Multiplatform, with images through Coil.",
+				"Worked with the Ktor client in the app and a Ktor server that serves the screens.",
+				"Built the sample Android and iOS apps and discussed the design with the team."
+			]
+		},
+		"architecture": {
+			"title": "Modules",
+			"layers": [
+				{
+					"name": "anubis-server",
+					"items": [
+						"Ktor",
+						"JSON screens"
+					]
+				},
+				{
+					"name": "anubis-common",
+					"items": [
+						"Card",
+						"Container",
+						"Divider",
+						"Text",
+						"TextButton"
+					]
+				},
+				{
+					"name": "anubis-ui",
+					"items": [
+						"Compose Multiplatform",
+						"Ktor client",
+						"Coil"
+					]
+				},
+				{
+					"name": "Samples",
+					"items": [
+						"Android app",
+						"iOS app"
+					]
+				}
+			]
+		},
+		"stack": {
+			"title": "Stack",
+			"items": [
+				"Kotlin Multiplatform",
+				"Compose Multiplatform",
+				"Ktor",
+				"kotlinx.serialization",
+				"Coil",
+				"Gradle"
+			]
+		},
+		"team": {
+			"title": "Team",
+			"text": "Built by the internal mobile engineering team at Merkle, as internal reference work."
+		},
+		"outcome": {
+			"title": "The result",
+			"text": "A working reference for server-driven native UI, later included in the team's KMP Template."
+		},
+		"back": {
+			"label": "All works",
+			"url": "/#works"
+		},
+		"cta": {
+			"title": "Have a project like this?",
+			"text": "I build and rescue native iOS, Android and Kotlin Multiplatform apps, and I'm happy to look at yours.",
+			"label": "Get in touch",
+			"url": "/about#contact-form"
+		},
+		"next": {
+			"title": "YAMVIP",
+			"url": "/work-yamvip"
+		}
+	},
+	"analytics": {
+		"gaMeasurementId": "G-ZM0VPP0G2C"
+	}
+}

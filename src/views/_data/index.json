@@ -302,6 +302,7 @@
 		{
 			"category": "KMP · SwiftUI · Compose · Firebase",
 			"title": "PhotoStory",
+			"url": "/work-photostory",
 			"summary": "Crew scheduling for a photo studio, built with Kotlin Multiplatform: the admin books an event and invites the crew, each member accepts or declines from a push notification, and a declined offer moves on to the next person.",
 			"tone": "red",
 			"variant": "crew",

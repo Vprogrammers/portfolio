@@ -1193,6 +1193,7 @@
 		{
 			"category": "Android · Java · Firebase",
 			"title": "Masse",
+			"url": "/work-masse",
 			"summary": "Online booking for a billiard club: guests reserve a pool table or a dartboard for a free slot, while an admin panel manages the data and the evening's reservations.",
 			"tone": "cyan",
 			"variant": "club",

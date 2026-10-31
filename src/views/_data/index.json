@@ -30,8 +30,8 @@
 			"url": "/work-proapp",
 			"summary": "A Kotlin Multiplatform iPad app that gives Hansgrohe's sales teams product presentations and a complete offline catalogue, so every customer meeting runs smoothly with or without a connection.",
 			"tone": "teal",
-			"image": "/assets/img/projects/hansgrohe-background-04.jpg",
-			"foreground": "/assets/img/projects/hansgrohe-background-04-hands.png",
+			"image": "/assets/img/projects/hansgrohe-background-04.webp",
+			"foreground": "/assets/img/projects/hansgrohe-background-04-hands.webp",
 			"staticBackground": true,
 			"frameSets": [
 				[
@@ -59,7 +59,7 @@
 			"url": "/work-proapp",
 			"summary": "A Kotlin Multiplatform iPad app that gives Hansgrohe's sales teams product presentations and a complete offline catalogue, so every customer meeting runs smoothly with or without a connection.",
 			"tone": "teal",
-			"image": "/assets/img/projects/hansgrohe-background-02.jpg",
+			"image": "/assets/img/projects/hansgrohe-background-02.webp",
 			"staticBackground": true,
 			"frameSets": [
 				[

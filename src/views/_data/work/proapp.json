@@ -35,12 +35,12 @@
 		"title": "Hansgrohe ProApp",
 		"lead": "An enterprise iPad app that puts Hansgrohe's and AXOR's whole product world in a sales rep's hands: catalogue, product stories and ready-made presentations, all available offline in showrooms, on building sites and wherever the network drops.",
 		"employer": "merkle",
-		"hero": "/assets/img/projects/hansgrohe-background-04.jpg",
+		"hero": "/assets/img/projects/hansgrohe-background-04.webp",
 		"sceneType": "device",
 		"scene": {
 			"variant": "handheld",
-			"image": "/assets/img/projects/hansgrohe-background-04.jpg",
-			"foreground": "/assets/img/projects/hansgrohe-background-04-hands.png",
+			"image": "/assets/img/projects/hansgrohe-background-04.webp",
+			"foreground": "/assets/img/projects/hansgrohe-background-04-hands.webp",
 			"frames": [
 				"/assets/img/projects/proapp-splash.jpg",
 				"/assets/img/projects/proapp-download.jpg",

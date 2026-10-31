@@ -118,7 +118,7 @@
 			"title": "The brief",
 			"text": [
 				"Before committing to an app, the retailer wanted to know how far the existing web shop could carry it. Some of the shop runs on Salesforce and some does not, so the flows had to be checked across both, from sign-in to checkout.",
-				"I worked with the agency managers and two web developers, and the result had to be an honest answer plus an estimate for iOS and Android."
+				"I worked with the agency managers and two web developers, and the result had to be an honest answer on what the shop can do inside a native app."
 			]
 		},
 		"contributions": {
@@ -128,7 +128,7 @@
 				"Kept sessions across launches with persistent cookies in the default website data store.",
 				"Logged every navigation to trace how sign-in, cart and checkout move between the Salesforce and non-Salesforce parts.",
 				"Tried routing cart, checkout and payment pages to Safari as a fallback option.",
-				"Documented the issues found and wrote the delivery estimate for iOS and Android."
+				"Documented the issues and risks found along the way."
 			]
 		},
 		"findings": {
@@ -167,59 +167,6 @@
 				}
 			]
 		},
-		"architecture": {
-			"title": "The estimate",
-			"text": "Days per platform, iOS / Android, for the full app that would follow the PoC.",
-			"layers": [
-				{
-					"name": "Setup & CI",
-					"items": [
-						"2–3 days each"
-					]
-				},
-				{
-					"name": "WebView app",
-					"items": [
-						"Splash, onboarding, navigation",
-						"5 days each"
-					]
-				},
-				{
-					"name": "Cookies & session",
-					"items": [
-						"3 days each"
-					]
-				},
-				{
-					"name": "Camera",
-					"items": [
-						"iOS 2–3",
-						"Android 3–4"
-					]
-				},
-				{
-					"name": "Push & deep links",
-					"items": [
-						"APNs / FCM",
-						"iOS 4–5",
-						"Android 5–6"
-					]
-				},
-				{
-					"name": "Multiple WebViews with tabs",
-					"items": [
-						"10–12 days"
-					]
-				},
-				{
-					"name": "Buffer & store release",
-					"items": [
-						"2–4 days buffer",
-						"store deployment"
-					]
-				}
-			]
-		},
 		"stack": {
 			"title": "Stack",
 			"items": [
@@ -237,7 +184,7 @@
 		},
 		"outcome": {
 			"title": "The result",
-			"text": "A clear answer on what the web shop can and cannot do inside a native app, the issues to fix before launch, and an estimate the client could plan the full app with."
+			"text": "A clear answer on what the web shop can and cannot do inside a native app, and the issues to fix before an app could launch."
 		},
 		"back": {
 			"label": "All works",

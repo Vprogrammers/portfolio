@@ -100,7 +100,7 @@
 			"category": "iOS · SwiftUI · WKWebView · PoC",
 			"title": "Bucherer",
 			"url": "/work-bucherer",
-			"summary": "An iOS proof of concept for a luxury watch retailer, proving that a native WebView wrapper can sign in, keep the session and complete a purchase across a partly Salesforce-based storefront. The findings shaped the delivery estimate for the full app.",
+			"summary": "An iOS proof of concept for a luxury watch retailer, proving that a native WebView wrapper can sign in, keep the session and complete a purchase across a partly Salesforce-based storefront. The findings showed what the full app would need.",
 			"tone": "gold",
 			"variant": "web",
 			"duration": 18000,

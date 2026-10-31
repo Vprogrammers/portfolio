@@ -36,6 +36,7 @@
 		"lead": "An enterprise iPad app that puts Hansgrohe's and AXOR's whole product world in a sales rep's hands: catalogue, product stories and ready-made presentations, all available offline in showrooms, on building sites and wherever the network drops.",
 		"employer": "merkle",
 		"hero": "/assets/img/projects/hansgrohe-background-04.jpg",
+		"sceneType": "device",
 		"scene": {
 			"variant": "handheld",
 			"image": "/assets/img/projects/hansgrohe-background-04.jpg",

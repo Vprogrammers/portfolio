@@ -1,5 +1,7 @@
 {# A project case study: hero (the project's animated scene from the home page, or an image) with key facts, the brief, contributions, and optional screens, findings, layers, stack, team and result, then a call to action and the next case study. Data per project lives in src/views/_data/work/<project>.json. #}
 <article class="o-case-study" id="top">
+	{# Scenes without a type are device scenes, like the ProApp iPad. #}
+	{% set sceneType = sceneType|default('device') %}
 	{# "device" scenes cover the hero like the home slide; the others stand in a panel beside the copy. #}
 	<header class="o-case-study__hero{% if scene and sceneType != 'device' %} o-case-study__hero--panel{% endif %}">
 		{% if scene %}

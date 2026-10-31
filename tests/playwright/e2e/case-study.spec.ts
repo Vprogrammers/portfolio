@@ -35,6 +35,8 @@ test('every Merkle project has a case study, linked from the grid and chained to
   for (const [index, [slug, title]] of caseStudies.entries()) {
     await page.goto(`/work-${slug}`);
     await expect(page.getByRole('heading', { level: 1, name: title, exact: true })).toBeVisible();
+    // Every hero shows its project's scene, not an empty box.
+    await expect(page.locator('.o-case-study__hero-scene > *').first()).toBeAttached();
     const [nextSlug] = caseStudies[(index + 1) % caseStudies.length];
     await expect(page.locator('.o-case-study__next')).toHaveAttribute('href', `/work-${nextSlug}`);
   }

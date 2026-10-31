@@ -1691,6 +1691,7 @@
 		{
 			"category": "iOS · Swift · UIKit",
 			"title": "ConnectClub",
+			"url": "/work-connectclub",
 			"summary": "A members' club app for taxi drivers: sign in with Face ID, verify a driving licence by photographing both sides, carry a member badge and unlock offers from partner companies.",
 			"tone": "orange",
 			"variant": "club2",

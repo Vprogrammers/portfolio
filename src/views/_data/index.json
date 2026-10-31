@@ -1732,6 +1732,7 @@
 		{
 			"category": "iOS · Swift · Firebase · AR",
 			"title": "Yaaxa",
+			"url": "/work-yaaxa",
 			"summary": "A short-video social app for iOS that connects people through the videos they share: record with AR avatars and effects powered by the DeepAR SDK, add filters, stickers and music, film duets side by side, and find matches in the feed.",
 			"tone": "violet",
 			"variant": "duet",

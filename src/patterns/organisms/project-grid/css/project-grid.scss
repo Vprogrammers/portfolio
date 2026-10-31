@@ -24,6 +24,10 @@
 	position: relative;
 	aspect-ratio: 8 / 5;
 	overflow: hidden;
+	// Tiles off screen are not rendered at all, so their scenes cost nothing and
+	// their images wait until the visitor scrolls near them.
+	content-visibility: auto;
+	contain-intrinsic-size: auto 30rem;
 	background: radial-gradient(circle at 75% 30%, #286778, #111822 70%);
 
 	// An odd last tile spans the full row instead of leaving a gap.

@@ -394,6 +394,7 @@
 		{
 			"category": "KMP · SwiftUI · Compose · Firebase",
 			"title": "BezBrige!",
+			"url": "/work-bezbrige",
 			"summary": "A sales CRM for insurance agents, built with Kotlin Multiplatform: assigned leads, call outcomes and awareness levels guide every client from the first call to a signed contract for insurance, credit or an investment fund.",
 			"tone": "red",
 			"variant": "leads",

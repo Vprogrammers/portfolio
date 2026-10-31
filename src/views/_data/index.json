@@ -1315,6 +1315,7 @@
 		{
 			"category": "iOS · Swift · Core ML · Vision",
 			"title": "AppleDetect",
+			"url": "/work-appledetect",
 			"summary": "An iOS app that grades apples with on-device machine learning: the camera detects every apple in a crate, a Core ML model sorts each one into four quality classes, and the result guides which crate it goes into.",
 			"tone": "green",
 			"variant": "apples",

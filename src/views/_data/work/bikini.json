@@ -1,0 +1,140 @@
+{
+	"_nitro": {
+		"pageTitle": "Bikini — case study · Viktor Nešić"
+	},
+	"meta": {
+		"description": "Android and iOS apps for a beauty competition for a client in Asia.",
+		"path": "/work-bikini"
+	},
+	"intro": {
+		"name": "Viktor Nešić",
+		"role": "Mobile & Frontend Developer"
+	},
+	"links": [
+		{
+			"label": "GitHub",
+			"icon": "github",
+			"url": "https://github.com/Vprogrammers"
+		},
+		{
+			"label": "LinkedIn",
+			"icon": "linkedin",
+			"url": "https://www.linkedin.com/in/viktor-nesic"
+		},
+		{
+			"label": "v.nesic.developer@gmail.com",
+			"icon": "mail",
+			"url": "/about#contact-form"
+		}
+	],
+	"employers": {
+		"merkle": {
+			"label": "Delivered at",
+			"name": "Merkle",
+			"note": "Enterprise mobile & digital engineering"
+		}
+	},
+	"caseStudy": {
+		"kicker": "Case study · Android · iOS · Competition",
+		"title": "Bikini",
+		"lead": "Android and iOS apps for a beauty competition for a client in Asia.",
+		"sceneType": "pageant",
+		"scene": {
+			"logo": "/assets/img/projects/bikini-logo.png",
+			"title": "Final night",
+			"vote": "Vote",
+			"judges": [
+				"9.6",
+				"9.4",
+				"9.8"
+			],
+			"contestants": [
+				{
+					"number": "03",
+					"city": "Seoul",
+					"votes": 46,
+					"hue": 250
+				},
+				{
+					"number": "07",
+					"city": "Manila",
+					"votes": 88,
+					"hue": 200,
+					"winner": true
+				},
+				{
+					"number": "11",
+					"city": "Bangkok",
+					"votes": 61,
+					"hue": 290
+				},
+				{
+					"number": "14",
+					"city": "Hanoi",
+					"votes": 34,
+					"hue": 220
+				}
+			]
+		},
+		"facts": [
+			{
+				"label": "Client",
+				"value": "A beauty competition in Asia"
+			},
+			{
+				"label": "My role",
+				"value": "Independent mobile developer"
+			},
+			{
+				"label": "Platform",
+				"value": "Android · iOS"
+			}
+		],
+		"brief": {
+			"title": "The brief",
+			"text": [
+				"The organisers wanted apps for their competition on both major platforms."
+			]
+		},
+		"contributions": {
+			"title": "What I did",
+			"items": [
+				"Built the competition apps for Android and iOS.",
+				"On Android, built in Java, including the animated splash where the logo opens up into the app."
+			]
+		},
+		"stack": {
+			"title": "Stack",
+			"items": [
+				"Android",
+				"Java",
+				"iOS"
+			]
+		},
+		"team": {
+			"title": "Team",
+			"text": "I built the app myself, working directly with the client."
+		},
+		"outcome": {
+			"title": "The result",
+			"text": "Competition apps for both platforms."
+		},
+		"back": {
+			"label": "All works",
+			"url": "/#works"
+		},
+		"cta": {
+			"title": "Have a project like this?",
+			"text": "I build and rescue native iOS, Android and Kotlin Multiplatform apps, and I'm happy to look at yours.",
+			"label": "Get in touch",
+			"url": "/about#contact-form"
+		},
+		"next": {
+			"title": "ÇocukFlix",
+			"url": "/work-cocukflix"
+		}
+	},
+	"analytics": {
+		"gaMeasurementId": "G-ZM0VPP0G2C"
+	}
+}

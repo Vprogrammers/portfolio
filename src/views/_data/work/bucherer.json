@@ -118,7 +118,7 @@
 			"title": "The brief",
 			"text": [
 				"Before committing to an app, the retailer wanted to know how far the existing web shop could carry it. Some of the shop runs on Salesforce and some does not, so the flows had to be checked across both, from sign-in to checkout.",
-				"I worked with the agency managers and two web developers, and the result had to be an honest answer on what the shop can do inside a native app."
+				"I worked with the agency managers and the web developers, and the result had to be an honest answer on what the shop can do inside a native app."
 			]
 		},
 		"contributions": {
@@ -180,7 +180,7 @@
 		},
 		"team": {
 			"title": "Team",
-			"text": "The only mobile engineer on the engagement, in contact with the agency managers and two web developers."
+			"text": "The only mobile engineer on the engagement, in contact with the agency managers and the web developers."
 		},
 		"outcome": {
 			"title": "The result",

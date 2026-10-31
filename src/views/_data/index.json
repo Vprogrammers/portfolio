@@ -1658,6 +1658,7 @@
 		{
 			"category": "Android · Java · JWT",
 			"title": "DigitalPass",
+			"url": "/work-digitalpass",
 			"summary": "A digital pass prototype for Android: accounts and passes backed by signed JWT credentials, decoded on the device, with live expiry countdowns, online status and credential renewal.",
 			"tone": "violet",
 			"variant": "pass",

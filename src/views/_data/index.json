@@ -1551,6 +1551,7 @@
 		{
 			"category": "Android tablet · Java · Firebase",
 			"title": "Feniks",
+			"url": "/work-feniks",
 			"summary": "An Android tablet app for an ice cream shop that tracks what is left of every flavour across two display cases and tells the kitchen which flavour to make next.",
 			"tone": "violet",
 			"variant": "feniks",

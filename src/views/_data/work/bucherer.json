@@ -8,7 +8,8 @@
 	},
 	"intro": {
 		"name": "Viktor Nešić",
-		"role": "Mobile & Frontend Developer"
+		"role": "Mobile & Frontend Developer",
+		"offer": "Viktor Nešić is a senior mobile developer building native iOS, Android and Kotlin Multiplatform apps with Swift, SwiftUI, UIKit, Kotlin and Jetpack Compose. Available for freelance and contract projects, working remotely."
 	},
 	"links": [
 		{
@@ -203,5 +204,39 @@
 	},
 	"analytics": {
 		"gaMeasurementId": "G-ZM0VPP0G2C"
+	},
+	"structuredData": {
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "CreativeWork",
+				"@id": "https://vprogrammers.me/work-bucherer#work",
+				"url": "https://vprogrammers.me/work-bucherer",
+				"name": "Bucherer",
+				"headline": "Bucherer — mobile app case study",
+				"description": "A quick iOS proof of concept for a luxury watch retailer: can the existing online shop, partly built on Salesforce, run inside a native app, keep customers signed in and complete a purchase?",
+				"inLanguage": "en",
+				"creator": {
+					"@id": "https://vprogrammers.me/#person"
+				},
+				"keywords": "Swift, SwiftUI, WKWebView, WKNavigationDelegate, Salesforce, Xcode",
+				"genre": "iOS · Feasibility PoC",
+				"sourceOrganization": {
+					"@type": "Organization",
+					"name": "Bucherer, luxury watch and jewellery retailer"
+				},
+				"about": {
+					"@type": "SoftwareApplication",
+					"name": "Bucherer",
+					"operatingSystem": "iOS · SwiftUI · WKWebView",
+					"applicationCategory": "MobileApplication"
+				}
+			},
+			{
+				"@type": "Person",
+				"@id": "https://vprogrammers.me/#person",
+				"name": "Viktor Nešić"
+			}
+		]
 	}
 }

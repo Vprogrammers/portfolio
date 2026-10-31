@@ -8,7 +8,8 @@
 	},
 	"intro": {
 		"name": "Viktor Nešić",
-		"role": "Mobile & Frontend Developer"
+		"role": "Mobile & Frontend Developer",
+		"offer": "Viktor Nešić is a senior mobile developer building native iOS, Android and Kotlin Multiplatform apps with Swift, SwiftUI, UIKit, Kotlin and Jetpack Compose. Available for freelance and contract projects, working remotely."
 	},
 	"links": [
 		{
@@ -222,5 +223,39 @@
 	},
 	"analytics": {
 		"gaMeasurementId": "G-ZM0VPP0G2C"
+	},
+	"structuredData": {
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "CreativeWork",
+				"@id": "https://vprogrammers.me/work-bikini#work",
+				"url": "https://vprogrammers.me/work-bikini",
+				"name": "Bikini",
+				"headline": "Bikini — mobile app case study",
+				"description": "Android and iOS apps for a bikini competition in Asia: contestants post videos and photos, fans follow, vote and buy extra votes, judges score every stage, and live calls bring the audience close to the contestants.",
+				"inLanguage": "en",
+				"creator": {
+					"@id": "https://vprogrammers.me/#person"
+				},
+				"keywords": "UIKit, RxSwift, SnapKit, Java, Android Views (XML), Clean architecture, Firebase, Agora RTC, StoreKit, Stripe, APNs",
+				"genre": "Android · iOS · Competition",
+				"sourceOrganization": {
+					"@type": "Organization",
+					"name": "A bikini competition in Asia"
+				},
+				"about": {
+					"@type": "SoftwareApplication",
+					"name": "Bikini",
+					"operatingSystem": "Two native apps: iOS and Android",
+					"applicationCategory": "MobileApplication"
+				}
+			},
+			{
+				"@type": "Person",
+				"@id": "https://vprogrammers.me/#person",
+				"name": "Viktor Nešić"
+			}
+		]
 	}
 }

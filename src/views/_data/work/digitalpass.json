@@ -8,7 +8,8 @@
 	},
 	"intro": {
 		"name": "Viktor Nešić",
-		"role": "Mobile & Frontend Developer"
+		"role": "Mobile & Frontend Developer",
+		"offer": "Viktor Nešić is a senior mobile developer building native iOS, Android and Kotlin Multiplatform apps with Swift, SwiftUI, UIKit, Kotlin and Jetpack Compose. Available for freelance and contract projects, working remotely."
 	},
 	"links": [
 		{
@@ -126,5 +127,35 @@
 	},
 	"analytics": {
 		"gaMeasurementId": "G-ZM0VPP0G2C"
+	},
+	"structuredData": {
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "CreativeWork",
+				"@id": "https://vprogrammers.me/work-digitalpass#work",
+				"url": "https://vprogrammers.me/work-digitalpass",
+				"name": "DigitalPass",
+				"headline": "DigitalPass — mobile app case study",
+				"description": "A digital pass prototype for Android: accounts and passes backed by signed JWT credentials, decoded on the device, with live expiry countdowns, online status and credential renewal.",
+				"inLanguage": "en",
+				"creator": {
+					"@id": "https://vprogrammers.me/#person"
+				},
+				"keywords": "Java, Android, Volley, JWT",
+				"genre": "Android · Java · JWT",
+				"about": {
+					"@type": "SoftwareApplication",
+					"name": "DigitalPass",
+					"operatingSystem": "Android · Java",
+					"applicationCategory": "MobileApplication"
+				}
+			},
+			{
+				"@type": "Person",
+				"@id": "https://vprogrammers.me/#person",
+				"name": "Viktor Nešić"
+			}
+		]
 	}
 }

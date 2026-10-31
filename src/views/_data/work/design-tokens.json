@@ -8,7 +8,8 @@
 	},
 	"intro": {
 		"name": "Viktor Nešić",
-		"role": "Mobile & Frontend Developer"
+		"role": "Mobile & Frontend Developer",
+		"offer": "Viktor Nešić is a senior mobile developer building native iOS, Android and Kotlin Multiplatform apps with Swift, SwiftUI, UIKit, Kotlin and Jetpack Compose. Available for freelance and contract projects, working remotely."
 	},
 	"links": [
 		{
@@ -238,5 +239,39 @@
 	},
 	"analytics": {
 		"gaMeasurementId": "G-ZM0VPP0G2C"
+	},
+	"structuredData": {
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "CreativeWork",
+				"@id": "https://vprogrammers.me/work-design-tokens#work",
+				"url": "https://vprogrammers.me/work-design-tokens",
+				"name": "Design Token Pipeline",
+				"headline": "Design Token Pipeline — mobile app case study",
+				"description": "An assessment of an enterprise design system that app teams in many countries build on, and a proposal for an automated token pipeline from Figma to Web, iOS and Android, with accessibility built in and a safe way to rename tokens.",
+				"inLanguage": "en",
+				"creator": {
+					"@id": "https://vprogrammers.me/#person"
+				},
+				"keywords": "Figma, Tokens Studio, Style Dictionary, GitHub Actions, Swift / SwiftUI, Kotlin / Compose, Accessibility",
+				"genre": "Design system · Tokens · iOS · Android · Web",
+				"sourceOrganization": {
+					"@type": "Organization",
+					"name": "A European banking group (NDA)"
+				},
+				"about": {
+					"@type": "SoftwareApplication",
+					"name": "Design Token Pipeline",
+					"operatingSystem": "iOS · Android · Web · Figma",
+					"applicationCategory": "MobileApplication"
+				}
+			},
+			{
+				"@type": "Person",
+				"@id": "https://vprogrammers.me/#person",
+				"name": "Viktor Nešić"
+			}
+		]
 	}
 }

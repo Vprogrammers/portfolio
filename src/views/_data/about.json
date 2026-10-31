@@ -1,10 +1,11 @@
 {
 	"_nitro": {
-		"pageTitle": "About — Viktor Nešić, Senior Mobile Engineer"
+		"pageTitle": "About Viktor Nešić — Senior Mobile Developer (iOS, Android, KMP)"
 	},
 	"intro": {
 		"name": "Viktor Nešić",
-		"role": "Mobile & Frontend Developer"
+		"role": "Mobile & Frontend Developer",
+		"offer": "Viktor Nešić is a senior mobile developer building native iOS, Android and Kotlin Multiplatform apps with Swift, SwiftUI, UIKit, Kotlin and Jetpack Compose. Available for freelance and contract projects, working remotely."
 	},
 	"links": [
 		{
@@ -199,7 +200,62 @@
 		"gaMeasurementId": "G-ZM0VPP0G2C"
 	},
 	"meta": {
-		"description": "More than ten years in software and over twenty mobile apps delivered across iOS, Android and Kotlin Multiplatform. Download the CV or get in touch.",
+		"description": "Senior mobile developer with more than ten years in software and over twenty apps delivered on iOS, Android and Kotlin Multiplatform. Download the CV or get in touch about your project.",
 		"path": "/about"
+	},
+	"structuredData": {
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "ProfilePage",
+				"@id": "https://vprogrammers.me/about#page",
+				"url": "https://vprogrammers.me/about",
+				"name": "About Viktor Nešić — Senior Mobile Developer (iOS, Android, KMP)",
+				"mainEntity": {
+					"@id": "https://vprogrammers.me/#person"
+				}
+			},
+			{
+				"@type": "Person",
+				"@id": "https://vprogrammers.me/#person",
+				"name": "Viktor Nešić",
+				"alternateName": "Viktor Nesic",
+				"jobTitle": "Senior Mobile Developer",
+				"description": "Viktor Nešić is a senior mobile developer building native iOS, Android and Kotlin Multiplatform apps with Swift, SwiftUI, UIKit, Kotlin and Jetpack Compose. Available for freelance and contract projects, working remotely.",
+				"url": "https://vprogrammers.me/",
+				"email": "mailto:v.nesic.developer@gmail.com",
+				"image": "https://vprogrammers.me/assets/img/icon/icon-512x512.png",
+				"sameAs": [
+					"https://www.linkedin.com/in/viktor-nesic",
+					"https://github.com/Vprogrammers"
+				],
+				"knowsAbout": [
+					"iOS development",
+					"Android development",
+					"Kotlin Multiplatform",
+					"Swift",
+					"SwiftUI",
+					"UIKit",
+					"Kotlin",
+					"Jetpack Compose",
+					"Compose Multiplatform",
+					"Java",
+					"Firebase",
+					"GraphQL",
+					"SQLDelight",
+					"Offline-first apps",
+					"Mobile accessibility",
+					"Design systems",
+					"Code review",
+					"TypeScript",
+					"Twig",
+					"SCSS"
+				],
+				"knowsLanguage": [
+					"English",
+					"Serbian"
+				]
+			}
+		]
 	}
 }

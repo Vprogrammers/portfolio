@@ -67,3 +67,20 @@ test('every project except the open-source repos has a case study, linked from t
     await expect(page.locator('.o-case-study__next')).toHaveAttribute('href', `/work-${nextSlug}`);
   }
 });
+
+test('works tiles add their scene only when they near the screen', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  const lastTile = page.locator('.o-project-grid__item').last();
+  await expect(lastTile.locator('.js-project-grid-media > template')).toHaveCount(1);
+  await lastTile.scrollIntoViewIfNeeded();
+  await expect(lastTile.locator('.js-project-grid-media > template')).toHaveCount(0);
+  await expect(lastTile.locator('.js-project-grid-media > *').first()).toBeAttached();
+});
+
+test('a device scene added to a works tile waits for its artwork before showing screenshots', async ({ page }) => {
+  await page.goto('/');
+  const tile = page.locator('.o-project-grid__item', { has: page.locator('.js-device-scene') }).first();
+  await tile.scrollIntoViewIfNeeded();
+  await expect(tile.locator('.js-device-scene')).toHaveAttribute('data-ready', 'true');
+});

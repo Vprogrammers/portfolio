@@ -7,7 +7,8 @@
 				<li class="o-project-grid__item" data-tone="{{ project.tone|default('teal') }}" {% if not project.frameSets and not project.frames and not project.radio and not project.crew and not project.web and not project.leads and not project.salon and not project.scan and not project.review and not project.deck and not project.fantasy and not project.pageant and not project.kids and not project.tokens and not project.sdui and not project.mvi and not project.kit and not project.club and not project.apples and not project.coins and not project.feniks and not project.pass and not project.club2 and not project.duet and not project.chat and not project.live and not project.laptop and not project.phone and not project.image and not project.scene %}data-media="none"{% endif %}>
 					{# Tiles without a link are focusable themselves, so keyboard users can reveal the caption. #}
 					<article class="o-project-grid__tile" {% if not project.url %}tabindex="0" aria-labelledby="project-{{ loop.index }}-title"{% endif %}>
-						<div class="o-project-grid__media">
+						{# The scene waits in a template until the tile nears the screen (js/project-grid.ts), so the page loads light. #}
+						<div class="o-project-grid__media js-project-grid-media"><template>
 							{% if project.frameSets or project.frames %}
 								{# A tile has no slide changes, so it plays every set back to back. #}
 								{% set allFrames = [] %}
@@ -77,7 +78,7 @@
 							{% elseif project.image %}
 								<img class="o-project-grid__image" src="{{ project.image }}" alt="" loading="lazy" decoding="async">
 							{% endif %}
-						</div>
+						</template></div>
 						<div class="o-project-grid__caption">
 							<h3 class="o-project-grid__title" id="project-{{ loop.index }}-title">
 								{% if project.url %}

@@ -7,4 +7,6 @@
 		{% endfor %}
 	</ul>
 	<p class="o-site-footer__meta">{{ intro.name }} — {{ intro.role }}</p>
+	{# A quiet line on what I offer: readable, but not pushed at visitors. Search engines and AI assistants read it too. #}
+	{% if intro.offer %}<p class="o-site-footer__offer">{{ intro.offer }}</p>{% endif %}
 </footer>

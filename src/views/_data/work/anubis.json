@@ -8,7 +8,8 @@
 	},
 	"intro": {
 		"name": "Viktor Nešić",
-		"role": "Mobile & Frontend Developer"
+		"role": "Mobile & Frontend Developer",
+		"offer": "Viktor Nešić is a senior mobile developer building native iOS, Android and Kotlin Multiplatform apps with Swift, SwiftUI, UIKit, Kotlin and Jetpack Compose. Available for freelance and contract projects, working remotely."
 	},
 	"links": [
 		{
@@ -165,5 +166,39 @@
 	},
 	"analytics": {
 		"gaMeasurementId": "G-ZM0VPP0G2C"
+	},
+	"structuredData": {
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "CreativeWork",
+				"@id": "https://vprogrammers.me/work-anubis#work",
+				"url": "https://vprogrammers.me/work-anubis",
+				"name": "Anubis",
+				"headline": "Anubis — mobile app case study",
+				"description": "Anubis (Automatic Network User Based Interface System): a server-driven UI framework for Kotlin Multiplatform. Screens are described as JSON on a Ktor server and rendered natively with Compose, so layouts can change without an app release.",
+				"inLanguage": "en",
+				"creator": {
+					"@id": "https://vprogrammers.me/#person"
+				},
+				"keywords": "Kotlin Multiplatform, Compose Multiplatform, Ktor, kotlinx.serialization, Coil, Gradle",
+				"genre": "Kotlin Multiplatform · Server-driven UI · Internal",
+				"sourceOrganization": {
+					"@type": "Organization",
+					"name": "Internal engineering at Merkle"
+				},
+				"about": {
+					"@type": "SoftwareApplication",
+					"name": "Anubis",
+					"operatingSystem": "Kotlin Multiplatform · Compose · Ktor",
+					"applicationCategory": "MobileApplication"
+				}
+			},
+			{
+				"@type": "Person",
+				"@id": "https://vprogrammers.me/#person",
+				"name": "Viktor Nešić"
+			}
+		]
 	}
 }

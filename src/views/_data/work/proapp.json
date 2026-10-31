@@ -4,7 +4,8 @@
 	},
 	"intro": {
 		"name": "Viktor Nešić",
-		"role": "Mobile & Frontend Developer"
+		"role": "Mobile & Frontend Developer",
+		"offer": "Viktor Nešić is a senior mobile developer building native iOS, Android and Kotlin Multiplatform apps with Swift, SwiftUI, UIKit, Kotlin and Jetpack Compose. Available for freelance and contract projects, working remotely."
 	},
 	"links": [
 		{
@@ -35,12 +36,12 @@
 		"title": "Hansgrohe ProApp",
 		"lead": "An enterprise iPad app that puts Hansgrohe's and AXOR's whole product world in a sales rep's hands: catalogue, product stories and ready-made presentations, all available offline in showrooms, on building sites and wherever the network drops.",
 		"employer": "merkle",
-		"hero": "/assets/img/projects/hansgrohe-background-04.jpg",
+		"hero": "/assets/img/projects/hansgrohe-background-04.webp",
 		"sceneType": "device",
 		"scene": {
 			"variant": "handheld",
-			"image": "/assets/img/projects/hansgrohe-background-04.jpg",
-			"foreground": "/assets/img/projects/hansgrohe-background-04-hands.png",
+			"image": "/assets/img/projects/hansgrohe-background-04.webp",
+			"foreground": "/assets/img/projects/hansgrohe-background-04-hands.webp",
 			"frames": [
 				"/assets/img/projects/proapp-splash.jpg",
 				"/assets/img/projects/proapp-download.jpg",
@@ -225,5 +226,39 @@
 	"meta": {
 		"description": "An enterprise iPad app that puts Hansgrohe's and AXOR's whole product world in a sales rep's hands: catalogue, product stories and ready-made presentations, all available offline in showrooms, on building sites and wherever the network drops.",
 		"path": "/work-proapp"
+	},
+	"structuredData": {
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "CreativeWork",
+				"@id": "https://vprogrammers.me/work-proapp#work",
+				"url": "https://vprogrammers.me/work-proapp",
+				"name": "Hansgrohe ProApp",
+				"headline": "Hansgrohe ProApp — mobile app case study",
+				"description": "An enterprise iPad app that puts Hansgrohe's and AXOR's whole product world in a sales rep's hands: catalogue, product stories and ready-made presentations, all available offline in showrooms, on building sites and wherever the network drops.",
+				"inLanguage": "en",
+				"creator": {
+					"@id": "https://vprogrammers.me/#person"
+				},
+				"keywords": "Swift, UIKit, Kotlin Multiplatform, GraphQL, SQLDelight, Azure authentication, Offline-first sync, iPadOS",
+				"genre": "Mobile · Kotlin Multiplatform",
+				"sourceOrganization": {
+					"@type": "Organization",
+					"name": "Hansgrohe, global sanitary-products manufacturer"
+				},
+				"about": {
+					"@type": "SoftwareApplication",
+					"name": "Hansgrohe ProApp",
+					"operatingSystem": "iPad · Swift/UIKit on a shared KMP core",
+					"applicationCategory": "MobileApplication"
+				}
+			},
+			{
+				"@type": "Person",
+				"@id": "https://vprogrammers.me/#person",
+				"name": "Viktor Nešić"
+			}
+		]
 	}
 }

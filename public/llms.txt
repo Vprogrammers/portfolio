@@ -1,0 +1,56 @@
+# Viktor Nešić — Senior Mobile Developer
+
+> Viktor Nešić is a senior mobile developer building native iOS, Android and Kotlin Multiplatform apps with Swift, SwiftUI, UIKit, Kotlin and Jetpack Compose. Available for freelance and contract projects, working remotely.
+
+Viktor has more than ten years in software and over twenty mobile apps delivered: enterprise products for international brands (Hansgrohe, Migros, CGIAR, Bucherer, KOCH, Philip Morris) at the agency Merkle (dentsu), and MVPs and products for independent clients. Strengths: native iOS (Swift, SwiftUI, UIKit), native Android (Kotlin, Jetpack Compose, Java), Kotlin Multiplatform with shared logic, offline-first apps, Firebase backends, mobile accessibility, design systems and code reviews of inherited apps.
+
+## Contact
+
+- [Contact form](https://vprogrammers.me/about#contact-form): the best way to start a project
+- Email: v.nesic.developer@gmail.com
+- [LinkedIn](https://www.linkedin.com/in/viktor-nesic)
+- [GitHub](https://github.com/Vprogrammers)
+- [CV (PDF)](https://vprogrammers.me/assets/files/Viktor-Nesic-CV.pdf)
+
+## Pages
+
+- [Home](https://vprogrammers.me/): all projects
+- [About](https://vprogrammers.me/about): experience, services, toolbox and contact
+
+## Case studies
+
+- [Hansgrohe ProApp](https://vprogrammers.me/work-proapp): An enterprise iPad app that puts Hansgrohe's and AXOR's whole product world in a sales rep's hands: catalogue, product stories and ready-made presentations, all available offline in showrooms, on building sites and wherever the network drops.
+- [Migros iMpuls](https://vprogrammers.me/work-migros): Keeping iMpuls, the health and wellbeing app from Switzerland's largest retailer, stable, current and shipping on schedule.
+- [Bucherer](https://vprogrammers.me/work-bucherer): A quick iOS proof of concept for a luxury watch retailer: can the existing online shop, partly built on Salesforce, run inside a native app, keep customers signed in and complete a purchase?
+- [MuMe](https://vprogrammers.me/work-mume): An Android app for live video chat rooms: hosts open a room, guests join by paying with coins, and the conversation happens in real time.
+- [CGIAR](https://vprogrammers.me/work-cgiar): A responsive, component-driven frontend for CGIAR, the global agricultural research partnership: reusable components that the client's editors assemble into pages in Drupal.
+- [Hanze3](https://vprogrammers.me/work-hanze3): A live radio app for an Egyptian broadcaster: listeners tune in, chat in real time behind a profanity filter and book their own on-air slot once a moderator approves it.
+- [PhotoStory](https://vprogrammers.me/work-photostory): Crew scheduling for a photo studio: the admin books an event and invites the crew, each member accepts or declines from a push notification, and a declined offer moves on to the next person.
+- [BezBrige!](https://vprogrammers.me/work-bezbrige): A sales CRM for insurance agents: assigned leads, call outcomes and awareness levels guide every client from the first call to a signed contract for insurance, credit or an investment fund.
+- [Sliike](https://vprogrammers.me/work-sliike): A native iOS app for a beauty booking platform for Afro-American women in Canada: discover salons and stylists, choose a service and a time, and get reminded before the appointment.
+- [KOCH Scan App](https://vprogrammers.me/work-koch): A review of the KOCH Scan App, a B2B app for a Swiss building supplier that lets tradespeople scan article labels, collect them by commission and order on site, in preparation for taking over its maintenance.
+- [PMI Market(i)](https://vprogrammers.me/work-pmi): A technical audit of Market(i), an internal iPad and iPhone app for Philip Morris field teams in the Nordics, and a roadmap for maintaining its legacy Objective-C codebase.
+- [Swipe XYZ](https://vprogrammers.me/work-swipe-xyz): A native iOS shopping app for a fashion and footwear retailer in the Arab world, combining classic browsing with a swipe-to-like product feed that sends favourites straight to the bag.
+- [Goaleadors](https://vprogrammers.me/work-goaleadors): A fantasy football platform spanning Europe's top five leagues: draft a squad on a budget, score every matchday and climb a multi-tier league pyramid in free or premium play.
+- [Bikini](https://vprogrammers.me/work-bikini): Android and iOS apps for a bikini competition in Asia: contestants post videos and photos, fans follow, vote and buy extra votes, judges score every stage, and live calls bring the audience close to the contestants.
+- [ÇocukFlix](https://vprogrammers.me/work-cocukflix): A safe cartoon app for Turkish children: curated cartoons in Turkish, favourites and notifications, with a parental gate that keeps the settings in grown-up hands.
+- [Design Token Pipeline](https://vprogrammers.me/work-design-tokens): An assessment of an enterprise design system that app teams in many countries build on, and a proposal for an automated token pipeline from Figma to Web, iOS and Android, with accessibility built in and a safe way to rename tokens.
+- [Anubis](https://vprogrammers.me/work-anubis): Anubis (Automatic Network User Based Interface System): a server-driven UI framework for Kotlin Multiplatform. Screens are described as JSON on a Ktor server and rendered natively with Compose, so layouts can change without an app release.
+- [YAMVIP](https://vprogrammers.me/work-yamvip): YAMVIP (Yet Another MVI Presenter): a multiplatform MVI engine that shares presentation logic between Android and iOS, with a strict split between Model, UIState, Intent and Effect.
+- [KMP Template](https://vprogrammers.me/work-kmp-template): A production-ready starting point for Kotlin Multiplatform apps: a modular clean architecture with YAMVIP and Anubis, a 100% Compose Android app, a 100% SwiftUI iOS app and CI from the first commit.
+- [Masse](https://vprogrammers.me/work-masse): Online booking for a billiard club: guests reserve a pool table or a dartboard for a free slot, while an admin panel manages the data and the evening's reservations.
+- [AppleDetect](https://vprogrammers.me/work-appledetect): An iOS app that grades apples with on-device machine learning: the camera detects every apple in a crate, a Core ML model sorts each one into quality classes, and the result guides which crate it goes into.
+- [Cryptocent](https://vprogrammers.me/work-cryptocent): A cryptocurrency market app for Android: live prices, sparklines and detailed charts from the CoinGecko API, with onboarding, sign-in and sections for trading, a portfolio and a wallet, delivered as an MVP.
+- [Feniks](https://vprogrammers.me/work-feniks): An Android tablet app for an ice cream shop that tracks what is left of every flavour across two display cases and tells the kitchen which flavour to make next.
+- [DigitalPass](https://vprogrammers.me/work-digitalpass): A digital pass prototype for Android: accounts and passes backed by signed JWT credentials, decoded on the device, with live expiry countdowns, online status and credential renewal.
+- [ConnectClub](https://vprogrammers.me/work-connectclub): A members' club app for taxi drivers: sign in with Face ID, verify a driving licence by photographing both sides, carry a member badge and unlock offers from partner companies.
+- [Yaaxa](https://vprogrammers.me/work-yaaxa): A short-video social app for iOS that connects people through the videos they share: record with AR avatars and effects, add filters, stickers and music, film duets side by side, and find matches in the feed.
+- [MyPH](https://vprogrammers.me/work-myph): A social and dating app for Android that brings people together by city: build a profile, join your city's group chat, make friends, and sign in with Facebook or Google, with a web admin panel behind it.
+- [Houseleek Renhold](https://vprogrammers.me/work-houseleek): A presentation app for a Norwegian cleaning company: every service, from homes and offices to stairs, windows and car care, with photos, a short description and a direct line to book.
+- [PerfectMatrimony](https://vprogrammers.me/work-perfectmatrimony): A matchmaking app for an Indian client: members fill in a detailed profile, and the app searches the database and suggests partners whose details match, with the community and family preferences that matter in Indian marriages.
+
+## Open source
+
+- [a11yOtp](https://github.com/Vprogrammers/a11yOtp): accessible one-time-code input for Compose Multiplatform (Android and iOS)
+- [Mobile A11y Agent Skills](https://github.com/Vprogrammers/mobile-a11y-agent-skills): accessibility agents and skills for Android, iOS and KMP
+- [Mobile A11y Agent Skills Lite](https://github.com/Vprogrammers/mobile-a11y-agent-skills-lite): the copy-ready edition

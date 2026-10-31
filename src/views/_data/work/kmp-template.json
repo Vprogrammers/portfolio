@@ -8,7 +8,8 @@
 	},
 	"intro": {
 		"name": "Viktor Nešić",
-		"role": "Mobile & Frontend Developer"
+		"role": "Mobile & Frontend Developer",
+		"offer": "Viktor Nešić is a senior mobile developer building native iOS, Android and Kotlin Multiplatform apps with Swift, SwiftUI, UIKit, Kotlin and Jetpack Compose. Available for freelance and contract projects, working remotely."
 	},
 	"links": [
 		{
@@ -215,5 +216,39 @@
 	},
 	"analytics": {
 		"gaMeasurementId": "G-ZM0VPP0G2C"
+	},
+	"structuredData": {
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "CreativeWork",
+				"@id": "https://vprogrammers.me/work-kmp-template#work",
+				"url": "https://vprogrammers.me/work-kmp-template",
+				"name": "KMP Template",
+				"headline": "KMP Template — mobile app case study",
+				"description": "A production-ready starting point for Kotlin Multiplatform apps: a modular clean architecture with YAMVIP and Anubis, a 100% Compose Android app, a 100% SwiftUI iOS app and CI from the first commit.",
+				"inLanguage": "en",
+				"creator": {
+					"@id": "https://vprogrammers.me/#person"
+				},
+				"keywords": "Kotlin Multiplatform, Compose, SwiftUI, Tuist, Koin, SQLDelight, Moko resources, CI/CD",
+				"genre": "Kotlin Multiplatform · Starter · Internal",
+				"sourceOrganization": {
+					"@type": "Organization",
+					"name": "Internal engineering at Merkle"
+				},
+				"about": {
+					"@type": "SoftwareApplication",
+					"name": "KMP Template",
+					"operatingSystem": "Kotlin Multiplatform · Compose · SwiftUI",
+					"applicationCategory": "MobileApplication"
+				}
+			},
+			{
+				"@type": "Person",
+				"@id": "https://vprogrammers.me/#person",
+				"name": "Viktor Nešić"
+			}
+		]
 	}
 }

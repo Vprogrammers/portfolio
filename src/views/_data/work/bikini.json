@@ -87,28 +87,37 @@
 			},
 			{
 				"label": "Platform",
-				"value": "Android · iOS"
+				"value": "Two native apps: iOS and Android"
+			},
+			{
+				"label": "Stack",
+				"value": "UIKit · Java + XML · Firebase"
 			}
 		],
 		"brief": {
 			"title": "The brief",
 			"text": [
-				"The organisers wanted apps for their competition on both major platforms."
+				"The organisers wanted apps for their competition on both major platforms, so I built two separate native apps with Firebase behind them."
 			]
 		},
 		"contributions": {
 			"title": "What I did",
 			"items": [
-				"Built the competition apps for Android and iOS.",
-				"On Android, built in Java, including the animated splash where the logo opens up into the app."
+				"Built the iOS app natively with UIKit.",
+				"Built the Android app natively in Java with XML views, including the animated splash where the logo opens up into the app.",
+				"Structured both apps with a clean architecture.",
+				"Used Firebase as the backend for both."
 			]
 		},
 		"stack": {
 			"title": "Stack",
 			"items": [
-				"Android",
+				"UIKit",
+				"iOS",
 				"Java",
-				"iOS"
+				"Android Views (XML)",
+				"Clean architecture",
+				"Firebase"
 			]
 		},
 		"team": {
@@ -117,7 +126,7 @@
 		},
 		"outcome": {
 			"title": "The result",
-			"text": "Competition apps for both platforms."
+			"text": "Two native competition apps, one per platform, on a shared Firebase backend."
 		},
 		"back": {
 			"label": "All works",
@@ -132,6 +141,33 @@
 		"next": {
 			"title": "ÇocukFlix",
 			"url": "/work-cocukflix"
+		},
+		"architecture": {
+			"title": "Architecture",
+			"text": "Two native apps on one Firebase backend.",
+			"layers": [
+				{
+					"name": "iOS app",
+					"items": [
+						"UIKit",
+						"Clean architecture"
+					]
+				},
+				{
+					"name": "Android app",
+					"items": [
+						"Java",
+						"XML views",
+						"Clean architecture"
+					]
+				},
+				{
+					"name": "Firebase",
+					"items": [
+						"Shared backend"
+					]
+				}
+			]
 		}
 	},
 	"analytics": {
